@@ -46,13 +46,8 @@ async function fetchData(
 }
 
 export default function SimpleTabs() {
-  const [value, setValue] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
   
-  const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <Portfolio />

@@ -1,3 +1,4 @@
+import React from 'react';
 import { CSSProperties, ReactEventHandler, useEffect, useState } from "react";
 import { clearTimeout } from "timers";
 
@@ -13,6 +14,7 @@ interface PixelProps {
 
 export default function Pixel(props: PixelProps) {
   const [hidden, setHidden] = useState(true);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -23,9 +25,13 @@ export default function Pixel(props: PixelProps) {
     // }
   });
 
+  var ref = React.createRef<HTMLDivElement>();
+  
   // return !hidden ? <rect width="1" height="1" shapeRendering="crispEdges" {...props} /> : <></>;
   return !hidden ? (
     <div
+      ref={ref}
+      onAnimationEnd={() => { if (ref.current) ref.current.className = ""; setHasAnimated(true); }}
       style={{
         width: props.pixelSize,
         height: props.pixelSize,
@@ -36,6 +42,7 @@ export default function Pixel(props: PixelProps) {
 				top: props.y * props.pixelSize,
       }}
 			{...props}
+      className={hasAnimated ? "" : props.className }
     />
   ) : (
     <></>

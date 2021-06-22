@@ -11,10 +11,10 @@ import PixelBitmap from "./PixelBitmap";
 import alphabet from '../graphics/bitmaps/alphabetMap.js';
 
 var animation = [
-  "animate__fadeInRightBig",
-  "animate__fadeInLeftBig",
-  "animate__fadeInUpBig",
-  "animate__fadeInDownBig",
+  "animate__animated animate__fadeInRightBig",
+  "animate__animated animate__fadeInLeftBig",
+  "animate__animated animate__fadeInUpBig",
+  "animate__animated animate__fadeInDownBig",
 ];
 // const animation = "animate__fadeInDownBig";
 // const animation = "animate__slow animate__backInLeft";
@@ -31,15 +31,16 @@ const colorMap: { [key: number]: string } = {
 export default function Portfolio() {
   const [hidden, setHidden] = useState(true);
   const [fillerSize, setFillerSize] = useState(300);
+  const [overflow, setOverflow] = useState("hidden");
 
+  
   setTimeout(() => {
     setHidden(false);
     setFillerSize(100);
-    animation = [""];
-  }, 4000);
+  }, 3000);
 
   return (
-    <div style={{}}>
+    <div style={{overflow: overflow}}>
       <div className="transition" style={{height: fillerSize}}></div>
       <Grid container justify="center" spacing={10} className="transition">
         <Grid item>
@@ -86,7 +87,7 @@ export default function Portfolio() {
       </Grid>
       {
         !hidden && 
-        <div className="animate__animated animate__fadeInUpBig">
+        <div className="animate__animated animate__fadeInUpBig" onAnimationEnd={() => setOverflow("visible")}>
           <Typography variant="h3" align="center" color="primary" style={{ padding: "6rem" }}>
             Projects
           </Typography>
