@@ -1,3 +1,18 @@
 .MuiTabs-indicator {
   height: 3px !important;
 }
+
+@font-face {
+  font-family: 'PressStart2P';
+  src: url('./PressStart2P-vaV7.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.pixelfont {
+  font-family:'PressStart2P';
+}
+
+.transition {
+  transition: all 0.5s linear;
+}

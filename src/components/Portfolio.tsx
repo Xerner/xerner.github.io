@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Container,
@@ -10,9 +10,17 @@ import {
 import PixelBitmap from "./PixelBitmap";
 import alphabet from '../graphics/bitmaps/alphabetMap.js';
 
+var animation = [
+  "animate__fadeInRightBig",
+  "animate__fadeInLeftBig",
+  "animate__fadeInUpBig",
+  "animate__fadeInDownBig",
+];
+// const animation = "animate__fadeInDownBig";
 // const animation = "animate__slow animate__backInLeft";
-// const animation = "animate__slow animate__flip";
-const animation = "animate__slow animate__flipInY";
+// const animation = "animate__flip";
+// const animation = "animate__fadeInBottomLeft";
+// const animation = "animate__faster animate__flipInY";
 
 const colorMap: { [key: number]: string } = {
   0: "#00000000",
@@ -20,23 +28,72 @@ const colorMap: { [key: number]: string } = {
   2: "#001064",
 };
 
-
 export default function Portfolio() {
+  const [hidden, setHidden] = useState(true);
+  const [fillerSize, setFillerSize] = useState(300);
+
+  setTimeout(() => {
+    setHidden(false);
+    setFillerSize(100);
+    animation = [""];
+  }, 4000);
+
   return (
-    <Box m={6}>
-      <Grid container justify="center" spacing={10}>
+    <div style={{}}>
+      <div className="transition" style={{height: fillerSize}}></div>
+      <Grid container justify="center" spacing={10} className="transition">
         <Grid item>
-          <PixelBitmap bitmap={alphabet.K} pixelSize={20} colormap={colorMap} className={animation} rowDelay={10}/>
+          <Grid container justify="center" spacing={2} alignItems="baseline">
+            <Grid item>
+              <PixelBitmap bitmap={alphabet.K} pixelSize={20} colormap={colorMap} className={animation} rowDelay={10} random/>
+            </Grid>
+            <Grid item>
+              <PixelBitmap bitmap={alphabet.e} pixelSize={10} colormap={colorMap} className={animation} rowDelay={10} random/>
+            </Grid>
+            <Grid item>
+              <PixelBitmap bitmap={alphabet.n} pixelSize={10} colormap={colorMap} className={animation} rowDelay={10} random/>
+            </Grid>
+            <Grid item>
+              <PixelBitmap bitmap={alphabet.n} pixelSize={10} colormap={colorMap} className={animation} rowDelay={10} random/>
+            </Grid>
+            <Grid item>
+              <PixelBitmap bitmap={alphabet.e} pixelSize={10} colormap={colorMap} className={animation} rowDelay={10} random/>
+            </Grid>
+            <Grid item>
+              <PixelBitmap bitmap={alphabet.t} pixelSize={10} colormap={colorMap} className={animation} rowDelay={10} random/>
+            </Grid>
+            <Grid item>
+              <PixelBitmap bitmap={alphabet.h} pixelSize={10} colormap={colorMap} className={animation} rowDelay={10} random/>
+            </Grid>
+          </Grid>
         </Grid>
         <Grid item>
-          <PixelBitmap bitmap={alphabet.M} pixelSize={20} colormap={colorMap} className={animation} rowDelay={10}/>
+          <Grid container justify="center" spacing={2} alignItems="baseline">
+            <Grid item>
+              <PixelBitmap bitmap={alphabet.M} pixelSize={20} colormap={colorMap} className={animation} rowDelay={10} random/>
+            </Grid>
+            <Grid item>
+              <PixelBitmap bitmap={alphabet.e} pixelSize={10} colormap={colorMap} className={animation} rowDelay={10} random/>
+            </Grid>
+            <Grid item>
+              <PixelBitmap bitmap={alphabet.a} pixelSize={10} colormap={colorMap} className={animation} rowDelay={10} random/>
+            </Grid>
+            <Grid item>
+              <PixelBitmap bitmap={alphabet.d} pixelSize={10} colormap={colorMap} className={animation} rowDelay={10} random/>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
-      <Typography variant="h5" align="center" style={{ padding: "6rem" }}>
-        Projects
-      </Typography>
-    </Box>
+      {
+        !hidden && 
+        <div className="animate__animated animate__fadeInUpBig">
+          <Typography variant="h3" align="center" color="primary" style={{ padding: "6rem" }}>
+            Projects
+          </Typography>
+        </div>
 
+      }
+    </div>
     // <Box m={6}>
     //   <Grid container justify="center" spacing={2}>
     //     <Grid item>

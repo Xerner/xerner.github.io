@@ -7,12 +7,13 @@ interface PixelProps {
   pixelSize: number;
   colormap: { [key: number]: string };
   animate?: boolean;
-  className?: string | string[][];
+  className?: string | string[];
   rowDelay?: number;
+  random?: boolean;
 }
 
 export default function PixelBitmap(props: PixelProps) {
-  const { bitmap, pixelSize, colormap, className, rowDelay, ...other} = props;
+  const { bitmap, pixelSize, colormap, className, rowDelay, random, ...other} = props;
   const rows = bitmap.length;
   const columns = bitmap[0].length;
   const width = columns * pixelSize;
@@ -23,8 +24,14 @@ export default function PixelBitmap(props: PixelProps) {
     <div style={{width: width, height: height, position: "relative"}} {...other}>
       {bitmap.map((row: number[], rowIndex: number) => {
         return row.map((bit: number, index: number) => {
-          if (rowDelay) delay += rowDelay;
-          var className2 = Array.isArray(className) ? className[rowIndex][index] : className;
+          if (rowDelay) {
+            if (random) {
+              delay = rowDelay * Math.random();
+            } else {
+              delay += rowDelay;
+            }
+          }
+          var className2 = Array.isArray(className) ? className[Math.floor(Math.random() * className.length)] : className;
           return (
             <Pixel
               key={index}
