@@ -31,16 +31,18 @@ const colorMap: { [key: number]: string } = {
 export default function Portfolio() {
   const [hidden, setHidden] = useState(true);
   const [fillerSize, setFillerSize] = useState(300);
-  const [overflow, setOverflow] = useState("hidden");
-
+  const [nameHeight, setNameHeight] = useState("5000px");
+  const [hideOverflow, setHideOverflow] = useState(false);
   
   setTimeout(() => {
     setHidden(false);
     setFillerSize(100);
   }, 3000);
 
+  if (!hideOverflow) document.body.style.overflow = "hidden"
+
   return (
-    <div style={{overflow: overflow}}>
+    <div style={{overflow: hideOverflow ? "visible" : "inherit"}}>
       <div className="transition" style={{height: fillerSize}}></div>
       <Grid container justify="center" spacing={10} className="transition">
         <Grid item>
@@ -87,12 +89,11 @@ export default function Portfolio() {
       </Grid>
       {
         !hidden && 
-        <div className="animate__animated animate__fadeInUpBig" onAnimationEnd={() => setOverflow("visible")}>
+        <div className="animate__animated animate__fadeInUpBig" onAnimationEnd={() => {setNameHeight("auto"); setHideOverflow(true); document.body.style.overflow = "visible"}}>
           <Typography variant="h3" align="center" color="primary" style={{ padding: "6rem" }}>
             Projects
           </Typography>
         </div>
-
       }
     </div>
     // <Box m={6}>
