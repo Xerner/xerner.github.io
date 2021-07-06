@@ -6,6 +6,7 @@ import {
   createMuiTheme,
   IconButton,
   ThemeProvider,
+  Tooltip,
   useMediaQuery,
 } from "@material-ui/core";
 import { DateTime } from "luxon";
@@ -189,22 +190,33 @@ export default function App() {
             </Grid>
           </Grid>
         </div>
+{/*
+ ██████  ██████  ███    ██ ████████ ██████   ██████  ██      ███████ 
+██      ██    ██ ████   ██    ██    ██   ██ ██    ██ ██      ██      
+██      ██    ██ ██ ██  ██    ██    ██████  ██    ██ ██      ███████ 
+██      ██    ██ ██  ██ ██    ██    ██   ██ ██    ██ ██           ██ 
+ ██████  ██████  ██   ████    ██    ██   ██  ██████  ███████ ███████ 
+ */}
         <div>
           <Grid container style={{ position: "fixed", left: 0, top: 0, marginLeft: 8, marginTop: 8}} spacing={2}>
             <Grid item>
+            <Tooltip title="Change font style">
               <ToggleButton
                 value="check"
                 selected={config.hasPixelFont}
                 style={{ borderColor: theme.palette.primary.main }}
                 onChange={toggleFont}
               >
-                Font
+                {config.hasPixelFont ? 'Normal Font' : 'Pixel Font'}
               </ToggleButton>
+            </Tooltip>
             </Grid>
             <Grid item>
-              <IconButton aria-label="toggle dark mode" onClick={toggleDarkMode} title="Toggle dark mode">
+            <Tooltip title="Toggle dark mode">
+              <IconButton aria-label="toggle dark mode" onClick={toggleDarkMode}>
                 {config.darkMode ? <BrightnessIcon fontSize="large"/> : <BrightnessHighIcon fontSize="large"/>}
               </IconButton>
+            </Tooltip>
             </Grid>
           </Grid>
         </div>
