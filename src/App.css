@@ -1,18 +1,34 @@
-.MuiTabs-indicator {
-  height: 3px !important;
-}
+/* Uncomment for a good time */
+/* * {
+  outline: 1px solid red !important;
+} */
 
 @font-face {
-  font-family: 'PressStart2P';
-  src: url('./PressStart2P-vaV7.ttf') format('truetype');
+  font-family: 'pixelfont';
   font-weight: normal;
   font-style: normal;
-}
-
-.pixelfont {
-  font-family:'PressStart2P';
+  src: url('./Pixelar\ Regular\ W01\ Regular/Pixelar-Regular-W01-Regular.ttf');
 }
 
 .transition {
   transition: all 0.5s linear;
+}
+
+.pixelfont-lh * {
+  line-height: 1 !important;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(246, 246, 246) !important;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }

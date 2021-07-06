@@ -1,4 +1,3 @@
-import Svg from "./Svg";
 import Pixel from "./Pixel";
 import React from "react";
 

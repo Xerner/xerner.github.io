@@ -1,6 +1,5 @@
 import React from 'react';
-import { CSSProperties, ReactEventHandler, useEffect, useState } from "react";
-import { clearTimeout } from "timers";
+import { useEffect, useState } from "react";
 
 interface PixelProps {
   x: number;
