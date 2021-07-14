@@ -1,218 +1,197 @@
-import "./App.css";
-import "./bootstrap.css";
+import "./App.scss";
 import "animate.css";
 import {
   Box,
-  createMuiTheme,
+  Button,
+  createTheme,
   IconButton,
   ThemeProvider,
   useMediaQuery,
 } from "@material-ui/core";
 import { DateTime } from "luxon";
-import Cookies from "js-cookie"; // @ts-ignore: Unreachable code error
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Container, Grid, Typography } from "@material-ui/core";
-import ProjectCard from "./components/ProjectCard";
 import BrightnessIcon from "@material-ui/icons/Brightness4";
-import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
-import ToggleButton from "@material-ui/lab/ToggleButton";
-import PixelWord from "./components/PixelWord";
+import BrightnessHighIcon from "@material-ui/icons/Brightness5";
+import ProjectCard from "./components/ProjectCard";
+import CssBaseline from "@material-ui/core/CssBaseline";
+// import { blue, lightBlue, red, pink } from "@material-ui/core/colors";
+import MyName from "./components/non-functional/MyName";
+import { useCookie } from "hooks/useCookie";
 
-//#region animation stuff
-
-// var animation = [
-//   "animate__fadeInRightBig",
-//   "animate__fadeInLeftBig",
-//   "animate__fadeInUpBig",
-//   "animate__fadeInDownBig",
-// ];
 // const animation = "animate__fadeInDownBig";
 // const animation = "animate__slow animate__backInLeft";
 // const animation = "animate__flip";
 // const animation = "animate__fadeInBottomLeft";
 // const animation = "animate__faster animate__flipInY";
 
-const colorMap: { [key: number]: string } = {
-  0: "#00000000",
-  1: "#5f5fc4",
-  2: "#001064",
-};
-
-//#endregion
-
 export default function App() {
+  const [darkMode, setDarkMode] = useCookie(
+    "darkMode",
+    useMediaQuery("(prefers-color-scheme: dark)"),
+    { maxAge: 50000 }
+  );
+  // console.log(typeof darkMode)
+  const [hasPixelFont, setHasPixelFont] = useCookie("hasPixelFont", true);
   const [hideOverflow, setHideOverflow] = useState(false);
-  const [config, setConfig] = React.useState({
-    hasPixelFont: true,
-    darkMode: useMediaQuery('(prefers-color-scheme: dark)'),
-  });
-  const [animationConfig, setAnimationConfig] = React.useState({
-    rowDelay: Cookies.get("playAnimation") === "true" ? 10 : 0,
-    animationMap:
-      Cookies.get("playAnimation") === "true"
-        ? [
-            "animate__fadeInRight",
-            "animate__fadeInLeft",
-            "animate__fadeInUp",
-            "animate__fadeInDown",
-          ]
-        : [],
-    hideContent: Cookies.get("playAnimation") === "true" ? true : false,
-    fillerSize: Cookies.get("playAnimation") === "true" ? 300 : 100,
-  });
+  const [playAnimation, setPlayAnimation] = useCookie(
+    "playAnimation",
+    true
+  );
+  const [animationClasses] = useState(
+    playAnimation
+      ? [
+          "animate__fadeInRight",
+          "animate__fadeInLeft",
+          "animate__fadeInUp",
+          "animate__fadeInDown",
+        ]
+      : []
+  );
+  const [rowDelay, setRowDelay] = useState(playAnimation ? 1 : 0);
+  const [rowDelayMaxIncrement] = useState(rowDelay * 0.1);
+  const [hideContent, setHideContent] = useState(playAnimation ? true : false);
+  const [fillerSize, setFillerSize] = useState(playAnimation ? 300 : 100);
 
-  // Config state handler
-  const handleCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setConfig({ ...config, [event.target.name]: event.target.checked });
+  const animationObj = {
+    animationClasses: animationClasses,
+    rowDelay: rowDelay,
+    rowDelayMaxIncrement: rowDelayMaxIncrement,
+    hideContent: hideContent,
   };
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setConfig({ ...config, [event.target.name]: event.target.value });
-  };
-  const toggleDarkMode = () => setConfig({ ...config, darkMode: !config.darkMode});
 
-  const toggleFont = () =>
-    setConfig({ ...config, hasPixelFont: !config.hasPixelFont });
-
-  // This is supposed to go off at the same time the name finishes animating
-  // It turns of the bool that is hiding the main content, and shrinks a buffer that allows the name to move upwards
-  React.useEffect(() => {
-    if (Cookies.get("playAnimation") === "true") {
-      var time = DateTime.local().plus({ days: 1 }).set({ hour: 0 });
-      Cookies.set("playAnimation", "false", { expires: time.toJSDate() });
-      console.log("here");
-      setTimeout(() => {
-        setAnimationConfig({
-          ...animationConfig,
-          hideContent: false,
-          fillerSize: 100,
-          rowDelay: 0,
-        });
-      }, 2000);
-    } else {
-      // Cookies.set("playAnimation", "true");
-      // // re-setup animation to play
-      // setAnimationConfig({
-      //   ...animationConfig,
-      //   playAnimation: true,
-      //   hideContent: true,
-      //   fillerSize: 300,
-      //   rowDelay: 10,
-      // });
-    }
-  }, [animationConfig]);
-
-  // calling theme in function because it has some conditional styling
-  const theme = React.useMemo(
+  var theme = useMemo(
     () =>
-      createMuiTheme({
+      createTheme({
         palette: {
-          type: config.darkMode ? "dark" : "light",
+          type: darkMode ? "dark" : "light",
           primary: {
-            light: "#5f5fc4",
-            main: "#283593",
-            dark: "#001064",
-            contrastText: "#ffffff",
+            light: "#757ce8",
+            main: "#3f50b5",
+            dark: "#002884",
+            contrastText: "#fff",
           },
-          background: {
-            default: config.darkMode ? "#212529" : "#fafafa",
+          secondary: {
+            light: "#ff7961",
+            main: "#f44336",
+            dark: "#ba000d",
+            contrastText: "#000",
           },
         },
         typography: {
-          fontFamily: config.hasPixelFont ? "pixelfont" : undefined,
+          fontFamily: hasPixelFont ? "Pixelar Regular W01 Regular" : undefined,
           h3: {
-            fontSize: config.hasPixelFont ? "4.5rem" : "3rem",
-            // lineHeight: config.hasPixelFont ? 1 : 1.5,
+            fontSize: hasPixelFont ? "3.75rem" : "3rem", //3rem
           },
           h5: {
-            fontSize: config.hasPixelFont ? "2.25rem" : "1.5rem",
-            // lineHeight: config.hasPixelFont ? 1 : 1.5,
+            fontSize: hasPixelFont ? "1.875rem" : "1.5rem", //1.5rem
           },
           body1: {
-            fontSize: config.hasPixelFont ? "1.5rem" : "1rem",
-            // lineHeight: config.hasPixelFont ? 1 : 1.5,
+            fontSize: hasPixelFont ? "1.25rem" : "1rem", //1rem
+            lineHeight: hasPixelFont ? "1.5rem" : undefined,
           },
           button: {
-            fontSize: config.hasPixelFont
-              ? "1.25rem !important"
-              : "0.875rem !important",
+            fontSize: hasPixelFont ? "1.3125rem" : "0.875rem", //0.875rem
           },
         },
       }),
-    [config]
+    [darkMode, hasPixelFont]
   );
 
-  // const classes = useStyles();
+  // This is supposed to go off at the same time the name finishes animating
+  // It turns of the bool that is hiding the main content, and shrinks a buffer that allows the name to move upwards
+  useMemo(() => {
+    if (playAnimation) {
+      // var time = DateTime.local().plus({ seconds: 5 }).set({ hour: 0 });
+      setPlayAnimation(false);
+      // setPlayAnimationOptions({ expires: time.toJSDate() });
+      setTimeout(() => {
+        setRowDelay(0);
+        setHideContent(false);
+        setFillerSize(100);
+      }, 2000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!hideOverflow) document.body.style.overflow = "hidden";
 
+  var root = document.getElementById("root");
+  var html = document.getElementById("html");
+  if (root) root.style.backgroundColor = theme.palette.background.default;
+  if (html) html.style.backgroundColor = theme.palette.background.default;
+
   return (
     <ThemeProvider theme={theme}>
-      <div
-        className={config.hasPixelFont ? "pixelfont-lh" : "normal-lh"}
+      <CssBaseline />
+      {/*
+ ██████  ██████  ███    ██ ████████ ██████   ██████  ██      ███████ 
+██      ██    ██ ████   ██    ██    ██   ██ ██    ██ ██      ██      
+██      ██    ██ ██ ██  ██    ██    ██████  ██    ██ ██      ███████ 
+██      ██    ██ ██  ██ ██    ██    ██   ██ ██    ██ ██           ██ 
+ ██████  ██████  ██   ████    ██    ██   ██  ██████  ███████ ███████ 
+*/}
+      <Grid
+        container
         style={{
-          backgroundColor: theme.palette.background.default,
+          position: "fixed",
+          left: 0,
+          top: 0,
+          marginLeft: 8,
+          marginTop: 8,
+        }}
+        spacing={2}
+      >
+        <Grid item xs={12}>
+          <IconButton
+            aria-label="toggle dark mode"
+            onClick={() => setDarkMode(!darkMode)}
+            title="Toggle dark mode"
+          >
+            {darkMode ? (
+              <BrightnessIcon fontSize="large" />
+            ) : (
+              <BrightnessHighIcon fontSize="large" />
+            )}
+          </IconButton>
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            onClick={() => setHasPixelFont(!hasPixelFont)}
+            style={{ width: 64, height: 48 }}
+          >
+            Font
+          </Button>
+          {/* <ToggleButton
+              value="check"
+              selected={hasPixelFont}
+              style={{ borderColor: theme.palette.primary.main }}
+              onClick={() => setHasPixelFont(!hasPixelFont)}
+            >
+              Font
+            </ToggleButton> */}
+        </Grid>
+      </Grid>
+      <Box
+        style={{
           overflow: hideOverflow ? "visible" : "inherit",
         }}
       >
-        <div
-          className="transition"
-          style={{ height: animationConfig.fillerSize }}
-        ></div>
-        <div style={{ padding: 40 }}>
-          {/* 
-███    ███ ██    ██     ███    ██  █████  ███    ███ ███████ 
-████  ████  ██  ██      ████   ██ ██   ██ ████  ████ ██      
-██ ████ ██   ████       ██ ██  ██ ███████ ██ ████ ██ █████   
-██  ██  ██    ██        ██  ██ ██ ██   ██ ██  ██  ██ ██      
-██      ██    ██        ██   ████ ██   ██ ██      ██ ███████ 
+        <Box className="transition" style={{ height: fillerSize }} />
+        <MyName {...animationObj} />
+        {/* 
+██████  ██████   ██████       ██ ███████  ██████ ████████ ███████ 
+██   ██ ██   ██ ██    ██      ██ ██      ██         ██    ██      
+██████  ██████  ██    ██      ██ █████   ██         ██    ███████ 
+██      ██   ██ ██    ██ ██   ██ ██      ██         ██         ██ 
+██      ██   ██  ██████   █████  ███████  ██████    ██    ███████ 
 */}
-          <Grid container justify="center" spacing={10} className="transition">
-            <Grid item>
-              <Grid
-                container
-                justify="center"
-                spacing={2}
-                alignItems="baseline"
-              >
-                <PixelWord word="Kenneth" colorMap={colorMap} />
-              </Grid>
-            </Grid>
-            <Grid item>
-              <Grid
-                container
-                justify="center"
-                spacing={2}
-                alignItems="baseline"
-              >
-                <PixelWord word="Mead" colorMap={colorMap} />
-              </Grid>
-            </Grid>
-          </Grid>
-        </div>
-        <div>
-          <Grid container style={{ position: "fixed", left: 0, top: 0, marginLeft: 8, marginTop: 8}} spacing={2}>
-            <Grid item>
-              <ToggleButton
-                value="check"
-                selected={config.hasPixelFont}
-                style={{ borderColor: theme.palette.primary.main }}
-                onChange={toggleFont}
-              >
-                Font
-              </ToggleButton>
-            </Grid>
-            <Grid item>
-              <IconButton aria-label="toggle dark mode" onClick={toggleDarkMode} title="Toggle dark mode">
-                {config.darkMode ? <BrightnessIcon fontSize="large"/> : <BrightnessHighIcon fontSize="large"/>}
-              </IconButton>
-            </Grid>
-          </Grid>
-        </div>
-        {!animationConfig.hideContent && (
-          <div
+        {!hideContent && (
+          <Box
             className="animate__animated animate__fadeInUpBig"
-            onAnimationEnd={() => {
+            onAnimationEnd={(e) => {
               setHideOverflow(true);
+              // e.currentTarget.className = "";
               document.body.style.overflow = "visible";
             }}
           >
@@ -220,27 +199,29 @@ export default function App() {
               variant="h3"
               align="center"
               color="primary"
-              className="pixelfont"
-              style={{ padding: "1rem" }}
+              style={{ margin: "4rem 1rem" }}
             >
               Projects
             </Typography>
             <Container maxWidth="lg">
-              <Grid container justify="center" spacing={2}>
+              <Grid container justifyContent="center" spacing={2}>
                 <ProjectCard
                   width={200}
                   href="https://mrmeik.itch.io/smart-city-dashboard"
                   image={{
-                    url: "src\\graphics\\project-images\\smart-city-dashboard.png",
+                    url: "images/smart-city-dashboard.png",
+                    alt: "Smart City Dashboard screenshot",
+                    title: "Smart City Dashboard",
                   }}
                   name="Smart City Dashboard"
                   desc="A city builder and simulator with the ability to integrate smart technologies in the city"
+                  learnMoreUrl=""
                 />
               </Grid>
             </Container>
-          </div>
+          </Box>
         )}
-      </div>
+      </Box>
     </ThemeProvider>
   );
 }

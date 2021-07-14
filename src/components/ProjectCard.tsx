@@ -1,29 +1,45 @@
 import {
   Box,
   Button,
-  CardActionArea,
   CardMedia,
   Grid,
-  makeStyles,
+  Link,
+  Tooltip,
   Typography,
 } from "@material-ui/core";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    maxWidth: 345,
-    // boxShadow: "0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important",
-    "&:hover": {
-      boxShadow: "0 8px 15px rgb(0, 0, 0, 0.2) !important",
+import React from "react";
+
+const useStyles = makeStyles((theme: Theme) => {
+  return createStyles({
+    root: {
+      backgroundColor: theme.palette.background.paper,
+      maxWidth: 345,
+      borderBottom: `4px solid ${
+        theme.palette.type === "dark" ? "purple" : theme.palette.primary.light
+      }`,
+      // boxShadow: `0 3px 0px ${
+      //   theme.palette.type === "dark"
+      //     ? "rgb(159, 31, 239, 0.6)"
+      //     : "rgb(0, 0, 0, 0.2)"
+      // } !important`,
+      // "&:hover": {
+      //   boxShadow: `0 8px 15px 3px ${
+      //     theme.palette.type === "dark"
+      //       ? "rgb(159, 31, 239, 0.6)"
+      //       : "rgb(0, 0, 0, 0.2)"
+      //   } !important`,
+      // },
     },
-  },
-  media: {
-    height: 140,
-  },
-}));
+    media: {
+      height: 140,
+    },
+  });
+});
 
 interface _props {
   href: string;
@@ -32,6 +48,7 @@ interface _props {
   width?: number;
   children?: any;
   image?: imageProps;
+  learnMoreUrl?: string;
 }
 
 interface imageProps {
@@ -44,7 +61,7 @@ export default function ProjectCard(props: _props) {
   const classes = useStyles();
 
   return (
-    <Grid item>
+    <Grid item className="rise-anim">
       <Card className={classes.root}>
         {props.image ? (
           <CardMedia
@@ -63,19 +80,19 @@ export default function ProjectCard(props: _props) {
         )}
         <CardContent>
           <Typography gutterBottom variant="h5">
-            <a href={props.href}>{props.name}</a>
+            <Link href={props.href} underline="none" color="textPrimary">
+              {props.name}
+            </Link>
           </Typography>
-          <Typography variant="body1" component="p">
+          <Typography variant="body1" component="p" color="textSecondary">
             {props.desc}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
+          <Tooltip title="Todo" color="primary" arrow>
+            <Button color="primary">Share</Button>
+          </Tooltip>
+          {props.learnMoreUrl && <Button color="primary">Learn More</Button>}
         </CardActions>
       </Card>
     </Grid>

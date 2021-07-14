@@ -5,15 +5,19 @@ import PixelBitmap from "./PixelBitmap";
 interface _props {
 	word: string;
 	colorMap: {[key: number]: string};
-	animationMap?: string[];
+	animationClasses?: string[];
 	rowDelay?: number;
+	rowDelayMaxIncrement?: number;
+	upperCaseSize?: number;
+	lowerCaseSize?: number;
+	random?: boolean;
 }
 
-const bigLetterPixelSize = 15;
-const smallLetterPixelSize = 8;
+// const bigLetterSize = 15;
+// const smallLetterSize = 8;
 
 export default function PixelWord(props: _props) {
-	const { word, colorMap, animationMap, rowDelay } = props;
+	const { word, colorMap, animationClasses, rowDelay, rowDelayMaxIncrement, random } = props;
 
   return (
 		<>
@@ -21,11 +25,12 @@ export default function PixelWord(props: _props) {
 				<Grid key={index} item>
 					<PixelBitmap
 						bitmap={alphabet[char]}
-						pixelSize={index === 0 ? bigLetterPixelSize : smallLetterPixelSize}
+						pixelsize={index === 0 ? props.upperCaseSize || 15  : props.lowerCaseSize || 8}
 						colormap={colorMap}
-						className={animationMap}
+						animationClasses={animationClasses}
 						rowDelay={rowDelay}
-						random
+						rowDelayMaxIncrement={rowDelayMaxIncrement}
+						random={random}
 					/>
 				</Grid>
 			)}

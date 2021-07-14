@@ -1,47 +1,50 @@
-import React from 'react';
+import React from "react";
 import { useEffect, useState } from "react";
 
 interface PixelProps {
   x: number;
   y: number;
-  pixelSize: number;
+  pixelsize: number;
   fill: string;
-  className?: string;
-  style?: object;
+  animationClasses?: string;
   wait?: number;
+  ref?: React.RefObject<HTMLDivElement>;
 }
 
 export default function Pixel(props: PixelProps) {
-  const [hidden, setHidden] = useState(true);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const { x, y, pixelsize, fill, animationClasses, wait } = props
+  const [hidden, setHidden] = useState(props.wait && true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setHidden(false);
-    }, props.wait || 0);
-    // return () => {
-    // 	clearTimeout(timer);
-    // }
+    if (wait) {
+      setTimeout(() => {
+        setHidden(false);
+      }, wait || 0);
+      // return () => {
+      // 	clearTimeout(timer);
+      // }
+    }
   });
 
   var ref = React.createRef<HTMLDivElement>();
-  
+
   // return !hidden ? <rect width="1" height="1" shapeRendering="crispEdges" {...props} /> : <></>;
   return !hidden ? (
     <div
       ref={ref}
-      onAnimationEnd={() => { if (ref.current) ref.current.className = ""; setHasAnimated(true); }}
+      onAnimationEnd={animationClasses ? () => {
+        if (ref.current) ref.current.className = "";
+      } : undefined}
       style={{
-        width: props.pixelSize,
-        height: props.pixelSize,
-        backgroundColor: props.fill,
-				position: "absolute",
-				paddingTop: props.y !== 0 ? -props.pixelSize : 0,
-				left: props.x * props.pixelSize,
-				top: props.y * props.pixelSize,
+        width: pixelsize,
+        height: pixelsize,
+        backgroundColor: fill,
+        position: "absolute",
+        paddingTop: y !== 0 ? -pixelsize : 0,
+        left: x * pixelsize,
+        top: y * pixelsize,
       }}
-			{...props}
-      className={hasAnimated ? "" : props.className }
+      className={animationClasses}
     />
   ) : (
     <></>
