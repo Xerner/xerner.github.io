@@ -1,5 +1,6 @@
 import "./App.scss";
 import "animate.css";
+import { useSpring, animated } from "react-spring";
 import {
   Box,
   Button,
@@ -10,15 +11,16 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { DateTime } from "luxon";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Container, Grid, Typography } from "@material-ui/core";
 import BrightnessIcon from "@material-ui/icons/Brightness4";
 import BrightnessHighIcon from "@material-ui/icons/Brightness5";
 import ProjectCard from "./components/ProjectCard";
 import CssBaseline from "@material-ui/core/CssBaseline";
 // import { blue, lightBlue, red, pink } from "@material-ui/core/colors";
-import MyName from "./components/non-functional/MyName";
+import MyName from "./components/MyName";
 import { useCookie } from "hooks/useCookie";
+import { transpileModule } from "typescript";
 
 // const animation = "animate__fadeInDownBig";
 // const animation = "animate__slow animate__backInLeft";
@@ -26,40 +28,24 @@ import { useCookie } from "hooks/useCookie";
 // const animation = "animate__fadeInBottomLeft";
 // const animation = "animate__faster animate__flipInY";
 
+const animationDelay = 2000;
+
 export default function App() {
   const [darkMode, setDarkMode] = useCookie(
     "darkMode",
     useMediaQuery("(prefers-color-scheme: dark)"),
     { maxAge: 50000 }
   );
-  // console.log(typeof darkMode)
   const [hasPixelFont, setHasPixelFont] = useCookie("hasPixelFont", true);
   const [hideOverflow, setHideOverflow] = useState(false);
-  const [playAnimation, setPlayAnimation] = useCookie(
-    "playAnimation",
-    true
-  );
-  const [animationClasses] = useState(
-    playAnimation
-      ? [
-          "animate__fadeInRight",
-          "animate__fadeInLeft",
-          "animate__fadeInUp",
-          "animate__fadeInDown",
-        ]
-      : []
-  );
-  const [rowDelay, setRowDelay] = useState(playAnimation ? 1 : 0);
-  const [rowDelayMaxIncrement] = useState(rowDelay * 0.1);
+  const [playAnimation, setPlayAnimation, setPlayAnimationOptions] = useCookie("playAnimation", true);
   const [hideContent, setHideContent] = useState(playAnimation ? true : false);
-  const [fillerSize, setFillerSize] = useState(playAnimation ? 300 : 100);
-
-  const animationObj = {
-    animationClasses: animationClasses,
-    rowDelay: rowDelay,
-    rowDelayMaxIncrement: rowDelayMaxIncrement,
-    hideContent: hideContent,
-  };
+  const fillerTween = useSpring({
+    to: { height: 100 },
+    from: { height: 300 },
+    delay: animationDelay,
+    cancel: playAnimation === true,
+  });
 
   var theme = useMemo(
     () =>
@@ -99,24 +85,22 @@ export default function App() {
     [darkMode, hasPixelFont]
   );
 
+  // Entrance animation
   // This is supposed to go off at the same time the name finishes animating
   // It turns of the bool that is hiding the main content, and shrinks a buffer that allows the name to move upwards
-  useMemo(() => {
+  useEffect(() => {
     if (playAnimation) {
-      // var time = DateTime.local().plus({ seconds: 5 }).set({ hour: 0 });
-      setPlayAnimation(false);
-      // setPlayAnimationOptions({ expires: time.toJSDate() });
       setTimeout(() => {
-        setRowDelay(0);
         setHideContent(false);
-        setFillerSize(100);
+        setPlayAnimationOptions({ maxAge: 5000 });
+        setPlayAnimation(false);
       }, 2000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  });
+  
   if (!hideOverflow) document.body.style.overflow = "hidden";
-
+  
   var root = document.getElementById("root");
   var html = document.getElementById("html");
   if (root) root.style.backgroundColor = theme.palette.background.default;
@@ -144,17 +128,18 @@ export default function App() {
         spacing={2}
       >
         <Grid item xs={12}>
-          <IconButton
-            aria-label="toggle dark mode"
-            onClick={() => setDarkMode(!darkMode)}
-            title="Toggle dark mode"
-          >
-            {darkMode ? (
-              <BrightnessIcon fontSize="large" />
-            ) : (
-              <BrightnessHighIcon fontSize="large" />
-            )}
-          </IconButton>
+          <Tooltip title="Dark Mode">
+            <IconButton
+              aria-label="toggle dark mode"
+              onClick={() => setDarkMode(!darkMode)}
+            >
+              {darkMode ? (
+                <BrightnessIcon fontSize="large" />
+              ) : (
+                <BrightnessHighIcon fontSize="large" />
+              )}
+            </IconButton>
+          </Tooltip>
         </Grid>
         <Grid item xs={12}>
           <Button
@@ -178,8 +163,9 @@ export default function App() {
           overflow: hideOverflow ? "visible" : "inherit",
         }}
       >
-        <Box className="transition" style={{ height: fillerSize }} />
-        <MyName {...animationObj} />
+        <animated.div style={fillerTween} />
+        {/* <Box className="transition" style={{ height: fillerSize }} /> */}
+        <MyName playAnimation={playAnimation} />
         {/* 
 ██████  ██████   ██████       ██ ███████  ██████ ████████ ███████ 
 ██   ██ ██   ██ ██    ██      ██ ██      ██         ██    ██      

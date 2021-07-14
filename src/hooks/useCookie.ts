@@ -29,18 +29,12 @@ export function useCookie(name: string, initialValue: any, options?: CookieSetOp
   };
 
   const setOptions = (newOptions: CookieSetOptions) => {
+    console.log(cookie)
     setVanillaCookie(name, cookie, newOptions);
     setInternalOptions(newOptions);
   }
 
-  // keep the cookies consistent
-  // useEffect(() => { 
-  //   setVanillaCookie(name, cookie, internalOptions);
-  // }, [name, cookie, internalOptions, setVanillaCookie]);
-
   useEffect(() => {
-    console.log('loop?')
-    // console.log(name,CookieAlreadySet(cookies, name))
     if (CookieAlreadySet(cookies, name)) {
       var typedCookie;
       if (typeof initialValue === 'boolean') {

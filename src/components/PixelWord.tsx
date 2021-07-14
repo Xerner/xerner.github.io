@@ -2,21 +2,21 @@ import { Grid } from "@material-ui/core";
 import alphabet from "../graphics/bitmaps/alphabetMap";
 import PixelBitmap from "./PixelBitmap";
 
-interface _props {
+export interface PixelWordProps {
 	word: string;
 	colorMap: {[key: number]: string};
+	upperCaseSize: number;
+	lowerCaseSize: number;
 	animationClasses?: string[];
 	rowDelay?: number;
 	rowDelayMaxIncrement?: number;
-	upperCaseSize?: number;
-	lowerCaseSize?: number;
 	random?: boolean;
 }
 
 // const bigLetterSize = 15;
 // const smallLetterSize = 8;
 
-export default function PixelWord(props: _props) {
+export default function PixelWord(props: PixelWordProps) {
 	const { word, colorMap, animationClasses, rowDelay, rowDelayMaxIncrement, random } = props;
 
   return (
@@ -25,7 +25,7 @@ export default function PixelWord(props: _props) {
 				<Grid key={index} item>
 					<PixelBitmap
 						bitmap={alphabet[char]}
-						pixelsize={index === 0 ? props.upperCaseSize || 15  : props.lowerCaseSize || 8}
+						pixelsize={index === 0 ? props.upperCaseSize : props.lowerCaseSize}
 						colormap={colorMap}
 						animationClasses={animationClasses}
 						rowDelay={rowDelay}
