@@ -49,12 +49,15 @@ export default function MyName(props: MyNameProps) {
   };
 
   return (
+    <div style={{marginTop: "3rem"}}>
+
     <PixelSentence
       sentence="Kenneth Mead"
       wordSpacing={10}
       letterSpacing={2}
       {...wordObj}
       {...animationObj}
-    />
+      />
+      </div>
   );
 }

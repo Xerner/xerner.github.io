@@ -5,7 +5,6 @@ import {
   Box,
   Button,
   createTheme,
-  IconButton,
   ThemeProvider,
   Tooltip,
   useMediaQuery,
@@ -13,15 +12,12 @@ import {
 import { DateTime } from "luxon";
 import React, { useEffect, useMemo, useState } from "react";
 import { Container, Grid, Typography } from "@material-ui/core";
-import BrightnessIcon from "@material-ui/icons/Brightness4";
-import BrightnessHighIcon from "@material-ui/icons/Brightness5";
 import ProjectCard from "./components/ProjectCard";
 import CssBaseline from "@material-ui/core/CssBaseline";
 // import { blue, lightBlue, red, pink } from "@material-ui/core/colors";
 import MyName from "./components/MyName";
+import Controls from './components/Controls';
 import { useCookie } from "hooks/useCookie";
-import { transpileModule } from "typescript";
-
 // const animation = "animate__fadeInDownBig";
 // const animation = "animate__slow animate__backInLeft";
 // const animation = "animate__flip";
@@ -38,14 +34,8 @@ export default function App() {
   );
   const [hasPixelFont, setHasPixelFont] = useCookie("hasPixelFont", true);
   const [hideOverflow, setHideOverflow] = useState(false);
-  const [playAnimation, setPlayAnimation, setPlayAnimationOptions] = useCookie("playAnimation", true);
+  const [playAnimation, setPlayAnimation] = useCookie("playAnimation", true);
   const [hideContent, setHideContent] = useState(playAnimation ? true : false);
-  const fillerTween = useSpring({
-    to: { height: 100 },
-    from: { height: 300 },
-    delay: animationDelay,
-    cancel: playAnimation === true,
-  });
 
   var theme = useMemo(
     () =>
@@ -92,7 +82,7 @@ export default function App() {
     if (playAnimation) {
       setTimeout(() => {
         setHideContent(false);
-        setPlayAnimationOptions({ maxAge: 5000 });
+        // setPlayAnimationOptions({ maxAge: 5000 });
         setPlayAnimation(false);
       }, 2000);
     }
@@ -116,54 +106,13 @@ export default function App() {
 ██      ██    ██ ██  ██ ██    ██    ██   ██ ██    ██ ██           ██ 
  ██████  ██████  ██   ████    ██    ██   ██  ██████  ███████ ███████ 
 */}
-      <Grid
-        container
-        style={{
-          position: "fixed",
-          left: 0,
-          top: 0,
-          marginLeft: 8,
-          marginTop: 8,
-        }}
-        spacing={2}
-      >
-        <Grid item xs={12}>
-          <Tooltip title="Dark Mode">
-            <IconButton
-              aria-label="toggle dark mode"
-              onClick={() => setDarkMode(!darkMode)}
-            >
-              {darkMode ? (
-                <BrightnessIcon fontSize="large" />
-              ) : (
-                <BrightnessHighIcon fontSize="large" />
-              )}
-            </IconButton>
-          </Tooltip>
-        </Grid>
-        <Grid item xs={12}>
-          <Button
-            onClick={() => setHasPixelFont(!hasPixelFont)}
-            style={{ width: 64, height: 48 }}
-          >
-            Font
-          </Button>
-          {/* <ToggleButton
-              value="check"
-              selected={hasPixelFont}
-              style={{ borderColor: theme.palette.primary.main }}
-              onClick={() => setHasPixelFont(!hasPixelFont)}
-            >
-              Font
-            </ToggleButton> */}
-        </Grid>
-      </Grid>
+      <Controls darkMode={darkMode} setDarkMode={setDarkMode} hasPixelFont={hasPixelFont} setHasPixelFont={setHasPixelFont}/>
       <Box
         style={{
           overflow: hideOverflow ? "visible" : "inherit",
         }}
       >
-        <animated.div style={fillerTween} />
+
         {/* <Box className="transition" style={{ height: fillerSize }} /> */}
         <MyName playAnimation={playAnimation} />
         {/* 
@@ -174,6 +123,7 @@ export default function App() {
 ██      ██   ██  ██████   █████  ███████  ██████    ██    ███████ 
 */}
         {!hideContent && (
+          <>
           <Box
             className="animate__animated animate__fadeInUpBig"
             onAnimationEnd={(e) => {
@@ -193,7 +143,6 @@ export default function App() {
             <Container maxWidth="lg">
               <Grid container justifyContent="center" spacing={2}>
                 <ProjectCard
-                  width={200}
                   href="https://mrmeik.itch.io/smart-city-dashboard"
                   image={{
                     url: "images/smart-city-dashboard.png",
@@ -202,11 +151,45 @@ export default function App() {
                   }}
                   name="Smart City Dashboard"
                   desc="A city builder and simulator with the ability to integrate smart technologies in the city"
-                  learnMoreUrl=""
+                  githubUrl=""
                 />
               </Grid>
             </Container>
           </Box>
+          <Box
+            className="animate__animated animate__fadeInUpBig"
+            onAnimationEnd={(e) => {
+              setHideOverflow(true);
+              // e.currentTarget.className = "";
+              document.body.style.overflow = "visible";
+            }}
+          >
+            <Typography
+              variant="h3"
+              align="center"
+              color="primary"
+              style={{ margin: "4rem 1rem" }}
+            >
+              Game Jams
+            </Typography>
+            <Container maxWidth="lg">
+              <Grid container justifyContent="center" spacing={2}>
+                <ProjectCard
+                  href="https://itch.io/jam/ou-winter-2021-game-jam/rate/1025629"
+                  image={{
+                    url: "images/deepspace.png",
+                    alt: "Deepspace icon",
+                    title: "Deepspace",
+                  }}
+                  name="Deepspace"
+                  desc="A daring battle between a space engineer and an evil robot"
+                  githubUrl=""
+                />
+              </Grid>
+            </Container>
+          </Box>
+          </>
+
         )}
       </Box>
     </ThemeProvider>
