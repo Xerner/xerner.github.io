@@ -43,13 +43,14 @@ export default function Controls(props: ControlsProps) {
 
   return (
     <Drawer variant="permanent" anchor="left">
-      {/* <Grid
+      <Grid
         container
+        direction="column"
 				alignItems="center"
-        spacing={2}
-				style={{padding: theme.spacing(3), width: "auto"}}
+        spacing={1}
+				style={{padding: 4}}
       >
-        <Grid item xs={12}> */}
+        <Grid item>
           <Tooltip title="Dark Mode">
             <IconButton
               aria-label="toggle dark mode"
@@ -62,16 +63,16 @@ export default function Controls(props: ControlsProps) {
               )}
             </IconButton>
           </Tooltip>
-        {/* </Grid>
-        <Grid item xs={12}> */}
+        </Grid>
+        <Grid item>
           <Button
             onClick={() => setHasPixelFont(!hasPixelFont)}
             style={{ width: 64, height: 48 }}
           >
             Font
           </Button>
-        {/* </Grid>
-      </Grid> */}
+        </Grid>
+      </Grid>
     </Drawer>
   );
 
