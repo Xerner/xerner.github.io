@@ -156,7 +156,7 @@ export default function App() {
                       title: 'Smart City Dashboard'
                     }}
                     name="Smart City Dashboard"
-                    subtitle="Senior Project"
+                    subtitle="Unity | Senior Project"
                     desc="A city builder and simulator with the ability to integrate smart technologies in the city"
                     iconButtons={[
                       <Tooltip title="Itch.io page" color="primary" arrow>
@@ -209,16 +209,21 @@ export default function App() {
 
                   <ProjectCard
                     image={{
-                      url: 'images/steamy-bot.png',
+                      url: 'images/pokemon.png',
                       alt: 'Smart City Dashboard screenshot',
                       title: 'Smart City Dashboard',
-                      imageFit: 'contain'
+                      imageFit: 'cover'
                     }}
                     name="Pokemon Battler"
                     subtitle="GameMaker Studio 2"
-                    desc="An autochess style Pokemon battler"
+                    desc="An autochess style Pokemon battler with a centralized multiplayer server "
                     iconButtons={[
-                      <Tooltip title="Github" color="primary" arrow>
+                      <Tooltip title="Pokebattler Server" color="primary" arrow>
+                        <IconButton color="primary" href="https://github.com/Xerner/pokebattler-server">
+                          <GitHubIcon />
+                        </IconButton>
+                      </Tooltip>,
+                      <Tooltip title="Pokebattler Client" color="primary" arrow>
                         <IconButton color="primary" href="https://github.com/Xerner/pokebattler">
                           <GitHubIcon />
                         </IconButton>
@@ -297,6 +302,19 @@ export default function App() {
                 </Grid>
               </Container>
             </Box>
+            <footer>
+              <Grid container justifyContent="flex-end">
+                <Grid item>
+                  <Tooltip title="My Github" color="primary" arrow>
+                    <IconButton
+                      href="https://github.com/Xerner"
+                    >
+                      <GitHubIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+            </footer>
           </>
         )}
       </Box>
