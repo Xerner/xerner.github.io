@@ -1,7 +1,7 @@
 import { GridSpacing } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import { useMemo } from "react";
-import PixelWord, { PixelWordProps } from "./PixelWord";
+import PixelWord from "./PixelWord";
 
 export interface PixelSentenceProps {
   sentence: string;

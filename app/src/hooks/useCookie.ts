@@ -1,5 +1,5 @@
 import { useCookies } from "react-cookie";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface CookieSetOptions {
   path?: string;

@@ -1,9 +1,8 @@
 import './App.scss';
 import 'animate.css';
-import { useSpring, animated } from 'react-spring';
+// import { useSpring, animated } from 'react-spring';
 import {
   Box,
-  Button,
   IconButton,
   createTheme,
   ThemeProvider,
@@ -27,7 +26,7 @@ import GameJamIcon from '@material-ui/icons/SportsEsports';
 // const animation = "animate__fadeInBottomLeft";
 // const animation = "animate__faster animate__flipInY";
 
-const animationDelay = 2000;
+// const animationDelay = 2000;
 
 export default function App() {
   const [darkMode, setDarkMode] = useCookie(
@@ -56,6 +55,9 @@ export default function App() {
             main: '#f44336',
             dark: '#ba000d',
             contrastText: '#000'
+          },
+          text: {
+            primary: darkMode ? "#e8e8e8" : undefined
           }
         },
         typography: {
@@ -150,6 +152,7 @@ export default function App() {
               <Container maxWidth="lg">
                 <Grid container justifyContent="center" alignItems="flex-end" spacing={2}>
                   <ProjectCard
+                    repo={{ name:"Smart-City-Dashboard", owner: "Jaren-Taylor" }}
                     image={{
                       url: 'images/smart-city-dashboard.png',
                       alt: 'Smart City Dashboard screenshot',
@@ -184,6 +187,7 @@ export default function App() {
                   />
 
                   <ProjectCard
+                    repo={{ name:"steamy-bot", owner: "Xerner" }}
                     image={{
                       url: 'images/steamy-bot.png',
                       alt: 'Smart City Dashboard screenshot',
@@ -208,6 +212,8 @@ export default function App() {
                   />
 
                   <ProjectCard
+                    isPrivate
+                    repo={{ name:"pokebattler", owner: "Xerner" }}
                     image={{
                       url: 'images/pokemon.png',
                       alt: 'Smart City Dashboard screenshot',
@@ -266,6 +272,7 @@ export default function App() {
               <Container maxWidth="lg">
                 <Grid container justifyContent="center" spacing={2}>
                   <ProjectCard
+                    repo={{ name:"OU-Game-Jam-2021", owner: "Xerner" }}
                     image={{
                       url: 'images/deepspace.png',
                       alt: 'Deepspace icon',
@@ -273,7 +280,7 @@ export default function App() {
                       imageFit: 'contain'
                     }}
                     name="Deepspace"
-                    subtitle="48 hour Game Jam!"
+                    subtitle="Unity | 48 hour Game Jam!"
                     desc="A daring battle between a space engineer and an evil robot"
                     iconButtons={[
                       <Tooltip title="Oakland University 2021 Game Jam!" color="primary" arrow>

@@ -33,7 +33,7 @@ export default function Pixel(props: PixelProps) {
     <div
       ref={ref}
       onAnimationEnd={animationClasses ? () => {
-        if (ref.current) ref.current.className = "";
+        if (ref.current) ref.current.className = "rise-anim";
       } : undefined}
       style={{
         width: pixelsize,
