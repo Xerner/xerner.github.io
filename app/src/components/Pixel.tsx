@@ -1,3 +1,4 @@
+import { isMobile } from "functions/isMobile";
 import React from "react";
 import { useEffect, useState } from "react";
 
@@ -33,16 +34,16 @@ export default function Pixel(props: PixelProps) {
     <div
       ref={ref}
       onAnimationEnd={animationClasses ? () => {
-        if (ref.current) ref.current.className = "rise-anim";
+        if (ref.current) ref.current.className = "";
       } : undefined}
       style={{
-        width: pixelsize,
-        height: pixelsize,
+        width: pixelsize,//(y * pixelsize).toString() + "rem",
+        height: pixelsize,//(x * pixelsize).toString() + "rem",
         backgroundColor: fill,
         position: "absolute",
         paddingTop: y !== 0 ? -pixelsize : 0,
-        left: x * pixelsize,
-        top: y * pixelsize,
+        left: x * pixelsize,//(x * pixelsize).toString() + "rem",
+        top: y * pixelsize,//(y * pixelsize).toString() + "rem",
       }}
       className={animationClasses}
     />

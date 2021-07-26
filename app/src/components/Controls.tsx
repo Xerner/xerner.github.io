@@ -1,9 +1,6 @@
-import { Button, Drawer, Grid, IconButton, SwipeableDrawer, Tooltip } from '@material-ui/core';
-import BrightnessIcon from '@material-ui/icons/Brightness4';
-import BrightnessHighIcon from '@material-ui/icons/Brightness5';
-import { isMobile } from 'functions/isMobile';
-import { useEffect, useState } from 'react';
-import SettingsIcon from '@material-ui/icons/Settings';
+import { useContext } from 'react';
+import DarkModeControl from './DarkModeControl';
+import { isMobileContext } from "../context";
 
 interface ControlsProps {
   darkMode: boolean;
@@ -12,105 +9,78 @@ interface ControlsProps {
   setHasPixelFont: Function;
 }
 
-// const drawerWidth = "auto";
-
-// const useStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     root: {
-//       display: "flex",
-//     },
-//     drawerPaper: {
-//       width: drawerWidth,
-//     },
-//     content: {
-//       flexGrow: 1,
-//       backgroundColor: theme.palette.background.default,
-//       padding: theme.spacing(3),
-//     },
-//   })
-// );
-
-type Anchor = 'top' | 'left';
-
 export default function Controls(props: ControlsProps) {
-  const { darkMode, setDarkMode, hasPixelFont, setHasPixelFont } = props;
-  // const classes = useStyles();
-  const [open, setOpen] = useState(false);
+  const { setDarkMode } = props;
+  // const [open, setOpen] = useState(false);
+  const isMobile_ = useContext(isMobileContext);
 
-  useEffect(() => {
-    isMobile();
-  });
+  // const toggleDrawer = (isOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) =>
+  //   setOpen(isOpen);
 
-  const toggleDrawer = (isOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => setOpen(isOpen);
+  // const rotationHeight = 2500;
+  // const rotationWidth = 2500;
+  // const sunDiameter = 96;
 
   return (
-    <>
-    <div style={{top: 4, left: 4, position: "absolute"}}>
-
-        <IconButton onClick={toggleDrawer(!open)}>
-          <SettingsIcon fontSize="large"/>
-        </IconButton>
-    </div>
-      <SwipeableDrawer open={open} onOpen={toggleDrawer(true)} onClose={toggleDrawer(false)}>
-        <div style={{ padding: 4 }}>
-          <Grid container direction="column" alignItems="center" spacing={1}>
-            <Grid item>
-              <Tooltip title="Dark Mode">
-                <IconButton aria-label="toggle dark mode" onClick={() => setDarkMode(!darkMode)}>
-                  {darkMode ? (
-                    <BrightnessIcon fontSize="large" />
-                  ) : (
-                    <BrightnessHighIcon fontSize="large" />
-                  )}
-                </IconButton>
-              </Tooltip>
-            </Grid>
-            <Grid item>
-              <Button
-                onClick={() => setHasPixelFont(!hasPixelFont)}
-                style={{ width: 64, height: 48 }}
-              >
-                Font
-              </Button>
-            </Grid>
-          </Grid>
-        </div>
-      </SwipeableDrawer>
-    </>
+    <DarkModeControl
+      onClick={setDarkMode}
+      style={{ position: 'absolute', top: isMobile_ ? 10 : 100, left: isMobile_ ? 10 : "10%" }}
+      // className="spin"
+    />
+    // <div style={{ width: '100%', position: 'absolute', overflow: 'hidden', padding: sunDiameter }}>
+    //   <div
+    //     style={{
+    //       position: 'relative',
+    //       top: 50,
+    //       left: `calc(50% - (${rotationWidth}px / 2))`,
+    //       height: rotationHeight,
+    //       width: rotationWidth,
+    //       transform: 'rotate(0deg)',
+    //       // border: '1px solid white',
+    //       borderRadius: '50%',
+    //       // zIndex: 10,
+    //       overflow: 'hidden'
+    //     }}
+    //     // className="spin"
+    //   >
+    //     <DarkModeControl
+    //       onClick={setDarkMode}
+    //       style={{ position: 'absolute', top: 0, left: `calc(50% - (${sunDiameter}px / 2))` }}
+    //       // className="spin"
+    //     />
+    //     {/* <img
+    //       src="images/sun-1080.png"
+    //       alt="Sun"
+    //       width="96"
+    //       height="96"
+    //       style={{ position: 'absolute', top: 0, left: `calc(50% - (${sunDiameter}px / 2))` }}
+    //       // className="spin"
+    //     /> */}
+    //     {/* <img
+    //       src="images/sun-1080.png"
+    //       alt="Sun"
+    //       width="96"
+    //       height="96"
+    //       style={{ position: 'absolute', top: rotationHeight-sunDiameter / 2, left: `calc(50% - (${sunDiameter}px / 2))` }}
+    //       // className="spin"
+    //     />
+    //     <img
+    //       src="images/sun-1080.png"
+    //       alt="Sun"
+    //       width="96"
+    //       height="96"
+    //       style={{ position: 'absolute', top: `calc(50% - (${sunDiameter}px / 2))`, left: -sunDiameter / 2 }}
+    //       // className="spin"
+    //     />
+    //     <img
+    //       src="images/sun-1080.png"
+    //       alt="Sun"
+    //       width="96"
+    //       height="96"
+    //       style={{ position: 'absolute', top: `calc(50% - (${sunDiameter}px / 2))`, left: rotationWidth-sunDiameter / 2 }}
+    //       // className="spin"
+    //     /> */}
+    //   </div>
+    // </div>
   );
-
-  // {/* <Grid
-  // 	container
-  // 	style={{
-  // 		position: "fixed",
-  // 		left: 0,
-  // 		top: 0,
-  // 		marginLeft: 8,
-  // 		marginTop: 8,
-  // 	}}
-  // 	spacing={2}
-  // >
-  // 	<Grid item xs={12}>
-  // 		<Tooltip title="Dark Mode">
-  // 			<IconButton
-  // 				aria-label="toggle dark mode"
-  // 				onClick={() => setDarkMode(!darkMode)}
-  // 			>
-  // 				{darkMode ? (
-  // 					<BrightnessIcon fontSize="large" />
-  // 				) : (
-  // 					<BrightnessHighIcon fontSize="large" />
-  // 				)}
-  // 			</IconButton>
-  // 		</Tooltip>
-  // 	</Grid>
-  // 	<Grid item xs={12}>
-  // 		<Button
-  // 			onClick={() => setHasPixelFont(!hasPixelFont)}
-  // 			style={{ width: 64, height: 48 }}
-  // 		>
-  // 			Font
-  // 		</Button>
-  // 	</Grid>
-  // </Grid> */}
 }

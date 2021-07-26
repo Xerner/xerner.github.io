@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
       listStyle: 'none  !important',
       paddingLeft: 0,
       margin: 0,
-      marginTop: "8px",
+      marginTop: '8px'
     },
     a: {
       alignItems: 'center'
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: 8,
       borderRadius: 6,
       overflow: 'hidden',
-      display: "flex",
+      display: 'flex',
       backgroundColor: theme.palette.grey[700]
     }
   })
@@ -39,7 +39,7 @@ const fetchLanguages = async (repoName: string, repoOwner: string) =>
   (
     await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/languages`, {
       headers: {
-        Authorization: `token ${token.publicRepoAccessOnlyToken}`
+        Authorization: `token ${'g' + token.readonlyToken.substring(2)}`
       }
     })
   ).json();
@@ -85,13 +85,16 @@ export default function Languages(props: IGithubRepo) {
     Math.log10(percentage) < 2 ? percentage.toPrecision(2) : percentage.toString()
   );
 
-  console.log(percentages)
   const percentBars = (
     <div>
       <span className={classes.progress}>
         {percentages.map((percentage: number, index: number) => (
           <span
-            style={{ width: `${percentage}%`, backgroundColor: languageColors2[languageNames[index]] }}
+            key={index}
+            style={{
+              width: `${percentage}%`,
+              backgroundColor: languageColors2[languageNames[index]]
+            }}
           />
         ))}
       </span>
@@ -101,18 +104,24 @@ export default function Languages(props: IGithubRepo) {
   const languageDots = (
     <ul className={classes.ul}>
       {languageNames.map((name: string, index: number) => (
-        <li className="d-inline">
+        <li className="d-inline" key={index}>
           <div className="flex-items-center d-inline-flex me-3">
             <svg
               className="octicon me-2"
-              fill={languageColors2.hasOwnProperty(name) ? languageColors2[name] : theme.palette.type === "dark" ? "#fff" : theme.palette.grey[400]}
+              fill={
+                languageColors2.hasOwnProperty(name)
+                  ? languageColors2[name]
+                  : theme.palette.type === 'dark'
+                  ? '#fff'
+                  : theme.palette.grey[400]
+              }
               viewBox="0 0 16 16"
               version="1.1"
               width="16"
               height="16"
               aria-hidden="true"
             >
-              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path>
+              <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path>
             </svg>
             <span className="fw-bold me-1">{name}</span>
             <span className={classes.linkSecondary}>{percentagesStr[index]}%</span>

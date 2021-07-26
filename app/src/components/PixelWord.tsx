@@ -4,9 +4,9 @@ import PixelBitmap from "./PixelBitmap";
 
 export interface PixelWordProps {
 	word: string;
-	colorMap: {[key: number]: string};
 	upperCaseSize: number;
 	lowerCaseSize: number;
+	colorMap: {[key: number]: string};
 	animationClasses?: string[];
 	rowDelay?: number;
 	rowDelayMaxIncrement?: number;
@@ -17,15 +17,15 @@ export interface PixelWordProps {
 // const smallLetterSize = 8;
 
 export default function PixelWord(props: PixelWordProps) {
-	const { word, colorMap, animationClasses, rowDelay, rowDelayMaxIncrement, random } = props;
+	const { word, upperCaseSize, lowerCaseSize, colorMap, animationClasses, rowDelay, rowDelayMaxIncrement, random } = props;
 
   return (
 		<>
       {word.split('').map((char: string, index: number) =>
-				<Grid key={index} item>
+				<Grid key={index} item className="rise-anim" style={{flexWrap: "nowrap"}}>
 					<PixelBitmap
 						bitmap={alphabet[char]}
-						pixelsize={index === 0 ? props.upperCaseSize : props.lowerCaseSize}
+						pixelsize={index === 0 ? upperCaseSize : lowerCaseSize}
 						colormap={colorMap}
 						animationClasses={animationClasses}
 						rowDelay={rowDelay}

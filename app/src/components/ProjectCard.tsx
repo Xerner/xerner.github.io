@@ -4,6 +4,8 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Languages from './Languages';
+// import { animated, useSpring } from 'react-spring';
+// import { useState } from 'react';
 
 interface IProjectCard {
   isPrivate?: boolean;
@@ -28,93 +30,92 @@ interface IProjectCardRepo {
 }
 
 //const CARD_WIDTH = 576;
-const CARD_HEIGHT = 265;
-const CONTENT_WIDTH = "60%"
-const IMAGE_HEIGHT = 400;
+const CARD_HEIGHT = 200;
+const CONTENT_WIDTH = '60%';
+// const IMAGE_HEIGHT = 400;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       backgroundColor: theme.palette.background.paper,
-      borderBottom: `4px solid ${
-        theme.palette.type === 'dark' ? 'purple' : theme.palette.primary.light
-      }`,
+      // borderBottom: `4px solid ${
+      //   theme.palette.type === 'dark' ? 'purple' : theme.palette.primary.light
+      // }`,
+      border: `1px solid ${theme.palette.primary.main}`,
       height: CARD_HEIGHT,
-      display: 'flex',
+      display: 'flex'
     },
     details: {
       display: 'flex',
+      flex: 2,
       flexDirection: 'column',
-      width: CONTENT_WIDTH,
-    },
-    media: {
-      backgroundColor: 'gainsboro',
-      width: "40%"
+      width: CONTENT_WIDTH
     },
     title: {
-      fontSize: 24,
-      marginBottom: 4
+      fontSize: 24
+      // marginBottom: 4
     },
     languages: {
-      padding: '12px 12px',
+      padding: '12px 12px 8px 12px',
       backgroundColor:
         theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100]
+    },
+    actions: {
+      flex: 0,
+      borderLeft: `1px solid ${theme.palette.primary.dark}`
     }
   })
 );
 
+const useCardMediaStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    media: {
+      borderLeft: `1px solid ${theme.palette.primary.dark}`,
+      width: 400,
+      objectFit: 'contain',
+      top: '50%'
+    }
+  })
+);
+
+// const AnimatedCard = animated(Card);
+
 export default function ProjectCard(props: IProjectCard) {
   const { repo, name, subtitle, desc, isPrivate, image, iconButtons } = props;
-
   const classes = useStyles();
+  const cardMediaClasses = useCardMediaStyles();
 
   return (
-    <Grid item className="w-100 rise-anim">
-      <Card className={classes.root}>
+    <Grid item xs={12}>
+      <Card className={classes.root + ' shadow-split'}>
         <div className={classes.details}>
           <CardContent>
             <Typography className={classes.title}>{name}</Typography>
             <Typography className="mb-2" color="textSecondary">
               {subtitle}
             </Typography>
-            <Typography variant="body1" component="p" className="mb-2">
+            <Typography variant="body1" component="p">
               {desc}
             </Typography>
-            {isPrivate && (
-              <Typography
-                variant="body1"
-                color="textSecondary"
-                className="mt-4"
-                style={{ fontStyle: 'italic' }}
-              >
+          </CardContent>
+          <div className={classes.languages}>
+            {isPrivate ? (
+              <Languages repoName={repo.name} repoOwner={repo.owner} />
+            ) : (
+              <Typography variant="body1" color="textSecondary" style={{ fontStyle: 'italic' }}>
                 Private repository
               </Typography>
             )}
-          </CardContent>
-          {!isPrivate && (
-            <div className={classes.languages}>
-              <Languages repoName={repo.name} repoOwner={repo.owner} />
-            </div>
-          )}
-          <CardActions>
-            {iconButtons !== undefined && (
-              <Grid container justifyContent="flex-end" alignContent="center">
-                {iconButtons.map((iconButton) => (
-                  <Grid item>{iconButton}</Grid>
-                ))}
-              </Grid>
-            )}
-          </CardActions>
+          </div>
         </div>
         {image ? (
           <CardMedia
             component="img"
-            className={classes.media}
+            // className={classes.media}
+            classes={cardMediaClasses}
             alt={image.alt}
             image={image.url}
-            height={IMAGE_HEIGHT}
             title={image.title}
-            style={{ objectFit: image.imageFit ? image.imageFit : 'cover' }}
           />
         ) : (
           <Box style={{ height: 140, paddingTop: 70 }}>
@@ -122,6 +123,15 @@ export default function ProjectCard(props: IProjectCard) {
               No Image
             </Typography>
           </Box>
+        )}
+        {iconButtons !== undefined && (
+          <Grid container direction="column" className={classes.actions}>
+            {iconButtons.map((iconButton, index) => (
+              <Grid item key={index}>
+                {iconButton}
+              </Grid>
+            ))}
+          </Grid>
         )}
       </Card>
     </Grid>
