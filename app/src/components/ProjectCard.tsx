@@ -1,7 +1,7 @@
-import { Box, CardMedia, Grid, Typography } from '@material-ui/core';
+import { Box, CardMedia, Chip, Grid, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+// import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Languages from './Languages';
 // import { animated, useSpring } from 'react-spring';
@@ -11,7 +11,8 @@ interface IProjectCard {
   isPrivate?: boolean;
   repo: IProjectCardRepo;
   name: string;
-  subtitle: string;
+  subtitle?: string;
+  chips: string[];
   desc: JSX.Element | string;
   image?: IProjectCardImage;
   iconButtons?: JSX.Element[];
@@ -30,7 +31,7 @@ interface IProjectCardRepo {
 }
 
 //const CARD_WIDTH = 576;
-const CARD_HEIGHT = 200;
+const CARD_HEIGHT = '100%'; // 200;
 const CONTENT_WIDTH = '60%';
 // const IMAGE_HEIGHT = 400;
 
@@ -43,7 +44,8 @@ const useStyles = makeStyles((theme: Theme) =>
       // }`,
       border: `1px solid ${theme.palette.primary.main}`,
       height: CARD_HEIGHT,
-      display: 'flex'
+      display: 'flex',
+      width: '100%'
     },
     details: {
       display: 'flex',
@@ -56,13 +58,22 @@ const useStyles = makeStyles((theme: Theme) =>
       // marginBottom: 4
     },
     languages: {
-      padding: '12px 12px 8px 12px',
       backgroundColor:
         theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100]
     },
     actions: {
       flex: 0,
       borderLeft: `1px solid ${theme.palette.primary.dark}`
+    },
+    chips: {
+      display: 'flex',
+      // justifyContent: 'flex-start',
+      flexWrap: 'wrap',
+      '& > *': {
+        margin: theme.spacing(0.5)
+      },
+      paddingTop: 0,
+      paddingBottom: 4
     }
   })
 );
@@ -81,59 +92,74 @@ const useCardMediaStyles = makeStyles((theme: Theme) =>
 // const AnimatedCard = animated(Card);
 
 export default function ProjectCard(props: IProjectCard) {
-  const { repo, name, subtitle, desc, isPrivate, image, iconButtons } = props;
+  const { repo, name, subtitle, chips, desc, isPrivate, image, iconButtons } = props;
   const classes = useStyles();
   const cardMediaClasses = useCardMediaStyles();
 
   return (
-    <Grid item xs={12}>
-      <Card className={classes.root + ' shadow-split'}>
-        <div className={classes.details}>
-          <CardContent>
-            <Typography className={classes.title}>{name}</Typography>
+    <Card className={classes.root + ' shadow-split'}>
+      <div className={classes.details}>
+        <CardContent>
+          {/* Title */}
+          <Typography className={classes.title}>{name}</Typography>
+
+          {/* Subtitle */}
+          {subtitle !== undefined && subtitle !== '' && (
             <Typography className="mb-2" color="textSecondary">
               {subtitle}
             </Typography>
-            <Typography variant="body1" component="p">
-              {desc}
-            </Typography>
-          </CardContent>
-          <div className={classes.languages}>
-            {isPrivate ? (
-              <Languages repoName={repo.name} repoOwner={repo.owner} />
-            ) : (
-              <Typography variant="body1" color="textSecondary" style={{ fontStyle: 'italic' }}>
-                Private repository
-              </Typography>
-            )}
-          </div>
-        </div>
-        {image ? (
-          <CardMedia
-            component="img"
-            // className={classes.media}
-            classes={cardMediaClasses}
-            alt={image.alt}
-            image={image.url}
-            title={image.title}
-          />
-        ) : (
-          <Box style={{ height: 140, paddingTop: 70 }}>
-            <Typography color="textSecondary" align="center">
-              No Image
-            </Typography>
-          </Box>
-        )}
-        {iconButtons !== undefined && (
-          <Grid container direction="column" className={classes.actions}>
-            {iconButtons.map((iconButton, index) => (
-              <Grid item key={index}>
-                {iconButton}
-              </Grid>
+          )}
+
+          {/* Desc */}
+          <Typography variant="body1" component="p">
+            {desc}
+          </Typography>
+        </CardContent>
+
+        {/* Chips */}
+        <CardContent className={classes.chips}></CardContent>
+
+        {/* Languages & Chips */}
+        <CardContent className={classes.languages}>
+          <div className={classes.chips}>
+            {chips.map((chip, index) => (
+              <Chip key={index} size="small" label={chip} />
             ))}
-          </Grid>
-        )}
-      </Card>
-    </Grid>
+          </div>
+          {isPrivate !== undefined ? (
+            <Languages repoName={repo.name} repoOwner={repo.owner} />
+          ) : (
+            <Typography variant="body1" color="textSecondary" style={{ fontStyle: 'italic' }}>
+              Private repository
+            </Typography>
+          )}
+        </CardContent>
+      </div>
+      {image ? (
+        <CardMedia
+          component="img"
+          // className={classes.media}
+          classes={cardMediaClasses}
+          alt={image.alt}
+          image={image.url}
+          title={image.title}
+        />
+      ) : (
+        <Box style={{ height: 140, paddingTop: 70 }}>
+          <Typography color="textSecondary" align="center">
+            No Image
+          </Typography>
+        </Box>
+      )}
+      {iconButtons !== undefined && (
+        <Grid container direction="column" className={classes.actions}>
+          {iconButtons.map((iconButton, index) => (
+            <Grid item key={index}>
+              {iconButton}
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </Card>
   );
 }

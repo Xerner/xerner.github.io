@@ -2,7 +2,7 @@ import './App.scss';
 import 'animate.css';
 import { Box, IconButton, ThemeProvider, Tooltip, useMediaQuery } from '@material-ui/core';
 import React, { useEffect, useMemo, useState } from 'react';
-import { Container, Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import ProjectCard from './components/ProjectCard';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MyName from './components/MyName';
@@ -79,7 +79,7 @@ export default function App() {
       <Box
         style={{
           height: window.innerHeight,
-          padding: 25,
+          padding: 25
         }}
         className={darkMode ? 'night-sky' : 'day-sky'}
       >
@@ -93,14 +93,10 @@ export default function App() {
                 document.body.style.overflow = 'visible';
               }}
             >
-              <Typography
-                variant="h3"
-                align="center"
-                color="primary"
-                style={{ padding: '24px 0' }}
-              >
+              <Typography variant="h3" align="center" color="primary" style={{ padding: '24px 0' }}>
                 Projects
               </Typography>
+
               <ProjectCardContainer>
                 <ProjectCard
                   repo={{ name: 'Smart-City-Dashboard', owner: 'Jaren-Taylor' }}
@@ -110,21 +106,28 @@ export default function App() {
                     title: 'Smart City Dashboard'
                   }}
                   name="Smart City Dashboard"
-                  subtitle="Unity | Senior Project"
+                  subtitle="City Simulation | Senior Project"
+                  chips={['Unity', 'C#', 'Google Maps API', 'Agile', 'Determination']}
                   desc="A city builder and simulator with the ability to integrate smart technologies in the city"
                   iconButtons={[
                     <Tooltip title="Itch.io page" color="primary" arrow>
-                      <IconButton style={{color: theme.palette.primary.light}} href="https://mrmeik.itch.io/smart-city-dashboard">
+                      <IconButton
+                        style={{ color: theme.palette.primary.light }}
+                        href="https://mrmeik.itch.io/smart-city-dashboard"
+                      >
                         <GameJamIcon />
                       </IconButton>
                     </Tooltip>,
                     <Tooltip title="Github" color="primary" arrow>
-                      <IconButton style={{color: theme.palette.primary.light}} href="https://github.com/Xerner/OU-Game-Jam-2021">
+                      <IconButton
+                        style={{ color: theme.palette.primary.light }}
+                        href="https://github.com/Xerner/OU-Game-Jam-2021"
+                      >
                         <GitHubIcon />
                       </IconButton>
                     </Tooltip>,
                     <Tooltip title="Share" color="primary" arrow>
-                      <IconButton style={{color: theme.palette.primary.light}}>
+                      <IconButton style={{ color: theme.palette.primary.light }}>
                         <ShareIcon />
                       </IconButton>
                     </Tooltip>
@@ -140,15 +143,19 @@ export default function App() {
                   }}
                   name="Steamy Bot"
                   subtitle="Discord Bot"
+                  chips={['Test']}
                   desc="Yet another Discord music bot that plays songs from youtube"
                   iconButtons={[
                     <Tooltip title="Github" color="primary" arrow>
-                      <IconButton style={{color: theme.palette.primary.light}} href="https://github.com/Xerner/steamy-bot">
+                      <IconButton
+                        style={{ color: theme.palette.primary.light }}
+                        href="https://github.com/Xerner/steamy-bot"
+                      >
                         <GitHubIcon />
                       </IconButton>
                     </Tooltip>,
                     <Tooltip title="Share" color="primary" arrow>
-                      <IconButton style={{color: theme.palette.primary.light}}>
+                      <IconButton style={{ color: theme.palette.primary.light }}>
                         <ShareIcon />
                       </IconButton>
                     </Tooltip>
@@ -160,28 +167,32 @@ export default function App() {
                   repo={{ name: 'pokebattler', owner: 'Xerner' }}
                   image={{
                     url: 'images/pokemon.png',
-                    alt: 'Smart City Dashboard screenshot',
-                    title: 'Smart City Dashboard'
+                    alt: 'Pokemon screenshot',
+                    title: 'Pokemon'
                   }}
                   name="Pokemon Battler"
                   subtitle="GameMaker Studio 2"
-                  desc="An autochess style Pokemon battler with a centralized multiplayer server "
+                  chips={['Test']}
+                  desc="An autochess style Pokemon battler with a centralized multiplayer server"
                   iconButtons={[
+                    <Tooltip title="Pokebattler Client" color="primary" arrow>
+                      <IconButton
+                        style={{ color: theme.palette.primary.light }}
+                        href="https://github.com/Xerner/pokebattler"
+                      >
+                        <GitHubIcon />
+                      </IconButton>
+                    </Tooltip>,
                     <Tooltip title="Pokebattler Server" color="primary" arrow>
                       <IconButton
-                        style={{color: theme.palette.primary.light}}
+                        style={{ color: theme.palette.primary.light }}
                         href="https://github.com/Xerner/pokebattler-server"
                       >
                         <GitHubIcon />
                       </IconButton>
                     </Tooltip>,
-                    <Tooltip title="Pokebattler Client" color="primary" arrow>
-                      <IconButton style={{color: theme.palette.primary.light}} href="https://github.com/Xerner/pokebattler">
-                        <GitHubIcon />
-                      </IconButton>
-                    </Tooltip>,
                     <Tooltip title="Share" color="primary" arrow>
-                      <IconButton style={{color: theme.palette.primary.light}}>
+                      <IconButton style={{ color: theme.palette.primary.light }}>
                         <ShareIcon />
                       </IconButton>
                     </Tooltip>
@@ -190,31 +201,61 @@ export default function App() {
 
                 <ProjectCard
                   isPrivate
-                  repo={{ name: 'pokebattler', owner: 'Xerner' }}
+                  repo={{ name: '', owner: 'Xerner' }}
                   image={{
-                    url: 'images/pokemon.png',
-                    alt: 'Smart City Dashboard screenshot',
-                    title: 'Smart City Dashboard'
+                    url: '',
+                    alt: '',
+                    title: ''
                   }}
-                  name="Pokemon Battler"
-                  subtitle="GameMaker Studio 2"
-                  desc="An autochess style Pokemon battler with a centralized multiplayer server "
+                  name="Work Request System"
+                  subtitle="Front-End React"
+                  chips={['Test']}
+                  desc="A mockup front-end work request management system"
                   iconButtons={[
-                    <Tooltip title="Pokebattler Server" color="primary" arrow>
-                      <IconButton
-                        style={{color: theme.palette.primary.light}}
-                        href="https://github.com/Xerner/pokebattler-server"
-                      >
-                        <GitHubIcon />
-                      </IconButton>
-                    </Tooltip>,
-                    <Tooltip title="Pokebattler Client" color="primary" arrow>
-                      <IconButton style={{color: theme.palette.primary.light}} href="https://github.com/Xerner/pokebattler">
-                        <GitHubIcon />
-                      </IconButton>
-                    </Tooltip>,
                     <Tooltip title="Share" color="primary" arrow>
-                      <IconButton style={{color: theme.palette.primary.light}}>
+                      <IconButton style={{ color: theme.palette.primary.light }}>
+                        <ShareIcon />
+                      </IconButton>
+                    </Tooltip>
+                  ]}
+                />
+
+                <ProjectCard
+                  isPrivate
+                  repo={{ name: '', owner: 'Xerner' }}
+                  image={{
+                    url: '',
+                    alt: '',
+                    title: ''
+                  }}
+                  name="Carbon Canister Working Capacity Testing Analysis"
+                  subtitle="C# Application"
+                  chips={['Test']}
+                  desc="Data mining, analysis, and reporting of carbon canister GWC or BWC testing"
+                  iconButtons={[
+                    <Tooltip title="Share" color="primary" arrow>
+                      <IconButton style={{ color: theme.palette.primary.light }}>
+                        <ShareIcon />
+                      </IconButton>
+                    </Tooltip>
+                  ]}
+                />
+
+                <ProjectCard
+                  isPrivate
+                  repo={{ name: '', owner: 'Xerner' }}
+                  image={{
+                    url: '',
+                    alt: '',
+                    title: ''
+                  }}
+                  name="Excel Pareto Chart Generator"
+                  subtitle="Excel VBA Addin"
+                  chips={['Test']}
+                  desc="Quick and easy way for an Excel user to generate a Pareto chart with table-structured data"
+                  iconButtons={[
+                    <Tooltip title="Share" color="primary" arrow>
+                      <IconButton style={{ color: theme.palette.primary.light }}>
                         <ShareIcon />
                       </IconButton>
                     </Tooltip>
@@ -244,41 +285,43 @@ export default function App() {
             Game Jams
           </Typography>
 
-          <Container maxWidth="lg">
-            <Grid container justifyContent="center" spacing={4}>
-              <ProjectCard
-                repo={{ name: 'OU-Game-Jam-2021', owner: 'Xerner' }}
-                image={{
-                  url: 'images/deepspace.png',
-                  alt: 'Deepspace icon',
-                  title: 'Deepspace'
-                }}
-                name="Deepspace"
-                subtitle="Unity | 48 hour Game Jam!"
-                desc="A daring battle between a space engineer and an evil robot"
-                iconButtons={[
-                  <Tooltip title="Oakland University 2021 Game Jam!" color="primary" arrow>
-                    <IconButton
-                      color="primary"
-                      href="https://itch.io/jam/ou-winter-2021-game-jam/entries"
-                    >
-                      <GameJamIcon />
-                    </IconButton>
-                  </Tooltip>,
-                  <Tooltip title="Github" color="primary" arrow>
-                    <IconButton style={{color: theme.palette.primary.light}} href="https://github.com/Xerner/OU-Game-Jam-2021">
-                      <GitHubIcon />
-                    </IconButton>
-                  </Tooltip>,
-                  <Tooltip title="Share" color="primary" arrow>
-                    <IconButton style={{color: theme.palette.primary.light}}>
-                      <ShareIcon />
-                    </IconButton>
-                  </Tooltip>
-                ]}
-              />
-            </Grid>
-          </Container>
+          <ProjectCardContainer>
+            <ProjectCard
+              repo={{ name: 'OU-Game-Jam-2021', owner: 'Xerner' }}
+              image={{
+                url: 'images/deepspace.png',
+                alt: 'Deepspace icon',
+                title: 'Deepspace'
+              }}
+              name="Deepspace"
+              subtitle="Unity | 48 hour Game Jam!"
+              chips={['Test']}
+              desc="A daring battle between a space engineer and an evil robot"
+              iconButtons={[
+                <Tooltip title="Oakland University 2021 Game Jam!" color="primary" arrow>
+                  <IconButton
+                    color="primary"
+                    href="https://itch.io/jam/ou-winter-2021-game-jam/entries"
+                  >
+                    <GameJamIcon />
+                  </IconButton>
+                </Tooltip>,
+                <Tooltip title="Github" color="primary" arrow>
+                  <IconButton
+                    style={{ color: theme.palette.primary.light }}
+                    href="https://github.com/Xerner/OU-Game-Jam-2021"
+                  >
+                    <GitHubIcon />
+                  </IconButton>
+                </Tooltip>,
+                <Tooltip title="Share" color="primary" arrow>
+                  <IconButton style={{ color: theme.palette.primary.light }}>
+                    <ShareIcon />
+                  </IconButton>
+                </Tooltip>
+              ]}
+            />
+          </ProjectCardContainer>
         </Box>
         <footer>
           <Grid container justifyContent="flex-end">

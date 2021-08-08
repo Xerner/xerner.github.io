@@ -51,8 +51,32 @@ body {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hidden-scrollbar {
-  -ms-overflow-style: none !important;  /* IE and Edge */
-  scrollbar-width: none !important;  /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+/* width */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+
+}
+
+/* Track */
+// .custom-scrollbar::-webkit-scrollbar-track {
+//   box-shadow: inset 0 0 5px grey;
+//   border-radius: 5px;
+// }
+
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e8e8e844;
+  // background: gray !important;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #e8e8e888;
 }
 
 // Sunlight
