@@ -46,7 +46,13 @@ const useStyles = makeStyles((theme: Theme) =>
       border: `1px solid ${theme.palette.primary.main}`,
       height: CARD_HEIGHT,
       display: 'flex',
-      width: '100%'
+      width: '100%',
+      boxShadow: `0 0 ${theme.palette.primary.main}, 0 0 ${theme.palette.primary.light} !important`,
+      transition: 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
+      '-webkit-transition': 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
+      '&:hover': {
+        boxShadow: `6px 6px ${theme.palette.primary.main}, -6px -6px ${theme.palette.primary.light} !important`
+      }
     },
     details: {
       display: 'flex',
@@ -106,7 +112,8 @@ export default function ProjectCard(props: IProjectCard) {
   const _image = image && Array.isArray(image) ? image[0] : image;
 
   return (
-    <Card className={classes.root + ' shadow-split'}>
+    // + ' shadow-split'
+    <Card className={classes.root}>
       <div className={classes.details}>
         <CardContent>
           {/* Title */}
