@@ -65,8 +65,8 @@ export default function App() {
       <Controls
         darkMode={darkMode}
         setDarkMode={setDarkMode}
-        hasPixelFont={hasPixelFont}
-        setHasPixelFont={setHasPixelFont}
+        // hasPixelFont={hasPixelFont}
+        // setHasPixelFont={setHasPixelFont}
       />
 
       {/* 
@@ -143,7 +143,7 @@ export default function App() {
                   }}
                   name="Steamy Bot"
                   subtitle="Discord Bot"
-                  chips={['Test']}
+                  chips={['Node.js', 'Discord.js']}
                   desc="Yet another Discord music bot that plays songs from youtube"
                   iconButtons={[
                     <Tooltip title="Github" color="primary" arrow>
@@ -171,8 +171,8 @@ export default function App() {
                     title: 'Pokemon'
                   }}
                   name="Pokemon Battler"
-                  subtitle="GameMaker Studio 2"
-                  chips={['Test']}
+                  subtitle="Video Game"
+                  chips={['GameMaker Studio 2', 'MongoDB', 'Mongoose', 'Node.js', 'TCP/IP']}
                   desc="An autochess style Pokemon battler with a centralized multiplayer server"
                   iconButtons={[
                     <Tooltip title="Pokebattler Client" color="primary" arrow>
@@ -208,8 +208,8 @@ export default function App() {
                     title: ''
                   }}
                   name="Work Request System"
-                  subtitle="Front-End React"
-                  chips={['Test']}
+                  subtitle="React Front-End"
+                  chips={['React', 'Bootstrap', 'Material UI', 'IIS']}
                   desc="A mockup front-end work request management system"
                   iconButtons={[
                     <Tooltip title="Share" color="primary" arrow>
@@ -229,8 +229,8 @@ export default function App() {
                     title: ''
                   }}
                   name="Carbon Canister Working Capacity Testing Analysis"
-                  subtitle="C# Application"
-                  chips={['Test']}
+                  subtitle="Data Mining & Analysis"
+                  chips={['C#', '.Net 4.6.5', 'Windows Form', 'Excel']}
                   desc="Data mining, analysis, and reporting of carbon canister GWC or BWC testing"
                   iconButtons={[
                     <Tooltip title="Share" color="primary" arrow>
@@ -251,7 +251,7 @@ export default function App() {
                   }}
                   name="Excel Pareto Chart Generator"
                   subtitle="Excel VBA Addin"
-                  chips={['Test']}
+                  chips={['Excel', 'VBA']}
                   desc="Quick and easy way for an Excel user to generate a Pareto chart with table-structured data"
                   iconButtons={[
                     <Tooltip title="Share" color="primary" arrow>

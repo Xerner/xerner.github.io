@@ -5,12 +5,12 @@ import { isMobileContext } from "../context";
 interface ControlsProps {
   darkMode: boolean;
   setDarkMode: Function;
-  hasPixelFont: boolean;
-  setHasPixelFont: Function;
+  // hasPixelFont: boolean;
+  // setHasPixelFont: Function;
 }
 
 export default function Controls(props: ControlsProps) {
-  const { setDarkMode } = props;
+  const { darkMode, setDarkMode } = props;
   // const [open, setOpen] = useState(false);
   const isMobile_ = useContext(isMobileContext);
 
@@ -23,6 +23,7 @@ export default function Controls(props: ControlsProps) {
 
   return (
     <DarkModeControl
+      isDarkMode={darkMode}
       onClick={setDarkMode}
       style={{ position: 'absolute', top: isMobile_ ? 10 : 100, left: isMobile_ ? 10 : "10%" }}
       // className="spin"

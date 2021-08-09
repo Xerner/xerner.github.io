@@ -1,9 +1,10 @@
-import { Box, CardMedia, Chip, Grid, Typography } from '@material-ui/core';
+import { Box, CardMedia, Chip, Dialog, Grid, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Languages from './Languages';
+import { useState } from 'react';
 // import { animated, useSpring } from 'react-spring';
 // import { useState } from 'react';
 
@@ -14,7 +15,7 @@ interface IProjectCard {
   subtitle?: string;
   chips: string[];
   desc: JSX.Element | string;
-  image?: IProjectCardImage;
+  image?: IProjectCardImage | IProjectCardImage[];
   iconButtons?: JSX.Element[];
 }
 
@@ -65,6 +66,12 @@ const useStyles = makeStyles((theme: Theme) =>
       flex: 0,
       borderLeft: `1px solid ${theme.palette.primary.dark}`
     },
+    mediaContainer: {
+      borderLeft: `1px solid ${theme.palette.primary.dark}`,
+      width: 200,
+      display: 'flex',
+      alignItems: 'center'
+    },
     chips: {
       display: 'flex',
       // justifyContent: 'flex-start',
@@ -81,10 +88,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const useCardMediaStyles = makeStyles((theme: Theme) =>
   createStyles({
     media: {
-      borderLeft: `1px solid ${theme.palette.primary.dark}`,
-      width: 400,
-      objectFit: 'contain',
-      top: '50%'
+      objectFit: 'contain'
     }
   })
 );
@@ -95,6 +99,11 @@ export default function ProjectCard(props: IProjectCard) {
   const { repo, name, subtitle, chips, desc, isPrivate, image, iconButtons } = props;
   const classes = useStyles();
   const cardMediaClasses = useCardMediaStyles();
+  const [mediaOpen, setMediaOpen] = useState(false);
+
+  const handleClose = () => setMediaOpen(false);
+
+  const _image = image && Array.isArray(image) ? image[0] : image;
 
   return (
     <Card className={classes.root + ' shadow-split'}>
@@ -135,17 +144,23 @@ export default function ProjectCard(props: IProjectCard) {
           )}
         </CardContent>
       </div>
-      {image ? (
-        <CardMedia
-          component="img"
-          // className={classes.media}
-          classes={cardMediaClasses}
-          alt={image.alt}
-          image={image.url}
-          title={image.title}
-        />
+      {/* Image(s) */}
+      {_image && _image.url !== '' ? (
+        <div className={classes.mediaContainer}>
+          <CardMedia
+            component="img"
+            // className={cardMediaClasses.media}
+            classes={cardMediaClasses}
+            alt={_image.alt}
+            image={_image.url}
+            title={_image.title}
+          />
+        </div>
       ) : (
-        <Box style={{ height: 140, paddingTop: 70 }}>
+        <Box
+          className={classes.mediaContainer}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        >
           <Typography color="textSecondary" align="center">
             No Image
           </Typography>
@@ -160,6 +175,7 @@ export default function ProjectCard(props: IProjectCard) {
           ))}
         </Grid>
       )}
+      <Dialog onClose={handleClose} open={mediaOpen}></Dialog>
     </Card>
   );
 }

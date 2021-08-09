@@ -5,6 +5,7 @@ import { isMobileContext } from '../context'
 // import BrightnessHighIcon from '@material-ui/icons/Brightness5';
 
 interface DarkModeControlProps {
+  isDarkMode: boolean;
   onClick: Function;
   style?: CSSProperties;
   className?: string;
@@ -13,12 +14,11 @@ interface DarkModeControlProps {
 // const DEFAULT_RADIUS = 96;
 
 export default function DarkModeControl(props : DarkModeControlProps) {
-  const { onClick, style, className } = props;
+  const { isDarkMode, onClick, style, className } = props;
   const isMobile: boolean = useContext(isMobileContext)
   const theme = useTheme();
-  const [isDarkMode, setIsDarkMode] = useState(theme.palette.type === "dark")
 
-  const handleClick = () => {setIsDarkMode(!isDarkMode); onClick(!isDarkMode)}
+  const handleClick = () => {onClick(!isDarkMode)}
 
   return (
     <div style={style}>
