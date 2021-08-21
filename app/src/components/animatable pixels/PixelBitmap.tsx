@@ -1,22 +1,25 @@
 import Pixel from "./Pixel";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 
-interface PixelProps {
-  bitmap: number[][];
-  pixelsize: number;
-  colormap: { [key: number]: string };
+export interface IPixelBitmapOptions {
+  pixelSize: number;
+  colorMap: { [key: number]: string };
   animate?: boolean;
   animationClasses?: string | string[];
+  random?: boolean;
   rowDelay?: number;
   rowDelayMaxIncrement?: number;
-  random?: boolean;
 }
 
-export default function PixelBitmap(props: PixelProps) {
+interface PixelBitmapProps extends IPixelBitmapOptions {
+  bitmap: number[][];
+}
+
+export default function PixelBitmap(props: PixelBitmapProps) {
   const {
     bitmap,
-    pixelsize,
-    colormap,
+    pixelSize,
+    colorMap,
     animationClasses,
     rowDelay,
     rowDelayMaxIncrement,
@@ -25,10 +28,11 @@ export default function PixelBitmap(props: PixelProps) {
   } = props;
   const rows = bitmap.length;
   const columns = bitmap[0].length;
-  const width = columns * pixelsize;
-  const height = rows * pixelsize;
+  const width = columns * pixelSize;
+  const height = rows * pixelSize;
+  
   const content = useMemo(() => {
-    var delay = rowDelay && rowDelay !== 0 ? 1 + rowDelay : 0;
+    var delay = calculateInitialDelay(rowDelay);
     return (
       <div
         style={{ width: width, height: height, position: "relative" }}
@@ -36,12 +40,12 @@ export default function PixelBitmap(props: PixelProps) {
       >
         {bitmap.map((row: number[], rowIndex: number) => {
           return row.map((bit: number, index: number) => {
-            if (rowDelay) {
+            if (rowDelay !== undefined) {
               if (random) {
-                var increment = (rowDelayMaxIncrement ? rowDelayMaxIncrement : 1) * Math.random()
+                var increment = calculateRandomIncrement(rowDelayMaxIncrement)
                 delay = rowDelay + increment;
               } else {
-                delay += rowDelay;
+                delay += rowDelay; // increment naturally
               }
             }
             var animationClasses2 = Array.isArray(animationClasses)
@@ -54,8 +58,8 @@ export default function PixelBitmap(props: PixelProps) {
                 key={index}
                 x={index}
                 y={rowIndex}
-                pixelsize={pixelsize}
-                fill={colormap[bit]}
+                pixelSize={pixelSize}
+                fill={colorMap[bit]}
                 wait={delay}
                 animationClasses={
                   animationClasses && "animate__animated " + animationClasses2
@@ -70,4 +74,20 @@ export default function PixelBitmap(props: PixelProps) {
   }, []);
 
   return content;
+}
+
+function calculateRandomIncrement(maxIncrement: number | undefined) {
+  if (maxIncrement !== undefined) {
+    return maxIncrement * Math.random();
+  } else {
+    return 1 * Math.random();
+  }
+}
+
+function calculateInitialDelay(rowDelay: number | undefined) {
+  if (rowDelay !== undefined && rowDelay !== 0) {
+    return rowDelay;
+  } else {
+    return 0;
+  }
 }

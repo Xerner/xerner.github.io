@@ -1,7 +1,3 @@
-import { useContext } from 'react';
-import DarkModeControl from './DarkModeControl';
-import { isMobileContext } from "../context";
-
 interface ControlsProps {
   darkMode: boolean;
   setDarkMode: Function;
@@ -10,9 +6,7 @@ interface ControlsProps {
 }
 
 export default function Controls(props: ControlsProps) {
-  const { darkMode, setDarkMode } = props;
   // const [open, setOpen] = useState(false);
-  const isMobile_ = useContext(isMobileContext);
 
   // const toggleDrawer = (isOpen: boolean) => (event: React.KeyboardEvent | React.MouseEvent) =>
   //   setOpen(isOpen);
@@ -21,13 +15,8 @@ export default function Controls(props: ControlsProps) {
   // const rotationWidth = 2500;
   // const sunDiameter = 96;
 
-  return (
-    <DarkModeControl
-      isDarkMode={darkMode}
-      onClick={setDarkMode}
-      style={{ position: 'absolute', top: isMobile_ ? 10 : 100, left: isMobile_ ? 10 : "10%" }}
-      // className="spin"
-    />
+  return (<></>
+    
     // <div style={{ width: '100%', position: 'absolute', overflow: 'hidden', padding: sunDiameter }}>
     //   <div
     //     style={{

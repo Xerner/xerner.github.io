@@ -66,7 +66,7 @@ export default function ProjectCardContainer(props: IProjectCardContainer) {
 
   return (
     <Container
-      maxWidth="lg"
+      maxWidth="md"
       style={{ ...style }}
       className={classes.projectCardContainer} // + ' hidden-scrollbar'
     >

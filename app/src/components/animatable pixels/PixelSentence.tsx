@@ -1,24 +1,19 @@
 import { GridSpacing } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
+import { IDictionary } from "interfaces/interfaces";
 import { useMemo } from "react";
+import { IPixelBitmapOptions } from "./PixelBitmap";
 import PixelWord from "./PixelWord";
 
-export interface PixelSentenceProps {
+export interface PixelSentenceProps extends IPixelBitmapOptions {
+  pixelMap: IDictionary;
   sentence: string;
   wordSpacing: GridSpacing;
   letterSpacing: GridSpacing;
-  colorMap: {[key: number]: string};
-	upperCaseSize: number;
-	lowerCaseSize: number;
-	animationClasses?: string[];
-	rowDelay?: number;
-	rowDelayMaxIncrement?: number;
-	random?: boolean;
 }
 
 export default function PixelSentence(props: PixelSentenceProps) {
-  const { sentence, wordSpacing, letterSpacing, ...wordProps } = props;
-  // colorMap, upperCaseSize, lowerCaseSize, animationClasses, rowDelay, rowDelayMaxIncrement, random } = props;
+  const { pixelMap, sentence, wordSpacing, letterSpacing, pixelSize, colorMap, ...rest } = props;
 
   
   const sentenceArr = useMemo(() => {
@@ -35,7 +30,7 @@ export default function PixelSentence(props: PixelSentenceProps) {
             spacing={letterSpacing}
             alignItems="baseline"
           >
-            <PixelWord {...wordProps} word={word} />
+            <PixelWord pixelMap={pixelMap} pixelSize={pixelSize} word={word} colorMap={colorMap} {...rest} />
           </Grid>
         </Grid>
       ))}
