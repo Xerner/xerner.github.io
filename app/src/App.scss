@@ -1,3 +1,5 @@
+@use "sass:math";
+
 /* Uncomment for a good time */
 // * {
 //   outline: 1px solid red !important;
@@ -120,13 +122,13 @@ $mainScrollbarWidth: 16px;
 
 .main-scrollbar::-webkit-scrollbar-thumb {
 	background: #e8e8e888;
-	border-radius: $mainScrollbarWidth/2;
+	border-radius: math.div($mainScrollbarWidth, 2);
 	box-shadow: inset 0 0 5px black;
 }
 
 .main-scrollbar::-webkit-scrollbar-thumb:hover {
 	background: #e8e8e8aa;
-	border-radius: $mainScrollbarWidth/2;
+	border-radius: math.div($mainScrollbarWidth, 2);
 }
 
 .hidden-scrollbar::-webkit-scrollbar {
