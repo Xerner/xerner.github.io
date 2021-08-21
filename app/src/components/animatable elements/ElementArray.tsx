@@ -3,7 +3,7 @@ import { arrayMax } from 'functions/arrayMax';
 import { ReactElement, useMemo } from 'react';
 
 export interface IElementArrayOptions {
-	element: ReactElement;
+	element: JSX.Element;
 	rowSize: number;
 	columnSize: number;
 	itemClassName?: string | string[];

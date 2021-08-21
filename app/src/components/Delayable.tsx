@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { ReactChild, ReactChildren, useEffect, useState } from "react";
 
 interface IDelayable {
   wait: number;
-  children: JSX.Element;
+  children: ReactChild | ReactChild[] | ReactChildren | ReactChildren[] | string;
 }
 
-export default function Delayable({ wait, children }: IDelayable) {  
+export default function Delayable(props: IDelayable) {
+  const { wait, children } = props;
   const [hidden, setHidden] = useState(wait && true);
 
   useEffect(() => {
@@ -19,5 +20,5 @@ export default function Delayable({ wait, children }: IDelayable) {
     }
   });
 
-  return !hidden ? children : <></>;
+  return !hidden ? <>{children}</> : null;
 }

@@ -1,3 +1,4 @@
+import { Forward as ForwardIcon } from '@material-ui/icons';
 import { isMobile } from 'functions/isMobile';
 import alphabet from 'graphics/bitmaps/alphabetMap';
 import { useEffect, useState } from 'react';
@@ -31,7 +32,7 @@ const animations = [
 
 export default function MyName(props: MyNameProps) {
 	const { playAnimation, wait } = props;
-	const [animationClasses] = useState(playAnimation ? animations[4] : []);
+	const animationClasses = animations[4];
 	const [rowDelay, setRowDelay] = useState(playAnimation ? 1 : 0);
 	const [rowDelayMaxIncrement] = useState(rowDelay * 0.1);
 
@@ -82,6 +83,25 @@ export default function MyName(props: MyNameProps) {
 						random={false}
 					/>
 				</div>
+				<Delayable wait={wait*1.2}>
+					<div
+						style={{
+							position: 'absolute',
+							top: window.innerHeight * 0.8,
+							textAlign: 'center',
+							zIndex: 10,
+							color: 'white',
+							fontSize: '1.5rem',
+							fontWeight: 'bold'
+						}}
+						className="animate__animated animate__fadeInUp"
+					>
+						<div>Look Below</div>
+						<div style={{ transform: 'rotate(90deg)' }}>
+							<ForwardIcon style={{ color: 'white', fontSize: "2rem" }} />
+						</div>
+					</div>
+				</Delayable>
 			</Delayable>
 		</div>
 	);
