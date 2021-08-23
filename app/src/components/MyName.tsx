@@ -65,7 +65,7 @@ export default function MyName(props: MyNameProps) {
 				justifyContent: 'center',
 				alignItems: 'center',
 				zIndex: 10,
-				padding: 128
+				padding: "10%"
 			}}
 		>
 			<Delayable wait={wait}>

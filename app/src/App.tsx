@@ -22,6 +22,8 @@ import ProjectCardContainer from 'components/ProjectCardContainer';
 import DarkModeControl from 'components/DarkModeControl';
 import { isMobileContext } from 'context';
 import Stars from 'components/Stars';
+import Carousel from 'components/Carousel';
+import ScrollCarousel from 'components/ScrollCarousel';
 // import ItchIoIcon from './components/icons/ItchIo'
 
 export default function App() {
@@ -102,7 +104,6 @@ export default function App() {
 						}}
 					/>
 					<Box
-						className="animate__animated animate__fadeInUpBig"
 						// onAnimationEnd={() => {
 						//   setHideOverflow(true);
 						//   document.body.style.overflow = 'visible';
@@ -117,7 +118,7 @@ export default function App() {
 							Projects
 						</Typography>
 
-						<ProjectCardContainer>
+						<ScrollCarousel cardWidth={500}>
 							<ProjectCard
 								repo={{
 									name: 'Smart-City-Dashboard',
@@ -440,7 +441,7 @@ export default function App() {
 									</Tooltip>
 								]}
 							/>
-						</ProjectCardContainer>
+						</ScrollCarousel>
 					</Box>
 				</Box>
 				<Box
