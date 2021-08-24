@@ -7,6 +7,7 @@ import PixelWord from "./PixelWord";
 
 export interface PixelSentenceProps extends IPixelBitmapOptions {
   pixelMap: IDictionary;
+  pixelSize: number;
   sentence: string;
   wordSpacing: GridSpacing;
   letterSpacing: GridSpacing;

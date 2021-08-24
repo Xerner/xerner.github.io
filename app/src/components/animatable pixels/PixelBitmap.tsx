@@ -2,7 +2,7 @@ import Pixel from "./Pixel";
 import { useMemo } from "react";
 
 export interface IPixelBitmapOptions {
-  pixelSize: number;
+  pixelSize: number | string;
   colorMap: { [key: number]: string };
   animate?: boolean;
   animationClasses?: string | string[];
@@ -26,10 +26,11 @@ export default function PixelBitmap(props: PixelBitmapProps) {
     random,
     ...other
   } = props;
+  const _pixelSize: number = typeof pixelSize === "string" ? calculatePixelSize(pixelSize) : pixelSize
   const rows = bitmap.length;
   const columns = bitmap[0].length;
-  const width = columns * pixelSize;
-  const height = rows * pixelSize;
+  const width = columns * _pixelSize;
+  const height = rows * _pixelSize;
   
   const content = useMemo(() => {
     var delay = calculateInitialDelay(rowDelay);
@@ -58,7 +59,7 @@ export default function PixelBitmap(props: PixelBitmapProps) {
                 key={index}
                 x={index}
                 y={rowIndex}
-                pixelSize={pixelSize}
+                pixelSize={_pixelSize}
                 fill={colorMap[bit]}
                 wait={delay}
                 animationClasses={
@@ -90,4 +91,10 @@ function calculateInitialDelay(rowDelay: number | undefined) {
   } else {
     return 0;
   }
+}
+
+function calculatePixelSize(pixelSize: string): number {
+  var percentage: string = pixelSize.substring(0, pixelSize.length);
+  var numPercentage: number = parseFloat(percentage)/100;
+  return window.innerWidth * numPercentage;
 }

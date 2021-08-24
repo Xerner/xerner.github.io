@@ -1,7 +1,9 @@
+import { Grid } from '@material-ui/core';
 import { Forward as ForwardIcon } from '@material-ui/icons';
 import { isMobile } from 'functions/isMobile';
 import alphabet from 'graphics/bitmaps/alphabetMap';
 import { useEffect, useState } from 'react';
+import PixelBitmap from './animatable pixels/PixelBitmap';
 import PixelSentence from './animatable pixels/PixelSentence';
 import Delayable from './Delayable';
 
@@ -50,10 +52,8 @@ export default function MyName(props: MyNameProps) {
 		}
 	}, [playAnimation]);
 
-	const isMobile_ = isMobile();
-	const pixelSize = isMobile_ ? 3 : 10;
-	const wordSpacing_ = isMobile_ ? 2 : 10;
-	const letterSpacing_ = isMobile_ ? 1 : 2;
+	var firstName = ['K', 'e', 'n', 'n', 'e', 't', 'h'];
+	var lastName = ['M', 'e', 'a', 'd'];
 
 	return (
 		<div
@@ -65,12 +65,42 @@ export default function MyName(props: MyNameProps) {
 				justifyContent: 'center',
 				alignItems: 'center',
 				zIndex: 10,
-				padding: "10%"
+				padding: '10%'
 			}}
 		>
 			<Delayable wait={wait}>
 				<div className="animate__animated animate__fadeIn animate__slower">
-					<PixelSentence
+					<Grid container justifyContent="center" alignItems="flex-end" spacing={2} style={{marginBottom: 12}}>
+						{firstName.map((letter, index) => (
+							<Grid item key={index} className="rise-anim">
+								<PixelBitmap
+									bitmap={alphabet[letter]}
+									pixelSize={'1%'}
+									colorMap={colorMap}
+									animationClasses={animationClasses}
+									rowDelay={rowDelay}
+									rowDelayMaxIncrement={rowDelayMaxIncrement}
+									random={true}
+								/>
+							</Grid>
+						))}
+					</Grid>
+					<Grid container justifyContent="center" alignItems="flex-end" spacing={2}>
+						{lastName.map((letter, index) => (
+							<Grid item key={index} className="rise-anim">
+								<PixelBitmap
+									bitmap={alphabet[letter]}
+									pixelSize={'1%'}
+									colorMap={colorMap}
+									animationClasses={animationClasses}
+									rowDelay={rowDelay}
+									rowDelayMaxIncrement={rowDelayMaxIncrement}
+									random={true}
+								/>
+							</Grid>
+						))}
+					</Grid>
+					{/* <PixelSentence
 						pixelMap={alphabet}
 						sentence="Kenneth Mead"
 						wordSpacing={wordSpacing_}
@@ -81,9 +111,9 @@ export default function MyName(props: MyNameProps) {
 						rowDelay={rowDelay}
 						rowDelayMaxIncrement={rowDelayMaxIncrement}
 						random={false}
-					/>
+					/> */}
 				</div>
-				<Delayable wait={wait*1.2}>
+				<Delayable wait={wait * 1.2}>
 					<div
 						style={{
 							position: 'absolute',
@@ -98,7 +128,7 @@ export default function MyName(props: MyNameProps) {
 					>
 						<div>Look Below</div>
 						<div style={{ transform: 'rotate(90deg)' }}>
-							<ForwardIcon style={{ color: 'white', fontSize: "2rem" }} />
+							<ForwardIcon style={{ color: 'white', fontSize: '2rem' }} />
 						</div>
 					</div>
 				</Delayable>
