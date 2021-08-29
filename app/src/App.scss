@@ -9,6 +9,20 @@
 //   background-color: black !important;
 // }
 
+// body {
+// 	overflow: hidden
+// }
+
+.pixel {
+	image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
+	image-rendering: -moz-crisp-edges; /* Firefox                        */
+	image-rendering: -o-crisp-edges; /* Opera                          */
+	image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+	image-rendering: pixelated; /* Chrome */
+	image-rendering: optimize-contrast; /* CSS3 Proposed                  */
+	-ms-interpolation-mode: nearest-neighbor; /* IE8+                           */
+}
+
 @font-face {
 	font-family: 'Pixelar Regular W01 Regular';
 	// line-height: 1.5rem;
@@ -45,17 +59,9 @@ body {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 .starry-night {
-	background: linear-gradient(
-		270deg,
-		hsla(0, 0%, 0%, 1) 0%,
-		hsla(243, 100%, 12%, 1) 100%
-	);
+	background: linear-gradient(270deg, hsla(0, 0%, 0%, 1) 0%, hsla(243, 100%, 12%, 1) 100%);
 
-	background: -moz-linear-gradient(
-		270deg,
-		hsla(0, 0%, 0%, 1) 0%,
-		hsla(243, 100%, 12%, 1) 100%
-	);
+	background: -moz-linear-gradient(270deg, hsla(0, 0%, 0%, 1) 0%, hsla(243, 100%, 12%, 1) 100%);
 
 	background: -webkit-linear-gradient(
 		270deg,
@@ -214,8 +220,7 @@ $mainScrollbarWidth: 16px;
 // filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#03003D", endColorstr="#424C81", GradientType=1 );
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 /* ----------------------------------------------
@@ -237,14 +242,13 @@ code {
 
 @keyframes shadow-pop-tl {
 	0% {
-		box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e,
-			0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
+		box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e,
+			0 0 #3e3e3e, 0 0 #3e3e3e;
 		transform: translateX(0) translateY(0);
 	}
 	100% {
-		box-shadow: -1px -1px #3e3e3e, -2px -2px #3e3e3e, -3px -3px #3e3e3e,
-			-4px -4px #3e3e3e, -5px -5px #3e3e3e, -6px -6px #3e3e3e,
-			-7px -7px #3e3e3e, -8px -8px #3e3e3e;
+		box-shadow: -1px -1px #3e3e3e, -2px -2px #3e3e3e, -3px -3px #3e3e3e, -4px -4px #3e3e3e,
+			-5px -5px #3e3e3e, -6px -6px #3e3e3e, -7px -7px #3e3e3e, -8px -8px #3e3e3e;
 		transform: translateX(8px) translateY(8px);
 	}
 }

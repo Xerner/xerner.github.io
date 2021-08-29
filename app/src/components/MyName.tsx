@@ -1,10 +1,9 @@
 import { Grid } from '@material-ui/core';
 import { Forward as ForwardIcon } from '@material-ui/icons';
-import { isMobile } from 'functions/isMobile';
 import alphabet from 'graphics/bitmaps/alphabetMap';
 import { useEffect, useState } from 'react';
 import PixelBitmap from './animatable pixels/PixelBitmap';
-import PixelSentence from './animatable pixels/PixelSentence';
+// import PixelSentence from './animatable pixels/PixelSentence';
 import Delayable from './Delayable';
 
 interface MyNameProps {
@@ -14,10 +13,10 @@ interface MyNameProps {
 
 const animations = [
 	[
-		'animate__animated animate__fadeInRight animate__slower',
-		'animate__animated animate__fadeInLeft animate__slower',
-		'animate__animated animate__fadeInUp animate__slower',
-		'animate__animated animate__fadeInDown animate__slower'
+		'animate__animated animate__fadeInRightBig animate__slow',
+		'animate__animated animate__fadeInLeftBig animate__slow',
+		'animate__animated animate__fadeInUpBig animate__slow',
+		'animate__animated animate__fadeInDownBig animate__slow'
 	],
 	[
 		'animate__animated animate__backInDown animate__slower',
@@ -34,7 +33,7 @@ const animations = [
 
 export default function MyName(props: MyNameProps) {
 	const { playAnimation, wait } = props;
-	const animationClasses = animations[4];
+	const animationClasses = animations[0];
 	const [rowDelay, setRowDelay] = useState(playAnimation ? 1 : 0);
 	const [rowDelayMaxIncrement] = useState(rowDelay * 0.1);
 
@@ -50,10 +49,13 @@ export default function MyName(props: MyNameProps) {
 				setRowDelay(0);
 			}, 2000);
 		}
-	}, [playAnimation]);
+		document.body.style.overflowX = "hidden"
+		setTimeout(() => document.body.style.overflowX = "hidden", wait*2)
+	}, [playAnimation, wait]);
 
 	var firstName = ['K', 'e', 'n', 'n', 'e', 't', 'h'];
 	var lastName = ['M', 'e', 'a', 'd'];
+
 
 	return (
 		<div
@@ -75,7 +77,7 @@ export default function MyName(props: MyNameProps) {
 							<Grid item key={index} className="rise-anim">
 								<PixelBitmap
 									bitmap={alphabet[letter]}
-									pixelSize={'1%'}
+									pixelSize={'0.5%'}
 									colorMap={colorMap}
 									animationClasses={animationClasses}
 									rowDelay={rowDelay}
@@ -90,7 +92,7 @@ export default function MyName(props: MyNameProps) {
 							<Grid item key={index} className="rise-anim">
 								<PixelBitmap
 									bitmap={alphabet[letter]}
-									pixelSize={'1%'}
+									pixelSize={'0.5%'}
 									colorMap={colorMap}
 									animationClasses={animationClasses}
 									rowDelay={rowDelay}
@@ -113,7 +115,7 @@ export default function MyName(props: MyNameProps) {
 						random={false}
 					/> */}
 				</div>
-				<Delayable wait={wait * 1.2}>
+				<Delayable wait={wait * 2}>
 					<div
 						style={{
 							position: 'absolute',

@@ -1,45 +1,71 @@
-import { Tooltip } from '@material-ui/core';
-import { CSSProperties, useContext } from 'react';
-import { isMobileContext } from '../context';
-// import BrightnessIcon from '@material-ui/icons/Brightness4';
-// import BrightnessHighIcon from '@material-ui/icons/Brightness5';
+import { IconButton, Tooltip } from '@material-ui/core';
+import { CSSProperties } from 'react';
+import BrightnessIcon from '@material-ui/icons/Brightness4';
+import BrightnessHighIcon from '@material-ui/icons/Brightness5';
 
 interface DarkModeControlProps {
-  isDarkMode: boolean;
-  onClick: Function;
-  style?: CSSProperties;
-  className?: string;
+	isDarkMode: boolean;
+	onClick: Function;
+	style?: CSSProperties;
+	className?: string;
 }
 
-// const DEFAULT_RADIUS = 96;
-
 export default function DarkModeControl(props: DarkModeControlProps) {
-  const { isDarkMode, onClick, style, className } = props;
-  const isMobile: boolean = useContext(isMobileContext);
+	const { isDarkMode, onClick, style, className } = props;
 
-  const handleClick = () => {
-    onClick(!isDarkMode);
-  };
+	const handleClick = () => {
+		onClick(!isDarkMode);
+	};
 
-  return (
-    <div style={{ ...style, zIndex: 100, display: 'inline' }}>
-      {/* <IconButton style={{position: "absolute", top: height ? height/2 : DEFAULT_RADIUS/2, left: width ? width/2 : DEFAULT_RADIUS/2, color: "#00000022"}}>
-        { isDarkMode ? <BrightnessIcon fontSize="large" /> : <BrightnessHighIcon fontSize="large" /> }
-      </IconButton> */}
-      <Tooltip title="Toggle Dark Mode">
-        <input
-          type="image"
-          src={isDarkMode ? 'images/moon.png' : 'images/sun-1080.png'}
-          alt="Dark Mode Controller"
-          className={className}
-          style={{
-            width: isMobile ? 48 : 96,
-            height: isMobile ? 48 : 96,
-            // cursor: "pointer"
-          }}
-          onClick={handleClick}
-        />
-      </Tooltip>
-    </div>
-  );
+	const size = window.innerWidth * 0.1;
+
+	return (
+		<div style={{ ...style }}>
+			<Tooltip title="Toggle Dark Mode">
+				<div
+					style={{
+						width: size,
+						height: size
+					}}
+				>
+					{isDarkMode ? (
+						<IconButton
+							style={{
+								height: size,
+								width: size,
+								color: '#8E9EA5',
+								position: 'absolute'
+							}}
+							onClick={handleClick}
+						>
+							<BrightnessIcon style={{ fontSize: size / 4 }} />
+						</IconButton>
+					) : (
+						<IconButton
+							style={{
+								height: size,
+								width: size,
+								color: 'orange',
+								fontSize: size / 4,
+								position: 'absolute'
+							}}
+							onClick={handleClick}
+						>
+							<BrightnessHighIcon style={{ fontSize: size / 4 }} />
+						</IconButton>
+					)}
+
+					<img
+						src={isDarkMode ? 'images/moon.png' : 'images/sun-1080.png'}
+						alt="Dark Mode Controller"
+						className={className}
+						style={{
+							width: size,
+							height: size
+						}}
+					/>
+				</div>
+			</Tooltip>
+		</div>
+	);
 }

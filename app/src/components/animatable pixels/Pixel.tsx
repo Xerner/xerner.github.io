@@ -29,7 +29,7 @@ export default function Pixel(props: PixelProps) {
 				onAnimationEnd={
 					animationClasses
 						? () => {
-								if (ref.current) ref.current.className = '';
+								if (ref.current) ref.current.className = 'pixel';
 						  }
 						: undefined
 				}
@@ -42,7 +42,7 @@ export default function Pixel(props: PixelProps) {
 					left: x * pixelSize, //(x * pixelSize).toString() + "rem",
 					top: y * pixelSize //(y * pixelSize).toString() + "rem",
 				}}
-				className={animationClasses}
+				className={animationClasses+ " pixel"}
 			/>
 		</Delayable>
 	);

@@ -1,13 +1,7 @@
 import './App.scss';
 import 'animate.css';
-import {
-	Box,
-	IconButton,
-	ThemeProvider,
-	Tooltip,
-	useMediaQuery
-} from '@material-ui/core';
-import { useContext, useEffect, useMemo } from 'react';
+import { Box, IconButton, ThemeProvider, Tooltip, useMediaQuery } from '@material-ui/core';
+import { useEffect, useMemo } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import ProjectCard from './components/ProjectCard';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -20,11 +14,8 @@ import GameJamIcon from '@material-ui/icons/SportsEsports';
 import { neonTheme } from 'themes/neonTheme';
 import ProjectCardContainer from 'components/ProjectCardContainer';
 import DarkModeControl from 'components/DarkModeControl';
-import { isMobileContext } from 'context';
 import Stars from 'components/Stars';
-import Carousel from 'components/Carousel';
 import ScrollCarousel from 'components/ScrollCarousel';
-// import ItchIoIcon from './components/icons/ItchIo'
 
 export default function App() {
 	const [isDarkMode, setIsDarkMode] = useCookie(
@@ -32,9 +23,7 @@ export default function App() {
 		useMediaQuery('(prefers-color-scheme: dark)'),
 		{ maxAge: 50000 }
 	);
-	const isMobile_ = useContext(isMobileContext);
 	const [playAnimation, setPlayAnimation] = useCookie('playAnimation', true);
-
 	const theme = useMemo(() => neonTheme(isDarkMode), [isDarkMode]);
 
 	// Entrance animation
@@ -65,7 +54,7 @@ export default function App() {
 				<Box
 					className="starry-night"
 					style={{
-						height: window.innerHeight,
+						height: window.innerHeight
 					}}
 				>
 					<MyName playAnimation={playAnimation} wait={3000} />
@@ -80,7 +69,6 @@ export default function App() {
  ██████  ██████  ██   ████    ██    ██   ██  ██████  ███████ ███████ 
 */}
 				<Controls darkMode={isDarkMode} setDarkMode={setIsDarkMode} />
-
 				{/* 
   ██████  ██████   ██████       ██ ███████  ██████ ████████ ███████ 
   ██   ██ ██   ██ ██    ██      ██ ██      ██         ██    ██      
@@ -99,26 +87,26 @@ export default function App() {
 						onClick={setIsDarkMode}
 						style={{
 							position: 'relative',
-							top: isMobile_ ? 10 : 100,
-							left: isMobile_ ? 10 : '10%'
+							top: window.innerWidth * 0.05,
+							left: window.innerWidth * 0.05
 						}}
 					/>
 					<Box
-						// onAnimationEnd={() => {
-						//   setHideOverflow(true);
-						//   document.body.style.overflow = 'visible';
-						// }}
+					// onAnimationEnd={() => {
+					//   setHideOverflow(true);
+					//   document.body.style.overflow = 'visible';
+					// }}
 					>
 						<Typography
-							variant="h3"
+							variant="h1"
 							align="center"
 							color="primary"
-							style={{ padding: '24px 0' }}
+							style={{ padding: '5% 0' }}
 						>
 							Projects
 						</Typography>
 
-						<ScrollCarousel cardWidth={500}>
+						<ScrollCarousel cardWidth={500} spacing={12} style={{backgroundColor: "#00000044", padding: 12}} itemStyle={{paddingTop: 12,paddingBottom: 12}}>
 							<ProjectCard
 								repo={{
 									name: 'Smart-City-Dashboard',
@@ -131,54 +119,33 @@ export default function App() {
 								}}
 								name="Smart City Dashboard"
 								subtitle="City Simulation | Senior Project"
-								chips={[
-									'Unity',
-									'C#',
-									'Google Maps API',
-									'Agile',
-									'Determination'
-								]}
+								chips={['Unity', 'C#', 'Google Maps API', 'Agile', 'Determination']}
 								desc="A city builder and simulator with the ability to integrate smart technologies in the city"
 								iconButtons={[
-									<Tooltip
-										title="Itch.io page"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Itch.io page" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 											href="https://mrmeik.itch.io/smart-city-dashboard"
 										>
 											<GameJamIcon />
 										</IconButton>
 									</Tooltip>,
-									<Tooltip
-										title="Github"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Github" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 											href="https://github.com/Xerner/OU-Game-Jam-2021"
 										>
 											<GitHubIcon />
 										</IconButton>
 									</Tooltip>,
-									<Tooltip
-										title="Share"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Share" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 										>
 											<ShareIcon />
@@ -199,30 +166,20 @@ export default function App() {
 								chips={['Node.js', 'Discord.js']}
 								desc="Yet another Discord music bot that plays songs from youtube"
 								iconButtons={[
-									<Tooltip
-										title="Github"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Github" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 											href="https://github.com/Xerner/steamy-bot"
 										>
 											<GitHubIcon />
 										</IconButton>
 									</Tooltip>,
-									<Tooltip
-										title="Share"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Share" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 										>
 											<ShareIcon />
@@ -250,45 +207,30 @@ export default function App() {
 								]}
 								desc="An autochess style Pokemon battler with a centralized multiplayer server"
 								iconButtons={[
-									<Tooltip
-										title="Pokebattler Client"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Pokebattler Client" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 											href="https://github.com/Xerner/pokebattler"
 										>
 											<GitHubIcon />
 										</IconButton>
 									</Tooltip>,
-									<Tooltip
-										title="Pokebattler Server"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Pokebattler Server" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 											href="https://github.com/Xerner/pokebattler-server"
 										>
 											<GitHubIcon />
 										</IconButton>
 									</Tooltip>,
-									<Tooltip
-										title="Share"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Share" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 										>
 											<ShareIcon />
@@ -307,23 +249,13 @@ export default function App() {
 								}}
 								name="Work Request System"
 								subtitle="React Front-End"
-								chips={[
-									'React',
-									'Bootstrap',
-									'Material UI',
-									'IIS'
-								]}
+								chips={['React', 'Bootstrap', 'Material UI', 'IIS']}
 								desc="A mockup front-end work request management system"
 								iconButtons={[
-									<Tooltip
-										title="Share"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Share" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 										>
 											<ShareIcon />
@@ -342,23 +274,13 @@ export default function App() {
 								}}
 								name="Carbon Canister Working Capacity Testing Analysis"
 								subtitle="Data Mining & Analysis"
-								chips={[
-									'C#',
-									'.Net 4.6.5',
-									'Windows Form',
-									'Excel'
-								]}
+								chips={['C#', '.Net 4.6.5', 'Windows Form', 'Excel']}
 								desc="Data mining, analysis, and reporting of carbon canister GWC or BWC testing"
 								iconButtons={[
-									<Tooltip
-										title="Share"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Share" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 										>
 											<ShareIcon />
@@ -380,15 +302,10 @@ export default function App() {
 								chips={['Excel', 'VBA']}
 								desc="Quick and easy way for an Excel user to generate a Pareto chart with table-structured data"
 								iconButtons={[
-									<Tooltip
-										title="Share"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Share" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 										>
 											<ShareIcon />
@@ -410,30 +327,20 @@ export default function App() {
 								chips={['React', 'Material-UI']}
 								desc="A super-mega-awesome website that changes colors if you click the sun :O"
 								iconButtons={[
-									<Tooltip
-										title="Xerner.github.io"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Xerner.github.io" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 											href="https://github.com/Xerner/xerner.github.io"
 										>
 											<GitHubIcon />
 										</IconButton>
 									</Tooltip>,
-									<Tooltip
-										title="Share"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Share" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 										>
 											<ShareIcon />
@@ -460,10 +367,10 @@ export default function App() {
 
 					<Box>
 						<Typography
-							variant="h3"
+							variant="h1"
 							align="center"
 							color="primary"
-							style={{ padding: '4rem 1rem' }}
+							style={{ padding: '5% 0' }}
 						>
 							Game Jams
 						</Typography>
@@ -496,30 +403,20 @@ export default function App() {
 											<GameJamIcon />
 										</IconButton>
 									</Tooltip>,
-									<Tooltip
-										title="Github"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Github" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 											href="https://github.com/Xerner/OU-Game-Jam-2021"
 										>
 											<GitHubIcon />
 										</IconButton>
 									</Tooltip>,
-									<Tooltip
-										title="Share"
-										color="primary"
-										arrow
-									>
+									<Tooltip title="Share" color="primary" arrow>
 										<IconButton
 											style={{
-												color:
-													theme.palette.primary.light
+												color: theme.palette.primary.light
 											}}
 										>
 											<ShareIcon />
@@ -532,11 +429,7 @@ export default function App() {
 					<footer>
 						<Grid container justifyContent="flex-end">
 							<Grid item>
-								<Tooltip
-									title="My Github"
-									color="primary"
-									arrow
-								>
+								<Tooltip title="My Github" color="primary" arrow>
 									<IconButton href="https://github.com/Xerner">
 										<GitHubIcon />
 									</IconButton>
