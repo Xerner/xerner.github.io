@@ -1,12 +1,10 @@
 import { Button, makeStyles, Theme } from '@material-ui/core';
 import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 import { clamp } from 'functions/clamp';
-import React from 'react';
-import { CSSProperties } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState, CSSProperties, useMemo } from 'react';
 
 interface ICarousel {
-	cardWidth: number;
+	cardWidth: number | string;
 	spacing: number;
 	style?: CSSProperties;
 	numberStyle?: CSSProperties;
@@ -14,46 +12,57 @@ interface ICarousel {
 	children: JSX.Element[] | JSX.Element;
 }
 
-const useStyles = (isSmall: boolean) =>
-	makeStyles((theme: Theme) => ({
-		button: { width: '100%', color: '#FFFFFF' },
-		carousel: {
-			maxHeight: window.innerHeight * 0.6,
-			overflow: 'visible',
-			display: 'flex',
-			flexDirection: 'row',
-			alignItems: 'flex-start'
-		},
-		rowNumber: isSmall
-			? {
-					width: '1.5rem',
-					margin: 'auto',
-					padding: 12,
-					textAlign: 'center',
-					color: theme.palette.type === 'dark' ? '#e8e8e8CC' : '#FFFFFFFF'
-			  }
-			: {
-					width: '2.5rem',
-					margin: 'auto',
-					padding: 12,
-					textAlign: 'center',
-					color: theme.palette.type === 'dark' ? '#e8e8e8CC' : '#080808CC'
-			  }
-	}))();
+const useStyles = makeStyles((theme: Theme) => ({
+	button: { width: '100%', color: '#FFFFFF' },
+	carousel: {
+		maxHeight: window.innerHeight * 0.6,
+		overflow: 'visible',
+		display: 'flex',
+		flexDirection: 'row',
+		alignItems: 'flex-start'
+	}
+}));
 
 // TODO: JSDocs
 export default function ScrollCarousel(props: ICarousel) {
 	const { cardWidth, spacing, style, numberStyle, itemStyle, children } = props;
 	const [activeIndex, setActiveIndex] = useState(0);
-	const isSmall = window.innerWidth - spacing * 4 < cardWidth;
-	const classes = useStyles(isSmall);
+	const classes = useStyles();
 	const scrollRef = React.createRef<HTMLDivElement>();
-	const _cardWidth = isSmall ? window.innerWidth - spacing * 2 : cardWidth;
-	
-	const itemPositions: number[] = [];
-	for (let i = 0; i < React.Children.count(children); i++) {
-		itemPositions.push(i * (_cardWidth + spacing * 2));
-	}
+	const widthRef = React.createRef<HTMLDivElement>();
+	const itemPositions: number[] = useMemo(() => [], []);
+	const isSmall = React.useRef<boolean>();
+	const _cardWidth = React.useRef<number>(0);
+
+	useEffect(() => {
+		if (widthRef.current === null) return console.error('bruh whut');
+		// else console.log(widthRef.current.clientWidth);
+		if (typeof cardWidth === 'string') {
+			_cardWidth.current =
+				widthRef.current.scrollWidth * stringToPercentage(cardWidth) - spacing * 2;
+			isSmall.current = false;
+		} else {
+			const maxWidth = widthRef.current.clientWidth - spacing * 2;
+			_cardWidth.current = cardWidth;
+			isSmall.current = maxWidth < _cardWidth.current;
+			_cardWidth.current = isSmall.current ? maxWidth : cardWidth;
+		}
+
+		for (let i = 0; i < React.Children.count(children); i++) {
+			itemPositions.push(i * (_cardWidth.current));
+		}
+	}, [cardWidth, children, itemPositions, spacing, widthRef]);
+
+	const handleNav = (index?: number) => {
+		if (index !== undefined) {
+			setActiveIndex(index);
+			scroll(index);
+		} else {
+			var nextIndex = clamp(activeIndex - 1, 0, React.Children.count(children) - 1);
+			setActiveIndex(nextIndex);
+			scroll(nextIndex);
+		}
+	};
 
 	const handleNavBackwards = () => {
 		var nextIndex = clamp(activeIndex - 1, 0, React.Children.count(children) - 1);
@@ -76,9 +85,8 @@ export default function ScrollCarousel(props: ICarousel) {
 		}
 	};
 
-
 	return (
-		<div style={style}>
+		<div style={style} ref={widthRef}>
 			<div
 				ref={scrollRef}
 				style={{
@@ -86,39 +94,45 @@ export default function ScrollCarousel(props: ICarousel) {
 				}}
 			>
 				<div className={classes.carousel}>
-					{isSmall ? null : <CarouselMargin cardWidth={_cardWidth} spacing={spacing} />}
+					{isSmall.current ? null : (
+						<CarouselMargin cardWidth={_cardWidth.current} spacing={spacing} />
+					)}
 					{React.Children.map(children, (child: JSX.Element, index: number) => {
 						return (
 							<CarouselItem
 								index={index}
 								activeIndex={activeIndex}
 								spacing={spacing}
-								width={_cardWidth}
+								width={_cardWidth.current}
 								itemStyle={itemStyle}
 							>
 								{child}
 							</CarouselItem>
 						);
 					})}
-					{isSmall ? null : <CarouselMargin cardWidth={_cardWidth} spacing={spacing} />}
+					{isSmall.current ? null : (
+						<CarouselMargin cardWidth={_cardWidth.current} spacing={spacing} />
+					)}
 				</div>
 			</div>
-			<div style={{ margin: 'auto', width: _cardWidth }}>
+			<div style={{ margin: 'auto', width: _cardWidth.current }}>
 				<div
 					style={{
 						display: 'flex',
 						justifyContent: 'center',
 						fontSize: '1.25rem',
-						margin: 'auto',
-						...numberStyle
+						margin: 'auto'
 					}}
 				>
-					{itemPositions.map((item, index) => (
+					{React.Children.map(children, (item, index) => (
 						<div
+							onClick={() => handleNav(index)}
 							style={{
 								marginRight: 12,
 								padding: '12px 0',
-								opacity: activeIndex === index ? 1 : 0.25
+								opacity: activeIndex === index ? 1 : 0.25,
+								cursor: 'pointer',
+								...numberStyle
 							}}
 						>
 							{index + 1}
@@ -149,12 +163,13 @@ interface ICarouselMargin {
 }
 
 function CarouselMargin({ cardWidth, spacing }: ICarouselMargin) {
+	var width: number = window.innerWidth / 2 - cardWidth / 2 - spacing;
 	return (
 		<div
 			style={{
-				maxWidth: window.innerWidth / 2 - cardWidth / 2 - spacing, // - spacing / 2,
-				minWidth: window.innerWidth / 2 - cardWidth / 2 - spacing, // - spacing / 2,
-				height: 10
+				maxWidth: width, // - spacing / 2,
+				minWidth: width, // - spacing / 2,
+				height: 10 // just so its selectable with dev tools
 			}}
 		/>
 	);
@@ -164,7 +179,7 @@ interface ICarouselItem {
 	index: number;
 	activeIndex: number;
 	spacing: number;
-	width: number;
+	width: number | string;
 	itemStyle?: CSSProperties;
 	children: JSX.Element[] | JSX.Element;
 }
@@ -179,8 +194,8 @@ function CarouselItem({ index, activeIndex, spacing, width, itemStyle, children 
 		<div
 			style={{
 				opacity: 1 - delta,
-				marginLeft: spacing,
-				marginRight: spacing,
+				paddingLeft: spacing,
+				paddingRight: spacing,
 				minWidth: width,
 				maxWidth: width,
 				transition: 'opacity 1s, transform 1s'
@@ -189,4 +204,8 @@ function CarouselItem({ index, activeIndex, spacing, width, itemStyle, children 
 			{itemStyle !== undefined ? <div style={itemStyle}>{children}</div> : children}
 		</div>
 	);
+}
+
+function stringToPercentage(percentage: string) {
+	return parseFloat(percentage.substring(0, percentage.length - 1)) / 100;
 }
