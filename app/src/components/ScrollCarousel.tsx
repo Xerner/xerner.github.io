@@ -45,6 +45,7 @@ export default function ScrollCarousel(props: ICarousel) {
 			const maxWidth = widthRef.current.clientWidth - spacing * 2;
 			_cardWidth.current = cardWidth;
 			isSmall.current = maxWidth < _cardWidth.current;
+			console.log(maxWidth)
 			_cardWidth.current = isSmall.current ? maxWidth : cardWidth;
 		}
 

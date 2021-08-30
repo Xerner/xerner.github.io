@@ -87,10 +87,10 @@ export default function App() {
 						}}
 					/>
 					<Typography
-						variant="h2"
+						variant="h3"
 						align="center"
 						color="primary"
-						style={{ padding: '2% 0', fontFamily: 'futura' }}
+						style={{ padding: '2%', fontFamily: 'futura' }}
 					>
 						Projects
 					</Typography>
@@ -98,7 +98,7 @@ export default function App() {
 					<ScrollCarousel
 						cardWidth={700}
 						spacing={12}
-						style={{ backgroundColor: '#00000044' }}
+						style={{ backgroundColor: '#00000044', marginBottom: 24 }}
 						itemStyle={{ paddingTop: 12, paddingBottom: 12 }}
 					>
 						<ProjectCard
@@ -352,10 +352,10 @@ export default function App() {
  ██████  ██   ██ ██      ██ ███████      █████  ██   ██ ██      ██ ███████ 
 */}
 					<Typography
-						variant="h2"
+						variant="h3"
 						align="center"
 						color="primary"
-						style={{ padding: '2% 0', fontFamily: 'futura' }}
+						style={{ padding: '2%', fontFamily: 'futura' }}
 					>
 						Game Jams
 					</Typography>
