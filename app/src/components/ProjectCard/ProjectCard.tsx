@@ -10,8 +10,8 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Languages from './Languages';
-import { useState } from 'react';
+import Languages from '../Languages';
+import { CSSProperties, useState } from 'react';
 import { isMobile } from 'functions/isMobile';
 // import { animated, useSpring } from 'react-spring';
 // import { useState } from 'react';
@@ -24,6 +24,7 @@ interface IProjectCard {
 	chips: string[];
 	desc: JSX.Element | string;
 	image?: IProjectCardImage | IProjectCardImage[];
+	imageStyle?: CSSProperties;
 	iconButtons?: JSX.Element[];
 }
 
@@ -122,6 +123,7 @@ export default function ProjectCard(props: IProjectCard) {
 		desc,
 		isPrivate,
 		image,
+		imageStyle,
 		iconButtons
 	} = props;
 	const _isMobile = isMobile();
@@ -187,11 +189,11 @@ export default function ProjectCard(props: IProjectCard) {
 					<div className={classes.mediaContainer}>
 						<CardMedia
 							component="img"
-							// className={cardMediaClasses.media}
 							classes={cardMediaClasses}
 							alt={_image.alt}
 							image={_image.url}
 							title={_image.title}
+							style={imageStyle}
 						/>
 					</div>
 				) : (

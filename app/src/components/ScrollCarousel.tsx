@@ -31,7 +31,7 @@ export default function ScrollCarousel(props: ICarousel) {
 	const scrollRef = React.createRef<HTMLDivElement>();
 	const widthRef = React.createRef<HTMLDivElement>();
 	const itemPositions: number[] = useMemo(() => [], []);
-	const isSmall = React.useRef<boolean>();
+	const isSmallScreen = React.useRef<boolean>();
 	const _cardWidth = React.useRef<number>(0);
 
 	useEffect(() => {
@@ -40,17 +40,17 @@ export default function ScrollCarousel(props: ICarousel) {
 		if (typeof cardWidth === 'string') {
 			_cardWidth.current =
 				widthRef.current.scrollWidth * stringToPercentage(cardWidth) - spacing * 2;
-			isSmall.current = false;
+			isSmallScreen.current = false;
 		} else {
 			const maxWidth = widthRef.current.clientWidth - spacing * 2;
 			_cardWidth.current = cardWidth;
-			isSmall.current = maxWidth < _cardWidth.current;
-			console.log(maxWidth)
-			_cardWidth.current = isSmall.current ? maxWidth : cardWidth;
+			isSmallScreen.current = maxWidth < _cardWidth.current;
+			console.log(maxWidth);
+			_cardWidth.current = isSmallScreen.current ? maxWidth : cardWidth;
 		}
 
 		for (let i = 0; i < React.Children.count(children); i++) {
-			itemPositions.push(i * (_cardWidth.current));
+			itemPositions.push(i * _cardWidth.current);
 		}
 	}, [cardWidth, children, itemPositions, spacing, widthRef]);
 
@@ -94,8 +94,9 @@ export default function ScrollCarousel(props: ICarousel) {
 					overflow: 'hidden'
 				}}
 			>
+				{/* Carousel Items */}
 				<div className={classes.carousel}>
-					{isSmall.current ? null : (
+					{isSmallScreen.current ? null : (
 						<CarouselMargin cardWidth={_cardWidth.current} spacing={spacing} />
 					)}
 					{React.Children.map(children, (child: JSX.Element, index: number) => {
@@ -111,12 +112,13 @@ export default function ScrollCarousel(props: ICarousel) {
 							</CarouselItem>
 						);
 					})}
-					{isSmall.current ? null : (
+					{isSmallScreen.current ? null : (
 						<CarouselMargin cardWidth={_cardWidth.current} spacing={spacing} />
 					)}
 				</div>
 			</div>
 			<div style={{ margin: 'auto', width: _cardWidth.current }}>
+				{/* Carousel Index */}
 				<div
 					style={{
 						display: 'flex',
@@ -136,18 +138,28 @@ export default function ScrollCarousel(props: ICarousel) {
 								...numberStyle
 							}}
 						>
-							{index + 1}
+							<span
+								style={{
+									backgroundColor: '#00000044',
+									padding: 5,
+									borderRadius: '25%',
+									color: "#CCCCCC"
+								}}
+							>
+								{index + 1}
+							</span>
 						</div>
 					))}
 				</div>
 
+				{/* Buttons */}
 				<div style={{ display: 'flex' }}>
-					<div style={{ backgroundColor: '#00000022', width: '50%' }}>
+					<div style={{ backgroundColor: '#00000044', width: '50%' }}>
 						<Button className={classes.button} onClick={handleNavBackwards}>
 							<ChevronLeft />
 						</Button>{' '}
 					</div>
-					<div style={{ backgroundColor: '#00000022', width: '50%' }}>
+					<div style={{ backgroundColor: '#00000044', width: '50%' }}>
 						<Button className={classes.button} onClick={handleNavForwards}>
 							<ChevronRight />
 						</Button>{' '}
