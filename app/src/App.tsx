@@ -14,7 +14,10 @@ import Stars from 'components/Stars';
 import ScrollCarousel from 'components/ScrollCarousel';
 import ProjectCards from 'components/ProjectCard/ProjectCards';
 import GameJamCards from 'components/ProjectCard/GameJamCards';
+import Clouds from 'components/Clouds';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import WindowContext from 'context/window';
+import useWindow from 'hooks/useWindow';
 
 export default function App() {
 	const [isDarkMode, setIsDarkMode] = useCookie(
@@ -47,100 +50,103 @@ export default function App() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<CssBaseline />
+			<WindowContext.Provider value={useWindow()}>
+				<CssBaseline />
 
-			<Box>
-				<Box
-					className="starry-night"
-					style={{
-						height: window.innerHeight
-					}}
-				>
-					<MyName playAnimation={playAnimation} wait={3000} />
-					<Stars maxWait={2000} minWait={1000} />
-				</Box>
+				<Box>
+					<Box
+						className="starry-night"
+						style={{
+							height: window.innerHeight
+						}}
+					>
+						<MyName playAnimation={playAnimation} wait={3000} />
+						<Stars maxWait={2000} minWait={1000} />
+					</Box>
+					<Clouds />
 
-				{/*
+					{/*
  ██████  ██████  ███    ██ ████████ ██████   ██████  ██      ███████ 
 ██      ██    ██ ████   ██    ██    ██   ██ ██    ██ ██      ██      
 ██      ██    ██ ██ ██  ██    ██    ██████  ██    ██ ██      ███████ 
 ██      ██    ██ ██  ██ ██    ██    ██   ██ ██    ██ ██           ██ 
  ██████  ██████  ██   ████    ██    ██   ██  ██████  ███████ ███████ 
 */}
-				<Controls darkMode={isDarkMode} setDarkMode={setIsDarkMode} />
-				{/* 
+					<Controls darkMode={isDarkMode} setDarkMode={setIsDarkMode} />
+					{/* 
   ██████  ██████   ██████       ██ ███████  ██████ ████████ ███████ 
   ██   ██ ██   ██ ██    ██      ██ ██      ██         ██    ██      
   ██████  ██████  ██    ██      ██ █████   ██         ██    ███████ 
   ██      ██   ██ ██    ██ ██   ██ ██      ██         ██         ██ 
   ██      ██   ██  ██████   █████  ███████  ██████    ██    ███████ 
   */}
-				<Box className={isDarkMode ? 'night-sky' : 'day-sky'}>
-					<DarkModeControl
-						isDarkMode={isDarkMode}
-						onClick={setIsDarkMode}
-						style={{
-							position: 'relative',
-							top: window.innerWidth * 0.05,
-							left: window.innerWidth * 0.05
-						}}
-					/>
-					<Typography
-						variant="h3"
-						align="center"
-						color="primary"
-						style={{ padding: '2%', fontFamily: 'futura' }}
-					>
-						Projects
-					</Typography>
+					<Box className={isDarkMode ? 'night-sky' : 'day-sky'}>
+						<DarkModeControl
+							isDarkMode={isDarkMode}
+							onClick={setIsDarkMode}
+							style={{
+								position: 'relative',
+								top: window.innerWidth * 0.05,
+								left: window.innerWidth * 0.05
+							}}
+						/>
+						<Typography
+							variant="h3"
+							align="center"
+							color="primary"
+							style={{ padding: '2%', fontFamily: 'futura' }}
+						>
+							Projects
+						</Typography>
 
-					<ScrollCarousel
-						cardWidth={700}
-						spacing={12}
-						style={{ marginBottom: 24 }}
-						itemStyle={{ paddingTop: 12, paddingBottom: 12 }}
-					>
-						<ProjectCards theme={theme}/>
-					</ScrollCarousel>
+						<ScrollCarousel
+							cardWidth={700}
+							spacing={12}
+							style={{ marginBottom: 24 }}
+							itemStyle={{ paddingTop: 12, paddingBottom: 12 }}
+						>
+							{ProjectCards(theme)}
+						</ScrollCarousel>
 
-					{/* 
+						{/* 
  ██████   █████  ███    ███ ███████          ██  █████  ███    ███ ███████ 
 ██       ██   ██ ████  ████ ██               ██ ██   ██ ████  ████ ██      
 ██   ███ ███████ ██ ████ ██ █████            ██ ███████ ██ ████ ██ ███████ 
 ██    ██ ██   ██ ██  ██  ██ ██          ██   ██ ██   ██ ██  ██  ██      ██ 
  ██████  ██   ██ ██      ██ ███████      █████  ██   ██ ██      ██ ███████ 
 */}
-					<Typography
-						variant="h3"
-						align="center"
-						color="primary"
-						style={{ padding: '2%', fontFamily: 'futura' }}
-					>
-						Game Jams
-					</Typography>
+						<Typography
+							variant="h3"
+							align="center"
+							color="primary"
+							style={{ padding: '2%', fontFamily: 'futura' }}
+						>
+							Game Jams
+						</Typography>
 
-					<ScrollCarousel
-						cardWidth={700}
-						spacing={12}
-						//style={{ backgroundColor: '#00000044' }}
-						itemStyle={{ paddingTop: 12, paddingBottom: 12 }}
-					>
-						<GameJamCards theme={theme}/>
-					</ScrollCarousel>
+						<ScrollCarousel
+							cardWidth={700}
+							spacing={12}
+							//style={{ backgroundColor: '#00000044' }}
+							itemStyle={{ paddingTop: 12, paddingBottom: 12 }}
+						>
+							{GameJamCards(theme)}
+						</ScrollCarousel>
 
-					<footer>
-						<Grid container justifyContent="flex-end">
-							<Grid item>
-								<Tooltip title="My Github" color="primary" arrow>
-									<IconButton href="https://github.com/Xerner">
-										<GitHubIcon />
-									</IconButton>
-								</Tooltip>
+						<footer>
+							<Grid container justifyContent="flex-end">
+								<Grid item>
+									<Tooltip title="My Github" color="primary" arrow>
+										<IconButton href="https://github.com/Xerner">
+											<GitHubIcon />
+										</IconButton>
+									</Tooltip>
+								</Grid>
 							</Grid>
-						</Grid>
-					</footer>
+						</footer>
+					</Box>
 				</Box>
-			</Box>
+			</WindowContext.Provider>
 		</ThemeProvider>
 	);
 }

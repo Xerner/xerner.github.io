@@ -22,8 +22,6 @@ export const neonTheme = (darkMode: boolean) => createTheme({
   }
 });
 
-
-
 /*
 good night sky color: 073349
 */
