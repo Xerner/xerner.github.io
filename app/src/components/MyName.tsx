@@ -58,7 +58,7 @@ export default function MyName(props: MyNameProps) {
 	var firstName = ['K', 'e', 'n', 'n', 'e', 't', 'h'];
 	var lastName = ['M', 'e', 'a', 'd'];
 
-
+   	const pixelSize = _isMobile ? "0.75%" : "0.5%";
 	return (
 		<div
 			style={{
@@ -68,7 +68,7 @@ export default function MyName(props: MyNameProps) {
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
-				marginTop: _isMobile ? 0 : "-10%",
+				marginTop: "-10%",
 				zIndex: 10, // to make sure the name is shown above the stars
 			}}
 		>
@@ -79,7 +79,7 @@ export default function MyName(props: MyNameProps) {
 							<Grid item key={index} className="rise-anim">
 								<PixelBitmap
 									bitmap={alphabet[letter]}
-									pixelSize={'0.5%'}
+									pixelSize={pixelSize}
 									colorMap={colorMap}
 									animationClasses={animationClasses}
 									rowDelay={rowDelay}
@@ -94,7 +94,7 @@ export default function MyName(props: MyNameProps) {
 							<Grid item key={index} className="rise-anim">
 								<PixelBitmap
 									bitmap={alphabet[letter]}
-									pixelSize={'0.5%'}
+									pixelSize={pixelSize}
 									colorMap={colorMap}
 									animationClasses={animationClasses}
 									rowDelay={rowDelay}

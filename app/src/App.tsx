@@ -9,7 +9,7 @@ import { useCookie } from 'hooks/useCookie';
 import { neonTheme } from 'themes/neonTheme';
 //import ProjectCardContainer from 'components/ProjectCardContainer';
 import DarkModeControl from 'components/DarkModeControl';
-import Stars from 'components/Stars';
+import Stars from 'components/Stars/Stars';
 import ScrollCarousel from 'components/ScrollCarousel';
 import ProjectCards from 'components/ProjectCard/ProjectCards';
 import GameJamCards from 'components/ProjectCard/GameJamCards';
@@ -27,6 +27,7 @@ export default function App() {
 	// This is supposed to go off at the same time the name finishes animating
 	// It turns of the bool that is hiding the main content, and shrinks a buffer that allows the name to move upwards
 	useEffect(() => {
+		document.body.classList.add('main-scrollbar');
 		if (playAnimation) {
 			setTimeout(() => {
 				// setPlayAnimationOptions({ maxAge: 5000 });
@@ -34,8 +35,6 @@ export default function App() {
 			}, 2000);
 		}
 	});
-
-	document.body.classList.add('main-scrollbar');
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -48,8 +47,9 @@ export default function App() {
 						height: window.innerHeight
 					}}
 				>
-					<MyName playAnimation={playAnimation} wait={3000} />
-					<Stars maxWait={2000} minWait={1000} />
+					<MyName playAnimation={false} wait={0} />
+					{/* <MyName playAnimation={playAnimation} wait={3000} /> */}
+					<Stars maxWait={0} minWait={0} />
 				</Box>
 				<Clouds />
 
@@ -70,33 +70,32 @@ export default function App() {
   ██      ██   ██  ██████   █████  ███████  ██████    ██    ███████ 
   className={isDarkMode ? 'night-sky' : 'day-sky'}
   */}
-				<Box style={{ position: 'relative', width: window.innerWidth }}>
-					{isDarkMode ? (
-						<img
-							src="images/purple-city-4000-1125.jpg"
-							alt="City background"
-							style={{ position: 'absolute', zIndex: -10 }}
-							height={window.innerHeight}
+				<Box>
+					<Box style={{ position: 'relative', width: '100%', overflowX: 'clip', overflowY: 'visible' }}>
+						{isDarkMode ? (
+							<img
+								src="images/purple-city-4000-1125.jpg"
+								alt="City background"
+								style={{ position: 'absolute', zIndex: -10 }}
+								height={window.innerHeight}
+							/>
+						) : (
+							<img
+								src="images/blue-city-4000-1125.jpg"
+								alt="City background"
+								style={{ position: 'absolute', zIndex: -10 }}
+								height={window.innerHeight}
+							/>
+						)}
+						<DarkModeControl
+							isDarkMode={isDarkMode}
+							onClick={setIsDarkMode}
+							style={{
+								position: 'relative',
+								top: window.innerWidth * 0.05,
+								left: window.innerWidth * 0.05
+							}}
 						/>
-					) : (
-						<img
-							src="images/blue-city-4000-1125.jpg"
-							alt="City background"
-							style={{ position: 'absolute', zIndex: -10 }}
-							height={window.innerHeight}
-						/>
-					)}
-					<DarkModeControl
-						isDarkMode={isDarkMode}
-						onClick={setIsDarkMode}
-						style={{
-							position: 'relative',
-							top: window.innerWidth * 0.05,
-							left: window.innerWidth * 0.05
-						}}
-					/>
-
-					<Box className="">
 						<Typography variant="h3" align="center" color="primary" style={{ padding: '2%', fontFamily: 'futura' }}>
 							Projects
 						</Typography>

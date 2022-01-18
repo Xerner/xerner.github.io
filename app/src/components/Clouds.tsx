@@ -1,9 +1,15 @@
+import { isMobile } from 'functions/isMobile';
 import { useEffect, useState, useContext, createContext } from 'react';
 
 const FORE_CLOUD = 100;
 const BACK_CLOUD = 90;
 
 const DimsContext = createContext({ width: 0, height: 0 });
+
+interface ICloudDim {
+	width: number;
+	height: number;
+}
 
 const cloudDims = [
 	{ width: 1147, height: 608 },
@@ -13,15 +19,20 @@ const cloudDims = [
 ];
 // cloud 1 = 1147 x 608
 
+
 export default function Clouds() {
 	const [dims, setDims] = useState({ width: 0, height: 0 });
-
+	
 	useEffect(() => {
 		setDims({ width: window.innerWidth, height: window.innerHeight });
 	}, []);
+	var temp = cloudDims.reduce((prevCloudDim, curCloudDim) =>
+		prevCloudDim.height > curCloudDim.height ? prevCloudDim : curCloudDim
+	);
+	const largestCloudHeight = (temp.height / temp.width) * (dims.width * 0.25)
 
 	return (
-		<div style={{ height: 0, position: 'relative', top: -dims.height * 0.15 }}>
+		<div style={{ position: 'relative', top: - largestCloudHeight / 2, overflowX: 'clip' }}>
 			<DimsContext.Provider value={dims}>
 				{/* group 1 */}
 				<Cloud cloudIndex={1} left={-dims.width * 0.025} top={0} />
@@ -74,14 +85,14 @@ function Cloud(props: ICloud) {
 	} else {
 		zIndex = props.zIndex;
 	}
-	const thisCloudDims = cloudDims[props.cloudIndex-1];
+	const thisCloudDims = cloudDims[props.cloudIndex - 1];
 	return (
 		<img
 			src={`images/clouds/cloud${props.cloudIndex}.png`}
 			alt="cloud"
 			style={{ position: 'absolute', left: props.left, top: props.top, zIndex: zIndex }}
 			width={windowDims.width * 0.25 * size}
-			height={((thisCloudDims.height/thisCloudDims.width)*(windowDims.width * 0.25)) * size}
+			height={(thisCloudDims.height / thisCloudDims.width) * (windowDims.width * 0.25) * size}
 		/>
 	);
 }

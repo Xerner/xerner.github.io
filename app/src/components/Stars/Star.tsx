@@ -1,4 +1,4 @@
-import Delayable from './Delayable';
+import Delayable from '../Delayable';
 
 interface IStar {
 	left: number;
@@ -15,13 +15,13 @@ export default function Star(props: IStar) {
 
 	return (
 		<Delayable wait={wait}>
-				<img
-					style={{ position: 'absolute', left: left, top: top }}
-					src={starSource}
-					alt="star"
-					className="animate__animated animate__fadeIn animate__slower"
-					title="ooooo~ a star"
-				/>
+			<img
+				style={{ position: 'absolute', left: left, top: top, width: 4, height: 4 }}
+				src={starSource}
+				alt="star"
+				className="animate__animated animate__fadeIn animate__slower"
+				title="ooooo~ a star"
+			/>
 		</Delayable>
 	);
 }
