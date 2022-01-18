@@ -1,5 +1,6 @@
 import { Grid } from '@material-ui/core';
 import { Forward as ForwardIcon } from '@material-ui/icons';
+import { isMobile } from 'functions/isMobile';
 import alphabet from 'graphics/bitmaps/alphabetMap';
 import { useEffect, useState } from 'react';
 import PixelBitmap from './animatable pixels/PixelBitmap';
@@ -36,6 +37,7 @@ export default function MyName(props: MyNameProps) {
 	const animationClasses = animations[0];
 	const [rowDelay, setRowDelay] = useState(playAnimation ? 1 : 0);
 	const [rowDelayMaxIncrement] = useState(rowDelay * 0.1);
+	const _isMobile = isMobile();
 
 	var colorMap: { [key: number]: string } = {
 		0: '#00000000',
@@ -66,8 +68,8 @@ export default function MyName(props: MyNameProps) {
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
-				zIndex: 10,
-				padding: '10%'
+				marginTop: _isMobile ? 0 : "-10%",
+				zIndex: 10, // to make sure the name is shown above the stars
 			}}
 		>
 			<Delayable wait={wait}>

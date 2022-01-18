@@ -59,7 +59,7 @@ body {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 .starry-night {
-	background: linear-gradient(270deg, hsla(0, 0%, 0%, 1) 0%, hsla(243, 100%, 12%, 1) 100%);
+	background: linear-gradient(270deg, hsla(0, 0%, 0%, 1) 0%, #03003d 100%);
 
 	background: -moz-linear-gradient(270deg, hsla(0, 0%, 0%, 1) 0%, hsla(243, 100%, 12%, 1) 100%);
 
@@ -72,38 +72,60 @@ body {
 
 .day-sky {
 	// background: linear-gradient(180deg, #1a5bbc 0%, #97b1d3 100%);
+	// background-image: url("../images/blue-city-2000-1125.jpg");
+	// background: linear-gradient(
+	// 	270deg,
+	// 	hsla(243, 100%, 12%, 1) 0%,
+	// 	hsla(230, 32%, 38%, 1) 33%,
+	// 	hsla(216, 76%, 42%, 1) 66%,
+	// 	hsla(214, 41%, 71%, 1) 100%
+	// );
 
-	background: linear-gradient(
-		270deg,
-		hsla(243, 100%, 12%, 1) 0%,
-		hsla(230, 32%, 38%, 1) 33%,
-		hsla(216, 76%, 42%, 1) 66%,
-		hsla(214, 41%, 71%, 1) 100%
-	);
+	// background: -moz-linear-gradient(
+	// 	270deg,
+	// 	hsla(243, 100%, 12%, 1) 0%,
+	// 	hsla(230, 32%, 38%, 1) 33%,
+	// 	hsla(216, 76%, 42%, 1) 66%,
+	// 	hsla(214, 41%, 71%, 1) 100%
+	// );
 
-	background: -moz-linear-gradient(
-		270deg,
-		hsla(243, 100%, 12%, 1) 0%,
-		hsla(230, 32%, 38%, 1) 33%,
-		hsla(216, 76%, 42%, 1) 66%,
-		hsla(214, 41%, 71%, 1) 100%
-	);
-
-	background: -webkit-linear-gradient(
-		270deg,
-		hsla(243, 100%, 12%, 1) 0%,
-		hsla(230, 32%, 38%, 1) 33%,
-		hsla(216, 76%, 42%, 1) 66%,
-		hsla(214, 41%, 71%, 1) 100%
-	);
+	// background: -webkit-linear-gradient(
+	// 	270deg,
+	// 	hsla(243, 100%, 12%, 1) 0%,
+	// 	hsla(230, 32%, 38%, 1) 33%,
+	// 	hsla(216, 76%, 42%, 1) 66%,
+	// 	hsla(214, 41%, 71%, 1) 100%
+	// );
 }
 
 .night-sky {
-	background: linear-gradient(180deg, #03003d 0%, #424c80 100%);
+	background-image: url("../images/purple-city-2000-1125.jpg");
+	// background: linear-gradient(180deg, #03003d 0%, #424c80 100%);
 }
 
 .dirt {
 	background-color: #b87d4b;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  ██████  █████  ██████  ██████  ███████ 
+// ██      ██   ██ ██   ██ ██   ██ ██      
+// ██      ███████ ██████  ██   ██ ███████ 
+// ██      ██   ██ ██   ██ ██   ██      ██ 
+//  ██████ ██   ██ ██   ██ ██████  ███████ 
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+.card {
+	
+}
+
+.card-bg-light {
+	background-image: url("../images/card-background.png");
+	object-fit: fill;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

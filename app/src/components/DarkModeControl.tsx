@@ -20,7 +20,7 @@ export default function DarkModeControl(props: DarkModeControlProps) {
 	const size = window.innerWidth * 0.1;
 
 	return (
-		<div style={{ ...style }}>
+		<div style={{ display: "inline-block", ...style }}>
 			<Tooltip title="Toggle Dark Mode">
 				<div
 					style={{
