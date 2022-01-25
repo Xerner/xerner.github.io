@@ -52,6 +52,12 @@ body {
   background-color: #b87d4b;
 }
 
+.card-light {
+  background-image: url("../images/card-background-temp.png");
+  object-fit: scale-down;
+  background-size: cover;
+}
+
 .card-bg-light {
   background-image: url("../images/card-background.png");
   object-fit: fill;

@@ -3,9 +3,10 @@ import { Forward as ForwardIcon } from '@material-ui/icons';
 import { isMobile } from 'functions/isMobile';
 import alphabet from 'graphics/bitmaps/alphabetMap';
 import { useEffect, useState } from 'react';
-import PixelBitmap from './animatable pixels/PixelBitmap';
+import PixelBitmap from '../animatable pixels/PixelBitmap';
 // import PixelSentence from './animatable pixels/PixelSentence';
-import Delayable from './Delayable';
+import Delayable from '../Delayable';
+import './name.css'
 
 interface MyNameProps {
 	playAnimation: boolean;
@@ -40,7 +41,7 @@ export default function MyName(props: MyNameProps) {
 	const _isMobile = isMobile();
 
 	var colorMap: { [key: number]: string } = {
-		0: '#00000000',
+		0: '#00000000', // transparent
 		1: '#dddddd', //theme.palette.type === "dark" ? theme.palette.primary.main : theme.palette.primary.light,
 		2: '#444444' //theme.palette.type === "dark" ? theme.palette.primary.main : theme.palette.primary.light,
 	};
@@ -51,30 +52,19 @@ export default function MyName(props: MyNameProps) {
 				setRowDelay(0);
 			}, 2000);
 		}
-		document.body.style.overflowX = "hidden"
-		setTimeout(() => document.body.style.overflowX = "hidden", wait*2)
+		document.body.style.overflowX = 'hidden';
+		setTimeout(() => (document.body.style.overflowX = 'hidden'), wait * 2);
 	}, [playAnimation, wait]);
 
 	var firstName = ['K', 'e', 'n', 'n', 'e', 't', 'h'];
 	var lastName = ['M', 'e', 'a', 'd'];
 
-   	const pixelSize = _isMobile ? "0.75%" : "0.5%";
+	const pixelSize = _isMobile ? '0.75%' : '0.5%';
 	return (
-		<div
-			style={{
-				height: window.innerHeight,
-				width: '100%',
-				position: 'absolute',
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				marginTop: "-10%",
-				zIndex: 10, // to make sure the name is shown above the stars
-			}}
-		>
+		<div className="name-container">
 			<Delayable wait={wait}>
 				<div className="animate__animated animate__fadeIn animate__slower">
-					<Grid container justifyContent="center" alignItems="flex-end" spacing={2} style={{marginBottom: 12}}>
+					<Grid container justifyContent="center" alignItems="flex-end" spacing={2} style={{ marginBottom: 12 }}>
 						{firstName.map((letter, index) => (
 							<Grid item key={index} className="rise-anim">
 								<PixelBitmap

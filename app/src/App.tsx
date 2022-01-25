@@ -3,20 +3,20 @@ import { Box, IconButton, ThemeProvider, Tooltip, useMediaQuery } from '@materia
 import { useEffect, useMemo } from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import MyName from './components/MyName';
-import Controls from './components/Controls';
+import MyName from './components/Name/MyName';
+// import Controls from './components/Controls';
 import { useCookie } from 'hooks/useCookie';
 import { neonTheme } from 'themes/neonTheme';
 //import ProjectCardContainer from 'components/ProjectCardContainer';
 import DarkModeControl from 'components/DarkModeControl';
 import Stars from 'components/Stars/Stars';
-import ScrollCarousel from 'components/ScrollCarousel';
+import ScrollCarousel from 'components/ScrollCarousel/ScrollCarousel';
 import ProjectCards from 'components/ProjectCard/ProjectCards';
-import GameJamCards from 'components/ProjectCard/GameJamCards';
-import Clouds from 'components/Clouds';
+// import GameJamCards from 'components/ProjectCard/GameJamCards';
+import Clouds from 'components/Clouds/Clouds';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import WindowContext from 'context/window';
-import useWindow from 'hooks/useWindow';
+// import WindowContext from 'context/window';
+// import useWindow from 'hooks/useWindow';
 
 export default function App() {
 	const [isDarkMode, setIsDarkMode] = useCookie('darkMode', useMediaQuery('(prefers-color-scheme: dark)'), { maxAge: 50000 });
@@ -34,7 +34,7 @@ export default function App() {
 				setPlayAnimation(false);
 			}, 2000);
 		}
-	});
+	}, [playAnimation, setPlayAnimation]);
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -44,12 +44,12 @@ export default function App() {
 				<Box
 					className="starry-night"
 					style={{
-						height: window.innerHeight
+						height: '100vh'
 					}}
 				>
 					<MyName playAnimation={false} wait={0} />
 					{/* <MyName playAnimation={playAnimation} wait={3000} /> */}
-					<Stars maxWait={0} minWait={0} />
+					<Stars numberOfStars={150} maxWait={0} minWait={0} />
 				</Box>
 				<Clouds />
 
@@ -70,21 +70,19 @@ export default function App() {
   ██      ██   ██  ██████   █████  ███████  ██████    ██    ███████ 
   className={isDarkMode ? 'night-sky' : 'day-sky'}
   */}
-				<Box>
-					<Box style={{ position: 'relative', width: '100%', overflowX: 'clip', overflowY: 'visible' }}>
+				<Box style={{ position: 'relative', overflowX: 'clip', overflowY: 'visible' }}>
+					<div style={{ position: 'absolute' }}>
 						{isDarkMode ? (
 							<img
 								src="images/purple-city-4000-1125.jpg"
 								alt="City background"
-								style={{ position: 'absolute', zIndex: -10 }}
-								height={window.innerHeight}
+								style={{ position: 'absolute', zIndex: -10, height: '100vh' }}
 							/>
 						) : (
 							<img
 								src="images/blue-city-4000-1125.jpg"
 								alt="City background"
-								style={{ position: 'absolute', zIndex: -10 }}
-								height={window.innerHeight}
+								style={{ position: 'absolute', zIndex: -10, height: '100vh' }}
 							/>
 						)}
 						<DarkModeControl
@@ -92,23 +90,25 @@ export default function App() {
 							onClick={setIsDarkMode}
 							style={{
 								position: 'relative',
-								top: window.innerWidth * 0.05,
-								left: window.innerWidth * 0.05
+								top: '5vw',
+								left: '5vw'
 							}}
 						/>
-						<Typography variant="h3" align="center" color="primary" style={{ padding: '2%', fontFamily: 'futura' }}>
-							Projects
-						</Typography>
+					</div>
+					{/* <div className="card-light"> */}
+					<Typography variant="h3" align="center" color="primary" style={{ padding: '15% 0 1% 0', fontFamily: 'futura' }}>
+						Projects
+					</Typography>
 
-						<ScrollCarousel
-							cardWidth={700}
-							spacing={12}
-							style={{ marginBottom: 24 }}
-							itemStyle={{ paddingTop: 12, paddingBottom: 12 }}
-						>
-							{ProjectCards(theme)}
-						</ScrollCarousel>
-					</Box>
+					<ScrollCarousel
+						cardWidth={700}
+						spacing={12}
+						style={{ marginBottom: 24, width: 750, margin: '0 auto', overflowX: 'visible' }}
+						itemStyle={{ paddingTop: 12, paddingBottom: 12 }}
+					>
+						{ProjectCards(theme)}
+					</ScrollCarousel>
+					{/* </div> */}
 				</Box>
 				{/* 
  ██████   █████  ███    ███ ███████          ██  █████  ███    ███ ███████ 
@@ -131,18 +131,19 @@ export default function App() {
 							{GameJamCards(theme)}
 						</ScrollCarousel>
 
-						<footer>
-							<Grid container justifyContent="flex-end">
-								<Grid item>
-									<Tooltip title="My Github" color="primary" arrow>
-										<IconButton href="https://github.com/Xerner">
-											<GitHubIcon />
-										</IconButton>
-									</Tooltip>
-								</Grid>
-							</Grid>
-						</footer>
+						
 					</Box> */}
+				<footer>
+					<Grid container justifyContent="flex-end">
+						<Grid item>
+							<Tooltip title="My Github" color="primary" arrow>
+								<IconButton href="https://github.com/Xerner">
+									<GitHubIcon />
+								</IconButton>
+							</Tooltip>
+						</Grid>
+					</Grid>
+				</footer>
 			</Box>
 		</ThemeProvider>
 	);
