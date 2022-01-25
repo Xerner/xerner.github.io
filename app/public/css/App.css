@@ -44,25 +44,40 @@ body {
   background: -webkit-linear-gradient(270deg, black 0%, #03003d 100%);
 }
 
-.night-sky {
-  background-image: url("../images/purple-city-2000-1125.jpg");
+.bg-img {
+  position: absolute;
+  z-index: -10;
+  height: 100%;
 }
 
-.dirt {
-  background-color: #b87d4b;
+.card-container {
+  min-width: 400px;
+  max-width: 40vw;
+  height: auto;
+  margin: 0 auto;
 }
 
 .card-light {
-  background-image: url("../images/card-background-temp.png");
-  object-fit: scale-down;
-  background-size: cover;
+  background-color: #2cd47d;
+  padding: 24px;
+  border: 1px solid #059573;
+  box-shadow: 0 10px #059573;
 }
 
-.card-bg-light {
-  background-image: url("../images/card-background.png");
-  object-fit: fill;
-  background-repeat: no-repeat;
-  background-size: cover;
+.card-title {
+  margin: 0 auto;
+  padding: 1% 0 1% 0;
+}
+
+.dark-mode-control {
+  position: relative;
+  top: 5vw;
+  left: 5vw;
+}
+
+.clouds {
+  position: relative;
+  overflow-x: clip;
 }
 
 /* width */
@@ -128,10 +143,6 @@ body {
 /* Handle on hover */
 .custom-scrollbar-light::-webkit-scrollbar-thumb:hover {
   background: #08080888;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 /* ----------------------------------------------

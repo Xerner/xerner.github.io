@@ -4,6 +4,7 @@ import BrightnessIcon from '@material-ui/icons/Brightness4';
 import BrightnessHighIcon from '@material-ui/icons/Brightness5';
 
 interface DarkModeControlProps {
+	id: string;
 	isDarkMode: boolean;
 	onClick: Function;
 	style?: CSSProperties;
@@ -11,7 +12,7 @@ interface DarkModeControlProps {
 }
 
 export default function DarkModeControl(props: DarkModeControlProps) {
-	const { isDarkMode, onClick, style, className } = props;
+	const { id, isDarkMode, onClick, style, className } = props;
 
 	const handleClick = () => onClick(!isDarkMode);
 
@@ -20,7 +21,7 @@ export default function DarkModeControl(props: DarkModeControlProps) {
 	const fontSize = `${size / 4}vw`;
 
 	return (
-		<div style={{ display: 'inline-block', ...style }}>
+		<div id={id} style={{ display: 'inline-block', ...style }} className={className}>
 			<Tooltip title="Toggle Dark Mode">
 				<div
 					style={{
@@ -58,7 +59,6 @@ export default function DarkModeControl(props: DarkModeControlProps) {
 					<img
 						src={isDarkMode ? 'images/moon.png' : 'images/sun-1080.png'}
 						alt="Dark Mode Controller"
-						className={className}
 						style={{
 							width: sizeVW,
 							height: sizeVW

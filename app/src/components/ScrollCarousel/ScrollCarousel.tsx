@@ -6,6 +6,7 @@ import React, { useEffect, useState, CSSProperties, useMemo } from 'react';
 interface ICarousel {
 	cardWidth: number | string;
 	spacing: number;
+	className?: string;
 	style?: CSSProperties;
 	numberStyle?: CSSProperties;
 	itemStyle?: CSSProperties;
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 // TODO: JSDocs
 export default function ScrollCarousel(props: ICarousel) {
-	const { cardWidth, spacing, style, numberStyle, itemStyle, children } = props;
+	const { cardWidth, spacing, className, style, numberStyle, itemStyle, children } = props;
 	const [activeIndex, setActiveIndex] = useState(0);
 	const classes = useStyles();
 	const scrollRef = React.createRef<HTMLDivElement>();
@@ -87,7 +88,7 @@ export default function ScrollCarousel(props: ICarousel) {
 	};
 
 	return (
-		<div style={style} ref={widthRef}>
+		<div id="scroll-carousel" className={className} style={style} ref={widthRef}>
 			<div
 				ref={scrollRef}
 				// style={{

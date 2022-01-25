@@ -1,22 +1,19 @@
 import 'animate.css';
-import { Box, IconButton, ThemeProvider, Tooltip, useMediaQuery } from '@material-ui/core';
+import { Box, Typography, ThemeProvider, useMediaQuery } from '@material-ui/core';
+// import { IconButton, Tooltip, Grid } from '@material-ui/core';
 import { useEffect, useMemo } from 'react';
-import { Grid, Typography } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MyName from './components/Name/MyName';
-// import Controls from './components/Controls';
 import { useCookie } from 'hooks/useCookie';
 import { neonTheme } from 'themes/neonTheme';
-//import ProjectCardContainer from 'components/ProjectCardContainer';
 import DarkModeControl from 'components/DarkModeControl';
 import Stars from 'components/Stars/Stars';
 import ScrollCarousel from 'components/ScrollCarousel/ScrollCarousel';
 import ProjectCards from 'components/ProjectCard/ProjectCards';
 // import GameJamCards from 'components/ProjectCard/GameJamCards';
 import Clouds from 'components/Clouds/Clouds';
-import GitHubIcon from '@material-ui/icons/GitHub';
-// import WindowContext from 'context/window';
-// import useWindow from 'hooks/useWindow';
+// import GitHubIcon from '@material-ui/icons/GitHub';
+import clsx from 'clsx';
 
 export default function App() {
 	const [isDarkMode, setIsDarkMode] = useCookie('darkMode', useMediaQuery('(prefers-color-scheme: dark)'), { maxAge: 50000 });
@@ -42,6 +39,7 @@ export default function App() {
 
 			<Box style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
 				<Box
+					id="stars-and-name"
 					className="starry-night"
 					style={{
 						height: '100vh'
@@ -51,64 +49,46 @@ export default function App() {
 					{/* <MyName playAnimation={playAnimation} wait={3000} /> */}
 					<Stars numberOfStars={150} maxWait={0} minWait={0} />
 				</Box>
-				<Clouds />
-
-				{/*
- ██████  ██████  ███    ██ ████████ ██████   ██████  ██      ███████ 
-██      ██    ██ ████   ██    ██    ██   ██ ██    ██ ██      ██      
-██      ██    ██ ██ ██  ██    ██    ██████  ██    ██ ██      ███████ 
-██      ██    ██ ██  ██ ██    ██    ██   ██ ██    ██ ██           ██ 
- ██████  ██████  ██   ████    ██    ██   ██  ██████  ███████ ███████ 
-*/}
-
-				{/* <Controls darkMode={isDarkMode} setDarkMode={setIsDarkMode} /> */}
 				{/* 
   ██████  ██████   ██████       ██ ███████  ██████ ████████ ███████ 
   ██   ██ ██   ██ ██    ██      ██ ██      ██         ██    ██      
   ██████  ██████  ██    ██      ██ █████   ██         ██    ███████ 
   ██      ██   ██ ██    ██ ██   ██ ██      ██         ██         ██ 
   ██      ██   ██  ██████   █████  ███████  ██████    ██    ███████ 
-  className={isDarkMode ? 'night-sky' : 'day-sky'}
-  */}
-				<Box style={{ position: 'relative', overflowX: 'clip', overflowY: 'visible' }}>
-					<div style={{ position: 'absolute' }}>
-						{isDarkMode ? (
-							<img
-								src="images/purple-city-4000-1125.jpg"
-								alt="City background"
-								style={{ position: 'absolute', zIndex: -10, height: '100vh' }}
-							/>
-						) : (
-							<img
-								src="images/blue-city-4000-1125.jpg"
-								alt="City background"
-								style={{ position: 'absolute', zIndex: -10, height: '100vh' }}
-							/>
-						)}
+*/}
+				<Box id="clouds-sun-and-background" style={{ position: 'relative' }}>
+					<Box id="dark-mode-control-container" style={{ position: 'absolute' }}>
 						<DarkModeControl
+							id="dark-mode-control"
+							className="dark-mode-control"
 							isDarkMode={isDarkMode}
 							onClick={setIsDarkMode}
-							style={{
-								position: 'relative',
-								top: '5vw',
-								left: '5vw'
-							}}
 						/>
-					</div>
-					{/* <div className="card-light"> */}
-					<Typography variant="h3" align="center" color="primary" style={{ padding: '15% 0 1% 0', fontFamily: 'futura' }}>
-						Projects
-					</Typography>
+					</Box>
+					<Clouds id="clouds" />
+				</Box>
+				<Box id="project-cards" style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+					{isDarkMode ? (
+						<img className="bg-img" src="images/purple-city-4000-1125.jpg" alt="City background" />
+					) : (
+						<img className="bg-img" src="images/blue-city-4000-1125.jpg" alt="City background" />
+					)}
+					{/* <Box style={{ position: 'relative', overflowX: 'clip', overflowY: 'visible' }}> */}
+					<div className={clsx('card-container', isDarkMode ? 'card-dark' : 'card-light')}>
+						<Typography className="card-title" variant="h3" align="center" color="primary" style={{ fontFamily: 'futura' }}>
+							Projects
+						</Typography>
 
-					<ScrollCarousel
-						cardWidth={700}
-						spacing={12}
-						style={{ marginBottom: 24, width: 750, margin: '0 auto', overflowX: 'visible' }}
-						itemStyle={{ paddingTop: 12, paddingBottom: 12 }}
-					>
-						{ProjectCards(theme)}
-					</ScrollCarousel>
-					{/* </div> */}
+						<ScrollCarousel
+							cardWidth={700}
+							spacing={12}
+							// className='card-light'
+							style={{ marginBottom: 24, width: 750, margin: '0 auto', overflowX: 'visible' }}
+							itemStyle={{ paddingTop: 12, paddingBottom: 12 }}
+						>
+							{ProjectCards(theme)}
+						</ScrollCarousel>
+					</div>
 				</Box>
 				{/* 
  ██████   █████  ███    ███ ███████          ██  █████  ███    ███ ███████ 
@@ -133,7 +113,7 @@ export default function App() {
 
 						
 					</Box> */}
-				<footer>
+				{/* <footer>
 					<Grid container justifyContent="flex-end">
 						<Grid item>
 							<Tooltip title="My Github" color="primary" arrow>
@@ -143,7 +123,7 @@ export default function App() {
 							</Tooltip>
 						</Grid>
 					</Grid>
-				</footer>
+				</footer> */}
 			</Box>
 		</ThemeProvider>
 	);

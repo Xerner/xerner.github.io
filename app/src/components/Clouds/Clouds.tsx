@@ -1,9 +1,5 @@
-import { useEffect, useState, useContext, createContext } from 'react';
-
 const FORE_CLOUD = 100;
 const BACK_CLOUD = 90;
-
-const DimsContext = createContext({ width: 0, height: 0 });
 
 // resolution of each clouds source image
 const cloudDims = [
@@ -14,23 +10,16 @@ const cloudDims = [
 ];
 // cloud 1 = 1147 x 608
 
-export default function Clouds() {
-	// const [dims, setDims] = useState({ width: 0, height: 0 });
-
-	// useEffect(() => {
-	// 	setDims({ width: window.innerWidth, height: window.innerHeight });
-	// }, []);
-
+export default function Clouds({ id }: { id: string }) {
 	var _largestCloudHeight = cloudDims.reduce((prevCloudDim, curCloudDim) =>
 		prevCloudDim.height > curCloudDim.height ? prevCloudDim : curCloudDim
 	);
 	var cloudRatio = _largestCloudHeight.height / _largestCloudHeight.width;
 	const largestCloudHeight = cloudRatio * 25;
-	const largestCloudHeightVH = `-${largestCloudHeight / 2}vh`;
+	const topOffset = `-${largestCloudHeight / 2}vh`;
 
 	return (
-		<div style={{ position: 'relative', top: largestCloudHeightVH, overflowX: 'clip' }}>
-			{/* <DimsContext.Provider value={dims}> */}
+		<div id={id} className="clouds" style={{ top: topOffset }}>
 			{/* group 1 */}
 			<Cloud cloudIndex={1} left={-0.025} top={0} />
 			<Cloud cloudIndex={3} left={0.12} top={0} size={0.75} zIndex={FORE_CLOUD + 1} />
@@ -55,27 +44,6 @@ export default function Clouds() {
 
 			{/* end cloud */}
 			<Cloud cloudIndex={4} left={0.95} top={0} size={0.45} />
-
-			{/* group 1
-				<Cloud cloudIndex={1} left={-dims.width * 0.025} top={0} />
-				<Cloud cloudIndex={3} left={dims.width * 0.12} top={0} size={0.75} zIndex={FORE_CLOUD + 1} />
-
-				<Cloud cloudIndex={2} left={dims.width * 0.31} top={dims.height * 0.05} size={0.7} zIndex={FORE_CLOUD - 1} />
-				<Cloud cloudIndex={3} left={dims.width * 0.4} top={0} />
-				<Cloud cloudIndex={2} left={dims.width * 0.55} top={dims.height * 0.05} size={0.7} zIndex={FORE_CLOUD - 1} />
-
-				<Cloud cloudIndex={2} left={dims.width * 0.7} top={0} />
-				<Cloud cloudIndex={1} left={dims.width * 0.85} top={dims.height * 0.05} size={0.5} zIndex={FORE_CLOUD - 1} />
-
-				<Cloud cloudIndex={1} left={dims.width * 0.975} top={0} />
-
-				<Cloud cloudIndex={4} left={-dims.width * 0.05} top={0} size={0.45} />
-				<Cloud cloudIndex={4} left={dims.width * 0.22} top={0} size={0.45} />
-				<Cloud cloudIndex={4} left={dims.width * 0.45} top={0} size={0.3} />
-				<Cloud cloudIndex={4} left={dims.width * 0.7} top={dims.height * 0.05} size={0.25} />
-
-				<Cloud cloudIndex={4} left={dims.width * 0.95} top={0} size={0.45} /> */}
-			{/* </DimsContext.Provider> */}
 		</div>
 	);
 }
@@ -90,25 +58,23 @@ interface ICloud {
 
 function Cloud(props: ICloud) {
 	const { left, top, cloudIndex, zIndex, size } = props;
-	// const windowDims = useContext(DimsContext);
 
 	const _size = size ? size : 1;
 	var _zIndex;
 	_zIndex = calcCloudZIndex(cloudIndex, zIndex);
-	// const thisCloudDims = cloudDims[props.cloudIndex - 1];
 
 	return (
 		<img
 			src={`images/clouds/cloud${cloudIndex}.png`}
 			alt="cloud"
-			style={{ position: 'absolute', 
-				left: `${left*100}vw`, 
-				top: `${top*100}vh`, 
-				zIndex: _zIndex, 
-				width: `${_size * 25}vw`, 
-				height: 'auto' }}
-			// width={windowDims.width * 0.25 * _size}
-			// height={(thisCloudDims.height / thisCloudDims.width) * (windowDims.width * 0.25) * _size}
+			style={{
+				position: 'absolute',
+				left: `${left * 100}vw`,
+				top: `${top * 100}vh`,
+				zIndex: _zIndex,
+				width: `${_size * 25}vw`,
+				height: 'auto'
+			}}
 		/>
 	);
 }

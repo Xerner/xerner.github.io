@@ -26,8 +26,7 @@
 @font-face {
 	font-family: 'Pixelar Regular W01 Regular';
 	// line-height: 1.5rem;
-	src: url('./fonts/PixelarW01Regular.woff2') format('woff2'),
-		url('./fonts/PixelarW01Regular.woff') format('woff');
+	src: url('./fonts/PixelarW01Regular.woff2') format('woff2'), url('./fonts/PixelarW01Regular.woff') format('woff');
 }
 
 .rise-anim {
@@ -51,11 +50,11 @@ body {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// ███████ ██   ██ ██    ██
-// ██      ██  ██   ██  ██
-// ███████ █████     ████
-//      ██ ██  ██     ██
-// ███████ ██   ██    ██
+// ██████   █████   ██████ ██   ██  ██████  ██████   ██████  ██    ██ ███    ██ ██████
+// ██   ██ ██   ██ ██      ██  ██  ██       ██   ██ ██    ██ ██    ██ ████   ██ ██   ██
+// ██████  ███████ ██      █████   ██   ███ ██████  ██    ██ ██    ██ ██ ██  ██ ██   ██
+// ██   ██ ██   ██ ██      ██  ██  ██    ██ ██   ██ ██    ██ ██    ██ ██  ██ ██ ██   ██
+// ██████  ██   ██  ██████ ██   ██  ██████  ██   ██  ██████   ██████  ██   ████ ██████
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 .starry-night {
@@ -63,71 +62,102 @@ body {
 
 	background: -moz-linear-gradient(270deg, hsla(0, 0%, 0%, 1) 0%, hsla(243, 100%, 12%, 1) 100%);
 
-	background: -webkit-linear-gradient(
-		270deg,
-		hsla(0, 0%, 0%, 1) 0%,
-		hsla(243, 100%, 12%, 1) 100%
-	);
+	background: -webkit-linear-gradient(270deg, hsla(0, 0%, 0%, 1) 0%, hsla(243, 100%, 12%, 1) 100%);
 }
 
-.day-sky {
-	// background: linear-gradient(180deg, #1a5bbc 0%, #97b1d3 100%);
-	// background-image: url("../images/blue-city-2000-1125.jpg");
-	// background: linear-gradient(
-	// 	270deg,
-	// 	hsla(243, 100%, 12%, 1) 0%,
-	// 	hsla(230, 32%, 38%, 1) 33%,
-	// 	hsla(216, 76%, 42%, 1) 66%,
-	// 	hsla(214, 41%, 71%, 1) 100%
-	// );
-
-	// background: -moz-linear-gradient(
-	// 	270deg,
-	// 	hsla(243, 100%, 12%, 1) 0%,
-	// 	hsla(230, 32%, 38%, 1) 33%,
-	// 	hsla(216, 76%, 42%, 1) 66%,
-	// 	hsla(214, 41%, 71%, 1) 100%
-	// );
-
-	// background: -webkit-linear-gradient(
-	// 	270deg,
-	// 	hsla(243, 100%, 12%, 1) 0%,
-	// 	hsla(230, 32%, 38%, 1) 33%,
-	// 	hsla(216, 76%, 42%, 1) 66%,
-	// 	hsla(214, 41%, 71%, 1) 100%
-	// );
+.bg-img {
+	position: absolute;
+	z-index: -10;
+	height: 100%;
 }
 
-.night-sky {
-	background-image: url("../images/purple-city-2000-1125.jpg");
-	// background: linear-gradient(180deg, #03003d 0%, #424c80 100%);
-}
+// .day-sky {
+// 	// background: linear-gradient(180deg, #1a5bbc 0%, #97b1d3 100%);
+// 	// background-image: url("../images/blue-city-2000-1125.jpg");
+// 	// background: linear-gradient(
+// 	// 	270deg,
+// 	// 	hsla(243, 100%, 12%, 1) 0%,
+// 	// 	hsla(230, 32%, 38%, 1) 33%,
+// 	// 	hsla(216, 76%, 42%, 1) 66%,
+// 	// 	hsla(214, 41%, 71%, 1) 100%
+// 	// );
 
-.dirt {
-	background-color: #b87d4b;
-}
+// 	// background: -moz-linear-gradient(
+// 	// 	270deg,
+// 	// 	hsla(243, 100%, 12%, 1) 0%,
+// 	// 	hsla(230, 32%, 38%, 1) 33%,
+// 	// 	hsla(216, 76%, 42%, 1) 66%,
+// 	// 	hsla(214, 41%, 71%, 1) 100%
+// 	// );
+
+// 	// background: -webkit-linear-gradient(
+// 	// 	270deg,
+// 	// 	hsla(243, 100%, 12%, 1) 0%,
+// 	// 	hsla(230, 32%, 38%, 1) 33%,
+// 	// 	hsla(216, 76%, 42%, 1) 66%,
+// 	// 	hsla(214, 41%, 71%, 1) 100%
+// 	// );
+// }
+
+// .night-sky {
+// 	background-image: url("../images/purple-city-2000-1125.jpg");
+// 	// background: linear-gradient(180deg, #03003d 0%, #424c80 100%);
+// }
+
+// .dirt {
+// 	background-color: #b87d4b;
+// }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//  ██████  █████  ██████  ██████  ███████ 
-// ██      ██   ██ ██   ██ ██   ██ ██      
-// ██      ███████ ██████  ██   ██ ███████ 
-// ██      ██   ██ ██   ██ ██   ██      ██ 
-//  ██████ ██   ██ ██   ██ ██████  ███████ 
+//  ██████  █████  ██████  ██████  ███████
+// ██      ██   ██ ██   ██ ██   ██ ██
+// ██      ███████ ██████  ██   ██ ███████
+// ██      ██   ██ ██   ██ ██   ██      ██
+//  ██████ ██   ██ ██   ██ ██████  ███████
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+.card-container {
+	min-width: 400px;
+	max-width: 40vw;
+	height: auto; // 75vh;
+	margin: 0 auto;
+}
 
 .card-light {
-	background-image: url("../images/card-background-temp.png");
-	object-fit: scale-down;
-	background-size: cover;
+	// background-image: url('../images/card-background-900.png');
+	// object-fit: scale-down;
+	// background-size: cover;
+	background-color: #2cd47d;
+	padding: 24px;
+	// border-radius: 24px;
+	border: 1px solid #059573;
+	box-shadow: 0 10px #059573;
 }
 
-.card-bg-light {
-	background-image: url("../images/card-background.png");
-	object-fit: fill;
-	background-repeat: no-repeat;
-	background-size: cover;
+.card-title {
+	margin: 0 auto;
+	padding: 1% 0 1% 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// ███    ███ ██ ███████  ██████
+// ████  ████ ██ ██      ██
+// ██ ████ ██ ██ ███████ ██
+// ██  ██  ██ ██      ██ ██
+// ██      ██ ██ ███████  ██████
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+.dark-mode-control {
+	position: relative;
+	top: 5vw;
+	left: 5vw;
+}
+
+.clouds {
+	position: relative;
+	overflow-x: clip;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -216,36 +246,13 @@ $mainScrollbarWidth: 16px;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
+//  █████  ███    ██ ██ ███    ███  █████  ████████ ██  ██████  ███    ██ 
+// ██   ██ ████   ██ ██ ████  ████ ██   ██    ██    ██ ██    ██ ████   ██ 
+// ███████ ██ ██  ██ ██ ██ ████ ██ ███████    ██    ██ ██    ██ ██ ██  ██ 
+// ██   ██ ██  ██ ██ ██ ██  ██  ██ ██   ██    ██    ██ ██    ██ ██  ██ ██ 
+// ██   ██ ██   ████ ██ ██      ██ ██   ██    ██    ██  ██████  ██   ████ 
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Sunlight
-
-// background: hsla(216, 76%, 42%, 1);
-
-// background: linear-gradient(180deg, hsla(216, 76%, 42%, 1) 0%, hsla(214, 41%, 71%, 1) 100%);
-
-// background: -moz-linear-gradient(180deg, hsla(216, 76%, 42%, 1) 0%, hsla(214, 41%, 71%, 1) 100%);
-
-// background: -webkit-linear-gradient(180deg, hsla(216, 76%, 42%, 1) 0%, hsla(214, 41%, 71%, 1) 100%);
-
-// filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#1A5BBD", endColorstr="#98B2D4", GradientType=1 );
-
-// Moonlight
-
-// background: hsla(243, 100%, 12%, 1);
-
-// background: linear-gradient(180deg, hsla(243, 100%, 12%, 1) 0%, hsla(230, 32%, 38%, 1) 100%);
-
-// background: -moz-linear-gradient(180deg, hsla(243, 100%, 12%, 1) 0%, hsla(230, 32%, 38%, 1) 100%);
-
-// background: -webkit-linear-gradient(180deg, hsla(243, 100%, 12%, 1) 0%, hsla(230, 32%, 38%, 1) 100%);
-
-// filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#03003D", endColorstr="#424C81", GradientType=1 );
-
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
 
 /* ----------------------------------------------
  * Generated by Animista on 2021-7-8 20:44:30
@@ -266,13 +273,12 @@ code {
 
 @keyframes shadow-pop-tl {
 	0% {
-		box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e,
-			0 0 #3e3e3e, 0 0 #3e3e3e;
+		box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
 		transform: translateX(0) translateY(0);
 	}
 	100% {
-		box-shadow: -1px -1px #3e3e3e, -2px -2px #3e3e3e, -3px -3px #3e3e3e, -4px -4px #3e3e3e,
-			-5px -5px #3e3e3e, -6px -6px #3e3e3e, -7px -7px #3e3e3e, -8px -8px #3e3e3e;
+		box-shadow: -1px -1px #3e3e3e, -2px -2px #3e3e3e, -3px -3px #3e3e3e, -4px -4px #3e3e3e, -5px -5px #3e3e3e, -6px -6px #3e3e3e,
+			-7px -7px #3e3e3e, -8px -8px #3e3e3e;
 		transform: translateX(8px) translateY(8px);
 	}
 }
