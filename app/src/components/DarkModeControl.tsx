@@ -13,45 +13,45 @@ interface DarkModeControlProps {
 export default function DarkModeControl(props: DarkModeControlProps) {
 	const { isDarkMode, onClick, style, className } = props;
 
-	const handleClick = () => {
-		onClick(!isDarkMode);
-	};
+	const handleClick = () => onClick(!isDarkMode);
 
-	const size = window.innerWidth * 0.1;
+	const size = 10; //window.innerWidth * 0.1;
+	const sizeVW = `${size}vw`;
+	const fontSize = `${size / 4}vw`;
 
 	return (
-		<div style={{ display: "inline-block", ...style }}>
+		<div style={{ display: 'inline-block', ...style }}>
 			<Tooltip title="Toggle Dark Mode">
 				<div
 					style={{
-						width: size,
-						height: size
+						width: sizeVW,
+						height: sizeVW
 					}}
 				>
 					{isDarkMode ? (
 						<IconButton
 							style={{
-								height: size,
-								width: size,
+								height: sizeVW,
+								width: sizeVW,
 								color: '#8E9EA5',
 								position: 'absolute'
 							}}
 							onClick={handleClick}
 						>
-							<BrightnessIcon style={{ fontSize: size / 4 }} />
+							<BrightnessIcon style={{ fontSize: fontSize }} />
 						</IconButton>
 					) : (
 						<IconButton
 							style={{
-								height: size,
-								width: size,
+								height: sizeVW,
+								width: sizeVW,
 								color: 'orange',
-								fontSize: size / 4,
+								fontSize: fontSize,
 								position: 'absolute'
 							}}
 							onClick={handleClick}
 						>
-							<BrightnessHighIcon style={{ fontSize: size / 4 }} />
+							<BrightnessHighIcon style={{ fontSize: fontSize }} />
 						</IconButton>
 					)}
 
@@ -60,8 +60,8 @@ export default function DarkModeControl(props: DarkModeControlProps) {
 						alt="Dark Mode Controller"
 						className={className}
 						style={{
-							width: size,
-							height: size
+							width: sizeVW,
+							height: sizeVW
 						}}
 					/>
 				</div>
