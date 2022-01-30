@@ -67,27 +67,21 @@ export default function App() {
 					</Box>
 					<Clouds id="clouds" />
 				</Box>
-				<Box id="project-cards" style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+				<Box id="project-cards" style={{ height: '100vh' }}>
 					{isDarkMode ? (
 						<img className="bg-img" src="images/purple-city-4000-1125.jpg" alt="City background" />
 					) : (
 						<img className="bg-img" src="images/blue-city-4000-1125.jpg" alt="City background" />
 					)}
-					{/* <Box style={{ position: 'relative', overflowX: 'clip', overflowY: 'visible' }}> */}
-					<div className={clsx('card-container', isDarkMode ? 'card-dark' : 'card-light')}>
-						<Typography className="card-title" variant="h3" align="center" color="primary" style={{ fontFamily: 'futura' }}>
-							Projects
-						</Typography>
+					<div className="card-container">
+						<div style={{ height: 200 }}></div>
+						<div className={isDarkMode ? 'card-dark' : 'card-light'}>
+							<Typography className="card-title" variant="h3" align="center" color="primary" style={{ fontFamily: 'futura' }}>
+								Projects
+							</Typography>
 
-						<ScrollCarousel
-							cardWidth={700}
-							spacing={12}
-							// className='card-light'
-							style={{ marginBottom: 24, width: 750, margin: '0 auto', overflowX: 'visible' }}
-							itemStyle={{ paddingTop: 12, paddingBottom: 12 }}
-						>
-							{ProjectCards(theme)}
-						</ScrollCarousel>
+							<ScrollCarousel>{ProjectCards(theme)}</ScrollCarousel>
+						</div>
 					</div>
 				</Box>
 				{/* 

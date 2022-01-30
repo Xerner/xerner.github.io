@@ -4,81 +4,46 @@ import { clamp } from 'functions/clamp';
 import React, { useEffect, useState, CSSProperties, useMemo } from 'react';
 
 interface ICarousel {
-	cardWidth: number | string;
-	spacing: number;
-	className?: string;
-	style?: CSSProperties;
-	numberStyle?: CSSProperties;
-	itemStyle?: CSSProperties;
 	children: JSX.Element[] | JSX.Element;
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
-	button: { width: '100%', color: '#FFFFFF' },
-	carousel: {
-		maxHeight: window.innerHeight * 0.6,
-		overflow: 'visible',
-		display: 'flex',
-		flexDirection: 'row',
-		alignItems: 'flex-start'
-	}
+	button: { width: '100%', color: '#FFFFFF' }
 }));
 
 // TODO: JSDocs
 export default function ScrollCarousel(props: ICarousel) {
-	const { cardWidth, spacing, className, style, numberStyle, itemStyle, children } = props;
+	const { children } = props;
 	const [activeIndex, setActiveIndex] = useState(0);
 	const classes = useStyles();
 	const scrollRef = React.createRef<HTMLDivElement>();
 	const widthRef = React.createRef<HTMLDivElement>();
 	const itemPositions: number[] = useMemo(() => [], []);
-	const isSmallScreen = React.useRef<boolean>();
-	const _cardWidth = React.useRef<number>(0);
+	// const isSmallScreen = React.useRef<boolean>();
+	// const _cardWidth = React.useRef<number>(0);
 
 	useEffect(() => {
 		if (widthRef.current === null) return console.error('bruh whut');
 		// else console.log(widthRef.current.clientWidth);
-		if (typeof cardWidth === 'string') {
-			_cardWidth.current =
-				widthRef.current.scrollWidth * stringToPercentage(cardWidth) - spacing * 2;
-			isSmallScreen.current = false;
-		} else {
-			const maxWidth = widthRef.current.clientWidth - spacing * 2;
-			_cardWidth.current = cardWidth;
-			isSmallScreen.current = maxWidth < _cardWidth.current;
-			//console.log(maxWidth);
-			_cardWidth.current = isSmallScreen.current ? maxWidth : cardWidth;
-		}
+		// if (typeof cardWidth === 'string') {
+		// 	_cardWidth.current =
+		// 		widthRef.current.scrollWidth * stringToPercentage(cardWidth) - spacing * 2;
+		// 	isSmallScreen.current = false;
+		// } else {
+		// 	const maxWidth = widthRef.current.clientWidth - spacing * 2;
+		// 	_cardWidth.current = cardWidth;
+		// 	isSmallScreen.current = maxWidth < _cardWidth.current;
+		// 	//console.log(maxWidth);
+		// 	_cardWidth.current = isSmallScreen.current ? maxWidth : cardWidth;
+		// }
 
 		for (let i = 0; i < React.Children.count(children); i++) {
-			itemPositions.push(i * _cardWidth.current);
+			itemPositions.push(i);
+			// itemPositions.push(i * _cardWidth.current);
 		}
-	}, [cardWidth, children, itemPositions, spacing, widthRef]);
+	}, [children, itemPositions, widthRef]);
 
-	const handleNav = (index?: number) => {
-		if (index !== undefined) {
-			setActiveIndex(index);
-			scroll(index);
-		} else {
-			var nextIndex = clamp(activeIndex - 1, 0, React.Children.count(children) - 1);
-			setActiveIndex(nextIndex);
-			scroll(nextIndex);
-		}
-	};
-
-	const handleNavBackwards = () => {
-		var nextIndex = clamp(activeIndex - 1, 0, React.Children.count(children) - 1);
-		setActiveIndex(nextIndex);
-		scroll(nextIndex);
-	};
-
-	const handleNavForwards = () => {
-		var nextIndex = clamp(activeIndex + 1, 0, React.Children.count(children) - 1);
-		setActiveIndex(nextIndex);
-		scroll(nextIndex);
-	};
-
-	const scroll = (index: number) => {
+	const scrollToIndex = (index: number) => {
 		if (index !== activeIndex && scrollRef.current !== null) {
 			scrollRef.current.scroll({
 				left: itemPositions[index],
@@ -87,28 +52,75 @@ export default function ScrollCarousel(props: ICarousel) {
 		}
 	};
 
+	const handleNav = (index?: number) => {
+		if (index !== undefined) {
+			setActiveIndex(index);
+			scrollToIndex(index);
+		} else {
+			var nextIndex = clamp(activeIndex - 1, 0, React.Children.count(children) - 1);
+			setActiveIndex(nextIndex);
+			scrollToIndex(nextIndex);
+		}
+	};
+
+	// const handleNav = (index?: number) => {
+	// 	if (index !== undefined) {
+	// 		setActiveIndex(index);
+	// 		scroll(index);
+	// 	} else {
+	// 		var nextIndex = clamp(activeIndex - 1, 0, React.Children.count(children) - 1);
+	// 		setActiveIndex(nextIndex);
+	// 		scroll(nextIndex);
+	// 	}
+	// };
+
+	const handleNavBackwards = () => {
+		if (scrollRef.current !== null && widthRef.current !== null) {
+			scrollRef.current.scroll({
+				left: clamp(scrollRef.current.scrollLeft - widthRef.current.clientWidth, 0, scrollRef.current.scrollWidth),
+				behavior: 'smooth'
+			});
+		}
+	};
+
+	const handleNavForwards = () => {
+		if (scrollRef.current !== null && widthRef.current !== null) {
+			scrollRef.current.scroll({
+				left: clamp(scrollRef.current.scrollLeft + widthRef.current.clientWidth, 0, scrollRef.current.scrollWidth),
+				behavior: 'smooth'
+			});
+		}
+	};
+
+	// const handleNavBackwards = () => {
+	// 	var nextIndex = clamp(activeIndex - 1, 0, React.Children.count(children) - 1);
+	// 	setActiveIndex(nextIndex);
+	// 	scroll(nextIndex);
+	// };
+
+	// const handleNavForwards = () => {
+	// 	var nextIndex = clamp(activeIndex + 1, 0, React.Children.count(children) - 1);
+	// 	setActiveIndex(nextIndex);
+	// 	scroll(nextIndex);
+	// };
+
 	return (
-		<div id="scroll-carousel" className={className} style={style} ref={widthRef}>
+		<div id="scroll-carousel" className="scroll-carousel" ref={widthRef}>
 			<div
+				id="scroll-carousel-top"
 				ref={scrollRef}
 				// style={{
 				// 	overflow: 'hidden'
 				// }}
 			>
 				{/* Carousel Items */}
-				<div className={classes.carousel}>
+				<div id="scroll-carousel-items" className="scroll-carousel-items">
 					{/* {isSmallScreen.current ? null : (
 						<CarouselMargin cardWidth={_cardWidth.current} spacing={spacing} />
 					)} */}
 					{React.Children.map(children, (child: JSX.Element, index: number) => {
 						return (
-							<CarouselItem
-								index={index}
-								activeIndex={activeIndex}
-								spacing={spacing}
-								width={_cardWidth.current}
-								itemStyle={itemStyle}
-							>
+							<CarouselItem index={index} activeIndex={activeIndex}>
 								{child}
 							</CarouselItem>
 						);
@@ -118,49 +130,28 @@ export default function ScrollCarousel(props: ICarousel) {
 					)} */}
 				</div>
 			</div>
-			<div style={{ margin: 'auto', width: _cardWidth.current }}>
+			<div id="scroll-carousel-bottom">
 				{/* Carousel Index */}
-				<div
-					style={{
-						display: 'flex',
-						justifyContent: 'center',
-						fontSize: '1.25rem',
-						margin: 'auto'
-					}}
-				>
+				<div id="scroll-carousel-numbers" className="scroll-carousel-numbers">
 					{React.Children.map(children, (item, index) => (
 						<div
+							className="scroll-carousel-number"
 							onClick={() => handleNav(index)}
-							style={{
-								marginRight: 12,
-								padding: '12px 0',
-								opacity: activeIndex === index ? 1 : 0.25,
-								cursor: 'pointer',
-								...numberStyle
-							}}
+							style={{ opacity: activeIndex === index ? 1 : 0.25 }}
 						>
-							<span
-								style={{
-									backgroundColor: '#00000044',
-									padding: 5,
-									borderRadius: '25%',
-									color: "#CCCCCC"
-								}}
-							>
-								{index + 1}
-							</span>
+							<span className="scroll-carousel-number-span">{index + 1}</span>
 						</div>
 					))}
 				</div>
 
 				{/* Buttons */}
-				<div style={{ display: 'flex' }}>
-					<div style={{ backgroundColor: '#00000044', width: '50%' }}>
+				<div className='scroll-carousel-buttons'>
+					<div className='scroll-carousel-button-wrapper'>
 						<Button className={classes.button} onClick={handleNavBackwards}>
 							<ChevronLeft />
 						</Button>{' '}
 					</div>
-					<div style={{ backgroundColor: '#00000044', width: '50%' }}>
+					<div className='scroll-carousel-button-wrapper'>
 						<Button className={classes.button} onClick={handleNavForwards}>
 							<ChevronRight />
 						</Button>{' '}
@@ -192,34 +183,23 @@ export default function ScrollCarousel(props: ICarousel) {
 interface ICarouselItem {
 	index: number;
 	activeIndex: number;
-	spacing: number;
-	width: number | string;
 	itemStyle?: CSSProperties;
 	children: JSX.Element[] | JSX.Element;
 }
 
-function CarouselItem({ index, activeIndex, spacing, width, itemStyle, children }: ICarouselItem) {
+function CarouselItem({ index, activeIndex, itemStyle, children }: ICarouselItem) {
 	var delta = 0;
 	if (index !== activeIndex) {
 		var absoluteDiff = Math.abs(clamp(activeIndex - index, -3, 3));
 		delta = absoluteDiff / 3 + 0.3;
 	}
 	return (
-		<div
-			style={{
-				opacity: 1 - delta,
-				paddingLeft: spacing,
-				paddingRight: spacing,
-				minWidth: width,
-				maxWidth: width,
-				transition: 'opacity 1s, transform 1s'
-			}}
-		>
+		<div className="scroll-carousel-item" style={{ opacity: 1 - delta }}>
 			{itemStyle !== undefined ? <div style={itemStyle}>{children}</div> : children}
 		</div>
 	);
 }
 
-function stringToPercentage(percentage: string) {
-	return parseFloat(percentage.substring(0, percentage.length - 1)) / 100;
-}
+// function stringToPercentage(percentage: string) {
+// 	return parseFloat(percentage.substring(0, percentage.length - 1)) / 100;
+// }
