@@ -1,18 +1,12 @@
-import {
-	Box,
-	CardMedia,
-	Chip,
-	Dialog,
-	Grid,
-	Typography
-} from '@material-ui/core';
+import { Box, CardMedia, Chip, Dialog, Grid, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Languages from '../Languages';
 import { CSSProperties, useState } from 'react';
-import { isMobile } from 'functions/isMobile';
+// import { isMobile } from 'functions/isMobile';
+import clsx from 'clsx';
 // import { animated, useSpring } from 'react-spring';
 // import { useState } from 'react';
 
@@ -40,69 +34,47 @@ interface IProjectCardRepo {
 	owner: string;
 }
 
-//const CARD_WIDTH = 576;
-const CARD_HEIGHT = '100%'; // 200;
-const CONTENT_WIDTH = '60%';
-// const IMAGE_HEIGHT = 400;
-
-const useStyles = (isMobile: boolean) => makeStyles((theme: Theme) =>
-	createStyles({
-		root: {
-			backgroundColor: theme.palette.background.paper,
-			// borderBottom: `4px solid ${
-			//   theme.palette.type === 'dark' ? 'purple' : theme.palette.primary.light
-			// }`,
-			border: `1px solid ${theme.palette.primary.main}`,
-			height: CARD_HEIGHT,
-			display: 'flex',
-			width: '100%',
-			boxShadow: `0 0 ${theme.palette.primary.main}, 0 0 ${theme.palette.primary.light} !important`,
-			transition:
-				'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
-			'-webkit-transition':
-				'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
-			'&:hover': {
-				boxShadow: `6px 6px ${theme.palette.primary.main}, -6px -6px ${theme.palette.primary.light} !important`
-			}
-		},
-		details: {
-			display: 'flex',
-			flex: 2,
-			flexDirection: 'column',
-			width: CONTENT_WIDTH
-		},
-		title: {
-			fontSize: 24
-			// marginBottom: 4
-		},
-		languages: {
-			backgroundColor:
-				theme.palette.type === 'dark'
-					? theme.palette.grey[900]
-					: theme.palette.grey[100]
-		},
-		actions: {
-			flex: 0,
-			borderLeft: `1px solid ${theme.palette.primary.dark}`
-		},
-		mediaContainer: {
-			borderLeft: `1px solid ${theme.palette.primary.dark}`,
-			width: 200,
-			display: 'flex',
-			alignItems: 'center'
-		},
-		chips: {
-			display: 'flex',
-			// justifyContent: 'flex-start',
-			flexWrap: 'wrap',
-			'& > *': {
-				margin: theme.spacing(0.5)
+const useStyles = () =>
+	makeStyles((theme: Theme) =>
+		createStyles({
+			projectCard: {
+				backgroundColor: theme.palette.background.paper,
+				border: `1px solid ${theme.palette.primary.main}`,
+				transition: 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
+				'-webkit-transition': 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
+				'&:hover': {
+					boxShadow: `6px 6px ${theme.palette.primary.main}, -6px -6px ${theme.palette.primary.light}`
+				}
 			},
-			paddingTop: 0,
-			paddingBottom: 4
-		}
-	})
-)();
+			title: {
+				fontSize: 24
+				// marginBottom: 4
+			},
+			languages: {
+				backgroundColor: theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100]
+			},
+			actions: {
+				flex: 0,
+				borderLeft: `1px solid ${theme.palette.primary.dark}`
+			},
+			mediaContainer: {
+				borderLeft: `1px solid ${theme.palette.primary.dark}`,
+				width: 200,
+				display: 'flex',
+				alignItems: 'center'
+			},
+			chips: {
+				display: 'flex',
+				// justifyContent: 'flex-start',
+				flexWrap: 'wrap',
+				'& > *': {
+					margin: theme.spacing(0.5)
+				},
+				paddingTop: 0,
+				paddingBottom: 4
+			}
+		})
+	)();
 
 const useCardMediaStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -115,22 +87,10 @@ const useCardMediaStyles = makeStyles((theme: Theme) =>
 // const AnimatedCard = animated(Card);
 
 export default function ProjectCard(props: IProjectCard) {
-	const {
-		repo,
-		name,
-		subtitle,
-		chips,
-		desc,
-		isPrivate,
-		image,
-		imageStyle,
-		iconButtons
-	} = props;
-	const _isMobile = isMobile();
-	const classes = useStyles(_isMobile);
+	const { repo, name, subtitle, chips, desc, isPrivate, image, imageStyle, iconButtons } = props;
+	const classes = useStyles();
 	const cardMediaClasses = useCardMediaStyles();
 	const [mediaOpen, setMediaOpen] = useState(false);
-
 
 	const handleClose = () => setMediaOpen(false);
 
@@ -138,8 +98,8 @@ export default function ProjectCard(props: IProjectCard) {
 
 	return (
 		// + ' shadow-split'
-		<Card className={classes.root}>
-			<div className={classes.details}>
+		<div className={clsx('project-card', classes.projectCard)}>
+			<div className='project-card-details'>
 				<CardContent>
 					{/* Title */}
 					<Typography className={classes.title}>{name}</Typography>
@@ -168,49 +128,40 @@ export default function ProjectCard(props: IProjectCard) {
 						))}
 					</div>
 					{isPrivate !== undefined ? (
-						<Languages
-							repoName={repo.name}
-							repoOwner={repo.owner}
-						/>
+						<Languages repoName={repo.name} repoOwner={repo.owner} />
 					) : (
-						<Typography
-							variant="body1"
-							color="textSecondary"
-							style={{ fontStyle: 'italic' }}
-						>
+						<Typography variant="body1" color="textSecondary" style={{ fontStyle: 'italic' }}>
 							Private repository
 						</Typography>
 					)}
 				</CardContent>
 			</div>
 			{/* Image(s) */}
-			{!_isMobile ? (
-				_image && _image.url !== '' ? (
-					<div className={classes.mediaContainer}>
-						<CardMedia
-							component="img"
-							classes={cardMediaClasses}
-							alt={_image.alt}
-							image={_image.url}
-							title={_image.title}
-							style={imageStyle}
-						/>
-					</div>
-				) : (
-					<Box
-						className={classes.mediaContainer}
-						style={{
-							display: 'flex',
-							alignItems: 'center',
-							justifyContent: 'center'
-						}}
-					>
-						<Typography color="textSecondary" align="center">
-							No Image
-						</Typography>
-					</Box>
-				)
-			) : null}
+			{_image !== undefined && _image.url !== '' ? (
+				<div className={classes.mediaContainer}>
+					<CardMedia
+						component="img"
+						classes={cardMediaClasses}
+						alt={_image.alt}
+						image={_image.url}
+						title={_image.title}
+						style={imageStyle}
+					/>
+				</div>
+			) : (
+				<Box
+					className={classes.mediaContainer}
+					style={{
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'center'
+					}}
+				>
+					<Typography color="textSecondary" align="center">
+						No Image
+					</Typography>
+				</Box>
+			)}
 			{iconButtons !== undefined && (
 				<Grid container direction="column" className={classes.actions}>
 					{iconButtons.map((iconButton, index) => (
@@ -221,6 +172,6 @@ export default function ProjectCard(props: IProjectCard) {
 				</Grid>
 			)}
 			<Dialog onClose={handleClose} open={mediaOpen}></Dialog>
-		</Card>
+		</div>
 	);
 }

@@ -74,8 +74,8 @@ export default function App() {
 						<img className="bg-img" src="images/blue-city-4000-1125.jpg" alt="City background" />
 					)}
 					<div className="card-container">
-						<div style={{ height: 200 }}></div>
-						<div className={isDarkMode ? 'card-dark' : 'card-light'}>
+						<div style={{ height: "20vh" }}></div>
+						<div className={isDarkMode ? 'card card-dark' : 'card card-light'}>
 							<Typography className="card-title" variant="h3" align="center" color="primary" style={{ fontFamily: 'futura' }}>
 								Projects
 							</Typography>

@@ -7,23 +7,16 @@ interface ICarousel {
 	children: JSX.Element[] | JSX.Element;
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-	button: { width: '100%', color: '#FFFFFF' }
-}));
-
 // TODO: JSDocs
 export default function ScrollCarousel(props: ICarousel) {
 	const { children } = props;
 	const [activeIndex, setActiveIndex] = useState(0);
-	const classes = useStyles();
 	const scrollRef = React.createRef<HTMLDivElement>();
-	const widthRef = React.createRef<HTMLDivElement>();
 	const itemPositions: number[] = useMemo(() => [], []);
 	// const isSmallScreen = React.useRef<boolean>();
 	// const _cardWidth = React.useRef<number>(0);
 
 	useEffect(() => {
-		if (widthRef.current === null) return console.error('bruh whut');
 		// else console.log(widthRef.current.clientWidth);
 		// if (typeof cardWidth === 'string') {
 		// 	_cardWidth.current =
@@ -41,12 +34,12 @@ export default function ScrollCarousel(props: ICarousel) {
 			itemPositions.push(i);
 			// itemPositions.push(i * _cardWidth.current);
 		}
-	}, [children, itemPositions, widthRef]);
+	}, [children, itemPositions]);
 
 	const scrollToIndex = (index: number) => {
 		if (index !== activeIndex && scrollRef.current !== null) {
 			scrollRef.current.scroll({
-				left: itemPositions[index],
+				left: scrollRef.current.scrollLeft,
 				behavior: 'smooth'
 			});
 		}
@@ -75,18 +68,18 @@ export default function ScrollCarousel(props: ICarousel) {
 	// };
 
 	const handleNavBackwards = () => {
-		if (scrollRef.current !== null && widthRef.current !== null) {
-			scrollRef.current.scroll({
-				left: clamp(scrollRef.current.scrollLeft - widthRef.current.clientWidth, 0, scrollRef.current.scrollWidth),
+		if (scrollRef.current !== null) {
+			scrollRef.current.scrollBy({
+				left: -scrollRef.current.clientWidth,
 				behavior: 'smooth'
 			});
 		}
 	};
 
 	const handleNavForwards = () => {
-		if (scrollRef.current !== null && widthRef.current !== null) {
-			scrollRef.current.scroll({
-				left: clamp(scrollRef.current.scrollLeft + widthRef.current.clientWidth, 0, scrollRef.current.scrollWidth),
+		if (scrollRef.current !== null) {
+			scrollRef.current.scrollBy({
+				left: scrollRef.current.clientWidth,
 				behavior: 'smooth'
 			});
 		}
@@ -105,30 +98,22 @@ export default function ScrollCarousel(props: ICarousel) {
 	// };
 
 	return (
-		<div id="scroll-carousel" className="scroll-carousel" ref={widthRef}>
-			<div
-				id="scroll-carousel-top"
-				ref={scrollRef}
-				// style={{
-				// 	overflow: 'hidden'
-				// }}
-			>
-				{/* Carousel Items */}
-				<div id="scroll-carousel-items" className="scroll-carousel-items">
-					{/* {isSmallScreen.current ? null : (
+		<div id="scroll-carousel" className="scroll-carousel">
+			{/* Carousel Items */}
+			<div ref={scrollRef} id="scroll-carousel-items disable-scrollbars" className="scroll-carousel-items">
+				{/* {isSmallScreen.current ? null : (
 						<CarouselMargin cardWidth={_cardWidth.current} spacing={spacing} />
 					)} */}
-					{React.Children.map(children, (child: JSX.Element, index: number) => {
-						return (
-							<CarouselItem index={index} activeIndex={activeIndex}>
-								{child}
-							</CarouselItem>
-						);
-					})}
-					{/* {isSmallScreen.current ? null : (
+				{React.Children.map(children, (child: JSX.Element, index: number) => {
+					return (
+						<CarouselItem index={index} activeIndex={activeIndex}>
+							{child}
+						</CarouselItem>
+					);
+				})}
+				{/* {isSmallScreen.current ? null : (
 						<CarouselMargin cardWidth={_cardWidth.current} spacing={spacing} />
 					)} */}
-				</div>
 			</div>
 			<div id="scroll-carousel-bottom">
 				{/* Carousel Index */}
@@ -145,14 +130,14 @@ export default function ScrollCarousel(props: ICarousel) {
 				</div>
 
 				{/* Buttons */}
-				<div className='scroll-carousel-buttons'>
-					<div className='scroll-carousel-button-wrapper'>
-						<Button className={classes.button} onClick={handleNavBackwards}>
+				<div className="scroll-carousel-buttons">
+					<div className="scroll-carousel-button-wrapper">
+						<Button className="scroll-carousel-button" onClick={handleNavBackwards}>
 							<ChevronLeft />
 						</Button>{' '}
 					</div>
-					<div className='scroll-carousel-button-wrapper'>
-						<Button className={classes.button} onClick={handleNavForwards}>
+					<div className="scroll-carousel-button-wrapper">
+						<Button className="scroll-carousel-button" onClick={handleNavForwards}>
 							<ChevronRight />
 						</Button>{' '}
 					</div>
