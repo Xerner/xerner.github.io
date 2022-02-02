@@ -1,6 +1,5 @@
 import { Box, CardMedia, Chip, Dialog, Grid, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Languages from '../Languages';

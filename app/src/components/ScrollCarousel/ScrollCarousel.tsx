@@ -1,109 +1,56 @@
-import { Button, makeStyles, Theme } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 import { clamp } from 'functions/clamp';
-import React, { useEffect, useState, CSSProperties, useMemo } from 'react';
+import React, { useState, CSSProperties } from 'react';
 
 interface ICarousel {
 	children: JSX.Element[] | JSX.Element;
 }
 
-// TODO: JSDocs
+/**
+ * TODO
+ * @param props
+ * @returns
+ */
 export default function ScrollCarousel(props: ICarousel) {
 	const { children } = props;
 	const [activeIndex, setActiveIndex] = useState(0);
 	const scrollRef = React.createRef<HTMLDivElement>();
-	const itemPositions: number[] = useMemo(() => [], []);
-	// const isSmallScreen = React.useRef<boolean>();
-	// const _cardWidth = React.useRef<number>(0);
-
-	useEffect(() => {
-		// else console.log(widthRef.current.clientWidth);
-		// if (typeof cardWidth === 'string') {
-		// 	_cardWidth.current =
-		// 		widthRef.current.scrollWidth * stringToPercentage(cardWidth) - spacing * 2;
-		// 	isSmallScreen.current = false;
-		// } else {
-		// 	const maxWidth = widthRef.current.clientWidth - spacing * 2;
-		// 	_cardWidth.current = cardWidth;
-		// 	isSmallScreen.current = maxWidth < _cardWidth.current;
-		// 	//console.log(maxWidth);
-		// 	_cardWidth.current = isSmallScreen.current ? maxWidth : cardWidth;
-		// }
-
-		for (let i = 0; i < React.Children.count(children); i++) {
-			itemPositions.push(i);
-			// itemPositions.push(i * _cardWidth.current);
-		}
-	}, [children, itemPositions]);
 
 	const scrollToIndex = (index: number) => {
-		if (index !== activeIndex && scrollRef.current !== null) {
+		if (scrollRef.current !== null) {
 			scrollRef.current.scroll({
-				left: scrollRef.current.scrollLeft,
+				left: scrollRef.current.clientWidth * index,
 				behavior: 'smooth'
 			});
 		}
 	};
 
-	const handleNav = (index?: number) => {
-		if (index !== undefined) {
-			setActiveIndex(index);
-			scrollToIndex(index);
-		} else {
+	const handleNav = (index: number) => {
+		setActiveIndex(index);
+		scrollToIndex(index);
+	};
+
+	const handleNavBackwards = () => {
+		if (scrollRef.current !== null) {
 			var nextIndex = clamp(activeIndex - 1, 0, React.Children.count(children) - 1);
 			setActiveIndex(nextIndex);
 			scrollToIndex(nextIndex);
 		}
 	};
 
-	// const handleNav = (index?: number) => {
-	// 	if (index !== undefined) {
-	// 		setActiveIndex(index);
-	// 		scroll(index);
-	// 	} else {
-	// 		var nextIndex = clamp(activeIndex - 1, 0, React.Children.count(children) - 1);
-	// 		setActiveIndex(nextIndex);
-	// 		scroll(nextIndex);
-	// 	}
-	// };
-
-	const handleNavBackwards = () => {
-		if (scrollRef.current !== null) {
-			scrollRef.current.scrollBy({
-				left: -scrollRef.current.clientWidth,
-				behavior: 'smooth'
-			});
-		}
-	};
-
 	const handleNavForwards = () => {
 		if (scrollRef.current !== null) {
-			scrollRef.current.scrollBy({
-				left: scrollRef.current.clientWidth,
-				behavior: 'smooth'
-			});
+			var nextIndex = clamp(activeIndex + 1, 0, React.Children.count(children) - 1);
+			setActiveIndex(nextIndex);
+			scrollToIndex(nextIndex);
 		}
 	};
-
-	// const handleNavBackwards = () => {
-	// 	var nextIndex = clamp(activeIndex - 1, 0, React.Children.count(children) - 1);
-	// 	setActiveIndex(nextIndex);
-	// 	scroll(nextIndex);
-	// };
-
-	// const handleNavForwards = () => {
-	// 	var nextIndex = clamp(activeIndex + 1, 0, React.Children.count(children) - 1);
-	// 	setActiveIndex(nextIndex);
-	// 	scroll(nextIndex);
-	// };
 
 	return (
 		<div id="scroll-carousel" className="scroll-carousel">
 			{/* Carousel Items */}
-			<div ref={scrollRef} id="scroll-carousel-items disable-scrollbars" className="scroll-carousel-items">
-				{/* {isSmallScreen.current ? null : (
-						<CarouselMargin cardWidth={_cardWidth.current} spacing={spacing} />
-					)} */}
+			<div ref={scrollRef} id="scroll-carousel-items" className="scroll-carousel-items">
 				{React.Children.map(children, (child: JSX.Element, index: number) => {
 					return (
 						<CarouselItem index={index} activeIndex={activeIndex}>
@@ -111,9 +58,6 @@ export default function ScrollCarousel(props: ICarousel) {
 						</CarouselItem>
 					);
 				})}
-				{/* {isSmallScreen.current ? null : (
-						<CarouselMargin cardWidth={_cardWidth.current} spacing={spacing} />
-					)} */}
 			</div>
 			<div id="scroll-carousel-bottom">
 				{/* Carousel Index */}
@@ -147,24 +91,6 @@ export default function ScrollCarousel(props: ICarousel) {
 	);
 }
 
-// interface ICarouselMargin {
-// 	cardWidth: number;
-// 	spacing: number;
-// }
-
-// function CarouselMargin({ cardWidth, spacing }: ICarouselMargin) {
-// 	var width: number = window.innerWidth / 2 - cardWidth / 2 - spacing;
-// 	return (
-// 		<div
-// 			style={{
-// 				maxWidth: width, // - spacing / 2,
-// 				minWidth: width, // - spacing / 2,
-// 				height: 10 // just so its selectable with dev tools
-// 			}}
-// 		/>
-// 	);
-// }
-
 interface ICarouselItem {
 	index: number;
 	activeIndex: number;
@@ -184,7 +110,3 @@ function CarouselItem({ index, activeIndex, itemStyle, children }: ICarouselItem
 		</div>
 	);
 }
-
-// function stringToPercentage(percentage: string) {
-// 	return parseFloat(percentage.substring(0, percentage.length - 1)) / 100;
-// }

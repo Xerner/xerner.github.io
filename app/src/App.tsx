@@ -12,8 +12,8 @@ import ScrollCarousel from 'components/ScrollCarousel/ScrollCarousel';
 import ProjectCards from 'components/ProjectCard/ProjectCards';
 // import GameJamCards from 'components/ProjectCard/GameJamCards';
 import Clouds from 'components/Clouds/Clouds';
+import IfElse from './components/util/IfElse';
 // import GitHubIcon from '@material-ui/icons/GitHub';
-import clsx from 'clsx';
 
 export default function App() {
 	const [isDarkMode, setIsDarkMode] = useCookie('darkMode', useMediaQuery('(prefers-color-scheme: dark)'), { maxAge: 50000 });
@@ -68,17 +68,24 @@ export default function App() {
 					<Clouds id="clouds" />
 				</Box>
 				<Box id="project-cards" style={{ height: '100vh' }}>
-					{isDarkMode ? (
+					<IfElse condition={isDarkMode}>
 						<img className="bg-img" src="images/purple-city-4000-1125.jpg" alt="City background" />
-					) : (
 						<img className="bg-img" src="images/blue-city-4000-1125.jpg" alt="City background" />
-					)}
+					</IfElse>
 					<div className="card-container">
-						<div style={{ height: "20vh" }}></div>
+						<div style={{ height: '20vh' }}></div>
 						<div className={isDarkMode ? 'card card-dark' : 'card card-light'}>
-							<Typography className="card-title" variant="h3" align="center" color="primary" style={{ fontFamily: 'futura' }}>
-								Projects
-							</Typography>
+							<div className="flex-center">
+								<Typography
+									className="card-title"
+									variant="h3"
+									align="center"
+									color="primary"
+									style={{ fontFamily: 'futura', textShadow: `${theme.palette.primary.light} 0 2px` }}
+								>
+									Projects
+								</Typography>
+							</div>
 
 							<ScrollCarousel>{ProjectCards(theme)}</ScrollCarousel>
 						</div>
