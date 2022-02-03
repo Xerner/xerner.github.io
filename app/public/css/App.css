@@ -62,46 +62,79 @@ body {
   padding-left: 24px;
 }
 
-.card {
-  height: 70vh;
-  width: 100%;
-  overflow-x: clip;
-}
-
 .card-light-green {
   background-color: #2cd47d;
   border: 1px solid #059573;
   box-shadow: 0 10px #059573;
 }
 
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.card-orange {
+  background-color: #ef8a32;
+  border: 1px solid #956e05;
+  box-shadow: 0 10px #956e05;
+}
+
+.card-green {
+  background-color: #2cd47d;
+  border: 1px solid #059573;
+  box-shadow: 0 10px #059573;
 }
 
 .card-title {
   margin: 0 auto;
   display: inline-block;
   padding: 0.5rem 4rem 1rem 4rem;
-  background-color: #2cd47d;
-  border: 1px solid #059573;
-  box-shadow: 0 10px #059573;
+}
+
+.project-card-container {
+  height: 70vh;
+  width: 100%;
 }
 
 .project-card {
   margin: 24px;
-  border-radius: 8px;
+  margin-top: 48px;
   overflow: hidden;
-  background-color: #2cd47d;
-  border: 1px solid #059573;
-  box-shadow: 0 10px #059573;
 }
 
-.project-card-details {
+.project-card-title {
+  font-size: 24;
+}
+
+.project-card-description-and-image {
   display: flex;
-  flex-direction: column;
-  flex: 2;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.project-card-description-wrapper {
+  width: 66%;
+  padding-right: 24px;
+}
+
+.project-card-description {
+  padding: 1rem;
+}
+
+.project-card-image {
+  width: 33%;
+}
+
+.project-card-languages {
+  padding: 1rem;
+  margin-bottom: 24px;
+}
+
+.project-card-chips {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 0;
+  padding-bottom: 4px;
+}
+
+.project-card-chip {
+  margin-right: 6px;
+  box-shadow: 0 2px gray;
 }
 
 .scroll-carousel {
@@ -113,6 +146,10 @@ body {
   overflow-x: scroll;
   overflow-x: hidden;
   white-space: nowrap;
+}
+
+.scroll-carousel-items > * {
+  white-space: normal;
 }
 
 .scroll-carousel-item {
@@ -156,6 +193,12 @@ body {
 .scroll-carousel-button {
   width: 100%;
   color: #ffffff;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dark-mode-control {

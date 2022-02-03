@@ -74,14 +74,14 @@ export default function App() {
 					</IfElse>
 					<div className="card-container">
 						<div style={{ height: '20vh' }}></div>
-						<div className={isDarkMode ? 'card card-dark' : 'card card-light'}>
+						<div className={isDarkMode ? 'project-card-container': 'project-card-container'}>
 							<div className="flex-center">
 								<Typography
-									className="card-title"
+									className="card-title card-green"
 									variant="h3"
 									align="center"
 									color="primary"
-									style={{ fontFamily: 'futura', textShadow: `${theme.palette.primary.light} 0 2px` }}
+									style={{ fontFamily: 'futura' }}
 								>
 									Projects
 								</Typography>

@@ -128,31 +128,28 @@ body {
 	padding-left: 24px;
 }
 
-.card {
-	height: 70vh;
-	width: 100%;
-	overflow-x: clip;
-}
-
 .card-light-green {
 	background-color: #2cd47d;
 	border: 1px solid #059573;
 	box-shadow: 0 10px #059573;
 }
 
-.flex-center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.card-orange {
+	background-color: #ef8a32;
+	border: 1px solid #956e05;
+	box-shadow: 0 10px #956e05;
+}
+
+.card-green {
+	background-color: #2cd47d;
+	border: 1px solid #059573;
+	box-shadow: 0 10px #059573;
 }
 
 .card-title {
 	margin: 0 auto;
 	display: inline-block;
 	padding: 0.5rem 4rem 1rem 4rem;
-	background-color: #2cd47d;
-	border: 1px solid #059573;
-	box-shadow: 0 10px #059573;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -163,19 +160,62 @@ body {
 // ██      ██   ██  ██████   █████  ███████  ██████    ██         ██████ ██   ██ ██   ██ ██████  ███████
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-.project-card {
-	margin: 24px;
-	border-radius: 8px;
-	overflow: hidden;
-	background-color: #2cd47d;
-	border: 1px solid #059573;
-	box-shadow: 0 10px #059573;
+.project-card-container {
+	height: 70vh;
+	width: 100%;
+	// overflow-x: clip;
 }
 
-.project-card-details {
+.project-card {
+	margin: 24px;
+	margin-top: 48px;
+	overflow: hidden;
+}
+
+.project-card-title {
+	font-size: 24
+}
+
+.project-card-description-and-image {
+	// display: flex;
 	display: flex;
-	flex-direction: column;
-	flex: 2;
+	flex-wrap: wrap;
+	margin-bottom: 24px;
+}
+
+.project-card-description-wrapper {
+	width: 66%;
+	padding-right: 24px;
+}
+
+.project-card-description {
+	padding: 1rem;
+}
+
+.project-card-image {
+	width: 33%;
+	// margin: 0 auto;
+}
+
+.project-card-languages {
+	padding: 1rem;
+	margin-bottom: 24px;
+}
+
+.project-card-chips {
+	display: flex;
+	flex-wrap: wrap;
+	padding-top: 0;
+	padding-bottom: 4px;
+}
+
+.project-card-chip {
+	margin-right: 6px;
+	box-shadow: 0 2px gray;
+}
+
+.project-card-icon-buttons {
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,6 +238,10 @@ body {
 	// display: flex;
 	// flex-direction: row;
 	// align-items: flex-start;
+}
+
+.scroll-carousel-items > * {
+	white-space: normal;
 }
 
 .scroll-carousel-item {
@@ -251,6 +295,12 @@ body {
 // ██  ██  ██ ██      ██ ██
 // ██      ██ ██ ███████  ██████
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 .dark-mode-control {
 	position: relative;

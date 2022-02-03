@@ -1,13 +1,13 @@
-import { Box, CardMedia, Chip, Dialog, Grid, Typography } from '@material-ui/core';
+import { CardMedia, Chip, Dialog, Grid, Typography } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 // import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Languages from '../Languages';
 import { CSSProperties, useState } from 'react';
 // import { isMobile } from 'functions/isMobile';
 import clsx from 'clsx';
 // import { animated, useSpring } from 'react-spring';
 // import { useState } from 'react';
+import IfElse from '../util/IfElse';
 
 interface IProjectCard {
 	isPrivate?: boolean;
@@ -37,40 +37,11 @@ const useStyles = () =>
 	makeStyles((theme: Theme) =>
 		createStyles({
 			projectCard: {
-				backgroundColor: theme.palette.background.paper,
-				border: `1px solid ${theme.palette.primary.main}`,
 				transition: 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
 				'-webkit-transition': 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
 				'&:hover': {
 					boxShadow: `6px 6px ${theme.palette.primary.main}, -6px -6px ${theme.palette.primary.light}`
 				}
-			},
-			title: {
-				fontSize: 24
-				// marginBottom: 4
-			},
-			languages: {
-				backgroundColor: theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100]
-			},
-			actions: {
-				flex: 0,
-				borderLeft: `1px solid ${theme.palette.primary.dark}`
-			},
-			mediaContainer: {
-				borderLeft: `1px solid ${theme.palette.primary.dark}`,
-				width: 200,
-				display: 'flex',
-				alignItems: 'center'
-			},
-			chips: {
-				display: 'flex',
-				// justifyContent: 'flex-start',
-				flexWrap: 'wrap',
-				'& > *': {
-					margin: theme.spacing(0.5)
-				},
-				paddingTop: 0,
-				paddingBottom: 4
 			}
 		})
 	)();
@@ -96,80 +67,86 @@ export default function ProjectCard(props: IProjectCard) {
 	const _image = image && Array.isArray(image) ? image[0] : image;
 
 	return (
-		// + ' shadow-split'
 		<div className={clsx('project-card', classes.projectCard)}>
-			<div className='project-card-details'>
-				<CardContent>
-					{/* Title */}
-					<Typography className={classes.title}>{name}</Typography>
-
-					{/* Subtitle */}
-					{subtitle !== undefined && subtitle !== '' && (
-						<Typography className="mb-2" color="textSecondary">
-							{subtitle}
+			{/* Title and Body */}
+			<div id="project-card-description-and-image" className="project-card-description-and-image">
+				<div id="project-card-description-wrapper" className="project-card-description-wrapper">
+					<div id="project-card-description" className="project-card-description card-orange">
+						{/* Title */}
+						<Typography id="project-card-title" className="project-card-title">
+							{name}
 						</Typography>
-					)}
 
-					{/* Desc */}
-					<Typography variant="body1" component="p">
-						{desc}
-					</Typography>
-				</CardContent>
+						{/* Subtitle */}
+						{subtitle !== undefined && subtitle !== '' && (
+							<Typography id="project-card-subtitle" color="textSecondary">
+								{subtitle}
+							</Typography>
+						)}
 
-				{/* Chips */}
-				<CardContent className={classes.chips}></CardContent>
-
-				{/* Languages & Chips */}
-				<CardContent className={classes.languages}>
-					<div className={classes.chips}>
-						{chips.map((chip, index) => (
-							<Chip key={index} size="small" label={chip} />
-						))}
+						{/* Desc */}
+						<Typography id="project-card-body" variant="body1" component="p">
+							{desc}
+						</Typography>
 					</div>
-					{isPrivate !== undefined ? (
-						<Languages repoName={repo.name} repoOwner={repo.owner} />
-					) : (
-						<Typography variant="body1" color="textSecondary" style={{ fontStyle: 'italic' }}>
-							Private repository
-						</Typography>
-					)}
-				</CardContent>
-			</div>
-			{/* Image(s) */}
-			{_image !== undefined && _image.url !== '' ? (
-				<div className={classes.mediaContainer}>
-					<CardMedia
-						component="img"
-						classes={cardMediaClasses}
-						alt={_image.alt}
-						image={_image.url}
-						title={_image.title}
-						style={imageStyle}
-					/>
 				</div>
-			) : (
-				<Box
-					className={classes.mediaContainer}
-					style={{
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center'
-					}}
-				>
-					<Typography color="textSecondary" align="center">
-						No Image
-					</Typography>
-				</Box>
-			)}
-			{iconButtons !== undefined && (
-				<Grid container direction="column" className={classes.actions}>
-					{iconButtons.map((iconButton, index) => (
-						<Grid item key={index}>
-							{iconButton}
-						</Grid>
+
+				{/* Image(s) */}
+				<div id="project-card-image" className="project-card-image card-orange">
+					<IfElse condition={_image !== undefined && _image.url !== ''}>
+						<div id="project-card-image">
+							<CardMedia
+								component="img"
+								classes={cardMediaClasses}
+								alt={_image?.alt}
+								image={_image?.url}
+								title={_image?.title}
+								style={imageStyle}
+							/>
+						</div>
+						<div
+							id="project-card-no-image"
+							style={{
+								display: 'flex',
+								alignItems: 'center',
+								justifyContent: 'center'
+							}}
+						>
+							<Typography color="textSecondary" align="center">
+								No Image
+							</Typography>
+						</div>
+					</IfElse>
+				</div>
+			</div>
+
+			{/* Languages & Chips */}
+			<div id="project-card-languages" className="project-card-languages card-orange">
+				<div id="project-card-chips" className="project-card-chips">
+					{chips.map((chip, index) => (
+						<Chip key={index} size="small" label={chip} className="project-card-chip" />
 					))}
-				</Grid>
-			)}
+				</div>
+				{isPrivate !== undefined ? (
+					<Languages repoName={repo.name} repoOwner={repo.owner} />
+				) : (
+					<Typography variant="body1" color="textSecondary" style={{ fontStyle: 'italic' }}>
+						Private repository
+					</Typography>
+				)}
+			</div>
+
+			<div id="project-card-icon-buttons" className="project-card-icon-buttons">
+				{iconButtons !== undefined && (
+					<Grid container spacing={2}>
+						{iconButtons.map((iconButton, index) => (
+							<Grid item key={index} className="card-orange">
+								{iconButton}
+							</Grid>
+						))}
+					</Grid>
+				)}
+			</div>
 			<Dialog onClose={handleClose} open={mediaOpen}></Dialog>
 		</div>
 	);
