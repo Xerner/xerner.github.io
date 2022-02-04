@@ -21,33 +21,12 @@ export default function GameJamCards(theme: any) {
 			chips={['Unity', 'C#', 'Bosca Ceoil', 'Aseprite']}
 			desc="A daring battle between a space engineer and an evil robot"
 			iconButtons={[
-				<Tooltip title="Oakland University 2021 Game Jam!" color="primary" arrow>
-					<IconButton
-						color="primary"
-						href="https://itch.io/jam/ou-winter-2021-game-jam/entries"
-					>
-						<GameJamIcon />
-					</IconButton>
-				</Tooltip>,
-				<Tooltip title="Github" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-						href="https://github.com/Xerner/OU-Game-Jam-2021"
-					>
-						<GitHubIcon />
-					</IconButton>
-				</Tooltip>,
-				<Tooltip title="Share" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-					>
-						<ShareIcon />
-					</IconButton>
-				</Tooltip>
+				{
+					title: 'Oakland University 2021 Game Jam!',
+					href: 'https://itch.io/jam/ou-winter-2021-game-jam/entries',
+					icon: <GameJamIcon />
+				},
+				{ title: 'Github', href: 'https://github.com/Xerner/OU-Game-Jam-2021', icon: <GitHubIcon /> }
 			]}
 		/>
 	];

@@ -74,8 +74,9 @@ export default function App() {
 					</IfElse>
 					<div className="card-container">
 						<div style={{ height: '20vh' }}></div>
-						<div className={isDarkMode ? 'project-card-container': 'project-card-container'}>
-							<div className="flex-center">
+						<div className={isDarkMode ? 'project-card-container' : 'project-card-container'}>
+							<div className="card-banner">
+								<img src="images/title-banner-left.png" alt="title-banner-left" className="pixel card-banner-image" />
 								<Typography
 									className="card-title card-green"
 									variant="h3"
@@ -85,6 +86,7 @@ export default function App() {
 								>
 									Projects
 								</Typography>
+								<img src="images/title-banner-right.png" alt="title-banner-right" className="pixel card-banner-image" />
 							</div>
 
 							<ScrollCarousel>{ProjectCards(theme)}</ScrollCarousel>

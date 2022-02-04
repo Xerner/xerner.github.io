@@ -1,7 +1,5 @@
 import ProjectCard from './ProjectCard';
-import { IconButton, Tooltip } from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import ShareIcon from '@material-ui/icons/Share';
 import GameJamIcon from '@material-ui/icons/SportsEsports';
 
 export default function ProjectCards(theme: any) {
@@ -21,35 +19,8 @@ export default function ProjectCards(theme: any) {
 			chips={['Unity', 'C#', 'Google Maps API', 'Agile', 'Determination']}
 			desc="A city builder and simulator with the ability to integrate smart technologies in the city"
 			iconButtons={[
-				<Tooltip title="Itch.io page" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-						href="https://mrmeik.itch.io/smart-city-dashboard"
-					>
-						<GameJamIcon />
-					</IconButton>
-				</Tooltip>,
-				<Tooltip title="Github" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-						href="https://github.com/Xerner/OU-Game-Jam-2021"
-					>
-						<GitHubIcon />
-					</IconButton>
-				</Tooltip>,
-				<Tooltip title="Share" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-					>
-						<ShareIcon />
-					</IconButton>
-				</Tooltip>
+				{ title: 'Itch.io page', href: 'https://mrmeik.itch.io/smart-city-dashboard', icon: <GameJamIcon /> },
+				{ title: 'Github', href: 'https://github.com/Xerner/OU-Game-Jam-2021', icon: <GitHubIcon /> }
 			]}
 		/>,
 
@@ -64,27 +35,7 @@ export default function ProjectCards(theme: any) {
 			subtitle="Discord Bot"
 			chips={['Node.js', 'Discord.js']}
 			desc="Yet another Discord music bot that plays songs from youtube"
-			iconButtons={[
-				<Tooltip title="Github" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-						href="https://github.com/Xerner/steamy-bot"
-					>
-						<GitHubIcon />
-					</IconButton>
-				</Tooltip>,
-				<Tooltip title="Share" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-					>
-						<ShareIcon />
-					</IconButton>
-				</Tooltip>
-			]}
+			iconButtons={[{ title: 'Github', href: 'https://github.com/Xerner/steamy-bot', icon: <GitHubIcon /> }]}
 		/>,
 
 		<ProjectCard
@@ -100,35 +51,8 @@ export default function ProjectCards(theme: any) {
 			chips={['GameMaker Studio 2', 'MongoDB', 'Mongoose', 'Node.js', 'TCP/IP']}
 			desc="An autochess style Pokemon battler with a centralized multiplayer server"
 			iconButtons={[
-				<Tooltip title="Pokebattler Client" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-						href="https://github.com/Xerner/pokebattler"
-					>
-						<GitHubIcon />
-					</IconButton>
-				</Tooltip>,
-				<Tooltip title="Pokebattler Server" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-						href="https://github.com/Xerner/pokebattler-server"
-					>
-						<GitHubIcon />
-					</IconButton>
-				</Tooltip>,
-				<Tooltip title="Share" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-					>
-						<ShareIcon />
-					</IconButton>
-				</Tooltip>
+				{ title: 'Pokebattler Client', href: 'https://github.com/Xerner/pokebattler', icon: <GitHubIcon /> },
+				{ title: 'Pokebattler Server', href: 'https://github.com/Xerner/pokebattler-server', icon: <GitHubIcon /> }
 			]}
 		/>,
 
@@ -145,17 +69,7 @@ export default function ProjectCards(theme: any) {
 			subtitle="React Front-End"
 			chips={['React', 'Bootstrap', 'Material UI', 'IIS']}
 			desc="A mockup front-end work request management system"
-			iconButtons={[
-				<Tooltip title="Share" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-					>
-						<ShareIcon />
-					</IconButton>
-				</Tooltip>
-			]}
+			iconButtons={[]}
 		/>,
 
 		<ProjectCard
@@ -170,17 +84,7 @@ export default function ProjectCards(theme: any) {
 			subtitle="Data Mining &amp; Analysis"
 			chips={['C#', '.Net 4.6.5', 'Windows Form', 'Excel']}
 			desc="Data mining, analysis, and reporting of carbon canister GWC or BWC testing"
-			iconButtons={[
-				<Tooltip title="Share" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-					>
-						<ShareIcon />
-					</IconButton>
-				</Tooltip>
-			]}
+			iconButtons={[]}
 		/>,
 		<ProjectCard
 			repo={{ name: '', owner: 'Xerner' }}
@@ -194,17 +98,7 @@ export default function ProjectCards(theme: any) {
 			subtitle="Excel VBA Addin"
 			chips={['Excel', 'VBA']}
 			desc="Quick and easy way for an Excel user to generate a Pareto chart with table-structured data"
-			iconButtons={[
-				<Tooltip title="Share" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-					>
-						<ShareIcon />
-					</IconButton>
-				</Tooltip>
-			]}
+			iconButtons={[]}
 		/>,
 
 		<ProjectCard
@@ -220,27 +114,7 @@ export default function ProjectCards(theme: any) {
 			subtitle="React Front-end"
 			chips={['React', 'Material-UI']}
 			desc="A super-mega-awesome website that changes colors if you click the sun :O"
-			iconButtons={[
-				<Tooltip title="Xerner.github.io" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-						href="https://github.com/Xerner/xerner.github.io"
-					>
-						<GitHubIcon />
-					</IconButton>
-				</Tooltip>,
-				<Tooltip title="Share" color="primary" arrow>
-					<IconButton
-						style={{
-							color: theme.palette.primary.light
-						}}
-					>
-						<ShareIcon />
-					</IconButton>
-				</Tooltip>
-			]}
+			iconButtons={[{ title: 'Xerner.github.io', href: 'https://github.com/Xerner/xerner.github.io', icon: <GitHubIcon /> }]}
 		/>
 	];
 }

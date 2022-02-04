@@ -6,7 +6,7 @@ import React from 'react';
  */
 interface IIfElse {
 	condition: boolean;
-	children: React.ReactElement[];
+	children: React.ReactElement | React.ReactElement[];
 }
 
 /**

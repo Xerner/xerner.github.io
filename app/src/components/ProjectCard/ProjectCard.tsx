@@ -1,12 +1,8 @@
-import { CardMedia, Chip, Dialog, Grid, Typography } from '@material-ui/core';
+import { Chip, Typography, IconButton, Tooltip } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-// import CardActions from '@material-ui/core/CardActions';
 import Languages from '../Languages';
-import { CSSProperties, useState } from 'react';
-// import { isMobile } from 'functions/isMobile';
+import { CSSProperties } from 'react';
 import clsx from 'clsx';
-// import { animated, useSpring } from 'react-spring';
-// import { useState } from 'react';
 import IfElse from '../util/IfElse';
 
 interface IProjectCard {
@@ -18,7 +14,7 @@ interface IProjectCard {
 	desc: JSX.Element | string;
 	image?: IProjectCardImage | IProjectCardImage[];
 	imageStyle?: CSSProperties;
-	iconButtons?: JSX.Element[];
+	iconButtons?: IProjectCardActionButton[];
 }
 
 interface IProjectCardImage {
@@ -33,79 +29,71 @@ interface IProjectCardRepo {
 	owner: string;
 }
 
+interface IProjectCardActionButton {
+	title: React.ReactElement | string;
+	icon: React.ReactElement;
+	href: string;
+}
+
 const useStyles = () =>
 	makeStyles((theme: Theme) =>
 		createStyles({
 			projectCard: {
-				transition: 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
-				'-webkit-transition': 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
-				'&:hover': {
-					boxShadow: `6px 6px ${theme.palette.primary.main}, -6px -6px ${theme.palette.primary.light}`
-				}
+				// transition: 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
+				// '-webkit-transition': 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
+				// '&:hover': {
+				// 	boxShadow: `6px 6px ${theme.palette.primary.main}, -6px -6px ${theme.palette.primary.light}`
+				// }
 			}
 		})
 	)();
 
-const useCardMediaStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		media: {
-			objectFit: 'contain'
-		}
-	})
-);
-
-// const AnimatedCard = animated(Card);
-
 export default function ProjectCard(props: IProjectCard) {
 	const { repo, name, subtitle, chips, desc, isPrivate, image, imageStyle, iconButtons } = props;
 	const classes = useStyles();
-	const cardMediaClasses = useCardMediaStyles();
-	const [mediaOpen, setMediaOpen] = useState(false);
-
-	const handleClose = () => setMediaOpen(false);
 
 	const _image = image && Array.isArray(image) ? image[0] : image;
+
+	const cardPrefix = name + '-project-card-';
 
 	return (
 		<div className={clsx('project-card', classes.projectCard)}>
 			{/* Title and Body */}
-			<div id="project-card-description-and-image" className="project-card-description-and-image">
-				<div id="project-card-description-wrapper" className="project-card-description-wrapper">
-					<div id="project-card-description" className="project-card-description card-orange">
+			<div id={cardPrefix + 'description-and-image'} className="project-card-description-and-image">
+				<div id={cardPrefix + 'description-wrapper'} className="project-card-description-wrapper">
+					<div id={cardPrefix + 'description'} className="project-card-description card-orange">
 						{/* Title */}
-						<Typography id="project-card-title" className="project-card-title">
+						<Typography id={cardPrefix + 'title'} variant="h5">
 							{name}
 						</Typography>
 
 						{/* Subtitle */}
 						{subtitle !== undefined && subtitle !== '' && (
-							<Typography id="project-card-subtitle" color="textSecondary">
+							<Typography id={cardPrefix + 'subtitle'} variant="subtitle1" color="textSecondary">
 								{subtitle}
 							</Typography>
 						)}
 
 						{/* Desc */}
-						<Typography id="project-card-body" variant="body1" component="p">
+						<Typography id={cardPrefix + 'body'} variant="body1" component="p">
 							{desc}
 						</Typography>
 					</div>
 				</div>
 
 				{/* Image(s) */}
-				<div id="project-card-image" className="project-card-image card-orange">
+				<div id={cardPrefix + 'image-wrapper'} className="project-card-image-wrapper card-orange">
 					<IfElse condition={_image !== undefined && _image.url !== ''}>
-						<div id="project-card-image">
-							<CardMedia
-								component="img"
-								classes={cardMediaClasses}
-								alt={_image?.alt}
-								image={_image?.url}
-								title={_image?.title}
-								style={imageStyle}
-							/>
-						</div>
+						<img
+							id={cardPrefix + 'image'}
+							className="project-card-image"
+							alt={_image?.alt}
+							src={_image?.url}
+							title={_image?.title}
+							style={imageStyle}
+						/>
 						<div
-							id="project-card-no-image"
+							id={cardPrefix + 'no-image'}
 							style={{
 								display: 'flex',
 								alignItems: 'center',
@@ -120,34 +108,45 @@ export default function ProjectCard(props: IProjectCard) {
 				</div>
 			</div>
 
-			{/* Languages & Chips */}
-			<div id="project-card-languages" className="project-card-languages card-orange">
-				<div id="project-card-chips" className="project-card-chips">
-					{chips.map((chip, index) => (
-						<Chip key={index} size="small" label={chip} className="project-card-chip" />
-					))}
-				</div>
-				{isPrivate !== undefined ? (
-					<Languages repoName={repo.name} repoOwner={repo.owner} />
-				) : (
-					<Typography variant="body1" color="textSecondary" style={{ fontStyle: 'italic' }}>
-						Private repository
-					</Typography>
-				)}
-			</div>
-
-			<div id="project-card-icon-buttons" className="project-card-icon-buttons">
-				{iconButtons !== undefined && (
-					<Grid container spacing={2}>
-						{iconButtons.map((iconButton, index) => (
-							<Grid item key={index} className="card-orange">
-								{iconButton}
-							</Grid>
+			{/* Languages & Actions */}
+			<div id={cardPrefix + 'languages-and-actions'} className="project-card-languages-and-actions">
+				<div id={cardPrefix + 'languages'} className="project-card-languages card-orange">
+					{/* Languages & Chips */}
+					<div id={cardPrefix + 'chips'} className="project-card-chips">
+						{chips.map((chip, index) => (
+							<Chip key={index} size="small" label={chip} className="project-card-chip" />
 						))}
-					</Grid>
-				)}
+					</div>
+					<IfElse condition={isPrivate !== undefined}>
+						<Languages repoName={repo.name} repoOwner={repo.owner} />
+						<Typography variant="body1" color="textSecondary" style={{ fontStyle: 'italic' }}>
+							Private repository
+						</Typography>
+					</IfElse>
+				</div>
+
+				{/* Actions */}
+				<IfElse condition={iconButtons !== undefined && iconButtons.length > 0}>
+					<div id={cardPrefix + 'icon-buttons'} className="project-card-icon-buttons card-orange">
+						{iconButtons !== undefined &&
+							iconButtons.map((iconButton, index) => (
+								<Tooltip key={index} title={iconButton.title} color="primary" arrow>
+									<IconButton
+										// style={{
+										// 	// color: theme.palette.primary.light
+										// }}
+										className="project-card-icon-button"
+										size="small"
+										href={iconButton.href}
+										target="_blank"
+									>
+										{iconButton.icon}
+									</IconButton>
+								</Tooltip>
+							))}
+					</div>
+				</IfElse>
 			</div>
-			<Dialog onClose={handleClose} open={mediaOpen}></Dialog>
 		</div>
 	);
 }
