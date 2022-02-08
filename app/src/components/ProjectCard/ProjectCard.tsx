@@ -1,8 +1,8 @@
 import { Chip, Typography, IconButton, Tooltip } from '@material-ui/core';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+// import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Languages from '../Languages';
 import { CSSProperties } from 'react';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 import IfElse from '../util/IfElse';
 
 interface IProjectCard {
@@ -35,33 +35,33 @@ interface IProjectCardActionButton {
 	href: string;
 }
 
-const useStyles = () =>
-	makeStyles((theme: Theme) =>
-		createStyles({
-			projectCard: {
-				// transition: 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
-				// '-webkit-transition': 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
-				// '&:hover': {
-				// 	boxShadow: `6px 6px ${theme.palette.primary.main}, -6px -6px ${theme.palette.primary.light}`
-				// }
-			}
-		})
-	)();
+// const useStyles = () =>
+// 	makeStyles((theme: Theme) =>
+// 		createStyles({
+// 			projectCard: {
+// 				// transition: 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
+// 				// '-webkit-transition': 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
+// 				// '&:hover': {
+// 				// 	boxShadow: `6px 6px ${theme.palette.primary.main}, -6px -6px ${theme.palette.primary.light}`
+// 				// }
+// 			}
+// 		})
+// 	)();
 
 export default function ProjectCard(props: IProjectCard) {
 	const { repo, name, subtitle, chips, desc, isPrivate, image, imageStyle, iconButtons } = props;
-	const classes = useStyles();
+	// const classes = useStyles();
 
 	const _image = image && Array.isArray(image) ? image[0] : image;
 
 	const cardPrefix = name + '-project-card-';
 
 	return (
-		<div className={clsx('project-card', classes.projectCard)}>
+		<div className='project-card card-green-thicc'>
 			{/* Title and Body */}
 			<div id={cardPrefix + 'description-and-image'} className="project-card-description-and-image">
 				<div id={cardPrefix + 'description-wrapper'} className="project-card-description-wrapper">
-					<div id={cardPrefix + 'description'} className="project-card-description card-orange">
+					<div id={cardPrefix + 'description'} className="project-card-description">
 						{/* Title */}
 						<Typography id={cardPrefix + 'title'} variant="h5">
 							{name}
@@ -82,7 +82,7 @@ export default function ProjectCard(props: IProjectCard) {
 				</div>
 
 				{/* Image(s) */}
-				<div id={cardPrefix + 'image-wrapper'} className="project-card-image-wrapper card-orange">
+				<div id={cardPrefix + 'image-wrapper'} className="project-card-image-wrapper card-green-shallow">
 					<IfElse condition={_image !== undefined && _image.url !== ''}>
 						<img
 							id={cardPrefix + 'image'}
@@ -110,7 +110,7 @@ export default function ProjectCard(props: IProjectCard) {
 
 			{/* Languages & Actions */}
 			<div id={cardPrefix + 'languages-and-actions'} className="project-card-languages-and-actions">
-				<div id={cardPrefix + 'languages'} className="project-card-languages card-orange">
+				<div id={cardPrefix + 'languages'} className="project-card-languages inset-card-green-shallow-thicc">
 					{/* Languages & Chips */}
 					<div id={cardPrefix + 'chips'} className="project-card-chips">
 						{chips.map((chip, index) => (
@@ -127,7 +127,7 @@ export default function ProjectCard(props: IProjectCard) {
 
 				{/* Actions */}
 				<IfElse condition={iconButtons !== undefined && iconButtons.length > 0}>
-					<div id={cardPrefix + 'icon-buttons'} className="project-card-icon-buttons card-orange">
+					<div id={cardPrefix + 'action'} className="project-card-actions">
 						{iconButtons !== undefined &&
 							iconButtons.map((iconButton, index) => (
 								<Tooltip key={index} title={iconButton.title} color="primary" arrow>
@@ -135,7 +135,7 @@ export default function ProjectCard(props: IProjectCard) {
 										// style={{
 										// 	// color: theme.palette.primary.light
 										// }}
-										className="project-card-icon-button"
+										className="project-card-action"
 										size="small"
 										href={iconButton.href}
 										target="_blank"
