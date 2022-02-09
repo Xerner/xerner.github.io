@@ -1,7 +1,8 @@
-import { Button } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 import { clamp } from 'functions/clamp';
 import React, { useState, CSSProperties } from 'react';
+import blur from '../../functions/blur';
 
 interface ICarousel {
 	children: JSX.Element[] | JSX.Element;
@@ -49,6 +50,21 @@ export default function ScrollCarousel(props: ICarousel) {
 
 	return (
 		<div id="scroll-carousel" className="scroll-carousel">
+			{/* Carousel Index */}
+			<div id="scroll-carousel-numbers" className="scroll-carousel-numbers">
+				{React.Children.map(children, (item, index) => (
+					<div
+						className="button button-green scroll-carousel-number"
+						onClick={() => handleNav(index)}
+						style={{ opacity: activeIndex === index ? 1 : 0.25 }}
+					>
+						<span className="pixel-font scroll-carousel-number-span" style={{ fontSize: '1.75rem' }}>
+							{index + 1}
+						</span>
+					</div>
+				))}
+			</div>
+
 			{/* Carousel Items */}
 			<div ref={scrollRef} id="scroll-carousel-items" className="scroll-carousel-items">
 				{React.Children.map(children, (child: JSX.Element, index: number) => {
@@ -59,32 +75,28 @@ export default function ScrollCarousel(props: ICarousel) {
 					);
 				})}
 			</div>
-			<div id="scroll-carousel-bottom">
-				{/* Carousel Index */}
-				<div id="scroll-carousel-numbers" className="scroll-carousel-numbers">
-					{React.Children.map(children, (item, index) => (
-						<div
-							className="scroll-carousel-number"
-							onClick={() => handleNav(index)}
-							style={{ opacity: activeIndex === index ? 1 : 0.25 }}
-						>
-							<span className="scroll-carousel-number-span">{index + 1}</span>
-						</div>
-					))}
-				</div>
 
+			<div id="scroll-carousel-bottom">
 				{/* Buttons */}
 				<div className="scroll-carousel-buttons">
-					<div className="scroll-carousel-button-wrapper">
-						<Button className="scroll-carousel-button" onClick={handleNavBackwards}>
-							<ChevronLeft />
-						</Button>{' '}
-					</div>
-					<div className="scroll-carousel-button-wrapper">
-						<Button className="scroll-carousel-button" onClick={handleNavForwards}>
-							<ChevronRight />
-						</Button>{' '}
-					</div>
+					<button
+						className="button button-green scroll-carousel-button"
+						onClick={(e) => {
+							handleNavBackwards();
+							blur();
+						}}
+					>
+						<ChevronLeft style={{ textShadow: '3px 3px black' }} />
+					</button>{' '}
+					<button
+						className="button button-green scroll-carousel-button"
+						onClick={(e) => {
+							handleNavForwards();
+							blur();
+						}}
+					>
+						<ChevronRight />
+					</button>{' '}
 				</div>
 			</div>
 		</div>

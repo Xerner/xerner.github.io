@@ -57,32 +57,32 @@ export default function ProjectCard(props: IProjectCard) {
 	const cardPrefix = name + '-project-card-';
 
 	return (
-		<div className='project-card card-green-thicc'>
+		<div className="project-card card-green-thicc">
 			{/* Title and Body */}
 			<div id={cardPrefix + 'description-and-image'} className="project-card-description-and-image">
 				<div id={cardPrefix + 'description-wrapper'} className="project-card-description-wrapper">
 					<div id={cardPrefix + 'description'} className="project-card-description">
 						{/* Title */}
-						<Typography id={cardPrefix + 'title'} variant="h5">
+						<Typography id={cardPrefix + 'title'} variant="h3" className="pixel-font">
 							{name}
 						</Typography>
 
 						{/* Subtitle */}
 						{subtitle !== undefined && subtitle !== '' && (
-							<Typography id={cardPrefix + 'subtitle'} variant="subtitle1" color="textSecondary">
+							<Typography id={cardPrefix + 'subtitle'} variant="subtitle2" color="textSecondary" className="pixel-font">
 								{subtitle}
 							</Typography>
 						)}
 
 						{/* Desc */}
-						<Typography id={cardPrefix + 'body'} variant="body1" component="p">
+						<Typography id={cardPrefix + 'body'} variant="body1" component="p" className="pixel-font">
 							{desc}
 						</Typography>
 					</div>
 				</div>
 
 				{/* Image(s) */}
-				<div id={cardPrefix + 'image-wrapper'} className="project-card-image-wrapper card-green-shallow">
+				<div id={cardPrefix + 'image-wrapper'} className="project-card-image-wrapper card-green-2">
 					<IfElse condition={_image !== undefined && _image.url !== ''}>
 						<img
 							id={cardPrefix + 'image'}
@@ -114,7 +114,13 @@ export default function ProjectCard(props: IProjectCard) {
 					{/* Languages & Chips */}
 					<div id={cardPrefix + 'chips'} className="project-card-chips">
 						{chips.map((chip, index) => (
-							<Chip key={index} size="small" label={chip} className="project-card-chip" />
+							<Chip
+								key={index}
+								size="small"
+								label={chip}
+								className="pixel-font project-card-chip"
+								style={{ fontSize: '1.25rem' }}
+							/>
 						))}
 					</div>
 					<IfElse condition={isPrivate !== undefined}>

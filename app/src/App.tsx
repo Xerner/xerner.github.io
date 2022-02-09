@@ -78,8 +78,8 @@ export default function App() {
 							<div className="card-banner">
 								<img src="images/title-banner-left.png" alt="title-banner-left" className="pixel card-banner-image" />
 								<Typography
-									className="card-title card-light-green"
-									variant="h3"
+									className="pixel-font card-title card-light-green"
+									variant="h1"
 									align="center"
 									color="primary"
 									style={{ fontFamily: 'futura', border: "none" }}
