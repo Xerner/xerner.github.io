@@ -57,7 +57,7 @@ export default function DarkModeControl(props: DarkModeControlProps) {
 					)}
 
 					<img
-						src={isDarkMode ? 'images/moon.png' : 'images/sun-1080.png'}
+						src={isDarkMode ? 'images/backgrounds/moon.png' : 'images/backgrounds/sun.png'}
 						alt="Dark Mode Controller"
 						style={{
 							width: sizeVW,

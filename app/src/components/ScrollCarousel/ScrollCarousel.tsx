@@ -53,15 +53,16 @@ export default function ScrollCarousel(props: ICarousel) {
 			{/* Carousel Index */}
 			<div id="scroll-carousel-numbers" className="scroll-carousel-numbers">
 				{React.Children.map(children, (item, index) => (
-					<div
-						className="button button-green scroll-carousel-number"
-						onClick={() => handleNav(index)}
-						style={{ opacity: activeIndex === index ? 1 : 0.25 }}
+					<button
+						className="button button-green scroll-carousel-number pixel-font"
+						onClick={(e) => {
+							handleNav(index);
+							blur();
+						}}
+						style={{ opacity: activeIndex === index ? 1 : 0.25, fontSize: '1.75rem' }}
 					>
-						<span className="pixel-font scroll-carousel-number-span" style={{ fontSize: '1.75rem' }}>
-							{index + 1}
-						</span>
-					</div>
+						{index + 1}
+					</button>
 				))}
 			</div>
 
@@ -80,22 +81,24 @@ export default function ScrollCarousel(props: ICarousel) {
 				{/* Buttons */}
 				<div className="scroll-carousel-buttons">
 					<button
-						className="button button-green scroll-carousel-button"
+						className="pixel-font button button-green scroll-carousel-button"
 						onClick={(e) => {
 							handleNavBackwards();
 							blur();
 						}}
+						style={{ fontSize: '2rem', padding: 6 }}
 					>
-						<ChevronLeft style={{ textShadow: '3px 3px black' }} />
+						⇦{/* <ChevronLeft style={{ textShadow: '3px 3px black' }} /> */}
 					</button>{' '}
 					<button
-						className="button button-green scroll-carousel-button"
+						className="pixel-font button button-green scroll-carousel-button"
 						onClick={(e) => {
 							handleNavForwards();
 							blur();
 						}}
+						style={{ fontSize: '2rem' }}
 					>
-						<ChevronRight />
+						⇨{/* <ChevronRight /> */}
 					</button>{' '}
 				</div>
 			</div>

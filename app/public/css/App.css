@@ -18,7 +18,7 @@
 
 @font-face {
   font-family: "Pixelar Regular";
-  src: url("../fonts/PixelarW01Regular.woff2") format("woff2");
+  src: url("../fonts/PixelarRegularW01-Regular.woff2") format("woff2");
 }
 .pixel-font {
   font-family: "Pixelar Regular" !important;
@@ -167,6 +167,11 @@ body {
 .card-title {
   height: 80px;
   padding: 0.25rem 0 1.5rem 0;
+}
+
+.button {
+  border: none;
+  cursor: pointer;
 }
 
 .button-green {
@@ -320,9 +325,6 @@ body {
   min-width: 1.75rem;
   cursor: pointer;
   text-align: center;
-}
-
-.scroll-carousel-number-span {
   padding: 5px;
 }
 
@@ -352,11 +354,6 @@ body {
 .clouds {
   position: relative;
   overflow-x: clip;
-}
-
-.button {
-  border: none;
-  cursor: pointer;
 }
 
 /* width */

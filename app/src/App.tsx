@@ -69,8 +69,8 @@ export default function App() {
 				</Box>
 				<Box id="project-cards" style={{ height: '100vh' }}>
 					<IfElse condition={isDarkMode}>
-						<img className="bg-img" src="images/purple-city-4000-1125.jpg" alt="City background" />
-						<img className="bg-img" src="images/blue-city-4000-1125.jpg" alt="City background" />
+						<img className="bg-img" src="images/backgrounds/purple-city-8000-2250.jpg" alt="City background" />
+						<img className="bg-img" src="images/backgrounds/blue-city-4000-1125.jpg" alt="City background" />
 					</IfElse>
 					<div className="card-container">
 						<div style={{ height: '20vh' }}></div>
@@ -82,7 +82,7 @@ export default function App() {
 									variant="h1"
 									align="center"
 									color="primary"
-									style={{ fontFamily: 'futura', border: "none" }}
+									style={{ fontFamily: 'futura', border: 'none' }}
 								>
 									Projects
 								</Typography>
@@ -100,6 +100,32 @@ export default function App() {
 ██    ██ ██   ██ ██  ██  ██ ██          ██   ██ ██   ██ ██  ██  ██      ██ 
  ██████  ██   ██ ██      ██ ███████      █████  ██   ██ ██      ██ ███████ 
 */}
+				<Box id="project-cards" style={{ height: '100vh' }}>
+					<IfElse condition={isDarkMode}>
+						<img className="bg-img" src="images/backgrounds/underground-1500x1500.png" alt="City background" />
+						<img className="bg-img" src="images/backgrounds/underground-1500x1500.png" alt="City background" />
+					</IfElse>
+					<div className="card-container">
+						<div style={{ height: '20vh' }}></div>
+						<div className={isDarkMode ? 'project-card-container' : 'project-card-container'}>
+							<div className="card-banner">
+								<img src="images/title-banner-left.png" alt="title-banner-left" className="pixel card-banner-image" />
+								<Typography
+									className="pixel-font card-title card-light-green"
+									variant="h1"
+									align="center"
+									color="primary"
+									style={{ fontFamily: 'futura', border: 'none' }}
+								>
+									Game Jams
+								</Typography>
+								<img src="images/title-banner-right.png" alt="title-banner-right" className="pixel card-banner-image" />
+							</div>
+
+							{/* <ScrollCarousel>{ProjectCards(theme)}</ScrollCarousel> */}
+						</div>
+					</div>
+				</Box>
 				{/* <Box>
 						<Typography variant="h3" align="center" color="primary" style={{ padding: '2%', fontFamily: 'futura' }}>
 							Game Jams

@@ -27,7 +27,7 @@
 	font-family: 'Pixelar Regular';
 	// line-height: 1.5rem;
 	// src: url('../fonts/PixelarRegularW01-Regular-bigger.ttf');
-	src: url('../fonts/PixelarW01Regular.woff2') format('woff2');
+	src: url('../fonts/PixelarRegularW01-Regular.woff2') format('woff2');
 	// src: url('../fonts/PixelarW01Regular.woff2') format('woff2'), url('../fonts/PixelarW01Regular.woff') format('woff');
 }
 
@@ -239,6 +239,11 @@ body {
 // ██████   ██████     ██       ██     ██████  ██   ████ ███████ 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+.button {
+	border: none;
+	cursor: pointer;
+}
+
 .button-green {
 	border-radius: 0 !important;
 	background-color: #2bd47d !important;
@@ -419,9 +424,6 @@ body {
 	min-width: 1.75rem;
 	cursor: pointer;
 	text-align: center;
-}
-
-.scroll-carousel-number-span {
 	padding: 5px;
 }
 
@@ -459,11 +461,6 @@ body {
 .clouds {
 	position: relative;
 	overflow-x: clip;
-}
-
-.button {
-	border: none;
-	cursor: pointer;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
