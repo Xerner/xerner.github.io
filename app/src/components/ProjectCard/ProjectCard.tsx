@@ -108,7 +108,9 @@ export default function ProjectCard(props: IProjectCard) {
 
 					{/* Actions */}
 					<div id={cardPrefix + 'action'} className="project-card-actions">
-						<div className='project-card-actions-background'></div>
+						<div className="project-card-actions-background-wrapper">
+							<div className="project-card-actions-background"></div>
+						</div>
 						{iconButtons !== undefined &&
 							iconButtons.map((iconButton, index) => (
 								<Tooltip key={index} title={iconButton.title} color="primary" arrow>
