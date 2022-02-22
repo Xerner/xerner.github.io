@@ -20,6 +20,7 @@ export default function ProjectCards(theme: any) {
 			desc="A city builder and simulator with the ability to integrate smart technologies in the city"
 			iconButtons={[
 				{ title: 'Itch.io page', href: 'https://mrmeik.itch.io/smart-city-dashboard', icon: <GameJamIcon /> },
+				{ title: 'Github', href: 'https://github.com/Xerner/OU-Game-Jam-2021', icon: <GitHubIcon /> },
 				{ title: 'Github', href: 'https://github.com/Xerner/OU-Game-Jam-2021', icon: <GitHubIcon /> }
 			]}
 		/>,
