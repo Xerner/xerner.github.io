@@ -40,7 +40,7 @@ export default function ProjectCards(theme: any) {
 		/>,
 
 		<ProjectCard
-			repo={{ name: 'pokebattler', owner: 'Xerner' }}
+			repo={{ name: 'Pokemon-Battler-Unity', owner: 'Xerner' }}
 			image={{
 				url: 'images/pokemon.png',
 				alt: 'Pokemon screenshot',

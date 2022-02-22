@@ -1,8 +1,6 @@
-import { Chip, Typography, IconButton, Tooltip } from '@material-ui/core';
-// import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Languages from '../Languages';
+import { Chip, Typography, Tooltip, useTheme } from '@material-ui/core';
 import { CSSProperties } from 'react';
-// import clsx from 'clsx';
+import Languages from '../Languages';
 import IfElse from '../util/IfElse';
 
 interface IProjectCard {
@@ -35,23 +33,9 @@ interface IProjectCardActionButton {
 	href: string;
 }
 
-// const useStyles = () =>
-// 	makeStyles((theme: Theme) =>
-// 		createStyles({
-// 			projectCard: {
-// 				// transition: 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
-// 				// '-webkit-transition': 'box-shadow 500ms cubic-bezier(0.33, 1, 0.68, 1) !important',
-// 				// '&:hover': {
-// 				// 	boxShadow: `6px 6px ${theme.palette.primary.main}, -6px -6px ${theme.palette.primary.light}`
-// 				// }
-// 			}
-// 		})
-// 	)();
-
 export default function ProjectCard(props: IProjectCard) {
 	const { repo, name, subtitle, chips, desc, isPrivate, image, imageStyle, iconButtons } = props;
-	// const classes = useStyles();
-
+	const theme = useTheme();
 	const _image = image && Array.isArray(image) ? image[0] : image;
 
 	const cardPrefix = name + '-project-card-';
@@ -68,7 +52,7 @@ export default function ProjectCard(props: IProjectCard) {
 
 					{/* Subtitle */}
 					{subtitle !== undefined && subtitle !== '' && (
-						<Typography id={cardPrefix + 'subtitle'} variant="subtitle2" color="textSecondary" className="pixel-font">
+						<Typography id={cardPrefix + 'subtitle'} variant="subtitle2" style={{color: theme.palette.grey[100]}} className="pixel-font">
 							{subtitle}
 						</Typography>
 					)}
@@ -133,15 +117,15 @@ export default function ProjectCard(props: IProjectCard) {
 							size="small"
 							label={chip}
 							className="pixel-font project-card-chip"
-							style={{ fontSize: '1.25rem' }}
+							style={{ fontSize: '1.25rem', color: "white" }}
 						/>
 					))}
 				</div>
-				<IfElse condition={isPrivate !== undefined}>
-					<Languages repoName={repo.name} repoOwner={repo.owner} />
+				<IfElse condition={isPrivate === true}>
 					<Typography variant="body1" color="textSecondary" style={{ fontStyle: 'italic' }}>
 						Private repository
 					</Typography>
+					<Languages repoName={repo.name} repoOwner={repo.owner} />
 				</IfElse>
 			</div>
 		</div>

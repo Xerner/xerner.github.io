@@ -1,5 +1,3 @@
-import { Box, Button } from '@material-ui/core';
-import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 import { clamp } from 'functions/clamp';
 import React, { useState, CSSProperties } from 'react';
 import blur from '../../functions/blur';

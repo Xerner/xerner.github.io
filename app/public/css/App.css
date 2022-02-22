@@ -22,7 +22,7 @@
 }
 .pixel-font {
   font-family: "Pixelar Regular" !important;
-  color: white !important;
+  color: white;
   text-shadow: 1pt 1pt black;
 }
 
@@ -117,7 +117,7 @@ body {
 }
 
 .card-dark-green {
-  background-color: #1a7f4b;
+  background-color: #1e9457;
   box-shadow: 0 10px #023126;
   margin-bottom: 10px;
 }
@@ -302,7 +302,55 @@ body {
   background-color: #888888 !important;
   margin-right: 6px;
   margin-bottom: 8px;
-  box-shadow: 0 2px #444444;
+  box-shadow: 0 3px #444444;
+}
+
+.project-card-progress {
+  box-shadow: 0 3px #444444;
+  height: 8px;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  background-color: gray;
+}
+
+.project-card-languages-ul {
+  list-style: none !important;
+  padding-left: 0px;
+  margin: 0px;
+  margin-top: 12px;
+}
+
+.project-card-languages-a {
+  align-items: center;
+}
+
+.project-card-languages-linkSecondary {
+  align-items: center;
+}
+
+.project-card-languages-chip {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-right: 8px;
+}
+
+.project-card-languages-name {
+  color: white;
+  margin-right: 4px;
+}
+
+.octicon {
+  height: 8px;
+  width: 8px;
+  border-radius: 4px;
+  box-shadow: 0 3px #444444;
+  display: inline;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  margin-right: 12px !important;
 }
 
 .scroll-carousel {
@@ -501,6 +549,19 @@ body {
     transform: rotate(360deg);
   }
 }
+.d-inline {
+  display: inline-block;
+}
+
+.flex-items-center {
+  display: flex;
+  justify-content: center;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
 .container,
 .container-fluid,
 .container-xxl,

@@ -81,7 +81,6 @@ export default function App() {
 									className="pixel-font card-title card-light-green"
 									variant="h1"
 									align="center"
-									color="primary"
 									style={{ fontFamily: 'futura', border: 'none' }}
 								>
 									Projects
@@ -114,7 +113,6 @@ export default function App() {
 									className="pixel-font card-title card-light-green"
 									variant="h1"
 									align="center"
-									color="primary"
 									style={{ fontFamily: 'futura', border: 'none' }}
 								>
 									Game Jams
