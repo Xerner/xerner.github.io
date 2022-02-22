@@ -107,7 +107,7 @@ export default function MyName(props: MyNameProps) {
 						random={false}
 					/> */}
 				</div>
-				<Delayable wait={wait * 2}>
+				<Delayable wait={wait * 3}>
 					<div
 						style={{
 							position: 'absolute',

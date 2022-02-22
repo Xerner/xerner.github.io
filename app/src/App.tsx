@@ -1,6 +1,5 @@
 import 'animate.css';
 import { Box, Typography, ThemeProvider, useMediaQuery } from '@material-ui/core';
-// import { IconButton, Tooltip, Grid } from '@material-ui/core';
 import { useEffect, useMemo } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MyName from './components/Name/MyName';
@@ -45,9 +44,9 @@ export default function App() {
 						height: '100vh'
 					}}
 				>
-					<MyName playAnimation={false} wait={0} />
-					{/* <MyName playAnimation={playAnimation} wait={3000} /> */}
-					<Stars numberOfStars={150} maxWait={0} minWait={0} />
+					{/* <MyName playAnimation={false} wait={2000} /> */}
+					<MyName playAnimation={playAnimation} wait={1500} />
+					<Stars numberOfStars={250} maxWait={1000} minWait={0} />
 				</Box>
 				{/* 
   ██████  ██████   ██████       ██ ███████  ██████ ████████ ███████ 
