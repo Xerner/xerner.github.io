@@ -22,7 +22,6 @@ const fetchLanguages = async (repoName: string, repoOwner: string) =>
 
 export default function Languages(props: IGithubRepo) {
 	const { repoName, repoOwner } = props;
-	console.log(repoName);
 	const languages = useAsync(fetchLanguages, [repoName, repoOwner]);
 	const theme = useTheme();
 

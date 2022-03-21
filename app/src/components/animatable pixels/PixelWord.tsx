@@ -17,7 +17,7 @@ export default function PixelWord(props: PixelWordProps) {
     animationClasses,
     rowDelay,
     rowDelayMaxIncrement,
-    random
+    randomDelay: random
   } = props;
 
   return (
@@ -31,7 +31,7 @@ export default function PixelWord(props: PixelWordProps) {
             animationClasses={animationClasses}
             rowDelay={rowDelay}
             rowDelayMaxIncrement={rowDelayMaxIncrement}
-            random={random}
+            randomDelay={random}
           />
         </Grid>
       ))}

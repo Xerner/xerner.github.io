@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import PixelBitmap from '../animatable pixels/PixelBitmap';
 // import PixelSentence from './animatable pixels/PixelSentence';
 import Delayable from '../Delayable';
-import './name.css'
+import './name.css';
 
 interface MyNameProps {
 	playAnimation: boolean;
@@ -74,7 +74,7 @@ export default function MyName(props: MyNameProps) {
 									animationClasses={animationClasses}
 									rowDelay={rowDelay}
 									rowDelayMaxIncrement={rowDelayMaxIncrement}
-									random={true}
+									randomDelay={true}
 								/>
 							</Grid>
 						))}
@@ -89,7 +89,7 @@ export default function MyName(props: MyNameProps) {
 									animationClasses={animationClasses}
 									rowDelay={rowDelay}
 									rowDelayMaxIncrement={rowDelayMaxIncrement}
-									random={true}
+									randomDelay={true}
 								/>
 							</Grid>
 						))}
@@ -107,7 +107,7 @@ export default function MyName(props: MyNameProps) {
 						random={false}
 					/> */}
 				</div>
-				<Delayable wait={wait * 3}>
+				<Delayable wait={wait + 2000}>
 					<div
 						style={{
 							position: 'absolute',

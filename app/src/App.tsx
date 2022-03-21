@@ -12,6 +12,7 @@ import ProjectCards from 'components/ProjectCard/ProjectCards';
 // import GameJamCards from 'components/ProjectCard/GameJamCards';
 import Clouds from 'components/Clouds/Clouds';
 import IfElse from './components/util/IfElse';
+import GameJamCards from 'components/ProjectCard/GameJamCards';
 // import GitHubIcon from '@material-ui/icons/GitHub';
 
 export default function App() {
@@ -45,8 +46,8 @@ export default function App() {
 					}}
 				>
 					{/* <MyName playAnimation={false} wait={2000} /> */}
-					<MyName playAnimation={playAnimation} wait={1500} />
-					<Stars numberOfStars={250} maxWait={1000} minWait={0} />
+					<MyName playAnimation={playAnimation} wait={2500} />
+					<Stars numberOfStars={250} maxWait={2000} minWait={500} />
 				</Box>
 				{/* 
   ██████  ██████   ██████       ██ ███████  ██████ ████████ ███████ 
@@ -68,8 +69,8 @@ export default function App() {
 				</Box>
 				<Box id="project-cards" style={{ height: '100vh' }}>
 					<IfElse condition={isDarkMode}>
-						<img className="bg-img" src="images/backgrounds/purple-city-8000-2250.jpg" alt="City background" />
-						<img className="bg-img" src="images/backgrounds/blue-city-4000-1125.jpg" alt="City background" />
+						<img className="bg-img" src="images/backgrounds/purple-city-8000-2250-modified.jpg" alt="City background" />
+						<img className="bg-img" src="images/backgrounds/blue-city-8000-2250-modified.jpg" alt="City background" />
 					</IfElse>
 					<div className="card-container">
 						<div style={{ height: '20vh' }}></div>
@@ -119,7 +120,7 @@ export default function App() {
 								<img src="images/title-banner-right.png" alt="title-banner-right" className="pixel card-banner-image" />
 							</div>
 
-							{/* <ScrollCarousel>{ProjectCards(theme)}</ScrollCarousel> */}
+							<ScrollCarousel>{GameJamCards(theme)}</ScrollCarousel>
 						</div>
 					</div>
 				</Box>
