@@ -30,10 +30,9 @@
   "scripts": {
     "start": "react-scripts start",
     "sass": "sass --watch public/css/App.scss public/css/App.css",
-    "build": "react-scripts build && mv ../build/index.html ../index.html",
+    "build": "react-scripts build && node ./scripts/move-build.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "move-index": "mv ../build/index.html ../index.html"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
