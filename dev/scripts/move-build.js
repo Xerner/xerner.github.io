@@ -31,5 +31,5 @@ fs.readdir(directoryPath, (err, files) => {
         fs.renameSync(filePath, newFilePath);
     }
   });
-  fs.rmdirSync(directoryPath)
+  fs.rmdirSync(directoryPath, { recursive: true })
 });
