@@ -1,6 +1,6 @@
 import { clamp } from 'functions/clamp';
 import React, { useState, CSSProperties } from 'react';
-import blur from '../../functions/blur';
+import blur from 'functions/blur';
 
 interface ICarousel {
 	children: JSX.Element[] | JSX.Element;

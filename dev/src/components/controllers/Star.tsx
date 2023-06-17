@@ -1,5 +1,4 @@
-import Delayable from '../Delayable';
-import "./star.css"
+import Delayable from './Delayable';
 
 interface IStar {
 	left: number;

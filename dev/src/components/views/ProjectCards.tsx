@@ -1,8 +1,40 @@
-import ProjectCard from './ProjectCard';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import GameJamIcon from '@material-ui/icons/SportsEsports';
+import IfElse from 'components/controllers/IfElse';
+import ProjectCard from 'components/controllers/ProjectCard';
+import ScrollCarousel from 'components/controllers/ScrollCarousel';
+import { selectDarkMode } from 'features/themeSlice';
+import { useAppSelector } from 'hooks/reduxHooks';
 
-export default function ProjectCards(theme: any) {
+export default function ProjectCardsLayout() {
+    const isDarkMode = useAppSelector(selectDarkMode)
+
+    return <div id="project-cards" style={{ height: '100vh' }}>
+        <IfElse condition={isDarkMode}>
+            <img className="bg-img" src="images/backgrounds/purple-city-8000-2250-modified.jpg" alt="City background" />
+            <img className="bg-img" src="images/backgrounds/blue-city-8000-2250-modified.jpg" alt="City background" />
+        </IfElse>
+        <div className="card-container">
+            <div style={{ height: '20vh' }}></div>
+            <div className={isDarkMode ? 'project-card-container' : 'project-card-container'}>
+                <div className="card-banner">
+                    <img src="images/title-banner-left.png" alt="title-banner-left" className="pixel card-banner-image" />
+                    <h1
+                        className="pixel-font card-title card-light-green text-center"
+                        style={{ fontFamily: 'futura', border: 'none' }}
+                    >
+                        Projects
+                    </h1>
+                    <img src="images/title-banner-right.png" alt="title-banner-right" className="pixel card-banner-image" />
+                </div>
+
+                <ScrollCarousel>{ProjectCards(isDarkMode)}</ScrollCarousel>
+            </div>
+        </div>
+    </div>
+}
+
+function ProjectCards(theme: any) {
 	return [
 		<ProjectCard
 			repo={{

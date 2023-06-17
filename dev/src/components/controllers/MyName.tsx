@@ -3,10 +3,8 @@ import { Forward as ForwardIcon } from '@material-ui/icons';
 import { isMobile } from 'functions/isMobile';
 import alphabet from 'graphics/bitmaps/alphabetMap';
 import { useEffect, useState } from 'react';
-import PixelBitmap from '../animatable pixels/PixelBitmap';
-// import PixelSentence from './animatable pixels/PixelSentence';
-import Delayable from '../Delayable';
-import './name.css';
+import PixelBitmap from 'components/controllers/PixelBitmap';
+import Delayable from './Delayable';
 
 interface MyNameProps {
 	playAnimation: boolean;

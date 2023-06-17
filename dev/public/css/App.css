@@ -1,4 +1,15 @@
 /* Uncomment for a good time */
+.name-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10%;
+  z-index: 10;
+}
+
 .pixel {
   image-rendering: optimizeSpeed;
   /* STOP SMOOTHING, GIVE ME SPEED  */
@@ -74,7 +85,7 @@ body {
   margin: 0 !important;
 }
 
-.starry-night {
+.starry-night-bg {
   background: linear-gradient(270deg, black 0%, #03003d 100%);
   background: -moz-linear-gradient(270deg, black 0%, #03003d 100%);
   background: -webkit-linear-gradient(270deg, black 0%, #03003d 100%);
@@ -548,115 +559,6 @@ body {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
-}
-.d-inline {
-  display: inline-block;
-}
-
-.flex-items-center {
-  display: flex;
-  justify-content: center;
-}
-
-.d-inline-flex {
-  display: inline-flex;
-}
-
-.container,
-.container-fluid,
-.container-xxl,
-.container-xl,
-.container-lg,
-.container-md,
-.container-sm,
-.container-tiny {
-  width: 100%;
-  padding-right: var(--bs-gutter-x, 0.75rem);
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media (min-width: 384px) {
-  .container-tiny,
-.container {
-    max-width: 360px;
-  }
-}
-@media (min-width: 576px) {
-  .container-sm,
-.container-tiny,
-.container {
-    max-width: 540px;
-  }
-}
-@media (min-width: 768px) {
-  .container-md,
-.container-sm,
-.container-tiny,
-.container {
-    max-width: 720px;
-  }
-}
-@media (min-width: 992px) {
-  .container-lg,
-.container-md,
-.container-sm,
-.container-tiny,
-.container {
-    max-width: 960px;
-  }
-}
-@media (min-width: 1200px) {
-  .container-xl,
-.container-lg,
-.container-md,
-.container-sm,
-.container-tiny,
-.container {
-    max-width: 1140px;
-  }
-}
-@media (min-width: 1400px) {
-  .container-xxl,
-.container-xl,
-.container-lg,
-.container-md,
-.container-sm,
-.container {
-    max-width: 1320px;
-  }
-}
-.link--secondary {
-  color: #768390;
-}
-
-.w-100 {
-  width: 100%;
-}
-
-.shadow {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-}
-
-.shadow-sm {
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-}
-
-.shadow-lg {
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
-}
-
-.shadow-none {
-  box-shadow: none !important;
-}
-
-.shadow-hover {
-  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.5) !important;
-}
-
-.shadow-hover:hover {
-  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.5) !important;
 }
 
 /*# sourceMappingURL=App.css.map */

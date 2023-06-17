@@ -1,7 +1,7 @@
 import { Chip, Typography, Tooltip, useTheme } from '@material-ui/core';
 import { CSSProperties } from 'react';
-import Languages from '../Languages';
-import IfElse from '../util/IfElse';
+import Languages from './Languages';
+import IfElse from './IfElse';
 
 interface IProjectCard {
 	isPrivate?: boolean;

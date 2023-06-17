@@ -1,8 +1,8 @@
 import { useTheme } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { useAsync } from 'react-async-hook';
-import languageColors from '../config/languageColors.json';
-import token from '../config/token.json';
+import languageColors from 'config/languageColors.json';
+import token from 'config/token.json';
 
 const languageColors2: { [str: string]: string } = languageColors;
 

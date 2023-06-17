@@ -1,4 +1,4 @@
-import Delayable from 'components/Delayable';
+import Delayable from 'components/controllers/Delayable';
 import { arrayMax } from 'functions/arrayMax';
 import { ReactElement, useMemo } from 'react';
 

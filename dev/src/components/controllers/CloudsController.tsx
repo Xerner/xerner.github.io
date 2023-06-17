@@ -10,7 +10,7 @@ const cloudDims = [
 ];
 // cloud 1 = 1147 x 608
 
-export default function Clouds({ id }: { id: string }) {
+export default function CloudsController({ id }: { id: string }) {
 	var _largestCloudHeight = cloudDims.reduce((prevCloudDim, curCloudDim) =>
 		prevCloudDim.height > curCloudDim.height ? prevCloudDim : curCloudDim
 	);

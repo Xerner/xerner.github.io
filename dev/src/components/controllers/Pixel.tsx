@@ -1,4 +1,4 @@
-import Delayable from 'components/Delayable';
+import Delayable from 'components/controllers/Delayable';
 import React from 'react';
 
 export interface PixelProps {
