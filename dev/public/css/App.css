@@ -491,7 +491,7 @@
 }
 .pixel-font {
   font-family: "Pixelar Regular" !important;
-  color: white;
+  color: white !important;
   text-shadow: 1pt 1pt black;
 }
 
