@@ -37,6 +37,7 @@ export default function GameJamCardsWrapper() {
 function GameJamCards(theme: any) {
 	return [
 		<ProjectCard
+            key={0}
 			repo={{
 				name: 'OU-Game-Jam-2021',
 				owner: 'Xerner'

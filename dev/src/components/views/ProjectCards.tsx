@@ -6,7 +6,7 @@ import ScrollCarousel from 'components/controllers/ScrollCarousel';
 import { selectDarkMode } from 'features/themeSlice';
 import { useAppSelector } from 'hooks/reduxHooks';
 
-export default function ProjectCardsLayout() {
+export default function ProjectCardsWrapper() {
     const isDarkMode = useAppSelector(selectDarkMode)
 
     return <div id="project-cards" style={{ height: '100vh' }}>
@@ -37,6 +37,7 @@ export default function ProjectCardsLayout() {
 function ProjectCards(theme: any) {
 	return [
 		<ProjectCard
+            key={0}
 			repo={{
 				name: 'Smart-City-Dashboard',
 				owner: 'Jaren-Taylor'
@@ -58,7 +59,8 @@ function ProjectCards(theme: any) {
 		/>,
 
 		<ProjectCard
-			repo={{ name: 'steamy-bot', owner: 'Xerner' }}
+            key={1}
+            repo={{ name: 'steamy-bot', owner: 'Xerner' }}
 			image={{
 				url: 'images/steamy-bot.png',
 				alt: 'Smart City Dashboard screenshot',
@@ -72,7 +74,8 @@ function ProjectCards(theme: any) {
 		/>,
 
 		<ProjectCard
-			repo={{ name: 'Pokemon-Battler-Unity', owner: 'Xerner' }}
+            key={2}
+            repo={{ name: 'Pokemon-Battler-Unity', owner: 'Xerner' }}
 			image={{
 				url: 'images/pokemon.png',
 				alt: 'Pokemon screenshot',
@@ -90,7 +93,8 @@ function ProjectCards(theme: any) {
 		/>,
 
 		<ProjectCard
-			repo={{ name: '', owner: 'Xerner' }}
+            key={3}
+            repo={{ name: '', owner: 'Xerner' }}
 			isPrivate
 			image={{
 				url: 'images/react.svg',
@@ -106,7 +110,8 @@ function ProjectCards(theme: any) {
 		/>,
 
 		<ProjectCard
-			repo={{ name: '', owner: 'Xerner' }}
+            key={4}
+            repo={{ name: '', owner: 'Xerner' }}
 			isPrivate
 			image={{
 				url: 'images/visual-studio-icon.png',
@@ -120,7 +125,8 @@ function ProjectCards(theme: any) {
 			iconButtons={[]}
 		/>,
 		<ProjectCard
-			repo={{ name: '', owner: 'Xerner' }}
+            key={5}
+            repo={{ name: '', owner: 'Xerner' }}
 			isPrivate
 			image={{
 				url: 'images/excel-icon.png',
@@ -135,6 +141,7 @@ function ProjectCards(theme: any) {
 		/>,
 
 		<ProjectCard
+            key={6}
 			repo={{ name: '', owner: 'Xerner' }}
 			image={{
 				url: 'images/react.svg',
