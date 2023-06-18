@@ -1,0 +1,77 @@
+.card-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 720px;
+	padding-right: 24px;
+	padding-left: 24px;
+}
+
+.card-orange {
+	background-color: #ef8a32;
+	border: 1px solid #956e05;
+	box-shadow: 0 10px #956e05;
+}
+
+.card-light-green {
+	background-color: #2bd47d;
+	box-shadow: 0 10px #059573;
+	margin-bottom: 10px;
+}
+
+.card-green {
+	background-color: hsl(149, 66%, 45%);
+	box-shadow: 0 10px #03634d;
+	margin-bottom: 9px;
+}
+
+.card-dark-green {
+	background-color: hsl(149, 66%, 35%);
+	box-shadow: 0 10px hsl(166, 94%, 10%);
+	margin-bottom: 10px;
+}
+
+.card-green-2 {
+	background-color: #27be70;
+	box-shadow: 0 2px hsl(166, 94%, 20%);
+}
+
+.card-green-5 {
+	background-color: #27be70;
+	box-shadow: 0 5px #03634d;
+}
+
+.card-green-shallow {
+	background-color: #27be70;
+	box-shadow: 0 2px #03634d;
+}
+
+.card-green-thicc {
+	background-color: #2cd47d;
+	box-shadow: 0 10px #03634d;
+}
+
+.inset-card-green-shallow-thicc {
+	background-color: #23a964;
+	box-shadow: inset 0 2px #03634d;
+}
+
+.card-banner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.card-banner-image {
+	box-shadow: 0 10px #059573;
+	height: 80px;
+}
+
+.card-title {
+	height: 80px;
+	padding: 0.25rem 0 1.5rem 0;
+}
