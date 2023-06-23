@@ -1,26 +1,16 @@
-// import { CSSProperties } from 'react';
 import { useMemo } from 'react';
 import { ReactElement } from 'react';
-// import ElementArray from './animatable elements/ElementArray';
 import Star from './Star';
 
 interface StarsProps {
 	numberOfStars: number;
 	maxWait: number;
 	minWait: number;
-	// style?: CSSProperties;
 }
 
 export default function Stars(props: StarsProps) {
 	const { numberOfStars, maxWait, minWait } = props;
 	const deltaWait = maxWait - minWait;
-	// const animationClasses = playAnimation ? animations[1] : [];
-	// const rowDelay = playAnimation ? 1 : 0;
-
-	// const rowSize = 50;
-	// const columnSize = 50;
-	// const rows = 50;
-	// const columns = 50;
 
 	const stars: ReactElement[] = useMemo(() => {
 		var _stars: ReactElement[] = [];
@@ -29,24 +19,15 @@ export default function Stars(props: StarsProps) {
 			var randomLeft = Math.random() * 100; //Math.floor( * window.innerWidth-32); //window.innerWidth
 			var randomTop = Math.random() * 100; //Math.floor( * window.innerHeight); //window.innerHeight
 			var randomWait = Math.floor(Math.random() * deltaWait + minWait);
-			_stars.push(<Star key={_stars.length} left={randomLeft} top={randomTop} wait={randomWait} />);
+			_stars.push(
+                <Star key={_stars.length} left={randomLeft} top={randomTop} wait={randomWait} />
+            );
 		}
 		return _stars;
 	}, [deltaWait, minWait, numberOfStars]);
 
 	return (
 		<div>{stars}</div>
-		// <ElementArray
-		// 	element={<img src="images/star_8x8.png" alt="star" style={{objectFit: "fill"}} />}
-		// 	rowSize={rowSize}
-		// 	columnSize={columnSize}
-		// 	bitmap={generateRandomBitmap(rows, columns)}
-		// 	// bitmap={generateFilledBitmap(rows, columns)}
-		// 	itemClassName={animationClasses}
-		// 	isDelayRandom={true}
-		// 	rowDelay={1}
-		// 	rowDelayMaxIncrement={rowDelayMaxIncrement}
-		// />
 	);
 }
 
