@@ -1,0 +1,49 @@
+.project-card-progress {
+  box-shadow: 0 2px #222222;
+  height: 8px;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  background-color: gray;
+}
+
+.project-card-languages-ul {
+  list-style: none !important;
+  padding-left: 0px;
+  margin: 0px;
+  margin-top: 8px;
+}
+
+.project-card-languages-a {
+  align-items: center;
+}
+
+.project-card-languages-linkSecondary {
+  align-items: center;
+}
+
+.project-card-languages-chip {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-right: 8px;
+}
+
+.project-card-languages-name {
+  color: white;
+  margin-right: 4px;
+}
+
+.octicon {
+  height: 8px;
+  width: 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px #222222;
+  display: inline;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  margin-right: 12px !important;
+}
+
+/*# sourceMappingURL=languages.css.map */

@@ -1,6 +1,6 @@
 import { useCookie } from "hooks/useCookie";
 import { useEffect } from "react";
-import MyName from 'components/controllers/MyName';
+import MyName from 'components/controllers/MyPixelName';
 import StarsController from 'components/controllers/Stars';
 
 export default function Stars() {
