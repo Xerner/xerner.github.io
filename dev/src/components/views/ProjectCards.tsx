@@ -5,29 +5,20 @@ import ProjectCard from 'components/controllers/ProjectCard';
 import ScrollCarousel from 'components/controllers/ScrollCarousel';
 import { selectDarkMode } from 'features/themeSlice';
 import { useAppSelector } from 'hooks/reduxHooks';
+import CardBanner from 'components/views/CardBanner';
 
 export default function ProjectCardsWrapper() {
     const isDarkMode = useAppSelector(selectDarkMode)
 
-    return <div id="project-cards" style={{ height: '100vh' }}>
+    return <div id="project-cards" style={{ height: '100vh' }} className="d-flex justify-content-center align-items-center">
         <IfElse condition={isDarkMode}>
             <img className="bg-img" src="images/backgrounds/purple-city-8000-2250-modified.jpg" alt="City background" />
             <img className="bg-img" src="images/backgrounds/blue-city-8000-2250-modified.jpg" alt="City background" />
         </IfElse>
         <div className="card-container">
-            <div style={{ height: '20vh' }}></div>
-            <div className={isDarkMode ? 'project-card-container' : 'project-card-container'}>
-                <div className="card-banner">
-                    <img src="images/title-banner-left.png" alt="title-banner-left" className="pixel card-banner-image" />
-                    <h1
-                        className="pixel-font card-title card-light-green text-center"
-                        style={{ fontFamily: 'futura', border: 'none' }}
-                    >
-                        Projects
-                    </h1>
-                    <img src="images/title-banner-right.png" alt="title-banner-right" className="pixel card-banner-image" />
-                </div>
-
+            {/* <div style={{ height: '10vh' }}></div> */}
+            <div className='project-card-container h-100'>
+                <CardBanner title="Projects" />
                 <ScrollCarousel>{ProjectCards(isDarkMode)}</ScrollCarousel>
             </div>
         </div>
@@ -43,7 +34,7 @@ function ProjectCards(theme: any) {
 				owner: 'Jaren-Taylor'
 			}}
 			image={{
-				url: 'images/smart-city-dashboard.png',
+				url: 'images/card-images/card_smart-city-dashboard.png',
 				alt: 'Smart City Dashboard screenshot',
 				title: 'Smart City Dashboard'
 			}}
@@ -62,7 +53,7 @@ function ProjectCards(theme: any) {
             key={1}
             repo={{ name: 'steamy-bot', owner: 'Xerner' }}
 			image={{
-				url: 'images/steamy-bot.png',
+				url: 'images/card-images/card_steamy-bot.png',
 				alt: 'Smart City Dashboard screenshot',
 				title: 'Smart City Dashboard'
 			}}
@@ -77,7 +68,7 @@ function ProjectCards(theme: any) {
             key={2}
             repo={{ name: 'Pokemon-Battler-Unity', owner: 'Xerner' }}
 			image={{
-				url: 'images/pokemon.png',
+				url: 'images/card-images/card_pokemon.png',
 				alt: 'Pokemon screenshot',
 				title: 'Pokemon'
 			}}
@@ -97,7 +88,7 @@ function ProjectCards(theme: any) {
             repo={{ name: '', owner: 'Xerner' }}
 			isPrivate
 			image={{
-				url: 'images/react.svg',
+				url: 'images/card-images/card_react.png',
 				alt: 'React',
 				title: 'React'
 			}}
@@ -114,7 +105,7 @@ function ProjectCards(theme: any) {
             repo={{ name: '', owner: 'Xerner' }}
 			isPrivate
 			image={{
-				url: 'images/visual-studio-icon.png',
+				url: 'images/card-images/card_visual-studio.png',
 				alt: 'Visual Studio',
 				title: 'Visual Studio'
 			}}
@@ -129,7 +120,7 @@ function ProjectCards(theme: any) {
             repo={{ name: '', owner: 'Xerner' }}
 			isPrivate
 			image={{
-				url: 'images/excel-icon.png',
+				url: 'images/card-images/card_excel.png',
 				alt: 'Excel VBA',
 				title: 'Excel VBA'
 			}}
@@ -144,7 +135,7 @@ function ProjectCards(theme: any) {
             key={6}
 			repo={{ name: '', owner: 'Xerner' }}
 			image={{
-				url: 'images/react.svg',
+				url: 'images/card-images/card_react.png',
 				alt: 'React',
 				title: 'React'
 			}}

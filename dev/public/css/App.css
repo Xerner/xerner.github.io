@@ -22,82 +22,172 @@
   margin-bottom: -4px;
 }
 
-.card-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 720px;
-  padding-right: 24px;
-  padding-left: 24px;
+.green-60-bg {
+  background-color: #56dc97;
 }
 
-.card-orange {
-  background-color: #ef8a32;
-  border: 1px solid #956e05;
-  box-shadow: 0 10px #956e05;
+.green-55-bg {
+  background-color: #41d88a;
 }
 
-.card-light-green {
+.green-50-bg {
   background-color: #2bd47d;
-  box-shadow: 0 10px #059573;
-  margin-bottom: 10px;
 }
 
-.card-green {
+.green-45-bg {
   background-color: #27be70;
-  box-shadow: 0 10px #03634d;
-  margin-bottom: 9px;
 }
 
-.card-dark-green {
-  background-color: #1e9457;
-  box-shadow: 0 10px #023126;
-  margin-bottom: 10px;
-}
-
-.card-green-2 {
-  background-color: #27be70;
-  box-shadow: 0 2px #03634d;
-}
-
-.card-green-5 {
-  background-color: #27be70;
-  box-shadow: 0 5px #03634d;
-}
-
-.card-green-shallow {
-  background-color: #27be70;
-  box-shadow: 0 2px #03634d;
-}
-
-.card-green-thicc {
-  background-color: #2cd47d;
-  box-shadow: 0 10px #03634d;
-}
-
-.inset-card-green-shallow-thicc {
+.green-40-bg {
   background-color: #23a964;
-  box-shadow: inset 0 2px #03634d;
 }
 
-.card-banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.green-35-bg {
+  background-color: #1e9457;
+}
+
+.green-30-bg {
+  background-color: #1a7f4b;
+}
+
+.green-25-bg {
+  background-color: #166a3e;
+}
+
+.green-20-bg {
+  background-color: #115532;
+}
+
+.green-15-bg {
+  background-color: #0d3f25;
+}
+
+.green-10-bg {
+  background-color: #092a19;
+}
+
+.green-5-bg {
+  background-color: #04150c;
+}
+
+.green-50-shadow-lg {
+  box-shadow: 0 10px #2bd47d;
   margin-bottom: 10px;
 }
 
-.card-banner-image {
-  box-shadow: 0 10px #059573;
-  height: 80px;
+.green-40-shadow-lg {
+  box-shadow: 0 10px #23a964;
+  margin-bottom: 10px;
 }
 
-.card-title {
-  height: 80px;
-  padding: 0.25rem 0 1.5rem 0;
+.green-30-shadow-lg {
+  box-shadow: 0 10px #1a7f4b;
+  margin-bottom: 10px;
+}
+
+.green-20-shadow-lg {
+  box-shadow: 0 10px #115532;
+  margin-bottom: 10px;
+}
+
+.green-10-shadow-lg {
+  box-shadow: 0 10px #092a19;
+  margin-bottom: 10px;
+}
+
+.green-5-shadow-lg {
+  box-shadow: 0 10px #04150c;
+  margin-bottom: 10px;
+}
+
+.green-50-shadow {
+  box-shadow: 0 5px #2bd47d;
+  margin-bottom: 5px;
+}
+
+.green-40-shadow {
+  box-shadow: 0 5px #23a964;
+  margin-bottom: 5px;
+}
+
+.green-30-shadow {
+  box-shadow: 0 5px #1a7f4b;
+  margin-bottom: 5px;
+}
+
+.green-20-shadow {
+  box-shadow: 0 5px #115532;
+  margin-bottom: 5px;
+}
+
+.green-10-shadow {
+  box-shadow: 0 5px #092a19;
+  margin-bottom: 5px;
+}
+
+.green-5-shadow {
+  box-shadow: 0 5px #04150c;
+  margin-bottom: 5px;
+}
+
+.green-30-border {
+  border: 1px solid #1a7f4b;
+}
+
+.green-30-border-top {
+  border-top: 1px solid #1a7f4b;
+}
+
+.green-30-border-right {
+  border-right: 1px solid #1a7f4b;
+}
+
+.green-30-border-bottom {
+  border-bottom: 1px solid #1a7f4b;
+}
+
+.green-30-border-left {
+  border-left: 1px solid #1a7f4b;
+}
+
+.green-20-border {
+  border: 1px solid #115532;
+}
+
+.green-20-border-top {
+  border-top: 1px solid #115532;
+}
+
+.green-20-border-right {
+  border-right: 1px solid #115532;
+}
+
+.green-20-border-bottom {
+  border-bottom: 1px solid #115532;
+}
+
+.green-20-border-left {
+  border-left: 1px solid #115532;
+}
+
+.green-5-border {
+  border: 1px solid #04150c;
+}
+
+.green-5-border-top {
+  border-top: 1px solid #04150c;
+}
+
+.green-5-border-right {
+  border-right: 1px solid #04150c;
+}
+
+.green-5-border-bottom {
+  border-bottom: 1px solid #04150c;
+}
+
+.green-5-border-left {
+  border-left: 1px solid #04150c;
 }
 
 .starry-night-bg {
@@ -112,8 +202,35 @@
   height: 100%;
 }
 
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+  padding-right: 24px;
+  padding-left: 24px;
+}
+
+.card-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-banner-image {
+  height: 80px;
+}
+
+.card-title {
+  height: 80px;
+  padding: 0.25rem 0 1.5rem 0;
+}
+
 .project-card-container {
-  height: 70vh;
   width: 100%;
 }
 
@@ -122,33 +239,35 @@
   overflow: hidden;
 }
 
+.project-card > * {
+  color: white !important;
+}
+
+.project-card > * .text-secondary {
+  color: white !important;
+}
+
 .project-card-top {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: 15rem;
+  max-height: 15rem;
 }
 
-.project-card-description {
-  width: 80%;
-  padding: 1rem;
-}
-
-.project-card-image-and-actions {
-  border-left: 2px solid #059573;
-  width: 100px;
-  display: flex;
-  flex-direction: column;
+.project-card-info {
+  flex-grow: 1;
 }
 
 .project-card-image-wrapper {
-  width: 100px;
-  height: 100px;
+  height: 100%;
   margin-bottom: 0;
 }
 
 .project-card-image {
   object-fit: contain;
-  width: 100%;
+  width: 15rem;
+  height: 100%;
 }
 
 .project-card-actions {
@@ -168,7 +287,6 @@
 }
 
 .project-card-actions-background {
-  background-color: #23a964;
   width: 100%;
   height: 100%;
 }
@@ -216,6 +334,7 @@
 }
 
 .project-card-chips {
+  font-size: 0.75rem !important;
   flex: 0;
   display: flex;
   padding-top: 0;
@@ -226,11 +345,11 @@
   background-color: #888888 !important;
   margin-right: 6px;
   margin-bottom: 8px;
-  box-shadow: 0 3px #444444;
+  box-shadow: 0 2px #222222;
 }
 
 .project-card-progress {
-  box-shadow: 0 3px #444444;
+  box-shadow: 0 2px #222222;
   height: 8px;
   border-radius: 6px;
   overflow: hidden;
@@ -242,7 +361,7 @@
   list-style: none !important;
   padding-left: 0px;
   margin: 0px;
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
 .project-card-languages-a {
@@ -270,7 +389,7 @@
   height: 8px;
   width: 8px;
   border-radius: 4px;
-  box-shadow: 0 3px #444444;
+  box-shadow: 0 2px #222222;
   display: inline;
   overflow: visible !important;
   vertical-align: text-bottom;
@@ -541,6 +660,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0 !important;
+}
+
+.main-content > * {
+  color: white !important;
+}
+
+.main-content-shadow {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 90%, rgba(0, 0, 0, 0) 100%);
 }
 
 .dark-mode-control {

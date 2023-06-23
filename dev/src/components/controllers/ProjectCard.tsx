@@ -1,133 +1,138 @@
-import { Chip, Typography, Tooltip, useTheme } from '@material-ui/core';
+import { Chip, Tooltip } from '@material-ui/core';
 import { CSSProperties } from 'react';
 import Languages from './Languages';
 import IfElse from './IfElse';
 
 interface IProjectCard {
-	isPrivate?: boolean;
-	repo: IProjectCardRepo;
-	name: string;
-	subtitle?: string;
-	chips: string[];
-	desc: JSX.Element | string;
-	image?: IProjectCardImage | IProjectCardImage[];
-	imageStyle?: CSSProperties;
-	iconButtons?: IProjectCardActionButton[];
+    isPrivate?: boolean;
+    repo: IProjectCardRepo;
+    name: string;
+    subtitle?: string;
+    chips: string[];
+    desc: JSX.Element | string;
+    image?: IProjectCardImage | IProjectCardImage[];
+    imageStyle?: CSSProperties;
+    iconButtons?: IProjectCardActionButton[];
 }
 
 interface IProjectCardImage {
-	url: string;
-	alt?: string;
-	title?: string;
-	imageFit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
+    url: string;
+    alt?: string;
+    title?: string;
+    imageFit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
 }
 
 interface IProjectCardRepo {
-	name: string;
-	owner: string;
+    name: string;
+    owner: string;
 }
 
 interface IProjectCardActionButton {
-	title: React.ReactElement | string;
-	icon: React.ReactElement;
-	href: string;
+    title: React.ReactElement | string;
+    icon: React.ReactElement;
+    href: string;
 }
 
 export default function ProjectCard(props: IProjectCard) {
-	const { repo, name, subtitle, chips, desc, isPrivate, image, imageStyle, iconButtons } = props;
-	const theme = useTheme();
-	const _image = image && Array.isArray(image) ? image[0] : image;
+    const { repo, name, subtitle, chips, desc, isPrivate, image, imageStyle, iconButtons } = props;
+    const _image = image && Array.isArray(image) ? image[0] : image;
+    const cardPrefix = name + '-project-card-';
 
-	const cardPrefix = name + '-project-card-';
+    return (
+        <div className="project-card">
+            {/* Title and Body */}
+            <div
+                id={cardPrefix + 'project-card-top'}
+                className="project-card-top green-30-bg green-20-shadow d-flex justify-content-between"
+            >
+                <div id={cardPrefix + 'info'} className="project-card-info  h-100">
+                    {/* Title */}
+                    <div className="project-card-title green-35-bg green-20-shadow p-3">
+                        <h3 id={cardPrefix + 'title'}>
+                            {name}
+                        </h3>
+                        {/* Subtitle */}
+                        {subtitle !== undefined && subtitle !== '' && (
+                            <div id={cardPrefix + 'subtitle'} className="text-secondary">
+                                {subtitle}
+                            </div>
+                        )}
+                    </div>
 
-	return (
-		<div className="project-card">
-			{/* Title and Body */}
-			<div id={cardPrefix + 'project-card-top'} className="project-card-top card-green">
-				<div id={cardPrefix + 'description'} className="project-card-description">
-					{/* Title */}
-					<Typography id={cardPrefix + 'title'} variant="h3" className="pixel-font">
-						{name}
-					</Typography>
+                    <div className="p-3 h-100">
+                        
 
-					{/* Subtitle */}
-					{subtitle !== undefined && subtitle !== '' && (
-						<Typography id={cardPrefix + 'subtitle'} variant="subtitle2" style={{color: theme.palette.grey[100]}} className="pixel-font">
-							{subtitle}
-						</Typography>
-					)}
+                        {/* Desc */}
+                        <div id={cardPrefix + 'body'} className="project-card-description">
+                            {desc}
+                        </div>
+                    </div>
+                </div>
 
-					{/* Desc */}
-					<Typography id={cardPrefix + 'body'} variant="body1" component="p" className="pixel-font">
-						{desc}
-					</Typography>
-				</div>
+                {/* Image */}
+                {/* <div id={cardPrefix + 'image-wrapper'} className="project-card-image-wrapper"> */}
+                <IfElse condition={_image !== undefined && _image.url !== ''}>
+                    <img
+                        id={cardPrefix + 'image'}
+                        className="project-card-image green-35-bg green-20-border-left"
+                        alt={_image?.alt}
+                        src={_image?.url}
+                        title={_image?.title}
+                        style={imageStyle}
+                    />
+                    <div
+                        id={cardPrefix + 'no-image'}
+                        className="project-card-image green-35-bg green-20-border-left"
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <div className="text-secondary text-center">
+                            No Image
+                        </div>
+                    </div>
+                </IfElse>
+                {/* </div> */}
+            </div>
 
-				{/* Image(s) and Actions */}
-				<div id={cardPrefix + 'project-card-image-and-actions'} className="project-card-image-and-actions">
-					<div id={cardPrefix + 'image-wrapper'} className="project-card-image-wrapper card-green">
-						<IfElse condition={_image !== undefined && _image.url !== ''}>
-							<img
-								id={cardPrefix + 'image'}
-								className="project-card-image"
-								alt={_image?.alt}
-								src={_image?.url}
-								title={_image?.title}
-								style={imageStyle}
-							/>
-							<div
-								id={cardPrefix + 'no-image'}
-								style={{
-									display: 'flex',
-									alignItems: 'center',
-									justifyContent: 'center'
-								}}
-							>
-								<Typography color="textSecondary" align="center">
-									No Image
-								</Typography>
-							</div>
-						</IfElse>
-					</div>
+            {/* Languages and Buttons*/}
+            <div className="green-35-bg">
+                <div id={cardPrefix + 'languages'} className="project-card-languages">
+                    {/* Languages & Chips */}
+                    <div id={cardPrefix + 'chips'} className="project-card-chips">
+                        {chips.map((chip, index) => (
+                            <Chip
+                                key={index}
+                                size="small"
+                                label={chip}
+                                className="project-card-chip"
+                                style={{ color: 'white' }}
+                            />
+                        ))}
+                    </div>
+                    <IfElse condition={isPrivate === true}>
+                        <div className="text-secondary">
+                            Private repository
+                        </div>
+                        <Languages repoName={repo.name} repoOwner={repo.owner} />
+                    </IfElse>
+                </div>
 
-					{/* Actions */}
-					<div id={cardPrefix + 'action'} className="project-card-actions">
-						<div className="project-card-actions-background-wrapper">
-							<div className="project-card-actions-background"></div>
-						</div>
-						{iconButtons !== undefined &&
-							iconButtons.map((iconButton, index) => (
-								<Tooltip key={index} title={iconButton.title} color="primary" arrow>
-									<a className="project-card-action" href={iconButton.href} rel="noreferrer" target="_blank">
-										{iconButton.icon}
-									</a>
-								</Tooltip>
-							))}
-					</div>
-				</div>
-			</div>
-
-			{/* Languages */}
-			<div id={cardPrefix + 'languages'} className="project-card-languages card-dark-green">
-				{/* Languages & Chips */}
-				<div id={cardPrefix + 'chips'} className="project-card-chips">
-					{chips.map((chip, index) => (
-						<Chip
-							key={index}
-							size="small"
-							label={chip}
-							className="pixel-font project-card-chip"
-							style={{ fontSize: '1.25rem', color: "white" }}
-						/>
-					))}
-				</div>
-				<IfElse condition={isPrivate === true}>
-					<Typography variant="body1" color="textSecondary" style={{ fontStyle: 'italic' }}>
-						Private repository
-					</Typography>
-					<Languages repoName={repo.name} repoOwner={repo.owner} />
-				</IfElse>
-			</div>
-		</div>
-	);
+                {/* Actions */}
+                <div id={cardPrefix + 'action'} className="project-card-actions">
+                    {/* TODO: Add a disabled button with a disabled icon for when no actions are available */}
+                    {iconButtons !== undefined &&
+                        iconButtons.map((iconButton, index) => (
+                            <Tooltip key={index} title={iconButton.title} color="primary" arrow>
+                                <a className="project-card-action py-2" href={iconButton.href} rel="noreferrer" target="_blank">
+                                    {iconButton.icon}
+                                </a>
+                            </Tooltip>
+                        ))}
+                </div>
+            </div>
+        </div>
+    );
 }

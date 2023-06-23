@@ -6,13 +6,15 @@ import ProjectCards from './ProjectCards';
 import GameJamCards from './GameJamCards';
 
 export default function MainContent() {
-	return (
-			<div className="d-flex flex-column justify-content-center">
-				<Stars />
+    return (
+        <div className="d-flex flex-column justify-content-center">
+            <Stars />
+            <div className="main-content main-content-shadow">
                 <CloudsAndSun />
-				<ProjectCards />
-				<GameJamCards />
-				{/* <footer>
+                <ProjectCards />
+                <GameJamCards />
+            </div>
+            {/* <footer>
 					<Grid container justifyContent="flex-end">
 						<Grid item>
 							<Tooltip title="My Github" color="primary" arrow>
@@ -23,6 +25,6 @@ export default function MainContent() {
 						</Grid>
 					</Grid>
 				</footer> */}
-			</div>
-	);
+        </div>
+    );
 }

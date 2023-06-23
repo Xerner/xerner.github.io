@@ -16,7 +16,6 @@ export default function Clouds({ id }: { id: string }) {
 			{/* group 3 */}
 			<Cloud cloudIndex={1} initialLeft={0.7}    top={0} />
 			<Cloud cloudIndex={0} initialLeft={0.85}   top={0.05} distance={0.5} /> 
-            distance
 			{/* end cloud */}
 			<Cloud cloudIndex={0} initialLeft={0.975}  top={0} />
 

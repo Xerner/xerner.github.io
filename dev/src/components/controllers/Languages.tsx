@@ -1,5 +1,4 @@
 import { useTheme } from '@material-ui/core';
-import { Typography } from '@material-ui/core';
 import { useAsync } from 'react-async-hook';
 import languageColors from 'config/languageColors.json';
 import token from 'config/token.json';
@@ -28,25 +27,25 @@ export default function Languages(props: IGithubRepo) {
 	if (languages.loading) {
 		return (
 			<>
-				<Typography color="textSecondary" style={{ fontStyle: 'italic' }}>
+				<div className="text-secondary fst-italic">
 					Loading
-				</Typography>
+				</div>
 			</>
 		);
 	} else if (languages.error) {
 		return (
 			<>
-				<Typography color="textSecondary" style={{ fontStyle: 'italic' }}>
+				<div className="text-secondary fst-italic">
 					Error fetching languages
-				</Typography>
+				</div>
 			</>
 		);
 	} else if (languages.result.message !== undefined) {
 		return (
 			<>
-				<Typography color="textSecondary" style={{ fontStyle: 'italic' }}>
+				<div className="text-secondary fst-italic">
 					Repository: {languages.result.message}
-				</Typography>
+				</div>
 			</>
 		);
 	}
@@ -99,8 +98,8 @@ export default function Languages(props: IGithubRepo) {
 							>
 								<path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path>
 							</svg> */}
-							<span className="pixel-font project-card-languages-name">{name}</span>
-							<span className="pixel-font" style={{ color: theme.palette.grey[400] }}>
+							<span className="project-card-languages-name">{name}</span>
+							<span style={{ color: theme.palette.grey[400] }}>
 								{percentagesStr[index]}%
 							</span>
 						</div>
@@ -111,10 +110,10 @@ export default function Languages(props: IGithubRepo) {
 	);
 
 	return (
-		<>
+		<div>
 			{percentBars}
 			{languageDots}
-		</>
+		</div>
 	);
 }
 

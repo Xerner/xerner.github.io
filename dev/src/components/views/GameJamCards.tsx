@@ -2,6 +2,7 @@ import { selectDarkMode } from 'features/themeSlice';
 import { useAppSelector } from 'hooks/reduxHooks';
 import ScrollCarousel from 'components/controllers/ScrollCarousel';
 import IfElse from 'components/controllers/IfElse';
+import CardBanner from 'components/views/CardBanner';
 import ProjectCard from 'components/controllers/ProjectCard';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import GameJamIcon from '@material-ui/icons/SportsEsports';
@@ -17,17 +18,7 @@ export default function GameJamCardsWrapper() {
         <div className="card-container">
             <div style={{ height: '20vh' }}></div>
             <div className={isDarkMode ? 'project-card-container' : 'project-card-container'}>
-                <div className="card-banner">
-                    <img src="images/title-banner-left.png" alt="title-banner-left" className="pixel card-banner-image" />
-                    <h1
-                        className="pixel-font card-title card-light-green text-center"
-                        style={{ fontFamily: 'futura', border: 'none' }}
-                    >
-                        Game Jams
-                    </h1>
-                    <img src="images/title-banner-right.png" alt="title-banner-right" className="pixel card-banner-image" />
-                </div>
-
+                <CardBanner title="Game Jams" />
                 <ScrollCarousel>{GameJamCards(isDarkMode)}</ScrollCarousel>
             </div>
         </div>
@@ -43,12 +34,12 @@ function GameJamCards(theme: any) {
 				owner: 'Xerner'
 			}}
 			image={{
-				url: 'images/deepspace.png',
+				url: 'images/card-images/deepspace.png',
 				alt: 'Deepspace icon',
 				title: 'Deepspace'
 			}}
 			name="Deepspace"
-			subtitle="Unity | 48 hour Game Jam!"
+			subtitle="Unity | 48 hour Game Jam"
 			chips={['Unity', 'C#', 'Bosca Ceoil', 'Aseprite']}
 			desc="A daring battle between a space engineer and an evil robot"
 			iconButtons={[

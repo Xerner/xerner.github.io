@@ -1,5 +1,34 @@
+$card-top-height: 15rem;
+
+.card-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 900px;
+	padding-right: 24px;
+	padding-left: 24px;
+}
+
+.card-banner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.card-banner-image {
+	height: 80px;
+}
+
+.card-title {
+	height: 80px;
+	padding: 0.25rem 0 1.5rem 0;
+}
+
 .project-card-container {
-	height: 70vh;
 	width: 100%;
 	// overflow-x: clip;
 }
@@ -10,33 +39,59 @@
 	overflow: hidden;
 }
 
+.project-card > * {
+    color: white !important;
+	// text-shadow: 1pt 1pt 0 black;
+}
+
+.project-card > * .text-secondary {
+    color: white !important;
+	// text-shadow: 1pt 1pt 0 black;
+}
+
 .project-card-top {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+    height: $card-top-height;
+    max-height: $card-top-height;
 }
 
-.project-card-description {
-	width: 80%;
-	padding: 1rem;
+.project-card-info {
+    flex-grow: 1;
 }
 
-.project-card-image-and-actions {
-	border-left: 2px solid #059573;
-	width: 100px;
-	display: flex;
-	flex-direction: column;
-}
+// .project-card-description {
+// 	color: white;
+// }
+
+// .project-card-description {
+// 	width: 80%;
+// 	padding: 1rem;
+// }
+
+// .project-card-image-and-actions {
+// 	border-left: 2px solid #059573;
+// 	width: 100px;
+// 	display: flex;
+// 	flex-direction: column;
+// }
 
 .project-card-image-wrapper {
-	width: 100px;
-	height: 100px;
+	// border-left: 2px solid #059573;
+    height: 100%;
+    // display: flex;
+    // justify-content: center;
+    // overflow: hidden;
+    // width: 100px;
+	// height: 100px;
 	margin-bottom: 0;
 }
 
 .project-card-image {
 	object-fit: contain;
-	width: 100%;
+    width: $card-top-height;
+    height: 100%;
 }
 
 .project-card-actions {
@@ -56,7 +111,7 @@
 }
 
 .project-card-actions-background {
-	background-color: hsl(149, 66%, 40%);
+	// background-color: hsl(149, 66%, 40%);
 	width: 100%;
 	height: 100%;
 }
@@ -104,6 +159,7 @@
 }
 
 .project-card-chips {
+    font-size: 0.75rem !important;
 	flex: 0;
 	display: flex;
 	padding-top: 0;
@@ -114,5 +170,6 @@
 	background-color: #888888 !important;
 	margin-right: 6px;
 	margin-bottom: 8px;
-	box-shadow: 0 3px #444444;
+	box-shadow: 0 2px #222222;
+	// text-shadow: none;
 }
