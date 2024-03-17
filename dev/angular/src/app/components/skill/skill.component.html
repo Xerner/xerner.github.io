@@ -1,13 +1,11 @@
-<div class="flex justify-between">
-  <div>
-    {{ name() }}
-  </div>
-  <!-- @for (level of levelArr(); track $index) {
-    @if (level == 1) {
-      <mat-icon>star</mat-icon>
+<ng-content />
+<div class="flex gap-x-1">
+  @for (level of levelArr(); track $index) {
+    @if (level === 1) {
+      <div class="skill basis-1/5 bg-blue-300"></div>
     }
     @else {
-      <mat-icon>star</mat-icon>
+      <div class="skill basis-1/5 bg-slate-100"></div>
     }
-  } -->
+  }
 </div>

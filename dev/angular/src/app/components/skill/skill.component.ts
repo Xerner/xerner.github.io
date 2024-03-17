@@ -1,19 +1,18 @@
 import { Component, computed, input } from '@angular/core';
 
-export type SkillLevel = 1 | 2 | 3 | 4 | 5;
+export type SkillLevel = "1" | "2" | "3" | "4"| "5";
 
 @Component({
   selector: 'app-skill',
   templateUrl: './skill.component.html',
+  styleUrl: './skill.component.scss',
   standalone: true,
-  host: { class: "letter-page" }
 })
 export class SkillComponent{
-  name = input.required<string>()
   level = input.required<SkillLevel>()
   protected levelArr = computed(() => {
-    var arr = Array(this.level as unknown).fill(0)
-    var level = this.level() as unknown as number
+    var level = parseInt(this.level())
+    var arr = Array(5).fill(0)
     arr.forEach((_, i) => {
       if (i < level) {
         arr[i] = 1

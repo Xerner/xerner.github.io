@@ -7,6 +7,7 @@ import { InfoBlockComponent } from './components/info-block/info-block.component
 import { InfoEntryComponent } from './components/info-entry/info-entry.component';
 import { DateTime } from 'luxon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SkillComponent } from './components/skill/skill.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     InfoBlockComponent,
     InfoEntryComponent,
     MatIconModule,
+    SkillComponent,
   ],
   templateUrl: './app.component.html',
   host: { class: "h-screen w-screen flex flex-col justify-center items-center" }
