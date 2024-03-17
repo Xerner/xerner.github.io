@@ -1,0 +1,58 @@
+.pixel {
+  image-rendering: optimizeSpeed;
+  /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: -moz-crisp-edges;
+  /* Firefox                        */
+  image-rendering: -o-crisp-edges;
+  /* Opera                          */
+  image-rendering: -webkit-optimize-contrast;
+  /* Chrome (and eventually Safari) */
+  image-rendering: pixelated;
+  /* Chrome */
+  image-rendering: optimize-contrast;
+  /* CSS3 Proposed                  */
+  -ms-interpolation-mode: nearest-neighbor;
+  /* IE8+                           */
+}
+
+@font-face {
+  font-family: "Pixelar Regular";
+  src: url("../fonts/PixelarRegularW01-Regular.woff2") format("woff2");
+}
+.pixel-font {
+  font-family: "Pixelar Regular" !important;
+  color: white !important;
+  text-shadow: 1pt 1pt black;
+}
+
+h1.pixel-font {
+  font-size: 3.5rem;
+}
+
+h2.pixel-font {
+  font-size: 2.75rem;
+}
+
+h3.pixel-font {
+  font-size: 2.25rem;
+}
+
+h4.pixel-font {
+  font-size: 2rem;
+}
+
+h5.pixel-font {
+  font-size: 1.75rem;
+}
+
+h6.pixel-font {
+  font-size: 1.25rem;
+}
+
+p.pixel-font,
+span.pixel-font {
+  font-size: 1.5rem;
+  line-height: 1 !important;
+}
+
+/*# sourceMappingURL=pixel.css.map */

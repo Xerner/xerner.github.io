@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.letter-page {
+  width: 8.5in;
+  height: 11in;
+}
+
+.chip {
+  padding: 0.25rem 0.66rem;
+  border-radius: 1rem;
+}
+
+// 1 inch
+
+.p-1in {
+  padding: 1in;
+}
+
+.w-1in {
+  width: 1in;
+}
+
+.h-1in {
+  height: 1in;
+}
+
+// 1/2 inch
+
+.p-1-2in {
+  padding: 0.5in;
+}
+
+.w-1-2in {
+  width: 0.5in;
+}
+
+.h-1-2in {
+  height: 0.5in;
+}
+
+// 3/4 inch
+
+.p-3-4in {
+  padding: 0.75in;
+}
+
+.w-3-4in {
+  width: 0.75in;
+}
+
+.h-3-4in {
+  height: 0.75in;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// 1/4 inch
+
+.p-1-4in {
+  padding: 0.25in;
+}
+
+.w-1-4in {
+  width: 0.25in;
+}
+
+.h-1-4in {
+  height: 0.25in;
+}

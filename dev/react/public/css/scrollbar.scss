@@ -1,0 +1,75 @@
+@use "sass:math";
+
+$mainScrollbarWidth: 16px;
+/* width */
+.main-scrollbar::-webkit-scrollbar {
+	width: $mainScrollbarWidth;
+}
+
+.main-scrollbar::-webkit-scrollbar-track {
+	background: linear-gradient(90deg, #434343, #434343 1px, #111 0, #111);
+}
+
+.main-scrollbar::-webkit-scrollbar-thumb {
+	background: #e8e8e888;
+	border-radius: math.div($mainScrollbarWidth, 2);
+	box-shadow: inset 0 0 5px black;
+}
+
+.main-scrollbar::-webkit-scrollbar-thumb:hover {
+	background: #e8e8e8aa;
+	border-radius: math.div($mainScrollbarWidth, 2);
+}
+
+.hidden-scrollbar::-webkit-scrollbar {
+	display: none !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hidden-scrollbar {
+	-ms-overflow-style: none !important; /* IE and Edge */
+	scrollbar-width: none !important; /* Firefox */
+}
+
+/* Track */
+// .custom-scrollbar::-webkit-scrollbar-track {
+//   box-shadow: inset 0 0 5px grey;
+//   border-radius: 5px;
+// }
+
+// Dark
+
+/* width */
+.custom-scrollbar::-webkit-scrollbar {
+	width: 8px;
+}
+
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	background: #e8e8e844;
+	// background: gray !important;
+	border-radius: 4px;
+}
+
+/* Handle on hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+	background: #e8e8e888;
+}
+
+// Light
+
+/* width */
+.custom-scrollbar-light::-webkit-scrollbar {
+	width: 8px;
+}
+
+/* Handle */
+.custom-scrollbar-light::-webkit-scrollbar-thumb {
+	background: #08080844; // #08080844;
+	border-radius: 4px;
+}
+
+/* Handle on hover */
+.custom-scrollbar-light::-webkit-scrollbar-thumb:hover {
+	background: #08080888;
+}

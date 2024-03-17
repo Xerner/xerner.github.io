@@ -1,11 +1,14 @@
 {
 	"folders": [
-		{
-			"path": "."
-		},
-        {
-			"path": "./dev"
-		}
-    ],
+    {
+      "path": "."
+    },
+    {
+      "path": "dev/react"
+    },
+    {
+      "path": "dev/angular"
+    }
+  ],
     "settings": {}
 }
