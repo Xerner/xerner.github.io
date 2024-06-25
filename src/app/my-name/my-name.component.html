@@ -1,0 +1,25 @@
+<app-delayable [delay]="delay()">
+  <div class="relative flex justify-center" style="width: 80vw; height: 40vh;">
+    <app-star-letter letter="K" />
+    <app-star-letter letter="e" />
+    <app-star-letter letter="n" />
+    <app-star-letter letter="n" />
+    <app-star-letter letter="e" />
+    <app-star-letter letter="t" />
+    <app-star-letter letter="h" />
+    <!-- {/* <svg width="auto" height="400" style={{ position: 'absolute' , maxWidth: "700px" }}>
+      <StarGraph graph={nameGraph} />
+    </svg> */} -->
+  </div>
+
+  <!-- Look Below -->
+  <app-delayable [delay]="delay()">
+    <div class="text-center text-white absolute text-2xl font-bold animate__animated animate__fadeInUp" style="top: 80vh; z-index: 10;">
+      <div>Look Below</div>
+      <div class="rotate-90">
+        Forward Icon Here
+        <!-- <ForwardIcon class="text-white text-3xl" /> -->
+      </div>
+    </div>
+  </app-delayable>
+</app-delayable>

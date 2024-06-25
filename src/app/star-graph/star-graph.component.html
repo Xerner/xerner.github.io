@@ -1,0 +1,16 @@
+<div>
+  <svg [attr.width]="width()" [attr.height]="height()">
+    @for (node of graph().nodes; track $index) {
+      <image [attr.x]="node.x" [attr.y]="node.y" [attr.height]="starHeight" [attr.width]="starWidth" [attr.href]="img" />
+    }
+    @for (edge of graph().edges; track $index) {
+      <line
+        [attr.x1]="offsetCoordinateToCenter(edge.node1.x, radius)"
+        [attr.y1]="offsetCoordinateToCenter(edge.node1.y, radius)"
+        [attr.x2]="offsetCoordinateToCenter(edge.node2.x, radius)"
+        [attr.y2]="offsetCoordinateToCenter(edge.node2.y, radius)"
+        stroke="white"
+        [attr.opacity]="lineOpacity" />
+    }
+  </svg>
+</div>

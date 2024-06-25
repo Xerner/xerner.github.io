@@ -6,7 +6,7 @@ import MyName from 'components/controllers/MyStarName2';
 import StarsController from 'components/controllers/Stars';
 
 export default function Stars() {
-    const [playAnimation, setPlayAnimation] = useCookie('playAnimation', true);
+  const [playAnimation, setPlayAnimation] = useCookie('playAnimation', true);
 
     // Entrance animation
 	// This is supposed to go off at the same time the name finishes animating
@@ -18,7 +18,7 @@ export default function Stars() {
 			}, 2000);
 		}
 	}, [playAnimation, setPlayAnimation]);
-    
+
     return <div
         id="stars-and-name"
         className="starry-night-bg"

@@ -1,3 +1,6 @@
+@use "styles/backgrounds.scss";
+@use "styles/animations.scss";
+
 /* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
@@ -6,17 +9,18 @@
 .tooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black;
+  // border-bottom: 1px dotted black;
 }
 
 .tooltip .tooltip-text {
+  display: none;
   visibility: hidden;
-  width: 120px;
+  // width: 120px;
   background-color: black;
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px;
 
   /* Position the tooltip */
   position: absolute;
@@ -26,6 +30,7 @@
   margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
 }
 
-.tooltip:hover .tooltiptext {
+.tooltip:hover .tooltip-text {
+  display: inline;
   visibility: visible;
 }

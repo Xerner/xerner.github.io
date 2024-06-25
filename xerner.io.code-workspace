@@ -1,8 +1,14 @@
 {
 	"folders": [
-		{
-			"path": "."
-		}
+    {
+      "path": "."
+    },
+    {
+      "path": "react"
+    },
+    {
+      "path": "src"
+    }
   ],
   "settings": {}
 }
