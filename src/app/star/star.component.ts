@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, signal } from '@angular/core';
+import { Component, ElementRef, input, signal } from '@angular/core';
 import { DelayableComponent } from '../delayable/delayable.component';
 import { randomInt } from '../../library/math';
 import { FadeType, StarSource, FadeTypes, StarSources } from '../../models/stars';
@@ -14,8 +14,6 @@ import { FadeType, StarSource, FadeTypes, StarSources } from '../../models/stars
   templateUrl: './star.component.html',
 })
 export class StarComponent {
-  left = input.required<number>();
-  top = input.required<number>();
   transform = input.required<string>();
   delay = input.required<number>();
   hasNoFade = input<boolean>(false);
@@ -53,6 +51,6 @@ export class StarComponent {
   }
 
   getStyle() {
-    return `position: absolute; left: ${this.left()}%; top: ${this.top()}%; transform: ${this.transform()}`;
+    return `transform: ${this.transform()}`;
   }
 }

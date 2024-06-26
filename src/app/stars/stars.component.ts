@@ -12,6 +12,9 @@ import { StarsService } from '../../services/stars.service';
     StarComponent
   ],
   templateUrl: './stars.component.html',
+  host: {
+    style: 'position: relative;'
+  }
 })
 export class StarsComponent
 {
@@ -25,5 +28,9 @@ export class StarsComponent
 
   ngOnInit() {
     this.stars.set(this.starsService.createStars(this.starCount(), this.maxDelay(), this.minDelay()));
+  }
+
+  getStarStyle(star: IStar) {
+    return `position: absolute; left: ${star.left}%; top: ${star.top}%`;
   }
 }
