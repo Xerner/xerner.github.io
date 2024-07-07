@@ -48,7 +48,7 @@ export function toPercentageString(num: number) {
   return `${num * 100}%`;
 }
 
-export function percentToNumber(percent: string) {
+export function strToNumber(percent: string) {
   const percentAsNumber: number = parseInt(percent.replace('%', '')) / 100;
   return percentAsNumber;
 }

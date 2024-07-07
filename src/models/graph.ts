@@ -1,4 +1,4 @@
-import { percentToNumber, toPercentageString } from "../library/math";
+import { strToNumber, toPercentageString } from "../library/math";
 
 export class Graph {
   nodes: GraphNode[];
@@ -10,14 +10,15 @@ export class Graph {
   }
 }
 
-export type GraphNodeType = GraphNode | [number, number] | [string, string];
+// TODO: replace number[][] type with FixedArray from ColorSlicer
+export type GraphNodeType = GraphNode | [number, number, boolean] | [string, string];
 export class GraphNode {
-  x: number;
-  y: number;
+  x: Coordinate;
+  y: Coordinate;
 
-  constructor(x = 0, y = 0) {
-    this.x = x;
-    this.y = y;
+  constructor(x = 0, y = 0, xIsPercentage = false, yIsPercentage = false) {
+    this.x = new Coordinate(x, xIsPercentage);
+    this.y = new Coordinate(y, yIsPercentage);;
   }
 
   static convert(graphNodeType: GraphNodeType): GraphNode {
@@ -27,7 +28,11 @@ export class GraphNode {
     if (typeof graphNodeType[0] === 'number' && typeof graphNodeType[1] === 'number') {
       return new GraphNode(graphNodeType[0], graphNodeType[1]);
     }
-    return new GraphNode(percentToNumber(graphNodeType[0] as string), percentToNumber(graphNodeType[1] as string));
+    var x = strToNumber(graphNodeType[0] as string);
+    var y = strToNumber(graphNodeType[1] as string);
+    var xIsPercentage = (graphNodeType[0] as string).indexOf("%") != -1;
+    var yIsPercentage = (graphNodeType[1] as string).indexOf("%") != -1;
+    return new GraphNode(x, y, xIsPercentage, yIsPercentage);
   }
 }
 
@@ -46,5 +51,10 @@ export class GraphEdge {
       return graphEdgeType;
     }
     return new GraphEdge(nodes[graphEdgeType[0]], GraphNode.convert(nodes[graphEdgeType[1]]));
+  }
+}
+
+export class Coordinate {
+  constructor(public coordinate: number, public isPercentage: boolean) {
   }
 }

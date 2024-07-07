@@ -16,14 +16,11 @@ export const FadeTypes: Record<FadeType, string> = {
 
 export class StarLetter {
   graph = new Graph();
-  // aspectRatio: number;
 
   constructor(
-    public aspectRatio: number = 1,
     nodes: GraphNodeType[] = [],
     edges: GraphEdgeType[] = []
   ) {
-      this.aspectRatio = aspectRatio;
       var graphNodes: GraphNode[] = nodes.map(node => GraphNode.convert(node));
       this.graph.nodes = graphNodes;
       var graphEdges: GraphEdge[] = edges.map(edge => GraphEdge.convert(graphNodes, edge));

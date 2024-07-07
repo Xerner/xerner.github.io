@@ -17,5 +17,5 @@ import { MyNameComponent } from './my-name/my-name.component';
 })
 export class AppComponent {
   title = 'portfolio';
-  nameDelay = 2500;
+  nameDelay = 0;
 }
