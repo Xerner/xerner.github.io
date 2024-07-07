@@ -5,7 +5,11 @@
       [attr.y]="adjustCoordinate(node, nodeRadius, getTotalHeight, getYCoord)"
       [attr.height]="nodeHeight"
       [attr.width]="nodeWidth"
-      [attr.href]="img" />
+      [attr.href]="img"
+      [title]="$index"
+    >
+      <title>Node {{ $index }}</title>
+    </image>
   }
   @for (edge of graph().edges; track $index) {
     <line
@@ -14,6 +18,9 @@
       [attr.x2]="adjustCoordinate(edge.node2, 0, getTotalWidth, getXCoord)"
       [attr.y2]="adjustCoordinate(edge.node2, 0, getTotalHeight, getYCoord)"
       stroke="white"
-      [attr.opacity]="lineOpacity" />
+      [attr.opacity]="lineOpacity"
+    >
+      <title>Edge {{ $index }}</title>
+    </line>
   }
 </svg>

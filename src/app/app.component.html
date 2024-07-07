@@ -1,13 +1,15 @@
 <div class="flex flex-col justify-between">
-    <div class="bg-starry-night h-screen w-full relative flex justify-center p-5">
-      <!-- <app-stars class="absolute top-0 w-full h-full" [starCount]="250"/> -->
-      <app-my-name class="h-full w-full absolute flex justify-center items-center -m-1 z-10" [delay]="nameDelay"></app-my-name>
-    </div>
-    <!-- <div class="main-content main-content-shadow">
-        <CloudsAndSun />
-        <ProjectCards />
-        <GameJamCards />
-    </div> -->
+  <div class="bg-space h-screen w-full relative flex justify-center items-center p-5">
+    <app-stars class="absolute top-0 w-full h-full" />
+    <app-my-name class="h-full w-full absolute flex justify-center items-center -m-1 z-10"></app-my-name>
+  </div>
+  <div class="bg-space-to-sky h-screen w-full relative flex justify-center items-center p-5">
+  </div>
+  <!-- <div class="main-content main-content-shadow">
+      <CloudsAndSun />
+      <ProjectCards />
+      <GameJamCards />
+  </div> -->
   <div class="bg-slate-500 flex justify-end p-3">
     <app-tooltip tooltip="My Github" class="bg-slate-300 p-2  rounded">
       Github

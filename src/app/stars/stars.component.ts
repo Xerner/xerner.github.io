@@ -3,6 +3,7 @@ import { Component, input, signal } from '@angular/core';
 import { IStar } from '../../interfaces/stars';
 import { StarComponent } from '../star/star.component';
 import { StarsService } from '../../services/stars.service';
+import { AppStore } from '../../stores/app.store';
 
 @Component({
   selector: 'app-stars',
@@ -18,16 +19,16 @@ import { StarsService } from '../../services/stars.service';
 })
 export class StarsComponent
 {
-  starCount = input.required<number>();
-  minDelay = input(500);
-  maxDelay = input(2000);
   stars = signal<IStar[]>([]);
 
-  constructor(private starsService: StarsService) {
+  constructor(
+    private starsService: StarsService,
+    private appStore: AppStore
+  ) {
   }
 
   ngOnInit() {
-    this.stars.set(this.starsService.createStars(this.starCount(), this.maxDelay(), this.minDelay()));
+    this.stars.set(this.starsService.createStars(this.appStore.starCount(), this.appStore.starMaxDelay(), this.appStore.starMinDelay()));
   }
 
   getStarStyle(star: IStar) {

@@ -1,4 +1,4 @@
-<app-delayable [delay]="delay()">
+<div [delay]="appStore.nameDelay()">
   <div class="relative grid grid-cols-7 justify-center items-end gap-3" style="width: 40vw; height: 20vh;">
     <app-star-letter letter="K" class="h-3/4" />
     <app-star-letter letter="e" class="h-1/2"  />
@@ -16,7 +16,7 @@
   </div>
 
   <!-- Look Below -->
-  <app-delayable [delay]="delay()">
+  <app-delayable [delay]="appStore.nameDelay() + 1000">
     <div class="text-center text-white absolute text-2xl font-bold animate__animated animate__fadeInUp" style="top: 80vh; z-index: 10;">
       <div>Look Below</div>
       <div class="rotate-90">
@@ -25,4 +25,4 @@
       </div>
     </div>
   </app-delayable>
-</app-delayable>
+</div>

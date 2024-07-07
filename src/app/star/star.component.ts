@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, input, signal } from '@angular/core';
-import { DelayableComponent } from '../delayable/delayable.component';
+import { Component, input, signal } from '@angular/core';
 import { randomInt } from '../../library/math';
 import { FadeType, StarSource, FadeTypes, StarSources } from '../../models/stars';
+import { DelayDirective } from '../../directives/delay.directive';
 
 @Component({
   selector: 'app-star',
   standalone: true,
   imports: [
     CommonModule,
-    DelayableComponent
+    DelayDirective
   ],
   templateUrl: './star.component.html',
 })

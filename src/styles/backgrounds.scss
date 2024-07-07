@@ -1,5 +1,12 @@
-.bg-starry-night {
-	background: linear-gradient(270deg, hsla(0, 0%, 0%, 1) 0%, #03003d 100%);
-	background: -moz-linear-gradient(270deg, hsla(0, 0%, 0%, 1) 0%, hsla(243, 100%, 12%, 1) 100%);
-	background: -webkit-linear-gradient(270deg, hsla(0, 0%, 0%, 1) 0%, hsla(243, 100%, 12%, 1) 100%);
+.bg-space {
+  background: rgb(2,0,36);
+  background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 100%);
+	background: -moz-linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 100%);
+	background: -webkit-linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 100%);
+}
+
+.bg-space-to-sky {
+  background: linear-gradient(270deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
+	background: -moz-linear-gradient(270deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
+	background: -webkit-linear-gradient(270deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
 }

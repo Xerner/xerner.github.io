@@ -1,25 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
-import { AppStore } from '../../services/stores/app.store';
-import { DelayableComponent } from '../delayable/delayable.component';
+import { Component } from '@angular/core';
+import { AppStore } from '../../stores/app.store';
 import { StarLetterComponent } from '../star-letter/star-letter.component';
+import { DelayDirective } from '../../directives/delay.directive';
 
 @Component({
   selector: 'app-my-name',
   standalone: true,
   imports: [
     CommonModule,
-    DelayableComponent,
     StarLetterComponent,
+    DelayDirective
   ],
   templateUrl: './my-name.component.html',
 })
 export class MyNameComponent {
-  delay = input.required<number>();
-
-  /**
-   *
-   */
   constructor(protected appStore: AppStore) {
   }
 }

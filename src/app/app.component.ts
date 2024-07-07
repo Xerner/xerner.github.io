@@ -16,6 +16,4 @@ import { MyNameComponent } from './my-name/my-name.component';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  title = 'portfolio';
-  nameDelay = 0;
 }
