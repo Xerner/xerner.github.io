@@ -1,28 +1,26 @@
-<div [delay]="appStore.nameDelay()">
-  <div class="relative grid grid-cols-7 justify-center items-end gap-3" style="width: 40vw; height: 20vh;">
-    <app-star-letter letter="K" class="h-3/4" />
-    <app-star-letter letter="e" class="h-1/2"  />
-    <app-star-letter letter="n" class="h-1/2"  />
-    <app-star-letter letter="n" class="h-1/2"  />
-    <app-star-letter letter="e" class="h-1/2"  />
-    <app-star-letter letter="t" class="h-3/4" />
-    <app-star-letter letter="h" class="h-3/4" />
+<div class="grid grid-rows-4 items-center">
+  <div></div>
+  <div [delay]="appStore.nameDelay()" class="flex items-end justify-center gap-3">
+    <app-star-letter letter="K" class="w-24 h-48" />
+    <app-star-letter letter="e" class="w-24 h-24" />
+    <app-star-letter letter="n" class="w-24 h-24" />
+    <app-star-letter letter="n" class="w-24 h-24" />
+    <app-star-letter letter="e" class="w-24 h-24" />
+    <app-star-letter letter="t" class="w-24 h-48" />
+    <app-star-letter letter="h" class="w-24 h-48" />
   </div>
-  <div class="relative grid grid-cols-4 justify-center items-end gap-3 m-auto" style="width: 22.85vw; height: 20vh;">
-    <app-star-letter letter="M" class="h-3/4" />
-    <app-star-letter letter="e" class="h-1/2" />
-    <app-star-letter letter="a" class="h-1/2" />
-    <app-star-letter letter="d" class="h-3/4" />
+  <div [delay]="appStore.nameDelay()" class="flex items-end justify-center gap-3">
+    <app-star-letter letter="M" class="w-24 h-48" />
+    <app-star-letter letter="e" class="w-24 h-24" />
+    <app-star-letter letter="a" class="w-24 h-24" />
+    <app-star-letter letter="d" class="w-24 h-48" />
   </div>
-
   <!-- Look Below -->
-  <app-delayable [delay]="appStore.nameDelay() + 1000">
-    <div class="text-center text-white absolute text-2xl font-bold animate__animated animate__fadeInUp" style="top: 80vh; z-index: 10;">
-      <div>Look Below</div>
-      <div class="rotate-90">
-        Forward Icon Here
-        <!-- <ForwardIcon class="text-white text-3xl" /> -->
-      </div>
-    </div>
-  </app-delayable>
+  <div
+    [delay]="appStore.nameDelay() + 1000"
+    class="text-center text-white text-2xl font-bold animate__animated animate__fadeInUp"
+  >
+    <div>Look Below</div>
+    <div>🠟</div>
+  </div>
 </div>
