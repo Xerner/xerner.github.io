@@ -1,0 +1,11 @@
+<img
+  [src]="getSrc()"
+  alt="cloud"
+  class="absolute h-auto"
+  [ngStyle]="{
+    'left.vw': left() * 100,
+    'top.vh': top() * 100,
+    'zIndex': getZIndex(),
+    'width.vw': cloudViewWidth(),
+  }"
+/>

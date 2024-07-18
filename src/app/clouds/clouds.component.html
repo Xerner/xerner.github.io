@@ -1,0 +1,26 @@
+<div class="relative overflow-x-clip w-full" [ngStyle]="{ top: TOP_OFFSET, height: LARGEST_CLOUD_HEIGHT }">
+  <!-- group 1 -->
+  <app-cloud [cloudIndex]="0" [initialLeft]="-0.025" [top]="0" />
+  <app-cloud [cloudIndex]="2" [initialLeft]="0.12"   [top]="0"    [distance]="1" />
+
+  <!-- group 2 -->
+  <app-cloud [cloudIndex]="1" [initialLeft]="0.31"   [top]="0.05" [distance]="0.7" />
+  <app-cloud [cloudIndex]="2" [initialLeft]="0.4"    [top]="0" />
+  <app-cloud [cloudIndex]="1" [initialLeft]="0.55"   [top]="0.05" [distance]="0.7" />
+
+  <!-- group 3 -->
+  <app-cloud [cloudIndex]="1" [initialLeft]="0.7"    [top]="0" />
+  <app-cloud [cloudIndex]="0" [initialLeft]="0.85"   [top]="0.05" [distance]="0.5" />
+
+  <!-- end cloud -->
+  <app-cloud [cloudIndex]="0" [initialLeft]="0.975"  [top]="0" />
+
+  <!-- Background clouds -->
+  <app-cloud [cloudIndex]="3" [initialLeft]="0.05"   [top]="0"    [distance]="0.25" />
+  <app-cloud [cloudIndex]="3" [initialLeft]="0.22"   [top]="0"    [distance]="0.4" />
+  <app-cloud [cloudIndex]="3" [initialLeft]="0.45"   [top]="0"    [distance]="0.3" />
+  <app-cloud [cloudIndex]="3" [initialLeft]="0.7"    [top]="0.05" [distance]="0.5" />
+
+  <!-- end cloud -->
+  <app-cloud [cloudIndex]="3" [initialLeft]="0.95"   [top]="0" />
+</div>
