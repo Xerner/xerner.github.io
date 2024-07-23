@@ -14,6 +14,13 @@ export const FadeTypes: Record<FadeType, string> = {
   3: 'fadeIn-3',
 };
 
+export interface IStar
+{
+  left: number;
+  top: number;
+  delay: number;
+}
+
 export class StarLetter {
   graph = new Graph();
 

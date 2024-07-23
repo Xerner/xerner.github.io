@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { IStar } from "../interfaces/stars";
+import { IStar } from "../models/stars";
 
 @Injectable({ providedIn: "root" })
 export class StarsService {

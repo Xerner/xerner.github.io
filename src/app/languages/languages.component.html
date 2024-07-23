@@ -1,0 +1,9 @@
+<div class="text-slate-300 italic">
+  @defer {
+    {{ languages() }}
+  } @loading {
+    Loading
+  } @error {
+    Error fetching languages
+  }
+</div>

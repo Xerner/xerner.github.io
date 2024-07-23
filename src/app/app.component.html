@@ -1,17 +1,25 @@
 <!-- Background -->
-<div class="h-screen w-full block absolute top-0 -z-10">
+<!-- <div class="h-screen w-full block absolute top-0 -z-10">
   <app-stars class="relative top-0 w-full h-full block bg-space" />
-</div>
+</div> -->
 
-<app-my-name class="h-screen block"></app-my-name>
+<!-- <app-my-name class="h-screen block"></app-my-name> -->
 
 <div class="h-screen block bg-space-to-sky">
   <app-clouds class="block w-full" />
+
   <!-- <div class="main-content main-content-shadow">
       <CloudsAndSun />
       <ProjectCards />
       <GameJamCards />
   </div> -->
+
+  <!-- Project Cards -->
+  <div class="flex flex-col py-24 gap-3 text-white">
+    @for (projectCard of projectCards(); track $index) {
+      <app-project-card class="block w-11/12 bg-slate-700 h-96 odd:self-end" [projectCard]="projectCard"></app-project-card>
+    }
+  </div>
 </div>
 
 <div class="bg-slate-500 flex justify-end p-3">
