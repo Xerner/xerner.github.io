@@ -5,7 +5,7 @@
       "owner": "Jaren-Taylor"
     },
     "image": {
-      "url": "images/card-images/card_smart-city-dashboard.png",
+      "url": "assets/images/card-images/card_smart-city-dashboard.png",
       "alt": "Smart City Dashboard screenshot",
       "title": "Smart City Dashboard"
     },
@@ -23,7 +23,7 @@
   {
   "repo": { "name": "steamy-bot", "owner": "Xerner" },
 			"image": {
-				"url": "images/card-images/card_steamy-bot.png",
+				"url": "assets/images/card-images/card_steamy-bot.png",
 				"alt": "Smart City Dashboard screenshot",
 				"title": "Smart City Dashboard"
 			},
@@ -35,7 +35,7 @@
   {
     "repo": { "name": "Pokemon-Battler-Unity", "owner": "Xerner" },
 			"image": {
-				"url": "images/card-images/card_pokemon.png",
+				"url": "assets/images/card-images/card_pokemon.png",
 				"alt": "Pokemon screenshot",
 				"title": "Pokemon"
 			},
@@ -53,7 +53,7 @@
     "repo": { "name": "", "owner": "Xerner" },
 			"isPrivate": true,
 			"image": {
-				"url": "images/card-images/card_react.png",
+				"url": "assets/images/card-images/card_react.png",
 				"alt": "React",
 				"title": "React"
 			},
@@ -68,7 +68,7 @@
     "repo": { "name": "", "owner": "Xerner" },
 			"isPrivate": true,
 			"image": {
-				"url": "images/card-images/card_visual-studio.png",
+				"url": "assets/images/card-images/card_visual-studio.png",
 				"alt": "Visual Studio",
 				"title": "Visual Studio"
 			},
@@ -82,7 +82,7 @@
     "repo": { "name": "", "owner": "Xerner" },
 			"isPrivate": true,
 			"image": {
-				"url": "images/card-images/card_excel.png",
+				"url": "assets/images/card-images/card_excel.png",
 				"alt": "Excel VBA",
 				"title": "Excel VBA"
 			},
@@ -95,7 +95,7 @@
   {
     "repo": { "name": "", "owner": "Xerner" },
 			"image": {
-				"url": "images/card-images/card_react.png",
+				"url": "assets/images/card-images/card_react.png",
 				"alt": "React",
 				"title": "React"
 			},

@@ -1,6 +1,8 @@
+
 @use "styles/backgrounds.scss";
 @use "styles/animations.scss";
 @import "animate.css/animate.min.css";
+@import 'app/project-card/project-card.component.scss';
 
 /* You can add global styles to this file, and also import other style files */
 @tailwind base;
@@ -43,3 +45,8 @@
 .w-screen-3\/4 {
   width: 75vw;
 }
+
+.chip {
+  @apply inline bg-slate-200 text-slate-900 py-1 px-3 rounded-2xl;
+}
+

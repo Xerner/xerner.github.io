@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, ElementRef, input } from '@angular/core';
 
 @Component({
   selector: 'app-chip',
@@ -8,7 +8,8 @@ import { Component, input } from '@angular/core';
     CommonModule,
   ],
   templateUrl: './chip.component.html',
+  host: {
+    class: 'chip',
+  },
 })
-export class ChipComponent {
-  label = input.required<string>()
-}
+export class ChipComponent {}

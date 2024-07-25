@@ -8,11 +8,13 @@ import { ProjectCardComponent } from './project-card/project-card.component';
 import { IProjectCard } from '../models/project-card';
 import { GithubApiService } from '../services/github-api.service';
 import { ProjectCardService } from '../services/project-card.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    CommonModule,
     RouterOutlet,
     TooltipComponent,
     StarsComponent,
@@ -32,5 +34,9 @@ export class AppComponent {
     this.projectCardService.getProjectCards().subscribe(projectCards => {
       this.projectCards.set(projectCards)
     })
+  }
+
+  getId(projectCard: IProjectCard) {
+    return projectCard.name + "-project-card";
   }
 }

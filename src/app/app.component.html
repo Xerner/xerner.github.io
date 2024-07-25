@@ -17,7 +17,12 @@
   <!-- Project Cards -->
   <div class="flex flex-col py-24 gap-3 text-white">
     @for (projectCard of projectCards(); track $index) {
-      <app-project-card class="block w-11/12 bg-slate-700 h-96 odd:self-end" [projectCard]="projectCard"></app-project-card>
+      <app-project-card
+        [id]="getId(projectCard)"
+        [index]="$index"
+        [projectCard]="projectCard"
+        class="project-card"
+      ></app-project-card>
     }
   </div>
 </div>

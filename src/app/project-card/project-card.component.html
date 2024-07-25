@@ -1,25 +1,69 @@
-<div class="p-6" [id]="getId()">
-  <!-- Title, desc, etc -->
-  <div class="flex flex-col">
-    <h3 class="font-lg">
+<div class="content">
+  <div>
+    <!-- Title, desc, etc -->
+    <h3 class="text-2xl font-semibold">
       {{ projectCard().name }}
     </h3>
+
     @if (projectCard().subtitle) {
       <div class="font-light">
         {{ projectCard().subtitle }}
       </div>
     }
+
+    <hr class="border-slate-800 border-t-2 my-5 -mx-5" />
+
     <div>
       {{ projectCard().desc }}
     </div>
   </div>
 
-  <!-- Image -->
+  <!-- Languages & Chips -->
+  <div>
+    @if (projectCard().isPrivate) {
+      <div class="italic text-slate-400">No language information</div>
+    } @else {
+      <app-languages
+        [repoName]="projectCard().repo.name"
+        [repoOwner]="projectCard().repo.owner"
+      />
+    }
+
+    <div class="chips mt-3">
+      @for (chip of projectCard().chips; track $index) {
+        <app-chip>
+          {{ chip }}
+        </app-chip>
+      }
+    </div>
+
+  </div>
+</div>
+
+<!-- Buttons -->
+<!-- <div> -->
+<!-- TODO: Add a disabled button with a disabled icon for when no actions are available -->
+<!-- @for (iconButton of projectCard().iconButtons; track $index) {
+      <a
+        [href]="iconButton.href"
+        rel="noreferrer"
+        target="_blank"
+        [matTooltip]="iconButton.title"
+      >
+        {{ iconButton.icon }}
+      </div>
+      </a>
+    } -->
+<!-- </div> -->
+
+<!-- Image -->
+<div class="image-container">
   @if (projectCard().image !== undefined) {
     <img
       [alt]="projectCard().image!.alt"
       [src]="projectCard().image!.url"
       [title]="projectCard().image!.title"
+      class="image"
     />
     <!-- style={imageStyle} -->
   } @else {
@@ -30,47 +74,7 @@
         justifyContent: 'center',
       }"
     >
-      <div className="text-slate-300 text-center">No Image</div>
+      <div class="text-slate-300 text-center">No Image</div>
     </div>
   }
-
-  <!-- Buttons -->
-  <div>
-    <!-- Languages & Chips -->
-    <div>
-      <div>
-        @for (chip of projectCard().chips; track $index) {
-          <app-chip
-            size="small"
-            [label]="chip"
-            [ngStyle]="{ color: 'white' }"
-          />
-        }
-      </div>
-
-      @if (projectCard().isPrivate) {
-        <div className="text-secondary">Private repository</div>
-      } @else {
-        <app-languages
-          [repoName]="projectCard().repo.name"
-          [repoOwner]="projectCard().repo.owner"
-        />
-      }
-    </div>
-
-    <!-- Buttons -->
-    <div>
-      <!-- TODO: Add a disabled button with a disabled icon for when no actions are available -->
-      <!-- @for (iconButton of projectCard().iconButtons; track $index) {
-        <a
-          [href]="iconButton.href"
-          rel="noreferrer"
-          target="_blank"
-          [matTooltip]="iconButton.title"
-        >
-          {{ iconButton.icon }}
-        </a>
-      } -->
-    </div>
-  </div>
 </div>

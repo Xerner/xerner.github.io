@@ -20,4 +20,8 @@ export class GithubApiService {
   getLanguages(repoName: string, repoOwner: string) {
     return this.http.get<ILanguages>(`${this.BASE_URL}/${repoOwner}/${repoName}/languages`);
   }
+
+  getFile(repoOwner: string, repoName: string, filepath: string) {
+    return this.http.get<Object>(`${this.BASE_URL}/${repoOwner}/${repoName}/contents/${filepath}`);
+  }
 }

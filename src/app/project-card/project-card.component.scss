@@ -1,0 +1,51 @@
+$height: 20rem;
+
+.project-card {
+  @apply block
+    bg-slate-700
+    w-11/12
+    even:rounded-e-xl
+    odd:rounded-s-xl
+    odd:self-end
+    border-2
+    border-slate-800
+    flex
+    justify-between
+    even:flex-row-reverse
+    even:text-right;
+
+  height: $height;
+
+  .content {
+    @apply flex
+      flex-col
+      justify-between
+      h-full
+      p-5
+      gap-3
+      grow;
+  }
+
+  .image-container {
+    @apply h-full
+      bg-slate-800
+      odd:border-e-2
+      even:border-s-2
+      border-slate-800;
+
+    width: $height;
+  }
+
+  .image {
+    width: $height;
+    object-fit: cover;
+  }
+
+  .chips {
+    @apply flex
+      gap-2;
+  }
+  &:nth-child(even) .chips {
+    @apply justify-end;
+  }
+}
