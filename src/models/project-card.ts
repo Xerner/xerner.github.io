@@ -1,16 +1,13 @@
+import { IRepository } from "./github-api/repository";
+
 export interface IProjectCard {
-  repo: IProjectCardRepo;
-  name: string;
-  subtitle?: string;
-  desc: string;
+  repo: IRepository;
   image?: IProjectCardImage;
-  isPrivate?: boolean;
-  chips: string[];
 }
 
 export interface IProjectCardLegacy {
   isPrivate?: boolean;
-  repo: IProjectCardRepo;
+  // repo: IProjectCardRepo;
   name: string;
   subtitle?: string;
   chips: string[];
@@ -25,11 +22,6 @@ export interface IProjectCardImage {
   alt?: string;
   title?: string;
   imageFit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
-}
-
-export interface IProjectCardRepo {
-  name: string;
-  owner: string;
 }
 
 export interface IProjectCardActionButton {

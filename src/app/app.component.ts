@@ -37,6 +37,6 @@ export class AppComponent {
   }
 
   getId(projectCard: IProjectCard) {
-    return projectCard.name + "-project-card";
+    return projectCard.repo.name + "-project-card";
   }
 }

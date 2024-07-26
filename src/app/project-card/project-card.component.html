@@ -1,42 +1,78 @@
 <div class="content">
   <div>
     <!-- Title, desc, etc -->
-    <h3 class="text-2xl font-semibold">
-      {{ projectCard().name }}
-    </h3>
+    <div class="flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <h3 class="text-2xl font-semibold">
+          <a
+            [href]="projectCard().repo.html_url"
+            target="_blank"
+          >
+            <span class="text-slate-300 font-light"
+              >{{ projectCard().repo.owner.login }}/</span
+            >{{ projectCard().repo.name }}
+          </a>
 
-    @if (projectCard().subtitle) {
+        </h3>
+
+        <div class="rounded-full overflow-clip" [title]="projectCard().repo.owner.login">
+          <a [href]="projectCard().repo.owner.html_url" target="_blank">
+            <img class="w-8 h-8" [src]="projectCard().repo.owner.avatar_url" alt="repo owner">
+          </a>
+        </div>
+
+        @if (projectCard().repo.fork) {
+          <span class="font-light text-lg text-slate-300">fork</span>
+        }
+        @if (projectCard().repo.private) {
+          <span class="font-light text-lg text-slate-300">private</span>
+        }
+      </div>
+
+      <div class="flex gap-3">
+        <app-chip class="bg-slate-800">
+          {{ projectCard().repo.open_issues_count }} open issues
+        </app-chip>
+        <app-chip class="bg-slate-800">
+          {{ projectCard().repo.stargazers_count }} stars
+        </app-chip>
+        <app-chip class="bg-slate-800">
+          {{ projectCard().repo.watchers_count }} watchers
+        </app-chip>
+      </div>
+    </div>
+
+    <!-- @if (projectCard().subtitle) {
       <div class="font-light">
         {{ projectCard().subtitle }}
       </div>
-    }
+    } -->
 
     <hr class="border-slate-800 border-t-2 my-5 -mx-5" />
 
     <div>
-      {{ projectCard().desc }}
+      {{ projectCard().repo.description }}
     </div>
   </div>
 
   <!-- Languages & Chips -->
   <div>
-    @if (projectCard().isPrivate) {
+    @if (projectCard().repo.private) {
       <div class="italic text-slate-400">No language information</div>
     } @else {
       <app-languages
         [repoName]="projectCard().repo.name"
-        [repoOwner]="projectCard().repo.owner"
+        [repoOwner]="projectCard().repo.owner.login"
       />
     }
 
     <div class="chips mt-3">
-      @for (chip of projectCard().chips; track $index) {
-        <app-chip>
+      @for (chip of projectCard().repo.topics; track $index) {
+        <app-chip class="bg-slate-200 text-slate-900">
           {{ chip }}
         </app-chip>
       }
     </div>
-
   </div>
 </div>
 
@@ -57,8 +93,8 @@
 <!-- </div> -->
 
 <!-- Image -->
-<div class="image-container">
-  @if (projectCard().image !== undefined) {
+@if (projectCard().image !== undefined) {
+  <div class="image-container">
     <img
       [alt]="projectCard().image!.alt"
       [src]="projectCard().image!.url"
@@ -66,15 +102,12 @@
       class="image"
     />
     <!-- style={imageStyle} -->
-  } @else {
+  </div>
+}
+<!-- @else {
     <div
-      [ngStyle]="{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }"
+      class="image-container h-full flex items-center justify-center"
     >
       <div class="text-slate-300 text-center">No Image</div>
-    </div>
-  }
-</div>
+  </div>
+} -->

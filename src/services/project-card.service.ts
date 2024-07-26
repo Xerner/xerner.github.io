@@ -13,13 +13,21 @@ export class ProjectCardService {
   }
 
   getProjectCards(): Observable<IProjectCard[]> {
-    return from([PROJECT_CARDS])
+    // return from([PROJECT_CARDS])
+    return this.githubApi.getRepositories(APP_SETTINGS.user)
+      .pipe(
+        map(repos => repos.map<IProjectCard>(repo => {
+          return {
+            repo: repo,
+          }
+        }))
+      );
   }
 
-  getProjectCardFromApi(repoOwner: string): Observable<IProjectCard> {
-    return this.githubApi.getRepositories(repoOwner).pipe(
-      concatMap(repo => this.githubApi.getFile(repoOwner, repo.name, APP_SETTINGS.projectCardFilePath)),
-      map(file => file as IProjectCard)
-    )
-  }
+  // getRepositoryPortfolioFileFromApi(repoOwner: string): Observable<IProjectCard> {
+  //   return this.githubApi.getRepositories(repoOwner).pipe(
+  //     concatMap(repo => this.githubApi.getFile(repoOwner, repo., APP_SETTINGS.portfolioJsonFilePath)),
+  //     map(file => file as IProjectCard)
+  //   )
+  // }
 }
