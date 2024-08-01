@@ -1,43 +1,50 @@
-<div class="content">
+<div class="body">
   <div>
     <!-- Title, desc, etc -->
-    <div class="flex items-center justify-between gap-3">
+    <div class="flex items-center justify-between gap-3 padded">
       <div class="flex items-center gap-3">
+        <!-- Title -->
         <h3 class="text-2xl font-semibold">
-          <a
-            [href]="projectCard().repo.html_url"
-            target="_blank"
-          >
+          <a [href]="projectCard().repo().html_url" target="_blank">
             <span class="text-slate-300 font-light"
-              >{{ projectCard().repo.owner.login }}/</span
-            >{{ projectCard().repo.name }}
+              >{{ projectCard().repo().owner.login }}/</span
+            >{{ projectCard().repo().name }}
           </a>
-
         </h3>
 
-        <div class="rounded-full overflow-clip" [title]="projectCard().repo.owner.login">
-          <a [href]="projectCard().repo.owner.html_url" target="_blank">
-            <img class="w-8 h-8" [src]="projectCard().repo.owner.avatar_url" alt="repo owner">
+        <!-- Owner gravatar -->
+        <div
+          class="rounded-full overflow-clip"
+          [title]="projectCard().repo().owner.login"
+        >
+          <a [href]="projectCard().repo().owner.html_url" target="_blank">
+            <img
+              class="w-8 h-8"
+              [src]="projectCard().repo().owner.avatar_url"
+              alt="repo owner"
+            />
           </a>
         </div>
 
-        @if (projectCard().repo.fork) {
+        <!-- Repo flairs -->
+        @if (projectCard().repo().fork) {
           <span class="font-light text-lg text-slate-300">fork</span>
         }
-        @if (projectCard().repo.private) {
+        @if (projectCard().repo().private) {
           <span class="font-light text-lg text-slate-300">private</span>
         }
       </div>
 
+      <!-- Repo counts -->
       <div class="flex gap-3">
         <app-chip class="bg-slate-800">
-          {{ projectCard().repo.open_issues_count }} open issues
+          {{ projectCard().repo().open_issues_count }} open issues 📝
         </app-chip>
         <app-chip class="bg-slate-800">
-          {{ projectCard().repo.stargazers_count }} stars
+          {{ projectCard().repo().stargazers_count }} stars 🤩
         </app-chip>
         <app-chip class="bg-slate-800">
-          {{ projectCard().repo.watchers_count }} watchers
+          {{ projectCard().repo().watchers_count }} watchers 👁
         </app-chip>
       </div>
     </div>
@@ -48,31 +55,33 @@
       </div>
     } -->
 
-    <hr class="border-slate-800 border-t-2 my-5 -mx-5" />
+    <hr class="border-slate-800 border-t-2" />
 
-    <div>
-      {{ projectCard().repo.description }}
+    <div
+      class="flex flex-wrap gap-3 font-light padded-x py-2 bg-slate-800 text-slate-300"
+    >
+      <div>Created {{ projectCard().repo().created_at | TimeFromNow }} ago</div>
+      <div class="border-r border-slate-600"></div>
+      <div>Last updated {{ projectCard().repo().updated_at | TimeFromNow }} ago</div>
+    </div>
+    <div class="padded">
+      {{ projectCard().repo().description }}
     </div>
   </div>
 
   <!-- Languages & Chips -->
-  <div>
-    @if (projectCard().repo.private) {
-      <div class="italic text-slate-400">No language information</div>
-    } @else {
-      <app-languages
-        [repoName]="projectCard().repo.name"
-        [repoOwner]="projectCard().repo.owner.login"
-      />
-    }
+  @if (projectCard().repo().private) {
+    <div class="italic text-slate-400">No language information</div>
+  } @else {
+    <app-languages [languages]="projectCard().languages()" />
+  }
 
-    <div class="chips mt-3">
-      @for (chip of projectCard().repo.topics; track $index) {
-        <app-chip class="bg-slate-200 text-slate-900">
-          {{ chip }}
-        </app-chip>
-      }
-    </div>
+  <div class="chips padded">
+    @for (chip of projectCard().repo().topics; track $index) {
+      <app-chip class="bg-slate-200 text-slate-900">
+        {{ chip }}
+      </app-chip>
+    }
   </div>
 </div>
 
@@ -93,7 +102,7 @@
 <!-- </div> -->
 
 <!-- Image -->
-@if (projectCard().image !== undefined) {
+<!-- @if (projectCard().image !== undefined) {
   <div class="image-container">
     <img
       [alt]="projectCard().image!.alt"
@@ -101,9 +110,8 @@
       [title]="projectCard().image!.title"
       class="image"
     />
-    <!-- style={imageStyle} -->
   </div>
-}
+} -->
 <!-- @else {
     <div
       class="image-container h-full flex items-center justify-center"

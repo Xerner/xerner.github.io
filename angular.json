@@ -48,9 +48,25 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/settings/appsettings.ts",
+                  "with": "src/settings/appsettings.production.ts"
+                }
+              ]
             },
             "development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/settings/appsettings.ts",
+                  "with": "src/settings/appsettings.development.ts"
+                },
+                {
+                  "replace": "src/constants/cache.ts",
+                  "with": "src/constants/cache.development.ts"
+                }
+              ],
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
@@ -88,7 +104,9 @@
               "-d",
               "."
             ],
-            "styles": ["./src/styles.scss"],
+            "styles": [
+              "./src/styles.scss"
+            ],
             "port": 6006
           }
         },
@@ -111,7 +129,10 @@
           "builder": "@angular-devkit/build-angular:jest",
           "options": {
             "tsConfig": "tsconfig.app.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
           }
         }
       }

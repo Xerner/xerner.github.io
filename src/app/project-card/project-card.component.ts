@@ -3,6 +3,8 @@ import { Component, computed, input } from '@angular/core';
 import { IProjectCard } from '../../models/project-card';
 import { LanguagesComponent } from '../languages/languages.component';
 import { ChipComponent } from '../chip/chip.component';
+import { DatetimePipe } from '../../pipes/datetime.pipe';
+import { TimeFromNowPipe } from '../../pipes/time-from-now.pipe';
 
 @Component({
   selector: 'app-project-card',
@@ -10,7 +12,9 @@ import { ChipComponent } from '../chip/chip.component';
   imports: [
     CommonModule,
     LanguagesComponent,
-    ChipComponent
+    ChipComponent,
+    DatetimePipe,
+    TimeFromNowPipe,
   ],
   templateUrl: 'project-card.component.html',
   // styleUrl: 'project-card.component.scss'

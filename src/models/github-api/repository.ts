@@ -12,9 +12,9 @@ export interface IRepository {
   watchers_count: number;
   open_issues_count: number;
   license: string; // not rendered
-  created_at: string,
-  updated_at: string,
-  pushed_at: string,
+  created_at: string, // not rendered
+  updated_at: string, // not rendered
+  pushed_at: string, // not rendered
   // urls
   html_url: string;
 }

@@ -1,27 +1,55 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { GithubApiService } from './github-api.service';
-import { concatMap, from, map, Observable } from 'rxjs';
+import { map, merge, mergeAll, Observable } from 'rxjs';
 import { IProjectCard } from '../models/project-card';
-import PROJECT_CARDS from '../config/project-cards.json'
-import APP_SETTINGS from '../config/appsettings.json'
+import { APP_SETTINGS } from '../settings/appsettings.js'
+import { IRepository } from '../models/github-api/repository';
+import { ILanguages } from '../models/github-api/languages';
+import { AppStore } from '../stores/app.store';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectCardService {
-  constructor(private githubApi: GithubApiService) {
-  }
+  constructor(
+    private githubApi: GithubApiService,
+    private appStore: AppStore
+  ) { }
 
-  getProjectCards(): Observable<IProjectCard[]> {
-    // return from([PROJECT_CARDS])
+  populateProjectCards() {
     return this.githubApi.getRepositories(APP_SETTINGS.user)
       .pipe(
-        map(repos => repos.map<IProjectCard>(repo => {
-          return {
-            repo: repo,
-          }
-        }))
-      );
+        // delay(3000),
+        map<IRepository[], IProjectCard[]>(repos => {
+          var projectCards = repos.map<IProjectCard>(repo => ({
+            repo: signal<IRepository>(repo),
+            languages: signal<ILanguages | null>(null)
+          }))
+          this.appStore.projectCards.set(projectCards)
+          return projectCards;
+        }),
+        map<IProjectCard[], Observable<void>>(projectCards =>
+          merge(...projectCards.map(projectCard => this.populateLanguages(projectCard)))
+        ),
+        mergeAll()
+      ).subscribe()
+      //   {
+      //   next: (response) => {
+      //     console.log("Project cards populated", response);
+      //   },
+      //   error: (error) => {
+      //     console.error("Error populating project cards", error);
+      //   },
+      //   complete: () => {
+      //     console.log("Project cards populated");
+      //   }
+      // })
+  }
+
+  private populateLanguages(projectCard: IProjectCard) {
+    return this.githubApi.getLanguages(APP_SETTINGS.user, projectCard.repo().name).pipe(map(languages => {
+      projectCard.languages.set(languages)
+    }))
   }
 
   // getRepositoryPortfolioFileFromApi(repoOwner: string): Observable<IProjectCard> {

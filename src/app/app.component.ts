@@ -9,6 +9,7 @@ import { IProjectCard } from '../models/project-card';
 import { GithubApiService } from '../services/github-api.service';
 import { ProjectCardService } from '../services/project-card.service';
 import { CommonModule } from '@angular/common';
+import { AppStore } from '../stores/app.store';
 
 @Component({
   selector: 'app-root',
@@ -25,18 +26,26 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  projectCards = signal<IProjectCard[]>([]);
-
-  constructor(private projectCardService: ProjectCardService) {
-  }
+  constructor(
+    private projectCardService: ProjectCardService,
+    protected appStore: AppStore
+  ) {}
 
   ngOnInit() {
-    this.projectCardService.getProjectCards().subscribe(projectCards => {
-      this.projectCards.set(projectCards)
-    })
+    this.projectCardService.populateProjectCards();
   }
 
   getId(projectCard: IProjectCard) {
     return projectCard.repo.name + "-project-card";
+  }
+
+  formatCache() {
+    var json = JSON.stringify(this.appStore.urlCache, null, 2);
+    var newTab = window.open('data:text/json,' + encodeURIComponent(json), '_blank');
+    if (newTab === null) {
+      window.alert("Failed to open new tab. Please allow popups for this site.");
+      return;
+    }
+    newTab.focus();
   }
 }

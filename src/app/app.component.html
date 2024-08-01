@@ -15,19 +15,36 @@
   </div> -->
 
   <!-- Project Cards -->
-  <div class="flex flex-col py-24 gap-3 text-white">
-    @for (projectCard of projectCards(); track $index) {
-      <app-project-card
-        [id]="getId(projectCard)"
-        [index]="$index"
-        [projectCard]="projectCard"
-        class="project-card"
-      ></app-project-card>
+  @if (appStore.errors.apiLimitError()) {
+    <div class="flex justify-center items-center">
+      <div class="text-red-500 font-3xl">API Limit Reached!</div>
+    </div>
+  } @else {
+    @defer (when appStore.projectCards() !== null) {
+      <div class="flex flex-col py-24 gap-3 text-white">
+        @for (projectCard of appStore.projectCards(); track $index) {
+          <app-project-card
+            [id]="getId(projectCard)"
+            [index]="$index"
+            [projectCard]="projectCard"
+            class="project-card"
+          ></app-project-card>
+        }
+      </div>
+    } @placeholder {
+      <div class="font-3xl font-semibold">Loading</div>
+    } @error {
+      <div class="font-3xl font-semibold">Error</div>
     }
-  </div>
+  }
 </div>
 
-<div class="bg-slate-500 flex justify-end p-3">
+<div class="flex justify-end gap-3 p-3 bg-slate-500">
+  @if (appStore.APP_SETTINGS.caching?.enabled) {
+    <button class="bg-slate-300 p-2 rounded" (click)="formatCache()">
+      Cache
+    </button>
+  }
   <app-tooltip tooltip="My Github" class="bg-slate-300 p-2 rounded">
     Github
     <!-- <IconButton href="https://github.com/Xerner">

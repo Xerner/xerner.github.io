@@ -23,6 +23,12 @@ export function arrayMax(array: number[]) {
   }, 0);
 }
 
+export function sum(array: number[]) {
+  return array.reduce(function (a: number, b: number) {
+    return a + b;
+  }, 0);
+}
+
 export function normalize(value: number, min: number, max: number, alwaysPositive: boolean = false): number {
     if (alwaysPositive) {
         return clamp(value - min, 0, Number.MAX_SAFE_INTEGER) / (max - min);

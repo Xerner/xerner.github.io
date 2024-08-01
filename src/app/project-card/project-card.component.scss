@@ -16,12 +16,11 @@ $height: 20rem;
 
   height: $height;
 
-  .content {
+  .body {
     @apply flex
       flex-col
       justify-between
       h-full
-      p-5
       gap-3
       grow;
   }
@@ -47,5 +46,13 @@ $height: 20rem;
   }
   &:nth-child(even) .chips {
     @apply justify-end;
+  }
+
+  .padded-x {
+    @apply px-5;
+  }
+
+  .padded {
+    @apply p-5;
   }
 }
