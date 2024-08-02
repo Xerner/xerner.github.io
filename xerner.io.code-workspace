@@ -1,12 +1,15 @@
 {
 	"folders": [
     {
+      "name": "xerner.github.io",
       "path": "."
     },
     {
+      "name": "react",
       "path": "react"
     },
     {
+      "name": "src",
       "path": "src"
     }
   ],
