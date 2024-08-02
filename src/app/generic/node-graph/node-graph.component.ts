@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, input } from '@angular/core';
-import { Coordinate, Graph, GraphNode } from '../../models/graph';
-import { StarSource } from '../../models/stars';
+import { Graph, GraphNode, Coordinate } from '../../../models/graph';
+import { StarSource } from '../../../models/stars';
 
 @Component({
   selector: 'app-node-graph',

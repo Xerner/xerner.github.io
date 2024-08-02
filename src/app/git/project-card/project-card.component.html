@@ -62,7 +62,9 @@
     >
       <div>Created {{ projectCard().repo().created_at | TimeFromNow }} ago</div>
       <div class="border-r border-slate-600"></div>
-      <div>Last updated {{ projectCard().repo().updated_at | TimeFromNow }} ago</div>
+      <div>
+        Last updated {{ projectCard().repo().updated_at | TimeFromNow }} ago
+      </div>
     </div>
     <div class="padded">
       {{ projectCard().repo().description }}
@@ -70,10 +72,12 @@
   </div>
 
   <!-- Languages & Chips -->
-  @if (projectCard().repo().private) {
-    <div class="italic text-slate-400">No language information</div>
-  } @else {
-    <app-languages [languages]="projectCard().languages()" />
+  @if (appSettings.settings.features.languages) {
+    @if (projectCard().repo().private) {
+      <div class="italic text-slate-400">No language information</div>
+    } @else {
+      <app-languages [languages]="projectCard().languages()" />
+    }
   }
 
   <div class="chips padded">

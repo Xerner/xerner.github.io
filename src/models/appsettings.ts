@@ -8,7 +8,12 @@ export interface IAppSettings {
   projectCards?: IProjectCardRaw[];
   caching?: {
     enabled: boolean;
-    useCacheFile: boolean;
-    cacheFile: string;
+    enableInterceptor: boolean;
+    cacheSource: "file" | "cookies";
   };
+  features: {
+    repos: boolean,
+    languages: boolean,
+    portfolioFiles: boolean,
+  }
 }

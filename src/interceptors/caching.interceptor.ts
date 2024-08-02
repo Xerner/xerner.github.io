@@ -1,45 +1,34 @@
-import { HttpContext, HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, filter, map, Observable, of, tap } from "rxjs";
+import { Observable, tap } from "rxjs";
 import { AppStore } from "../stores/app.store";
+import { CacheStore } from "../stores/cache.store";
 
 @Injectable()
 export class UrlCachingInterceptor implements HttpInterceptor {
   constructor(
-    public appStore: AppStore,
+    private appStore: AppStore,
+    private cacheStore: CacheStore,
   ) { }
 
-  intercept(req: HttpRequest<any>, handler: HttpHandler): Observable<HttpEvent<any>> {
-    // Dont send request and use cache if using cached file is enabled
-    if (this.appStore.APP_SETTINGS.caching?.useCacheFile || this.appStore.urlCache.hasOwnProperty(req.url)) {
-      // This shit doesnt work and idk why
-      var fakeHttpEvent = this.makeFakeHttpOkResponseFromCache(req);
-      var fakeReq = req.clone({ responseType: "json", url: "using cache instead" });
-      // var fakeReq = req.clone({""});
-      return handler.handle(fakeReq).pipe(
-        catchError(_ => {
-          return of(fakeHttpEvent, fakeHttpEvent, fakeHttpEvent);
-        }),
+  intercept(req: HttpRequest<any>, handler: HttpHandler): Observable<HttpEvent<unknown>> {
+    // passthrough if caching is disabled
+    var shouldCacheResponses = this.appStore.APP_SETTINGS.caching
+      && this.appStore.APP_SETTINGS.caching.enableInterceptor
+      && !this.appStore.APP_SETTINGS.caching.enabled;
+    if (shouldCacheResponses) {
+      // Cache url results
+      return handler.handle(req).pipe(
+        tap(event => this.cacheResults(req, event))
       );
-      // return of(fakeHttpEvent).pipe(
-      //   map(response => {
-      //     console.log('Using cache instead of sending request for', req.url);
-      //     return response;
-      //   })
-      // );
     }
-
-    // Cache url results
-    return handler.handle(req).pipe(
-      tap(results => {
-        console.log("Caching results for", req.url);
-        this.appStore.urlCache[req.url] = results;
-      })
-    );
+    return handler.handle(req);
   }
 
-  makeFakeHttpOkResponseFromCache(req: HttpRequest<any>) {
-    var cachedResponse = this.appStore.urlCache[req.url];
-    return cachedResponse;
+  cacheResults(req: HttpRequest<any>, event: HttpEvent<unknown>) {
+    if (event.type === HttpEventType.Response) {
+      console.log("Caching results for", req.url);
+      this.cacheStore.urlCache[req.url] = event;
+    }
   }
 }

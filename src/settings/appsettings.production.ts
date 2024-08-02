@@ -5,4 +5,9 @@ export const APP_SETTINGS: IAppSettings = {
   user: "xerner",
   portfolioJsonFilePath: "portfolio.json",
   token: "",
+  features: {
+    repos: true,
+    languages: true,
+    portfolioFiles: true,
+  }
 }

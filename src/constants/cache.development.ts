@@ -1,4 +1,4 @@
-export const cache = {
+export const fileCache: Record<string, { [key: string]: any, body: any }> = {
   "https://api.github.com/users/xerner/repos": {
     "headers": {
       "normalizedNames": {},

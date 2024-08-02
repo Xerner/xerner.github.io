@@ -5,7 +5,9 @@
 
 <!-- <app-my-name class="h-screen block"></app-my-name> -->
 
-<div class="h-screen block bg-space-to-sky">
+<div [ngClass]="{
+  'block bg-space-to-sky min-h-screen flex flex-col': true,
+}">
   <app-clouds class="block w-full" />
 
   <!-- <div class="main-content main-content-shadow">
@@ -16,12 +18,12 @@
 
   <!-- Project Cards -->
   @if (appStore.errors.apiLimitError()) {
-    <div class="flex justify-center items-center">
-      <div class="text-red-500 font-3xl">API Limit Reached!</div>
+    <div class="grow flex justify-center items-center">
+      <div class="text-white text-5xl p-8 bg-slate-500 rounded-full border-2 border-slate-800">API Limit Reached!</div>
     </div>
   } @else {
     @defer (when appStore.projectCards() !== null) {
-      <div class="flex flex-col py-24 gap-3 text-white">
+      <div class="flex flex-col py-56 gap-3 text-white">
         @for (projectCard of appStore.projectCards(); track $index) {
           <app-project-card
             [id]="getId(projectCard)"
@@ -32,23 +34,36 @@
         }
       </div>
     } @placeholder {
-      <div class="font-3xl font-semibold">Loading</div>
+      <div class="grow flex justify-center items-center">
+        <div class="text-white text-5xl p-8 bg-slate-500 rounded-full border-2 border-slate-800">Loading</div>
+      </div>
     } @error {
-      <div class="font-3xl font-semibold">Error</div>
+      <div class="grow flex justify-center items-center">
+        <div class="text-white text-5xl p-8 bg-slate-500 rounded-full border-2 border-slate-800">Error</div>
+      </div>
     }
   }
+
+  <div class="overflow-hidden h-[100px] relative">
+    <div class="the-ground"></div>
+  </div>
+
+  <div class="flex justify-end gap-3 p-3 bg-slate-500">
+    @if (appStore.APP_SETTINGS.caching?.enabled) {
+      <button class="bg-slate-300 p-2 rounded" (click)="cacheStore.openCache()">
+        Cache
+      </button>
+    }
+    <app-tooltip tooltip="My Github">
+      <button class="bg-slate-300 p-2 rounded">
+        <a href="https://github.com/Xerner" target="_blank">
+        Github
+      </a>
+      </button>
+      <!-- <IconButton >
+        <GitHubIcon />
+      </IconButton> -->
+    </app-tooltip>
+  </div>
 </div>
 
-<div class="flex justify-end gap-3 p-3 bg-slate-500">
-  @if (appStore.APP_SETTINGS.caching?.enabled) {
-    <button class="bg-slate-300 p-2 rounded" (click)="formatCache()">
-      Cache
-    </button>
-  }
-  <app-tooltip tooltip="My Github" class="bg-slate-300 p-2 rounded">
-    Github
-    <!-- <IconButton href="https://github.com/Xerner">
-      <GitHubIcon />
-    </IconButton> -->
-  </app-tooltip>
-</div>

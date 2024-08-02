@@ -55,4 +55,13 @@ $height: 20rem;
   .padded {
     @apply p-5;
   }
+
+  .language-bar {
+    box-shadow: 0 2px #222222;
+    height: 8px;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    background-color: gray;
+  }
 }

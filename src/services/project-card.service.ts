@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { GithubApiService } from './github-api.service';
-import { map, merge, mergeAll, Observable } from 'rxjs';
+import { map, merge, mergeAll, Observable, take } from 'rxjs';
 import { IProjectCard } from '../models/project-card';
 import { APP_SETTINGS } from '../settings/appsettings.js'
 import { IRepository } from '../models/github-api/repository';
@@ -28,22 +28,14 @@ export class ProjectCardService {
           this.appStore.projectCards.set(projectCards)
           return projectCards;
         }),
-        map<IProjectCard[], Observable<void>>(projectCards =>
-          merge(...projectCards.map(projectCard => this.populateLanguages(projectCard)))
+        take(1),
+        map<IProjectCard[], Observable<void>>(projectCards => {
+            projectCards = [projectCards[0]];
+            return merge(...projectCards.map(projectCard => this.populateLanguages(projectCard)));
+          }
         ),
         mergeAll()
       ).subscribe()
-      //   {
-      //   next: (response) => {
-      //     console.log("Project cards populated", response);
-      //   },
-      //   error: (error) => {
-      //     console.error("Error populating project cards", error);
-      //   },
-      //   complete: () => {
-      //     console.log("Project cards populated");
-      //   }
-      // })
   }
 
   private populateLanguages(projectCard: IProjectCard) {

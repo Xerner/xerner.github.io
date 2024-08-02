@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, signal } from '@angular/core';
-import { randomInt } from '../../library/math';
-import { FadeType, StarSource, FadeTypes, StarSources } from '../../models/stars';
-import { DelayDirective } from '../../directives/delay.directive';
+import { randomInt } from '../../../library/math';
+import { FadeType, StarSource, FadeTypes, StarSources } from '../../../models/stars';
+import { DelayDirective } from '../../../directives/delay.directive';
 
 @Component({
   selector: 'app-star',

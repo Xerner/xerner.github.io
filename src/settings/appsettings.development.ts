@@ -6,8 +6,13 @@ export const APP_SETTINGS: IAppSettings = {
   portfolioJsonFilePath: "portfolio.json",
   token: "",
   caching: {
-    enabled: false,
-    useCacheFile: false,
-    cacheFile: "cache.json",
+    enabled: true,
+    enableInterceptor: false,
+    cacheSource: "file",
   },
+  features: {
+    repos: true,
+    languages: true,
+    portfolioFiles: false,
+  }
 }

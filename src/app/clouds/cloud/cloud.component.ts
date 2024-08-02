@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, OnInit, signal } from '@angular/core';
 import { clamp, denormalize } from '../../../library/math';
-import { CLOUD_SPEEDS, CLOUD_VIEWWIDTH_MULTIPLIER, UPDATE_INTERVAL_MS, UPDATE_INTERVAL_S } from '../../../models/clouds';
-
-
+import { CLOUD_SPEEDS, CLOUD_VIEWWIDTH_MULTIPLIER, ICloud, UPDATE_INTERVAL_MS, UPDATE_INTERVAL_S } from '../../../models/clouds';
 
 @Component({
   selector: 'app-cloud',
@@ -18,9 +16,11 @@ export class CloudComponent implements OnInit {
   readonly BACK_CLOUD_Z = 90
 
   timeout: NodeJS.Timeout | null = null;
-  initialLeft = input.required<number>();
-  cloudIndex = input.required<number>();
-  top = input.required<number>();
+  cloud = input.required<ICloud>();
+  skyHeight = input.required<number>();
+  // top = computed(() => {
+  //   return this.getTop();
+  // });
   left = signal<number>(0);
   distance = input<number>(1);
   size = input<number>(1);
@@ -34,8 +34,9 @@ export class CloudComponent implements OnInit {
     return this.size() * CLOUD_VIEWWIDTH_MULTIPLIER
   })
 
+
   ngOnInit(): void {
-    this.left.set(this.initialLeft());
+    this.left.set(this.cloud().initialLeft);
     window.setInterval(() => {
       this.left.set(this.calcCloudLeftAfterMove(this.left(), this.calculatedDistance(), this.cloudViewWidth() / 100, UPDATE_INTERVAL_S, CLOUD_SPEEDS.FAST));
     }, UPDATE_INTERVAL_MS);
@@ -62,6 +63,12 @@ export class CloudComponent implements OnInit {
   }
 
   getSrc() {
-    return `assets/images/clouds/cloud${this.cloudIndex()}.png`
+    return `assets/images/clouds/cloud${this.cloud().cloudIndex}.png`
   }
+
+  // getTop() {
+  //   var top = Math.random() * this.skyHeight();
+  //   console.log(top);
+  //   return top;
+  // }
 }

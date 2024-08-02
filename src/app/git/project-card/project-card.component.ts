@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
-import { IProjectCard } from '../../models/project-card';
+import { IProjectCard } from '../../../models/project-card';
 import { LanguagesComponent } from '../languages/languages.component';
-import { ChipComponent } from '../chip/chip.component';
-import { DatetimePipe } from '../../pipes/datetime.pipe';
-import { TimeFromNowPipe } from '../../pipes/time-from-now.pipe';
+import { ChipComponent } from '../../generic/chip/chip.component';
+import { DatetimePipe } from '../../../pipes/datetime.pipe';
+import { TimeFromNowPipe } from '../../../pipes/time-from-now.pipe';
+import { AppSettingsService } from '../../../services/appsettings.service';
 
 @Component({
   selector: 'app-project-card',
@@ -25,5 +26,7 @@ export class ProjectCardComponent {
   isEven = computed<boolean>(() => this.index() % 2 === 0);
   isOdd = computed<boolean>(() => this.index() % 2 !== 0);
 
-  constructor() {}
+  constructor(
+    protected appSettings: AppSettingsService,
+  ) {}
 }

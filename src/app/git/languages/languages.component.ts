@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
-import { ILanguages } from '../../models/github-api/languages';
-import { sum } from '../../library/math';
-import { ILanguage } from '../../models/language';
-import { DEFAULT_COLOR as DEFAULT_LANGUAGE_COLOR, languageColors } from '../../constants/languageColors';
+import { ILanguages } from '../../../models/github-api/languages';
+import { sum } from '../../../library/math';
+import { ILanguage } from '../../../models/language';
+import { DEFAULT_COLOR as DEFAULT_LANGUAGE_COLOR, languageColors } from '../../../constants/languageColors';
 
 @Component({
   selector: 'app-languages',
@@ -32,4 +32,8 @@ export class LanguagesComponent {
     });
     return mappedLanguages;
   });
+
+  getLanguageTooltip(language: ILanguage) {
+    return `${language.name}: ${language.percentage.toPrecision(2)}%`;
+  }
 }

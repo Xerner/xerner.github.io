@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { Graph } from '../../models/graph';
-import { StarGraphComponent } from '../node-graph/node-graph.component';
-import { STAR_LETTER_GRAPHS, StarLetters } from '../../models/star-letters';
+import { Graph } from '../../../models/graph';
+import { STAR_LETTER_GRAPHS, StarLetters } from '../../../models/star-letters';
+import { StarGraphComponent } from '../../generic/node-graph/node-graph.component';
 
 @Component({
   selector: 'app-star-letter',
