@@ -1,7 +1,20 @@
 import { HttpClient, HttpContext, HttpEvent, HttpHandler, HttpHeaders, HttpParams, HttpRequest, HttpResponse } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { CacheStore } from "../stores/cache.store";
+import { appConfig } from "../app/app.config";
+import { UrlCachingInterceptor } from "../interceptors/caching.interceptor";
+import { MockHttpHandler } from "./mock/http-handler";
 
+/**
+ * For some reason, making an intercetor that just returns `of(cachedResponse)` was not working,
+ * so I made a custom HttpClient and dummy HttpHandler that does the same thing.
+ *
+ * Also see
+ * - {@link appConfig}
+ * - {@link CacheStore}
+ * - {@link UrlCachingInterceptor}
+ * - {@link MockHttpHandler}
+ */
 export class HttpCacheClient extends HttpClient {
   constructor(
     private cacheService: CacheStore,

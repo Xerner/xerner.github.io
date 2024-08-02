@@ -3,7 +3,9 @@ import { Injectable } from "@angular/core";
 import { Observable, tap } from "rxjs";
 import { AppStore } from "../stores/app.store";
 import { CacheStore } from "../stores/cache.store";
+import { HttpCacheClient } from "../services/http-cache-client.service";
 
+/** Also see {@link HttpCacheClient} */
 @Injectable()
 export class UrlCachingInterceptor implements HttpInterceptor {
   constructor(

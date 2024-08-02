@@ -19,7 +19,6 @@ var providers: (EnvironmentProviders | Provider)[] = [
 
 if (shouldUseCache) {
   providers.push(CacheStore)
-  providers.push()
   providers.push({ provide: HttpHandler, useClass: MockHttpHandler })
   providers.push({ provide: HttpClient, useClass: HttpCacheClient, deps: [CacheStore] })
 } else {
