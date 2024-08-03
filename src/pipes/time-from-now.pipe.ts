@@ -15,31 +15,20 @@ export class TimeFromNowPipe implements PipeTransform {
     if (diff.years === 0 && diff.months === 0 && diff.days === 0) {
       return 'today';
     }
-    if (diff.years === 0 && diff.months === 0 && diff.days !== 0) {
-      return diff.toFormat("d 'days'");
+    var yearsStr = diff.years === 1 ? 'year' : 'years';
+    var monthsStr = diff.months === 1 ? 'month' : 'months';
+    var daysStr = diff.days === 1 ? 'day' : 'days';
+    diff = diff.normalize();
+    if (diff.years === 0 && diff.months === 0) {
+      return diff.toFormat(`d '${daysStr}'`);
     }
-    var diffStr = []
-    if (diff.years !== 0) {
-      if (diff.years === 1) {
-        diffStr.push(diff.toFormat("y 'year'"));
-      } else {
-        diffStr.push(diff.toFormat("y 'years'"));
-      }
+    if (diff.years === 0) {
+      return diff.toFormat(`M '${monthsStr}'`);
     }
-    if (diff.months !== 0 && diff.years === 0) {
-      if (diff.months === 1) {
-        diffStr.push(diff.toFormat("M 'month'"));
-      } else {
-        diffStr.push(diff.toFormat("M 'months'"));
-      }
+    if (diff.months === 0) {
+      return diff.toFormat(`y '${yearsStr}'`);
     }
-    if (diff.days !== 0 && diff.months === 0) {
-      if (diff.days === 1) {
-        diffStr.push(diff.toFormat("d 'day'"));
-      } else {
-        diffStr.push(diff.toFormat("d 'days'"));
-      }
-    }
-    return diffStr.join(' ');
+
+    return diff.toFormat(`y '${yearsStr}' M '${monthsStr}'`);
   }
 }

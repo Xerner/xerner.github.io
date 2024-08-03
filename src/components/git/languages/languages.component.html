@@ -1,0 +1,40 @@
+@defer (on immediate; when languages() !== null) {
+  <!-- <div class="margin"> -->
+    <div class="mb-2">
+      <div class="language-bar block">
+        @for (language of mappedLanguages(); track $index) {
+          <span
+            [ngStyle]="{
+              width: language.percentage * 100 + '%',
+              backgroundColor: language.color,
+            }"
+            [title]="getLanguageTooltip(language)"
+            class="project-card-language-bar"
+          ></span>
+        }
+      </div>
+    </div>
+    <ul>
+      @for (language of mappedLanguages(); track $index) {
+        <li
+          class="inline me-3 last-of-type:me-0 inline-flex justify-center items-center flex-nowrap"
+        >
+          <div
+            class="octicon me-2"
+            [ngStyle]="{ backgroundColor: getBackgroundColor(language) }"
+          ></div>
+          <span class="text-primary me-1">{{ language.name }}</span>
+          <span class="text-secondary">{{
+            language.percentage | percent: "0.0"
+          }}</span>
+        </li>
+      }
+    </ul>
+  <!-- </div> -->
+} @placeholder {
+  <div class="text-slate-300 italic">Github languages</div>
+} @loading {
+  <div class="text-slate-300 italic">Loading</div>
+} @error {
+  <div class="text-slate-300 italic">Error fetching languages</div>
+}

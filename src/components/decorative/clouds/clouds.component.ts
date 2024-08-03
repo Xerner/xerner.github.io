@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { LARGEST_CLOUD_HEIGHT, TOP_OFFSET } from '../../models/clouds';
 import { CloudComponent } from './cloud/cloud.component';
-import { CLOUDS } from '../../settings/clouds';
+import { TOP_OFFSET, LARGEST_CLOUD_HEIGHT } from '../../../models/clouds';
+import { CLOUDS } from '../../../settings/clouds';
 
 @Component({
   selector: 'app-clouds',

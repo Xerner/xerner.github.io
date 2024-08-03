@@ -10,3 +10,21 @@
 	background: -moz-linear-gradient(270deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
 	background: -webkit-linear-gradient(270deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
 }
+
+.theme--dark {
+  .bg-primary {
+    @apply bg-slate-700;
+
+    .chip {
+      @apply bg-slate-800;
+    }
+  }
+
+  .bg-active {
+    @apply bg-slate-500;
+  }
+
+  .bg-secondary {
+    @apply bg-slate-800;
+  }
+}

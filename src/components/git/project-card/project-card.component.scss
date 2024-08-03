@@ -1,0 +1,64 @@
+$height: 20rem;
+
+.project-card {
+  @apply block
+    bg-primary
+    rounded-xl
+    border-2
+    border-primary
+    flex
+    justify-between;
+    // w-11/12
+    // even:rounded-e-xl
+    // odd:rounded-s-xl
+    // odd:self-end
+    // even:flex-row-reverse
+    // even:text-right;
+
+  // min-height: $height;
+
+  .body {
+    @apply h-full
+      grow;
+      // flex
+      // flex-col
+      // justify-between
+      // gap-3;
+  }
+
+  .image-container {
+    @apply h-full
+      bg-secondary
+      border-primary
+      border-e-2;
+      // odd:border-e-2
+      // even:border-s-2;
+
+    width: $height;
+  }
+
+  .image {
+    width: $height;
+    object-fit: cover;
+  }
+
+  .chips {
+    @apply flex
+      gap-2;
+  }
+  &:nth-child(even) .chips {
+    @apply justify-end;
+  }
+
+  .padded-x {
+    @apply px-5;
+  }
+
+  .padded {
+    @apply p-5;
+  }
+
+  .margin {
+    @apply m-5;
+  }
+}

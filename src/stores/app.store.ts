@@ -1,6 +1,8 @@
-import { Injectable, signal } from "@angular/core";
+import { computed, Injectable, signal } from "@angular/core";
 import { IProjectCard } from "../models/project-card";
 import { APP_SETTINGS } from "../settings/appsettings";
+import { IFilter } from "../models/filtering/filter";
+import { FilterStore } from "./filter.store";
 
 @Injectable({ providedIn: 'root' })
 export class AppStore {
@@ -11,7 +13,43 @@ export class AppStore {
   nameDelay = signal<number>(this.starMaxDelay() + 2000);
   starCount = signal<number>(250);
   projectCards = signal<IProjectCard[] | null>(null);
+  filteredProjectCards = computed<IProjectCard[] | null>(() => {
+    var projectCards = this.projectCards();
+    if (projectCards === null) {
+      return null;
+    }
+    var filters = this.filterStore.projectCardFilters();
+    if (filters === null) {
+      return projectCards;
+    }
+    return projectCards.filter((projectCard) => {
+      for (var filter of filters!) {
+        if (!filter.eval(projectCard)) {
+          return false;
+        }
+      }
+      return true;
+    });
+  })
+  projectCardTopicFilters = computed<IFilter<IProjectCard>[] | null>(() => {
+    var projectCards = this.projectCards();
+    if (projectCards === null) {
+      return null;
+    }
+    return projectCards.flatMap(projectCard => {
+      return projectCard.repo().topics.flatMap(topic => ({
+        name: topic,
+        active: false,
+        eval: (projectCard_: IProjectCard) => projectCard_.repo().topics.includes(topic),
+        value: topic,
+      }))
+    }).sort((filter1, filter2) => filter1.name > filter2.name ? 1 : -1);
+  })
   errors = {
     apiLimitError: signal<boolean>(false),
   }
+
+  constructor(
+    private filterStore: FilterStore
+  ) { }
 }

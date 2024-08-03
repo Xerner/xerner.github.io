@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, PercentPipe } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { ILanguages } from '../../../models/github-api/languages';
 import { sum } from '../../../library/math';
@@ -10,8 +10,10 @@ import { DEFAULT_COLOR as DEFAULT_LANGUAGE_COLOR, languageColors } from '../../.
   standalone: true,
   imports: [
     CommonModule,
+    PercentPipe,
   ],
   templateUrl: './languages.component.html',
+  styleUrl: './languages.component.scss',
 })
 export class LanguagesComponent {
   languages = input.required<ILanguages | null>();
@@ -22,7 +24,7 @@ export class LanguagesComponent {
     }
     var maxValue = sum(Object.values(languages));
     var mappedLanguages: ILanguage[] = Object.keys(languages).map((language) => {
-      var percentage = (languages![language] / maxValue) * 100;
+      var percentage = (languages![language] / maxValue);
       var colorString = languageColors[language] ?? DEFAULT_LANGUAGE_COLOR;
       return {
         name: language,
@@ -35,5 +37,9 @@ export class LanguagesComponent {
 
   getLanguageTooltip(language: ILanguage) {
     return `${language.name}: ${language.percentage.toPrecision(2)}%`;
+  }
+
+  getBackgroundColor(language: ILanguage) {
+    return languageColors.hasOwnProperty(language.name) ? languageColors[language.name] : "#222222";
   }
 }

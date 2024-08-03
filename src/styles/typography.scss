@@ -1,0 +1,17 @@
+.theme--dark {
+  .text-primary {
+    @apply text-slate-100;
+
+    .chip {
+      @apply text-slate-300;
+    }
+  }
+
+  .text-secondary {
+    @apply text-slate-300;
+  }
+
+  .text-active {
+    @apply text-slate-100;
+  }
+}

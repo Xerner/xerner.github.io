@@ -1,14 +1,14 @@
 <div class="body">
   <div>
     <!-- Title, desc, etc -->
-    <div class="flex items-center justify-between gap-3 padded">
+    <div class="flex items-center justify-between gap-3 margin text-primary">
       <div class="flex items-center gap-3">
         <!-- Title -->
         <h3 class="text-2xl font-semibold">
           <a [href]="projectCard().repo().html_url" target="_blank">
             <span class="text-slate-300 font-light"
               >{{ projectCard().repo().owner.login }}/</span
-            >{{ projectCard().repo().name }}
+            ><span class="hover:underline hover:underline-offset-8">{{ projectCard().repo().name }}</span>
           </a>
         </h3>
 
@@ -37,56 +37,55 @@
 
       <!-- Repo counts -->
       <div class="flex gap-3">
-        <app-chip class="bg-slate-800">
+        <div class="chip bg-primary">
           {{ projectCard().repo().open_issues_count }} open issues 📝
-        </app-chip>
-        <app-chip class="bg-slate-800">
+        </div>
+        <div class="chip bg-primary">
           {{ projectCard().repo().stargazers_count }} stars 🤩
-        </app-chip>
-        <app-chip class="bg-slate-800">
+        </div>
+        <div class="chip bg-primary">
           {{ projectCard().repo().watchers_count }} watchers 👁
-        </app-chip>
+        </div>
       </div>
     </div>
 
-    <!-- @if (projectCard().subtitle) {
-      <div class="font-light">
-        {{ projectCard().subtitle }}
-      </div>
-    } -->
-
-    <hr class="border-slate-800 border-t-2" />
-
     <div
-      class="flex flex-wrap gap-3 font-light padded-x py-2 bg-slate-800 text-slate-300"
+      class="flex flex-wrap gap-3 font-light padded-x py-2 bg-secondary text-secondary"
     >
       <div>Created {{ projectCard().repo().created_at | TimeFromNow }} ago</div>
-      <div class="border-r border-slate-600"></div>
+      <div class="border-r text-secondary"></div>
       <div>
         Last updated {{ projectCard().repo().updated_at | TimeFromNow }} ago
       </div>
     </div>
-    <div class="padded">
-      {{ projectCard().repo().description }}
-    </div>
+
+    @if (projectCard().repo().description) {
+      <div class="margin text-primary">
+        {{ projectCard().repo().description }}
+      </div>
+    }
   </div>
+
+  @if (projectCard().repo().topics.length > 0) {
+    <div class="chips margin">
+      @for (chip of projectCard().repo().topics; track $index) {
+        <div class="chip bg-primary text-primary">
+          {{ chip }}
+        </div>
+      }
+    </div>
+  }
 
   <!-- Languages & Chips -->
   @if (appSettings.settings.features.languages) {
     @if (projectCard().repo().private) {
-      <div class="italic text-slate-400">No language information</div>
+      <div class="italic text-primary chip">No language information</div>
     } @else {
-      <app-languages [languages]="projectCard().languages()" />
+      <div class="margin">
+        <app-languages [languages]="projectCard().languages()" />
+      </div>
     }
   }
-
-  <div class="chips padded">
-    @for (chip of projectCard().repo().topics; track $index) {
-      <app-chip class="bg-slate-200 text-slate-900">
-        {{ chip }}
-      </app-chip>
-    }
-  </div>
 </div>
 
 <!-- Buttons -->

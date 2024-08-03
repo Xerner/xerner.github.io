@@ -1,12 +1,12 @@
 import { ApplicationConfig, EnvironmentProviders, Provider } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
+import { routes } from './components/app.routes';
 import { HTTP_INTERCEPTORS, HttpClient, HttpHandler, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { APP_SETTINGS } from '../settings/appsettings';
-import { UrlCachingInterceptor } from '../interceptors/caching.interceptor';
-import { HttpCacheClient } from '../services/http-cache-client.service';
-import { MockHttpHandler } from '../services/mock/http-handler';
-import { CacheStore } from '../stores/cache.store';
+import { APP_SETTINGS } from './settings/appsettings';
+import { UrlCachingInterceptor } from './interceptors/caching.interceptor';
+import { HttpCacheClient } from './services/http-cache-client.service';
+import { MockHttpHandler } from './services/mock/http-handler';
+import { CacheStore } from './stores/cache.store';
 import { APP_INITIALIZER_PROVIDER } from './app.initializer';
 
 var shouldUseCache = APP_SETTINGS.caching !== undefined && APP_SETTINGS.caching.enabled;

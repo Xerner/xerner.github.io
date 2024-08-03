@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, OnInit, signal } from '@angular/core';
-import { clamp, denormalize } from '../../../library/math';
-import { CLOUD_SPEEDS, CLOUD_VIEWWIDTH_MULTIPLIER, ICloud, UPDATE_INTERVAL_MS, UPDATE_INTERVAL_S } from '../../../models/clouds';
+import { clamp, denormalize } from '../../../../library/math';
+import { ICloud, CLOUD_VIEWWIDTH_MULTIPLIER, UPDATE_INTERVAL_S, CLOUD_SPEEDS, UPDATE_INTERVAL_MS } from '../../../../models/clouds';
 
 @Component({
   selector: 'app-cloud',

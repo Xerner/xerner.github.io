@@ -28,9 +28,8 @@ export class ProjectCardService {
           this.appStore.projectCards.set(projectCards)
           return projectCards;
         }),
-        take(1),
         map<IProjectCard[], Observable<void>>(projectCards => {
-            projectCards = [projectCards[0]];
+            // projectCards = [projectCards[0]];
             return merge(...projectCards.map(projectCard => this.populateLanguages(projectCard)));
           }
         ),

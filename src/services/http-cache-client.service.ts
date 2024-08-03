@@ -1,7 +1,7 @@
 import { HttpClient, HttpContext, HttpEvent, HttpHandler, HttpHeaders, HttpParams, HttpRequest, HttpResponse } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { CacheStore } from "../stores/cache.store";
-import { appConfig } from "../app/app.config";
+import { appConfig } from "../app.config";
 import { UrlCachingInterceptor } from "../interceptors/caching.interceptor";
 import { MockHttpHandler } from "./mock/http-handler";
 

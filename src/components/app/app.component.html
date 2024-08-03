@@ -5,9 +5,11 @@
 
 <!-- <app-my-name class="h-screen block"></app-my-name> -->
 
-<div [ngClass]="{
-  'block bg-space-to-sky min-h-screen flex flex-col': true,
-}">
+<div
+  [ngClass]="{
+    'block bg-space-to-sky min-h-screen flex flex-col': true,
+  }"
+>
   <app-clouds class="block w-full" />
 
   <!-- <div class="main-content main-content-shadow">
@@ -16,15 +18,25 @@
       <GameJamCards />
   </div> -->
 
+  <div class="py-32"></div>
+
+  <div class="my-32 m-auto">
+    <app-filters></app-filters>
+  </div>
+
   <!-- Project Cards -->
   @if (appStore.errors.apiLimitError()) {
     <div class="grow flex justify-center items-center">
-      <div class="text-white text-5xl p-8 bg-slate-500 rounded-full border-2 border-slate-800">API Limit Reached!</div>
+      <div
+        class="text-white text-5xl p-8 bg-slate-500 rounded-full border-2 border-slate-800"
+      >
+        API Limit Reached!
+      </div>
     </div>
   } @else {
-    @defer (when appStore.projectCards() !== null) {
-      <div class="flex flex-col py-56 gap-3 text-white">
-        @for (projectCard of appStore.projectCards(); track $index) {
+    @defer (when appStore.filteredProjectCards() !== null) {
+      <div class="flex flex-col gap-3 mx-auto">
+        @for (projectCard of appStore.filteredProjectCards(); track $index) {
           <app-project-card
             [id]="getId(projectCard)"
             [index]="$index"
@@ -35,11 +47,19 @@
       </div>
     } @placeholder {
       <div class="grow flex justify-center items-center">
-        <div class="text-white text-5xl p-8 bg-slate-500 rounded-full border-2 border-slate-800">Loading</div>
+        <div
+          class="text-white text-5xl p-8 bg-slate-500 rounded-full border-2 border-slate-800"
+        >
+          Loading
+        </div>
       </div>
     } @error {
       <div class="grow flex justify-center items-center">
-        <div class="text-white text-5xl p-8 bg-slate-500 rounded-full border-2 border-slate-800">Error</div>
+        <div
+          class="text-white text-5xl p-8 bg-slate-500 rounded-full border-2 border-slate-800"
+        >
+          Error
+        </div>
       </div>
     }
   }
@@ -56,9 +76,7 @@
     }
     <app-tooltip tooltip="My Github">
       <button class="bg-slate-300 p-2 rounded">
-        <a href="https://github.com/Xerner" target="_blank">
-        Github
-      </a>
+        <a href="https://github.com/Xerner" target="_blank"> Github </a>
       </button>
       <!-- <IconButton >
         <GitHubIcon />
@@ -66,4 +84,3 @@
     </app-tooltip>
   </div>
 </div>
-
