@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { fileCache } from '../constants/cache';
+import { fileCache } from '../settings/cache/cache';
 import { AppSettingsService } from '../services/appsettings.service';
 import { HttpResponse } from '@angular/common/http';
 import { HttpCacheClient } from '../services/http-cache-client.service';

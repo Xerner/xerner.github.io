@@ -1,12 +1,33 @@
-<div class="rounded-2xl bg-primary border-2 border-secondary filters overflow-hidden">
-  <div class="text-2xl text-primary padded-x py-3 bg-secondary border-b-2 border-secondary">Filters</div>
-  <div class="grid grid-cols-5 gap-3 items-center padded">
-    <div class="header text-primary">Topics</div>
-    <div class="options">
-      @for (filter of appStore.projectCardTopicFilters(); track $index) {
-        <app-toggle-filter [filter]="filter" (toggle)="toggleProjectCardFilter(filter)"></app-toggle-filter>
-      }
+<div
+  class="rounded-2xl bg-primary border-2 border-secondary filters overflow-hidden"
+>
+  <div
+    class="text-2xl text-primary padded-x py-3 bg-secondary border-b-2 border-secondary"
+  >
+    Filters
+  </div>
+  <div class="flex flex-col gap-12 padded">
+    <div class="flex gap-3">
+      <div class="header text-primary">Topics</div>
+      <div class="options">
+        @for (filter of appStore.projectCardTopicFilters(); track $index) {
+          <app-toggle-filter
+            [filter]="filter"
+            (toggle)="toggleProjectCardFilter(filter)"
+          ></app-toggle-filter>
+        }
+      </div>
     </div>
-    <div class="header text-primary">Languages</div>
+    <div class="flex gap-3">
+      <div class="header text-primary">Languages</div>
+      <div class="options">
+        @for (filter of appStore.projectCardLanguageFilters(); track $index) {
+          <app-toggle-filter
+            [filter]="filter"
+            (toggle)="toggleProjectCardFilter(filter)"
+          ></app-toggle-filter>
+        }
+      </div>
+    </div>
   </div>
 </div>

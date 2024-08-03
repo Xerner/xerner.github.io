@@ -45,6 +45,34 @@ export class AppStore {
       }))
     }).sort((filter1, filter2) => filter1.name > filter2.name ? 1 : -1);
   })
+  projectCardLanguageFilters = computed<IFilter<IProjectCard>[] | null>(() => {
+    var projectCards = this.projectCards();
+    if (projectCards === null) {
+      return null;
+    }
+    var languageFilters = projectCards.flatMap<IFilter<IProjectCard> | null>(projectCard => {
+      var languages = projectCard.languages();
+      if (languages === null) {
+        return null;
+      }
+      var languageFilters_ = Object.keys(languages).map<IFilter<IProjectCard>>(language => ({
+        name: language,
+        active: false,
+        eval: (projectCard_: IProjectCard) => projectCard_.languages() !== null && projectCard_.languages()!.hasOwnProperty(language),
+        value: language,
+      }));
+      return languageFilters_;
+    })
+      .filter(filter => filter !== null)
+      .reduce((noDupes, filter) => {
+        if (noDupes.find(filter_ => filter_!.name === filter!.name) === undefined) {
+          noDupes.push(filter!);
+        }
+        return noDupes;
+      }, [] as IFilter<IProjectCard>[])
+      .sort((filter1, filter2) => filter1!.name > filter2!.name ? 1 : -1)
+    return languageFilters as IFilter<IProjectCard>[];
+  })
   errors = {
     apiLimitError: signal<boolean>(false),
   }

@@ -21,7 +21,8 @@ export class ProjectCardService {
       .pipe(
         // delay(3000),
         map<IRepository[], IProjectCard[]>(repos => {
-          var projectCards = repos.map<IProjectCard>(repo => ({
+            repos = repos.slice(0, 5);
+            var projectCards = repos.map<IProjectCard>(repo => ({
             repo: signal<IRepository>(repo),
             languages: signal<ILanguages | null>(null)
           }))
@@ -29,7 +30,6 @@ export class ProjectCardService {
           return projectCards;
         }),
         map<IProjectCard[], Observable<void>>(projectCards => {
-            // projectCards = [projectCards[0]];
             return merge(...projectCards.map(projectCard => this.populateLanguages(projectCard)));
           }
         ),

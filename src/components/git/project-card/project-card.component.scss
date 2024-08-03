@@ -16,6 +16,8 @@ $height: 20rem;
     // even:text-right;
 
   // min-height: $height;
+  min-width: 40rem;
+  max-width: 80rem;
 
   .body {
     @apply h-full

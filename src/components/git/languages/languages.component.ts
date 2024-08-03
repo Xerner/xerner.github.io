@@ -3,7 +3,7 @@ import { Component, computed, input } from '@angular/core';
 import { ILanguages } from '../../../models/github-api/languages';
 import { sum } from '../../../library/math';
 import { ILanguage } from '../../../models/language';
-import { DEFAULT_COLOR as DEFAULT_LANGUAGE_COLOR, languageColors } from '../../../constants/languageColors';
+import { DEFAULT_COLOR as DEFAULT_LANGUAGE_COLOR, languageColors } from '../../../settings/languageColors';
 
 @Component({
   selector: 'app-languages',

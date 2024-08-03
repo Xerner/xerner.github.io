@@ -20,7 +20,7 @@
 
   <div class="py-32"></div>
 
-  <div class="my-32 m-auto">
+  <div class="my-32 mx-20">
     <app-filters></app-filters>
   </div>
 
@@ -69,7 +69,7 @@
   </div>
 
   <div class="flex justify-end gap-3 p-3 bg-slate-500">
-    @if (appStore.APP_SETTINGS.caching?.enabled) {
+    @if (appStore.APP_SETTINGS.caching?.enableInterceptor) {
       <button class="bg-slate-300 p-2 rounded" (click)="cacheStore.openCache()">
         Cache
       </button>

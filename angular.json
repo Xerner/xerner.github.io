@@ -63,8 +63,8 @@
                   "with": "src/settings/appsettings.development.ts"
                 },
                 {
-                  "replace": "src/constants/cache.ts",
-                  "with": "src/constants/cache.development.ts"
+                  "replace": "src/settings/cache/cache.ts",
+                  "with": "src/settings/cache/cache.development.ts"
                 }
               ],
               "optimization": false,

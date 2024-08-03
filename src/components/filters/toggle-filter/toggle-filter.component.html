@@ -1,7 +1,7 @@
 <div [ngClass]="{
-  'chip cursor-pointer hover:border-blue-500 hover:border-4': true,
-  'bg-primary text-primary border-secondary border-2': !isActive(),
-  'bg-active text-active border-blue-600 border-4': isActive(),
+  'chip cursor-pointer hover:border-blue-500 border-2': true,
+  'bg-primary text-primary border-secondary': !isActive(),
+  'bg-active text-active border-blue-600': isActive(),
 }"
   (click)="toggleFilter()">
   {{ filter().name }}
