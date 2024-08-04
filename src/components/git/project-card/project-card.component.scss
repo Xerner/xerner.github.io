@@ -8,24 +8,20 @@ $height: 20rem;
     border-primary
     flex
     justify-between;
-    // w-11/12
-    // even:rounded-e-xl
-    // odd:rounded-s-xl
-    // odd:self-end
-    // even:flex-row-reverse
-    // even:text-right;
-
-  // min-height: $height;
-  min-width: 40rem;
-  max-width: 80rem;
+  // w-11/12
+  // even:rounded-e-xl
+  // odd:rounded-s-xl
+  // odd:self-end
+  // even:flex-row-reverse
+  // even:text-right;
 
   .body {
     @apply h-full
       grow;
-      // flex
-      // flex-col
-      // justify-between
-      // gap-3;
+    // flex
+    // flex-col
+    // justify-between
+    // gap-3;
   }
 
   .image-container {
@@ -33,8 +29,8 @@ $height: 20rem;
       bg-secondary
       border-primary
       border-e-2;
-      // odd:border-e-2
-      // even:border-s-2;
+    // odd:border-e-2
+    // even:border-s-2;
 
     width: $height;
   }
@@ -48,9 +44,9 @@ $height: 20rem;
     @apply flex
       gap-2;
   }
-  &:nth-child(even) .chips {
-    @apply justify-end;
-  }
+  // &:nth-child(even) .chips {
+  //   @apply justify-end;
+  // }
 
   .padded-x {
     @apply px-5;

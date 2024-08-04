@@ -17,4 +17,6 @@ export interface IRepository {
   pushed_at: string, // not rendered
   // urls
   html_url: string;
+  languages_url: string;
+  contributors_url: string;
 }

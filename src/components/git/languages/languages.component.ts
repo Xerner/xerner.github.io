@@ -18,7 +18,7 @@ import { DEFAULT_COLOR as DEFAULT_LANGUAGE_COLOR, languageColors } from '../../.
 export class LanguagesComponent {
   languages = input.required<ILanguages | null>();
   mappedLanguages = computed(() => {
-    var languages = this.languages();
+    var languages = this.languages;
     if (languages === null) {
       return [];
     }

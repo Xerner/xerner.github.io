@@ -20,7 +20,7 @@
 
   <div class="py-32"></div>
 
-  <div class="my-32 mx-20">
+  <div class="my-20 mx-20">
     <app-filters></app-filters>
   </div>
 
@@ -35,7 +35,7 @@
     </div>
   } @else {
     @defer (when appStore.filteredProjectCards() !== null) {
-      <div class="flex flex-col gap-3 mx-auto">
+      <div class="grid lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-3 mx-20">
         @for (projectCard of appStore.filteredProjectCards(); track $index) {
           <app-project-card
             [id]="getId(projectCard)"

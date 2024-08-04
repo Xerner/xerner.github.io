@@ -21,8 +21,6 @@ import { AppSettingsService } from '../../../services/appsettings.service';
 export class ProjectCardComponent {
   projectCard = input.required<IProjectCard>();
   index = input<number>(0);
-  isEven = computed<boolean>(() => this.index() % 2 === 0);
-  isOdd = computed<boolean>(() => this.index() % 2 !== 0);
 
   constructor(
     protected appSettings: AppSettingsService,

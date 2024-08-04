@@ -37,10 +37,10 @@ export class AppStore {
       return null;
     }
     return projectCards.flatMap(projectCard => {
-      return projectCard.repo().topics.flatMap(topic => ({
+      return projectCard.repo.topics.flatMap(topic => ({
         name: topic,
         active: false,
-        eval: (projectCard_: IProjectCard) => projectCard_.repo().topics.includes(topic),
+        eval: (projectCard_: IProjectCard) => projectCard_.repo.topics.includes(topic),
         value: topic,
       }))
     }).sort((filter1, filter2) => filter1.name > filter2.name ? 1 : -1);
@@ -51,14 +51,14 @@ export class AppStore {
       return null;
     }
     var languageFilters = projectCards.flatMap<IFilter<IProjectCard> | null>(projectCard => {
-      var languages = projectCard.languages();
+      var languages = projectCard.languages;
       if (languages === null) {
         return null;
       }
       var languageFilters_ = Object.keys(languages).map<IFilter<IProjectCard>>(language => ({
         name: language,
         active: false,
-        eval: (projectCard_: IProjectCard) => projectCard_.languages() !== null && projectCard_.languages()!.hasOwnProperty(language),
+        eval: (projectCard_: IProjectCard) => projectCard_.languages !== null && projectCard_.languages!.hasOwnProperty(language),
         value: language,
       }));
       return languageFilters_;
