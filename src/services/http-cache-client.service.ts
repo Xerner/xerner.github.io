@@ -1,9 +1,10 @@
 import { HttpClient, HttpContext, HttpEvent, HttpHandler, HttpHeaders, HttpParams, HttpRequest, HttpResponse } from "@angular/common/http";
 import { Observable, of } from "rxjs";
-import { CacheStore } from "../stores/cache.store";
 import { appConfig } from "../app.config";
 import { UrlCachingInterceptor } from "../interceptors/caching.interceptor";
 import { MockHttpHandler } from "./mock/http-handler";
+import { logDOM } from "@storybook/test";
+import { CacheStore } from "./stores/cache.store";
 
 /**
  * For some reason, making an intercetor that just returns `of(cachedResponse)` was not working,
@@ -46,6 +47,10 @@ export class HttpCacheClient extends HttpClient {
 
   returnCachedResponse(url: string): Observable<HttpResponse<any>> {
     var cachedResponse = this.cacheService.urlCache[url];
+    if (!cachedResponse) {
+      console.log("No cached response for", url);
+      return of(new HttpResponse({ status: 404 }));
+    }
     return of(cachedResponse.body);
   }
 }

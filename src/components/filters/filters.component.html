@@ -10,9 +10,10 @@
     <div class="flex gap-3">
       <div class="header text-primary">Topics</div>
       <div class="options">
-        @for (filter of appStore.projectCardTopicFilters(); track $index) {
+        @for (filter of projectCardStore.projectCardTopicFilters(); track $index) {
           <app-toggle-filter
             [filter]="filter"
+            class="py-1"
             (toggle)="toggleProjectCardFilter(filter)"
           ></app-toggle-filter>
         }
@@ -21,8 +22,9 @@
     <div class="flex gap-3">
       <div class="header text-primary">Languages</div>
       <div class="options">
-        @for (filter of appStore.projectCardLanguageFilters(); track $index) {
+        @for (filter of projectCardStore.projectCardLanguageFilters(); track $index) {
           <app-toggle-filter
+            class="py-1"
             [filter]="filter"
             (toggle)="toggleProjectCardFilter(filter)"
           ></app-toggle-filter>

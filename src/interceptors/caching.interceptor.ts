@@ -1,9 +1,9 @@
 import { HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, tap } from "rxjs";
-import { AppStore } from "../stores/app.store";
-import { CacheStore } from "../stores/cache.store";
 import { HttpCacheClient } from "../services/http-cache-client.service";
+import { CacheStore } from "../services/stores/cache.store";
+import { AppStore } from "../services/stores/app.store";
 
 /** Also see {@link HttpCacheClient} */
 @Injectable()

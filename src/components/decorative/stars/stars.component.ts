@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, input, signal } from '@angular/core';
 import { StarComponent } from '../star/star.component';
 import { StarsService } from '../../../services/stars.service';
-import { AppStore } from '../../../stores/app.store';
+import { AppStore } from '../../../services/stores/app.store';
 import { IStar } from '../../../models/stars';
 
 @Component({

@@ -1,11 +1,11 @@
-import { IProjectCardRaw } from "./project-card";
+import { IProjectCard } from "./project-card";
 
 export interface IAppSettings {
   environment: 'development' | 'production';
   user: string;
   portfolioJsonFilePath: string;
   token: string;
-  projectCards?: IProjectCardRaw[];
+  projectCards?: IProjectCard[];
   caching?: {
     enabled: boolean;
     enableInterceptor: boolean;

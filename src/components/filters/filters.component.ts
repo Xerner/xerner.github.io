@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { AppStore } from '../../stores/app.store';
 import { ToggleFilterComponent } from './toggle-filter/toggle-filter.component';
 import { IFilter } from '../../models/filtering/filter';
 import { IProjectCard } from '../../models/project-card';
-import { FilterStore } from '../../stores/filter.store';
+import { ProjectCardStore } from '../../services/stores/project-card.store';
+import { FilterStore } from '../../services/stores/filter.store';
 
 @Component({
   selector: 'app-filters',
@@ -18,7 +18,7 @@ import { FilterStore } from '../../stores/filter.store';
 })
 export class FiltersComponent {
   constructor(
-    protected appStore: AppStore,
+    protected projectCardStore: ProjectCardStore,
     protected filterStore: FilterStore,
   ) { }
 

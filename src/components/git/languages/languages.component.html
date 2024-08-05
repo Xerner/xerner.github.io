@@ -2,7 +2,7 @@
   <!-- <div class="margin"> -->
     <div class="mb-2">
       <div class="language-bar block">
-        @for (language of mappedlanguages; track $index) {
+        @for (language of mappedLanguages(); track $index) {
           <span
             [ngStyle]="{
               width: language.percentage * 100 + '%',
@@ -15,7 +15,7 @@
       </div>
     </div>
     <ul>
-      @for (language of mappedlanguages; track $index) {
+      @for (language of mappedLanguages(); track $index) {
         <li
           class="inline me-3 last-of-type:me-0 inline-flex justify-center items-center flex-nowrap"
         >

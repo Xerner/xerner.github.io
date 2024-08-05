@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { IProjectCard } from '../../../models/project-card';
 import { LanguagesComponent } from '../languages/languages.component';
 import { DatetimePipe } from '../../../pipes/datetime.pipe';

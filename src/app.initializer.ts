@@ -1,6 +1,5 @@
 import { APP_INITIALIZER } from "@angular/core";
-import { IAppSettings } from "./models/appsettings";
-import { CacheStore } from "./stores/cache.store";
+import { CacheStore } from "./services/stores/cache.store";
 import { AppSettingsService } from "./services/appsettings.service";
 
 export function initializeApp(appSettings: AppSettingsService, cacheStore: CacheStore) {

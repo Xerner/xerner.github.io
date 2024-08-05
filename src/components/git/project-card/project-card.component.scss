@@ -41,7 +41,7 @@ $height: 20rem;
   }
 
   .chips {
-    @apply flex
+    @apply flex flex-wrap
       gap-2;
   }
   // &:nth-child(even) .chips {
@@ -58,5 +58,9 @@ $height: 20rem;
 
   .margin {
     @apply m-5;
+  }
+
+  .starred .starred-button-icon {
+    color: #ffff75;
   }
 }

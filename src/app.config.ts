@@ -6,8 +6,8 @@ import { APP_SETTINGS } from './settings/appsettings';
 import { UrlCachingInterceptor } from './interceptors/caching.interceptor';
 import { HttpCacheClient } from './services/http-cache-client.service';
 import { MockHttpHandler } from './services/mock/http-handler';
-import { CacheStore } from './stores/cache.store';
 import { APP_INITIALIZER_PROVIDER } from './app.initializer';
+import { CacheStore } from './services/stores/cache.store';
 
 var shouldUseCache = APP_SETTINGS.caching !== undefined && APP_SETTINGS.caching.enabled;
 var shouldUseCacheInterceptor = !shouldUseCache && APP_SETTINGS.caching && APP_SETTINGS.caching.enableInterceptor;

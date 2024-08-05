@@ -4,8 +4,8 @@ import { IContributor } from "./github-api/contributor";
 
 export interface IProjectCard {
   repo: IRepository;
-  languages: ILanguages | null;
-  contributors: IContributor[] | null;
+  languages: ILanguages;
+  contributors: IContributor[];
   // image?: IProjectCardImage;
 }
 
