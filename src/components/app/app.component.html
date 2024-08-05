@@ -1,14 +1,12 @@
 <!-- Background -->
-<!-- <div class="h-screen w-full block absolute top-0 -z-10">
+<div class="h-screen w-full block absolute top-0 -z-10">
   <app-stars class="relative top-0 w-full h-full block bg-space" />
-</div> -->
+</div>
 
-<!-- <app-my-name class="h-screen block"></app-my-name> -->
+<app-my-name class="h-screen block"></app-my-name>
 
 <div
-  [ngClass]="{
-    'block bg-space-to-sky min-h-screen flex flex-col': true,
-  }"
+  class="block bg-space-to-sky min-h-screen flex flex-col relative pb-[200px]"
 >
   <app-clouds class="block w-full" />
 
@@ -65,23 +63,23 @@
     }
   }
 
-  <div class="overflow-hidden h-[100px] relative">
+  <div class="overflow-hidden h-[100px] absolute inset-x-0 bottom-0">
     <div class="the-ground"></div>
   </div>
+</div>
 
-  <div class="flex justify-end gap-3 p-3 bg-slate-500">
-    @if (appStore.APP_SETTINGS.caching?.enableInterceptor) {
-      <button class="bg-slate-300 p-2 rounded" (click)="cacheStore.openCache()">
-        Cache
-      </button>
-    }
-    <app-tooltip tooltip="My Github">
-      <button class="bg-slate-300 p-2 rounded">
-        <a href="https://github.com/Xerner" target="_blank"> Github </a>
-      </button>
-      <!-- <IconButton >
-        <GitHubIcon />
-      </IconButton> -->
-    </app-tooltip>
-  </div>
+<div class="flex justify-end gap-3 p-3 bg-slate-500">
+  @if (appStore.APP_SETTINGS.caching?.enableInterceptor) {
+    <button class="bg-slate-300 p-2 rounded" (click)="cacheStore.openCache()">
+      Cache
+    </button>
+  }
+  <app-tooltip tooltip="My Github">
+    <button class="bg-slate-300 p-2 rounded">
+      <a href="https://github.com/Xerner" target="_blank">Github</a>
+    </button>
+    <!-- <IconButton >
+      <GitHubIcon />
+    </IconButton> -->
+  </app-tooltip>
 </div>

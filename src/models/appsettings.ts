@@ -6,6 +6,9 @@ export interface IAppSettings {
   portfolioJsonFilePath: string;
   token: string;
   projectCards?: IProjectCard[];
+  api?: {
+    limitRepos: number;
+  }
   caching?: {
     enabled: boolean;
     enableInterceptor: boolean;

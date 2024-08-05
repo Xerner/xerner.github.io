@@ -55,6 +55,10 @@
   @apply inline py-1 px-3 rounded-2xl;
 }
 
+.chips {
+  @apply flex flex-wrap items-start gap-2;
+}
+
 .the-ground {
   position: absolute;
   top: 0;
@@ -72,4 +76,16 @@
   width: 8px;
   border-radius: 4px;
   box-shadow: 0 2px #222222;
+}
+
+.theme--dark {
+  .star-icon {
+    color: #ffff75;
+    fill: #ffff75;
+  }
+
+  .watchers-icon {
+    color: #DDDDDD;
+    fill: #DDDDDD;
+  }
 }

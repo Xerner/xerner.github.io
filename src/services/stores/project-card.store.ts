@@ -28,7 +28,6 @@ export class ProjectCardStore {
   })
   projectCardTopicFilters = computed<IFilter<IProjectCard>[]>(() => {
     var projectCards = this.projectCards();
-    var filteredProjectCards = this.filteredProjectCards();
     if (projectCards === null) {
       return [];
     }
