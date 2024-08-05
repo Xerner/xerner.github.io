@@ -5,6 +5,7 @@ import { LanguagesComponent } from '../languages/languages.component';
 import { DatetimePipe } from '../../../pipes/datetime.pipe';
 import { TimeFromNowPipe } from '../../../pipes/time-from-now.pipe';
 import { AppSettingsService } from '../../../services/appsettings.service';
+import { ContributorsComponent } from '../contributors/contributors.component';
 
 @Component({
   selector: 'app-project-card',
@@ -14,6 +15,7 @@ import { AppSettingsService } from '../../../services/appsettings.service';
     LanguagesComponent,
     DatetimePipe,
     TimeFromNowPipe,
+    ContributorsComponent,
   ],
   templateUrl: 'project-card.component.html',
   // styleUrl: 'project-card.component.scss'

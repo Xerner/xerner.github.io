@@ -16,31 +16,18 @@
           </a>
         </h3>
 
-        <!-- Contributors -->
-        <div class="flex">
-          @for (contributor of projectCard().contributors; track $index) {
-            <div
-              class="rounded-full overflow-clip border-2 border-primary hover:outline hover:outline-2 hover:outline-blue-500 -me-3"
-              [title]="contributor.login"
-            >
-              <a [href]="contributor.html_url" target="_blank">
-                <img
-                  class="w-8 h-8"
-                  [src]="contributor.avatar_url"
-                  alt="repo owner"
-                />
-              </a>
-            </div>
-          }
-        </div>
-
         <!-- Repo flairs -->
         @if (projectCard().repo.fork) {
-          <span class="font-light text-lg text-slate-300">fork</span>
+          <span class="font-light text-lg text-secondary">fork</span>
         }
         @if (projectCard().repo.private) {
-          <span class="font-light text-lg text-slate-300">private</span>
+          <span class="font-light text-lg text-secondary">private</span>
         }
+
+        <!-- Contributors -->
+        <app-contributors
+          [contributors]="projectCard().contributors"
+        ></app-contributors>
       </div>
 
       <!-- Repo counts -->
