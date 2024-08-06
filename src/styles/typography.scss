@@ -14,4 +14,12 @@
   .text-active {
     @apply text-slate-100;
   }
+
+  .fill-primary {
+    @apply fill-slate-100;
+  }
+
+  .fill-secondary {
+    @apply fill-slate-300;
+  }
 }

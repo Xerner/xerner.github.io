@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, signal } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { IProjectCard } from "../../models/project-card";
 import { ProjectCardService } from "../../services/project-card.service";
@@ -12,6 +12,7 @@ import { FiltersComponent } from "../filters/filters.component";
 import { AppStore } from "../../services/stores/app.store";
 import { ProjectCardStore } from "../../services/stores/project-card.store";
 import { CacheStore } from "../../services/stores/cache.store";
+import { AccordionDirective } from "../../directives/accordion.directive";
 
 @Component({
   selector: 'app-root',
@@ -25,16 +26,19 @@ import { CacheStore } from "../../services/stores/cache.store";
     CloudsComponent,
     ProjectCardComponent,
     FiltersComponent,
-],
+    AccordionDirective,
+  ],
   templateUrl: 'app.component.html',
 })
 export class AppComponent {
+  isAccordionOpen = signal<boolean>(false);
+
   constructor(
     private projectCardService: ProjectCardService,
     protected appStore: AppStore,
     protected projectCardStore: ProjectCardStore,
     protected cacheStore: CacheStore,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.projectCardService.populateProjectCards();
@@ -42,5 +46,9 @@ export class AppComponent {
 
   getId(projectCard: IProjectCard) {
     return projectCard.repo.name + "-project-card";
+  }
+
+  onHamburgerClick() {
+    this.isAccordionOpen.set(!this.isAccordionOpen());
   }
 }
