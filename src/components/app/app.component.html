@@ -19,7 +19,19 @@
   <div class="py-32"></div>
 
   <!-- Filters -->
-  <div class="mt-20 mb-12 mx-20">
+  <div
+    class="mt-20 mb-12 mx-20 rounded-2xl bg-primary border-2 border-secondary overflow-hidden"
+  >
+    <div
+      class="text-2xl text-primary padded-x py-3 bg-secondary border-b-2 border-secondary"
+    >
+      Summary
+    </div>
+    <div class="padded text-primary">
+      <div class="text-2xl">
+        Languages
+      </div>
+    </div>
     <app-filters></app-filters>
   </div>
 
@@ -34,8 +46,13 @@
     </div>
   } @else {
     @defer (when projectCardStore.filteredProjectCards() !== null) {
-      <div class="grid lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-3 mx-20">
-        @for (projectCard of projectCardStore.filteredProjectCards(); track $index) {
+      <div
+        class="grid lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-3 mx-20"
+      >
+        @for (
+          projectCard of projectCardStore.filteredProjectCards();
+          track $index
+        ) {
           <app-project-card
             [id]="getId(projectCard)"
             [index]="$index"

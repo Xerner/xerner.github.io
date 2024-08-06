@@ -1,8 +1,6 @@
-<div
-  class="rounded-2xl bg-primary border-2 border-secondary filters overflow-hidden"
->
+<div class="filters">
   <div
-    class="text-2xl text-primary padded-x py-3 bg-secondary border-b-2 border-secondary"
+    class="text-2xl text-primary padded-x py-3 bg-secondary border-y-2 border-secondary"
   >
     Filters
   </div>
@@ -10,7 +8,10 @@
     <div class="flex gap-3">
       <div class="header text-primary">Topics</div>
       <div class="options">
-        @for (filter of projectCardStore.projectCardTopicFilters(); track $index) {
+        @for (
+          filter of projectCardStore.projectCardTopicFilters();
+          track $index
+        ) {
           <app-toggle-filter
             [filter]="filter"
             class="py-1"
@@ -22,7 +23,10 @@
     <div class="flex gap-3">
       <div class="header text-primary">Languages</div>
       <div class="options">
-        @for (filter of projectCardStore.projectCardLanguageFilters(); track $index) {
+        @for (
+          filter of projectCardStore.projectCardLanguageFilters();
+          track $index
+        ) {
           <app-toggle-filter
             class="py-1"
             [filter]="filter"
