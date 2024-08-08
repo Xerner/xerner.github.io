@@ -54,7 +54,7 @@
             "propertiesClass": [
                 {
                     "name": "title",
-                    "defaultValue": "'portfolio'",
+                    "defaultValue": "'xerner.github.io'",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
@@ -77,7 +77,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { RouterOutlet } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [RouterOutlet],\r\n  templateUrl: './app.component.html',\r\n  styleUrl: './app.component.scss'\r\n})\r\nexport class AppComponent {\r\n  title = 'portfolio';\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { RouterOutlet } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  standalone: true,\r\n  imports: [RouterOutlet],\r\n  templateUrl: './app.component.html',\r\n  styleUrl: './app.component.scss'\r\n})\r\nexport class AppComponent {\r\n  title = 'xerner.github.io';\r\n}\r\n",
             "styleUrl": "./app.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",

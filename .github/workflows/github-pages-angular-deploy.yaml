@@ -1,0 +1,25 @@
+name: Github Pages - Production
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy-to-github-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Angular to GitHub Pages
+        uses: bitovi/github-actions-angular-to-github-pages@v1.0.0
+        with:
+          build_command: "npm run build"
