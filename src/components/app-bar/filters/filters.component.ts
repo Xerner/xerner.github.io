@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ToggleFilterComponent } from './toggle-filter/toggle-filter.component';
-import { IFilter } from '../../models/filtering/filter';
-import { IProjectCard } from '../../models/project-card';
-import { ProjectCardStore } from '../../services/stores/project-card.store';
-import { FilterStore } from '../../services/stores/filter.store';
+import { ToggleFilterComponent } from '../toggle-filter/toggle-filter.component';
+import { IFilter } from '../../../models/filtering/filter';
+import { IProjectCard } from '../../../models/project-card';
+import { ProjectCardStore } from '../../../services/stores/project-card.store';
+import { FilterStore } from '../../../services/stores/filter.store';
 
 @Component({
   selector: 'app-filters',

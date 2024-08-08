@@ -8,7 +8,6 @@ import { MyNameComponent } from "../decorative/my-name/my-name.component";
 import { StarsComponent } from "../decorative/stars/stars.component";
 import { TooltipComponent } from "../generic/tooltip/tooltip.component";
 import { ProjectCardComponent } from "../git/project-card/project-card.component";
-import { FiltersComponent } from "../filters/filters.component";
 import { AppStore } from "../../services/stores/app.store";
 import { ProjectCardStore } from "../../services/stores/project-card.store";
 import { CacheStore } from "../../services/stores/cache.store";
@@ -16,6 +15,8 @@ import { AccordionDirective } from "../../directives/accordion.directive";
 import { TabDirective } from "../../directives/tab.directive";
 import { TabsDirective } from "../../directives/tabs.directive";
 import { TabContentDirective } from "../../directives/tab-content.directive";
+import { FiltersComponent } from "../app-bar/filters/filters.component";
+import { AppBarComponent } from "../app-bar/app-bar/app-bar.component";
 
 @Component({
   selector: 'app-root',
@@ -28,17 +29,11 @@ import { TabContentDirective } from "../../directives/tab-content.directive";
     MyNameComponent,
     CloudsComponent,
     ProjectCardComponent,
-    FiltersComponent,
-    AccordionDirective,
-    TabDirective,
-    TabsDirective,
-    TabContentDirective,
+    AppBarComponent,
   ],
   templateUrl: 'app.component.html',
 })
 export class AppComponent {
-  isAccordionOpen = signal<boolean>(false);
-
   constructor(
     private projectCardService: ProjectCardService,
     protected appStore: AppStore,
@@ -52,9 +47,5 @@ export class AppComponent {
 
   getId(projectCard: IProjectCard) {
     return projectCard.repo.name + "-project-card";
-  }
-
-  onHamburgerClick() {
-    this.isAccordionOpen.set(!this.isAccordionOpen());
   }
 }
