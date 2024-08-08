@@ -6,13 +6,13 @@ import { Directive, ElementRef, Input, SimpleChanges } from '@angular/core';
 })
 export class AccordionDirective {
   @Input() accordion = false;
+  @Input() isAccordionHorizontal = false;
 
   constructor(private elementRef: ElementRef<HTMLElement>) {
   }
 
   ngOnInit() {
-    this.elementRef.nativeElement.classList.add('block');
-    this.elementRef.nativeElement.classList.add('accordion');
+    this.elementRef.nativeElement.classList.add(this.getAccordionClass());
     if (this.accordion) {
       this.changeState(this.accordion);
     }
@@ -33,7 +33,7 @@ export class AccordionDirective {
   }
 
   toggle() {
-    if (this.elementRef.nativeElement.classList.contains('accordion--open')) {
+    if (this.elementRef.nativeElement.classList.contains(this.getAccordionOpenClass())) {
       this.close();
     } else {
       this.open();
@@ -41,12 +41,26 @@ export class AccordionDirective {
   }
 
   close() {
-    this.elementRef.nativeElement.classList.remove('accordion--open');
+    this.elementRef.nativeElement.classList.remove(this.getAccordionOpenClass());
     this.accordion = false;
   }
 
   open() {
-    this.elementRef.nativeElement.classList.add('accordion--open');
+    this.elementRef.nativeElement.classList.add(this.getAccordionOpenClass());
     this.accordion = true;
+  }
+
+  getAccordionClass() {
+    if (this.isAccordionHorizontal) {
+      return "accordion-horizontal";
+    }
+    return "accordion"
+  }
+
+  getAccordionOpenClass() {
+    if (this.isAccordionHorizontal) {
+      return "accordion-horizontal--open";
+    }
+    return "accordion--open"
   }
 }

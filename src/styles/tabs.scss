@@ -1,0 +1,15 @@
+.tab {
+  @apply py-3 px-12 hover:bg-slate-700 hover:rounded-lg;
+
+  > * {
+    display: none;
+  }
+
+  .active {
+    > * {
+      display: block;
+    }
+
+    @apply bg-slate-700;
+  }
+}

@@ -13,6 +13,9 @@ import { AppStore } from "../../services/stores/app.store";
 import { ProjectCardStore } from "../../services/stores/project-card.store";
 import { CacheStore } from "../../services/stores/cache.store";
 import { AccordionDirective } from "../../directives/accordion.directive";
+import { TabDirective } from "../../directives/tab.directive";
+import { TabsDirective } from "../../directives/tabs.directive";
+import { TabContentDirective } from "../../directives/tab-content.directive";
 
 @Component({
   selector: 'app-root',
@@ -27,6 +30,9 @@ import { AccordionDirective } from "../../directives/accordion.directive";
     ProjectCardComponent,
     FiltersComponent,
     AccordionDirective,
+    TabDirective,
+    TabsDirective,
+    TabContentDirective,
   ],
   templateUrl: 'app.component.html',
 })
