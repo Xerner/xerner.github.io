@@ -53,6 +53,10 @@
                 {
                   "replace": "src/settings/appsettings.ts",
                   "with": "src/settings/appsettings.production.ts"
+                },
+                {
+                  "replace": "src/settings/cache/cache.ts",
+                  "with": "src/settings/cache/cache.production.ts"
                 }
               ]
             },

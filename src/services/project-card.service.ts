@@ -30,11 +30,11 @@ export class ProjectCardService {
         map(repos => forkJoin(repos.map(repo => this.getProjectCardFromApi(repo)))),
         concatAll(),
       ).subscribe(projectCards => {
-        projectCards = StaticProjectCards.map(projectCard => {
+        StaticProjectCards.forEach(projectCard => {
           projectCard.external = true
           return projectCard;
         });
-        //var projectCards = projectCards.concat(StaticProjectCards);
+        var projectCards = projectCards.concat(StaticProjectCards);
         this.projectCardStore.projectCards.set(projectCards)
       })
   }

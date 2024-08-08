@@ -13,8 +13,8 @@ import { IContributor } from '../../../models/github-api/contributor';
 export class ContributorsComponent {
   contributors = input.required<IContributor[]>();
   count = input<number>(6);
-  shownContributors = computed(() => this.contributors().slice(0, this.count()));
-  hiddenContributors = computed(() => this.contributors().slice(this.count()));
+  shownContributors = computed(() => this.contributors()?.slice(0, this.count()));
+  hiddenContributors = computed(() => this.contributors()?.slice(this.count()));
 
   getHiddenContributorsTooltip() {
     var hiddenCount = this.hiddenContributors().length;

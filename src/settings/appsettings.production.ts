@@ -9,5 +9,10 @@ export const APP_SETTINGS: IAppSettings = {
     repos: true,
     languages: true,
     portfolioFiles: true,
-  }
+  },
+  caching: {
+    enabled: true,
+    enableInterceptor: false,
+    cacheSource: "file",
+  },
 }

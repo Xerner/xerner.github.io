@@ -6,11 +6,11 @@ export const APP_SETTINGS: IAppSettings = {
   portfolioJsonFilePath: "portfolio.json",
   token: "",
   api: {
-    limitRepos: 10,
+    limitRepos: 100,
   },
   caching: {
     enabled: true,
-    enableInterceptor: true,
+    enableInterceptor: false,
     cacheSource: "file",
   },
   features: {
