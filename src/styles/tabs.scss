@@ -1,0 +1,19 @@
+.tab {
+  @apply py-3 px-12 bg-primary rounded-lg;
+
+  &:hover {
+    @apply bg-hover;
+  }
+
+  > * {
+    display: none;
+  }
+
+  &.active {
+    > * {
+      display: block;
+    }
+
+    @apply bg-active;
+  }
+}

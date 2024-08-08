@@ -1,0 +1,26 @@
+<svg class="w-full h-full">
+  @for (node of graph().nodes; track $index) {
+    <image
+      [attr.x]="adjustCoordinate(node, nodeRadius, getTotalWidth, getXCoord)"
+      [attr.y]="adjustCoordinate(node, nodeRadius, getTotalHeight, getYCoord)"
+      [attr.height]="nodeHeight"
+      [attr.width]="nodeWidth"
+      [attr.href]="img"
+      [title]="$index"
+    >
+      <title>Node {{ $index }}</title>
+    </image>
+  }
+  @for (edge of graph().edges; track $index) {
+    <line
+      [attr.x1]="adjustCoordinate(edge.node1, 0, getTotalWidth, getXCoord)"
+      [attr.y1]="adjustCoordinate(edge.node1, 0, getTotalHeight, getYCoord)"
+      [attr.x2]="adjustCoordinate(edge.node2, 0, getTotalWidth, getXCoord)"
+      [attr.y2]="adjustCoordinate(edge.node2, 0, getTotalHeight, getYCoord)"
+      stroke="white"
+      [attr.opacity]="lineOpacity"
+    >
+      <title>Edge {{ $index }}</title>
+    </line>
+  }
+</svg>

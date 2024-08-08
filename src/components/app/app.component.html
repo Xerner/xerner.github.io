@@ -1,0 +1,90 @@
+<!-- Background -->
+<div class="h-screen w-full block absolute top-0 -z-10">
+  <app-stars class="relative top-0 w-full h-full block bg-space" />
+</div>
+
+<app-my-name class="h-screen block"></app-my-name>
+
+<div
+  class="block bg-space-to-sky min-h-screen flex flex-col relative pb-[200px]"
+>
+  <app-clouds class="block w-full" />
+
+  <!-- <div class="main-content main-content-shadow">
+      <CloudsAndSun />
+      <ProjectCards />
+      <GameJamCards />
+  </div> -->
+
+  <div class="py-32"></div>
+
+  <!-- App Menu -->
+  <div class="sticky top-0 mt-20 mb-40">
+    <app-bar></app-bar>
+  </div>
+
+  <!-- Project Cards -->
+  @if (appStore.errors.apiLimitError()) {
+    <div class="grow flex justify-center items-center">
+      <div
+        class="text-white text-5xl p-8 bg-slate-500 rounded-full border-2 border-slate-800"
+      >
+        API Limit Reached!
+      </div>
+    </div>
+  } @else {
+    @defer (when projectCardStore.filteredProjectCards() !== null) {
+      <div
+        class="grid lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-3 mx-20"
+      >
+        @for (
+          projectCard of projectCardStore.filteredProjectCards();
+          track $index
+        ) {
+          <app-project-card
+            [id]="getId(projectCard)"
+            [index]="$index"
+            [projectCard]="projectCard"
+            class="project-card"
+          ></app-project-card>
+        }
+      </div>
+    } @placeholder {
+      <div class="grow flex justify-center items-center">
+        <div
+          class="text-white text-5xl p-8 bg-slate-500 rounded-full border-2 border-slate-800"
+        >
+          Loading
+        </div>
+      </div>
+    } @error {
+      <div class="grow flex justify-center items-center">
+        <div
+          class="text-white text-5xl p-8 bg-slate-500 rounded-full border-2 border-slate-800"
+        >
+          Error
+        </div>
+      </div>
+    }
+  }
+
+  <div class="overflow-hidden h-[100px] absolute inset-x-0 bottom-0">
+    <div class="the-ground"></div>
+  </div>
+</div>
+
+<div class="flex justify-end gap-3 p-3 bg-slate-500">
+  @if (appStore.APP_SETTINGS.caching?.enableInterceptor) {
+    <button class="bg-slate-300 p-2 rounded" (click)="cacheStore.openCache()">
+      Cache
+    </button>
+  }
+  <app-tooltip tooltip="My Github">
+    <button class="bg-slate-300 p-2 rounded">
+      <a href="https://github.com/Xerner" target="_blank">Github</a>
+    </button>
+    <!-- <IconButton >
+      <GitHubIcon />
+    </IconButton> -->
+  </app-tooltip>
+</div>

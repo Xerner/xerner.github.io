@@ -1,0 +1,9 @@
+.theme--dark {
+  .border-primary {
+    @apply border-slate-800;
+  }
+
+  .border-secondary {
+    @apply border-slate-900;
+  }
+}

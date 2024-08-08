@@ -1,0 +1,93 @@
+
+@use "styles/typography.scss";
+@use "styles/backgrounds.scss";
+@use "styles/shadows.scss";
+@use "styles/borders.scss";
+@use "styles/margin.scss";
+@use "styles/padding.scss";
+@use "styles/animations.scss";
+@use "styles/accordion.scss";
+@use "styles/tabs.scss";
+@import "animate.css/animate.min.css";
+@import 'components/git/project-card/project-card.component.scss';
+
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  // border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltip-text {
+  display: none;
+  visibility: hidden;
+  // width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+.tooltip:hover .tooltip-text {
+  display: inline;
+  visibility: visible;
+}
+
+.h-screen-2 {
+  height: 200vh;
+}
+
+.w-screen-3\/4 {
+  width: 75vw;
+}
+
+.chip {
+  @apply inline py-1 px-3 rounded-2xl;
+}
+
+.chips {
+  @apply flex flex-wrap items-start gap-2;
+}
+
+.the-ground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 10000px;
+  width: 10000px;
+  background-color: hsl(129, 75%, 43%);
+  border-top: hsl(129, 75%, 33%) 3px solid;
+  border-radius: 100%;
+  transform: translate(-4300px, 0);
+}
+
+.octicon {
+  height: 8px;
+  width: 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px #222222;
+}
+
+.theme--dark {
+  .star-icon {
+    color: #ffff75;
+    fill: #ffff75;
+  }
+
+  .watchers-icon {
+    color: #DDDDDD;
+    fill: #DDDDDD;
+  }
+}

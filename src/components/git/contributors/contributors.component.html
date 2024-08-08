@@ -1,0 +1,17 @@
+@if (contributors() && contributors().length > 0) {
+  <div class="flex items-center">
+    @for (contributor of shownContributors(); track $index) {
+      <div
+        class="rounded-full overflow-clip border-2 border-primary hover:outline hover:outline-2 hover:outline-blue-500 -me-3"
+        [title]="contributor.login"
+      >
+        <a [href]="contributor.html_url" target="_blank">
+          <img class="w-8 h-8" [src]="contributor.avatar_url" alt="repo owner" />
+        </a>
+      </div>
+    }
+    @if (hiddenContributors().length > 0) {
+      <div [title]="getHiddenContributorsTooltip()" class="ms-4 text-secondary cursor-default">•••</div>
+    }
+  </div>
+}

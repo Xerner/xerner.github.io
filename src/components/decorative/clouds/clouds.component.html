@@ -1,0 +1,11 @@
+<div
+  class="relative overflow-x-clip w-full"
+  [ngStyle]="{ 'top.px': -SKY_HEIGHT, height: LARGEST_CLOUD_HEIGHT }"
+>
+  @for (cloud of CLOUDS; track $index) {
+    <app-cloud
+      [cloud]="cloud"
+      [skyHeight]="SKY_HEIGHT"
+    ></app-cloud>
+  }
+</div>

@@ -1,0 +1,9 @@
+.filters {
+  .header {
+    @apply col-span-1 text-xl min-w-32;
+  }
+
+  .options {
+    @apply col-span-4 flex flex-wrap gap-3 items-center mt-1;
+  }
+}
