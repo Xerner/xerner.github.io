@@ -7,10 +7,10 @@ import { TabsDirective } from './tabs.directive';
 })
 export class TabDirective {
   @Input({ required: true }) appTab!: string;
+
   get name() {
     return this.appTab
   }
-  isActive = signal<boolean>(false);
 
   constructor(
     private tabs: TabsDirective,
@@ -32,7 +32,9 @@ export class TabDirective {
   }
 
   show() {
-    this.isActive.set(true);
+    if (this.tabs.isActive(this.name)) {
+      return;
+    }
     this.elementRef.nativeElement.classList.add('active');
   }
 

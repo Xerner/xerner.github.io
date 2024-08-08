@@ -7,6 +7,8 @@ import { TabsDirective } from './tabs.directive';
 })
 export class TabContentDirective {
   @Input() appTabContent: string = "";
+  isHidden = false;
+
   get name() {
     return this.appTabContent
   }
@@ -26,11 +28,16 @@ export class TabContentDirective {
   }
 
   hide() {
+    if (this.isHidden) {
+      return;
+    }
+    this.isHidden = true;
     this.display = this.elementRef.nativeElement.style.display;
     this.elementRef.nativeElement.style.display = "none"
   }
 
   show() {
+    this.isHidden = false;
     this.elementRef.nativeElement.style.display = this.display;
   }
 }

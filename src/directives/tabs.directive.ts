@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { TabDirective } from './tab.directive';
 import { TabContentDirective } from './tab-content.directive';
 
@@ -13,6 +13,10 @@ export interface ITabInfo {
   standalone: true,
 })
 export class TabsDirective {
+  @Input() appTabs = "";
+  get firstActiveTab() {
+    return this.appTabs;
+  }
   activeTab: ITabInfo | null = null;
   tabs: ITabInfo[] = [];
 
@@ -22,6 +26,7 @@ export class TabsDirective {
       tab = { name: tabContent.name, content: new Set(), tabs: new Set() };
       this.tabs.push(tab)
     }
+    tabContent.hide();
     tab.content.add(tabContent);
   }
 
@@ -39,10 +44,11 @@ export class TabsDirective {
       tab_ = { name: tab.name, tabs: new Set(), content: new Set() };
       this.tabs.push(tab_)
     }
-    if (this.tabs.length === 1) {
+    tab.hide();
+    tab_.tabs.add(tab);
+    if (tab_.name == this.firstActiveTab) {
       this.setActiveTab(tab.name)
     }
-    tab_.tabs.add(tab);
   }
 
   remove(tab: TabDirective) {
@@ -53,6 +59,11 @@ export class TabsDirective {
     this.tabs.splice(index, 1);
   }
 
+  isActive(name: string) {
+    var tab = this.tabs.find(tab => tab.name == name)
+    return tab !== undefined && this.activeTab == tab;
+  }
+
   setActiveTab(tabName: string) {
     var newTab = this.tabs.find(tab => tab.name == tabName)
     if (newTab === undefined) {
@@ -60,8 +71,8 @@ export class TabsDirective {
     }
     this.activeTab?.tabs.forEach(tab => tab.hide());
     this.activeTab?.content.forEach(content => content.hide());
+    newTab.tabs.forEach(tab => tab.show());
+    newTab.content.forEach(content => content.show());
     this.activeTab = newTab;
-    this.activeTab?.tabs.forEach(tab => tab.show());
-    this.activeTab?.content.forEach(content => content.show());
   }
 }

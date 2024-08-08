@@ -1,22 +1,29 @@
-<div class="border-y-2 border-secondary" appTabs>
+<div class="border-y-2 border-secondary" appTabs="summary">
   <div
     [ngClass]="{
       'flex justify-between items-center text-2xl text-primary padded-x pe-4 py-3 bg-secondary': true,
       'border-b-2 border-secondary': isAccordionOpen(),
     }"
   >
-    <div class="grow overflow-hidden flex gap-3 " [accordion]="isAccordionOpen()" [isAccordionHorizontal]="true">
-      <!-- <div class="w-full"> -->
-        <button appTab="filters" class="tab">Filters</button>
-        <button appTab="languages" class="tab">Languages</button>
-      <!-- </div> -->
+    <div
+      class="grow overflow-hidden flex gap-3"
+      [accordion]="isAccordionOpen()"
+      [isAccordionHorizontal]="true"
+    >
+      <button appTab="summary" class="tab bg-primary">Summary</button>
+      <button appTab="filters" class="tab">Filters</button>
     </div>
-    <app-hamborger [isOpen]="isAccordionOpen()" (click)="onHamburgerClick()"></app-hamborger>
+    <app-hamborger
+      [isOpen]="isAccordionOpen()"
+      (click)="onHamburgerClick()"
+    ></app-hamborger>
   </div>
 
   <div [accordion]="isAccordionOpen()">
     <!-- Filters -->
+    <div appTabContent="summary" class="text-primary padded">
+        This is my portfolio website!
+    </div>
     <app-filters appTabContent="filters"></app-filters>
-    <div appTabContent="languages"></div>
   </div>
 </div>
