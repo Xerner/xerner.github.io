@@ -6,9 +6,12 @@ import { DateTime } from 'luxon';
   standalone: true,
 })
 export class TimeFromNowPipe implements PipeTransform {
-  transform(dateValue: DateTime | string, ...args: unknown[]): unknown {
+  transform(dateValue: DateTime | string, invalidString: string = "Invalid DateTime"): unknown {
     if (typeof dateValue === 'string') {
       dateValue = DateTime.fromISO(dateValue);
+    }
+    if (dateValue.invalidReason !== null) {
+      return invalidString;
     }
     var now = DateTime.now();
     var diff = now.diff(dateValue, ['years', 'months', 'days']);

@@ -1,28 +1,34 @@
-<div class="border-y-2 border-secondary" appTabs="summary">
+<div appTabs="filters">
   <div
     [ngClass]="{
-      'flex justify-between items-center text-2xl text-primary padded-x pe-4 py-3 bg-secondary': true,
-      'border-b-2 border-secondary': isAccordionOpen(),
+      'flex justify-between items-center ': true,
+      'text-2xl text-primary': true,
+      'padded-x pe-4 py-3': true,
+      'bg-secondary': true,
+      'border-t-4 border-b-2 border-secondary': true,
     }"
   >
     <div
-      class="grow overflow-hidden flex gap-3"
+      class="grow flex gap-3"
       [accordion]="isAccordionOpen()"
       [isAccordionHorizontal]="true"
     >
       <button appTab="summary" class="tab bg-primary">Summary</button>
       <button appTab="filters" class="tab">Filters</button>
     </div>
+
     <app-hamborger
       [isOpen]="isAccordionOpen()"
       (click)="onHamburgerClick()"
     ></app-hamborger>
   </div>
 
-  <div [accordion]="isAccordionOpen()">
-    <!-- Filters -->
+  <div
+    [accordion]="isAccordionOpen()"
+    class="bg-primary border-b-2 border-secondary"
+  >
     <div appTabContent="summary" class="text-primary padded">
-        This is my portfolio website!
+      This is my portfolio website!
     </div>
     <app-filters appTabContent="filters"></app-filters>
   </div>

@@ -30,7 +30,11 @@ export class ProjectCardService {
         map(repos => forkJoin(repos.map(repo => this.getProjectCardFromApi(repo)))),
         concatAll(),
       ).subscribe(projectCards => {
-        var projectCards = projectCards.concat(StaticProjectCards);
+        projectCards = StaticProjectCards.map(projectCard => {
+          projectCard.external = true
+          return projectCard;
+        });
+        //var projectCards = projectCards.concat(StaticProjectCards);
         this.projectCardStore.projectCards.set(projectCards)
       })
   }
@@ -51,10 +55,6 @@ export class ProjectCardService {
       map(([repo, languages, contributors]) => this.createProjectCard(repo, languages, contributors))
     );
     return projectCardObservables;
-  }
-
-  getStaticProjectCards() {
-
   }
 
   createProjectCard(repo: IRepository, languages: ILanguages, contributors: IContributor[]): IProjectCard {

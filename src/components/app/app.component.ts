@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, signal } from "@angular/core";
+import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { IProjectCard } from "../../models/project-card";
 import { ProjectCardService } from "../../services/project-card.service";
@@ -11,12 +11,7 @@ import { ProjectCardComponent } from "../git/project-card/project-card.component
 import { AppStore } from "../../services/stores/app.store";
 import { ProjectCardStore } from "../../services/stores/project-card.store";
 import { CacheStore } from "../../services/stores/cache.store";
-import { AccordionDirective } from "../../directives/accordion.directive";
-import { TabDirective } from "../../directives/tab.directive";
-import { TabsDirective } from "../../directives/tabs.directive";
-import { TabContentDirective } from "../../directives/tab-content.directive";
-import { FiltersComponent } from "../app-bar/filters/filters.component";
-import { AppBarComponent } from "../app-bar/app-bar/app-bar.component";
+import { AppBarComponent } from "../app-bar/app-bar.component";
 
 @Component({
   selector: 'app-root',

@@ -40,6 +40,7 @@ export class ProjectCardStore {
         value: topic,
       }))
     }).sort((filter1, filter2) => filter1.name > filter2.name ? 1 : -1)
+      .filter(filter => filter.name !== "")
       .reduce(this.filterStore.removeDupes, [] as IFilter<IProjectCard>[])
       ;
   })

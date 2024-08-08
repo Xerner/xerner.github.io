@@ -26,7 +26,9 @@ export class TabsDirective {
       tab = { name: tabContent.name, content: new Set(), tabs: new Set() };
       this.tabs.push(tab)
     }
-    tabContent.hide();
+    if (this.activeTab !== null && this.activeTab!.name !== tabContent.name) {
+      tabContent.hide();
+    }
     tab.content.add(tabContent);
   }
 

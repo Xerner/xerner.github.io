@@ -3,6 +3,7 @@ import { ILanguages } from "./github-api/languages";
 import { IContributor } from "./github-api/contributor";
 
 export interface IProjectCard {
+  external?: boolean;
   repo: IRepository;
   languages: ILanguages;
   contributors: IContributor[];
