@@ -9,6 +9,7 @@ import { IContributor } from '../models/github-api/contributor';
 import { HttpClient } from '@angular/common/http';
 import { ProjectCardStore } from './stores/project-card.store';
 import { AppStore } from './stores/app.store';
+import { StaticProjectCards } from '../settings/static-project-cards';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +27,12 @@ export class ProjectCardService {
       .pipe(
         // delay(3000),
         map(repos => this.appStore.APP_SETTINGS.api !== undefined ? repos.slice(0, this.appStore.APP_SETTINGS.api.limitRepos) : repos),
-        map(repos => forkJoin(repos.map(repo => this.getProjectCard(repo)))),
+        map(repos => forkJoin(repos.map(repo => this.getProjectCardFromApi(repo)))),
         concatAll(),
-      ).subscribe(projectCards => this.projectCardStore.projectCards.set(projectCards))
+      ).subscribe(projectCards => {
+        var projectCards = projectCards.concat(StaticProjectCards);
+        this.projectCardStore.projectCards.set(projectCards)
+      })
   }
 
   // getRepositoryPortfolioFileFromApi(repoOwner: string): Observable<IProjectCard> {
@@ -38,7 +42,7 @@ export class ProjectCardService {
   //   )
   // }
 
-  getProjectCard(repo: IRepository) {
+  getProjectCardFromApi(repo: IRepository) {
     var projectCardObservables = forkJoin([
       of(repo),
       this.http.get<ILanguages>(repo.languages_url),
@@ -47,6 +51,10 @@ export class ProjectCardService {
       map(([repo, languages, contributors]) => this.createProjectCard(repo, languages, contributors))
     );
     return projectCardObservables;
+  }
+
+  getStaticProjectCards() {
+
   }
 
   createProjectCard(repo: IRepository, languages: ILanguages, contributors: IContributor[]): IProjectCard {
