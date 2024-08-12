@@ -13,8 +13,8 @@
       [accordion]="isAccordionOpen()"
       [isAccordionHorizontal]="true"
     >
-      <button appTab="summary" class="tab bg-primary">Summary</button>
       <button appTab="filters" class="tab">Filters</button>
+      <button appTab="websites" class="tab bg-primary">Summary</button>
     </div>
 
     <app-hamborger
@@ -27,9 +27,9 @@
     [accordion]="isAccordionOpen()"
     class="bg-primary border-b-2 border-secondary"
   >
-    <div appTabContent="summary" class="text-primary padded">
-      This is my portfolio website!
-    </div>
     <app-filters appTabContent="filters"></app-filters>
+    <div appTabContent="websites" class="text-primary padded">
+
+    </div>
   </div>
 </div>
