@@ -1,0 +1,17 @@
+{
+  "build": {
+    "dockerfile": "../docker/Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "PKief.material-icon-theme",
+        "usernamehw.errorlens",
+        "ms-azuretools.vscode-docker",
+        "cyrilletuzi.angular-schematics",
+        "Angular.ng-template"
+      ]
+    }
+  }
+}

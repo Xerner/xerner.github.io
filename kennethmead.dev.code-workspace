@@ -5,10 +5,6 @@
       "path": "."
     },
     {
-      "name": "react",
-      "path": "react"
-    },
-    {
       "name": "src",
       "path": "src"
     }
