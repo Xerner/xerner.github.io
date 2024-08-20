@@ -1,6 +1,9 @@
 <div class="h-full grid grid-rows-5 items-center">
   <div></div>
-  <div [delay]="appStore.nameDelay()" class="flex items-end justify-center gap-3">
+  <div
+    [delay]="appStore.nameDelay()"
+    class="flex items-end justify-center gap-3 animate__animated animate__slower animate__fadeIn"
+  >
     <app-star-letter letter="K" class="w-24 h-48" />
     <app-star-letter letter="e" class="w-24 h-24" />
     <app-star-letter letter="n" class="w-24 h-24" />
@@ -9,7 +12,10 @@
     <app-star-letter letter="t" class="w-24 h-48" />
     <app-star-letter letter="h" class="w-24 h-48" />
   </div>
-  <div [delay]="appStore.nameDelay()" class="flex items-end justify-center gap-3">
+  <div
+    [delay]="appStore.nameDelay()"
+    class="flex items-end justify-center gap-3 animate__animated animate__slower animate__fadeIn"
+  >
     <app-star-letter letter="M" class="w-24 h-48" />
     <app-star-letter letter="e" class="w-24 h-24" />
     <app-star-letter letter="a" class="w-24 h-24" />
@@ -17,11 +23,23 @@
   </div>
   <!-- Look Below -->
   <div
-    [delay]="appStore.nameDelay() + 1000"
-    class="text-center text-white text-2xl font-bold animate__animated animate__fadeInUp"
+    [delay]="appStore.nameDelay() + 100"
+    class="flex flex-col gap-6 items-center text-primary text-2xl font-bold animate__animated animate__fadeInUp"
   >
     <div>Look Below</div>
-    <div>🠟</div>
+    <div class="scale-150">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="#e8eaed"
+      >
+        <path
+          d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z"
+        />
+      </svg>
+    </div>
     <div></div>
   </div>
 </div>
