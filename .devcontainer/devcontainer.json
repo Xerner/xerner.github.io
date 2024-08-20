@@ -5,7 +5,6 @@
   "runArgs": [
     "--env-file", "${localWorkspaceFolder}/.devcontainer/.env"
   ],
-  "forwardPorts": [4200],
   "build": {
     "dockerfile": "./docker/Dockerfile",
     "args": {
@@ -25,6 +24,11 @@
         "cyrilletuzi.angular-schematics",
         "Angular.ng-template"
       ]
+    }
+  },
+  "portsAttributes": {
+    "4200": {
+      "label": "4200:4200"
     }
   }
 }

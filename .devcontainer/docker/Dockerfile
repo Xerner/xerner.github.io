@@ -19,5 +19,7 @@ RUN mkdir -p ~/.bin
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
 RUN chmod a+rx ~/.bin/repo
 
+RUN npm install -g @angular/cli
+
 COPY /copy/* /root
 ENTRYPOINT ["tail", "-f", "/dev/null"]

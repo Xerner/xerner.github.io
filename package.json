@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --configuration production",
-    "start-dev": "ng serve --configuration development",
+    "start-dev": "ng serve --configuration development --host=0.0.0.0 --disable-host-check",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "storybook": "ng run xerner.github.io:storybook",

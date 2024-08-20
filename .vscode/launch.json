@@ -1,27 +1,21 @@
 {
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
       "name": "ng serve (local)",
       "type": "msedge",
       "request": "launch",
-      "preLaunchTask": "npm: start-dev",
-      "url": "http://localhost:4200/"
+      // "preLaunchTask": "npm: start-dev",
+      "url": "http://localhost:4200/",
+      "webRoot": "${workspaceFolder}"
     },
     {
       "name": "ng serve (prod)",
       "type": "msedge",
       "request": "launch",
-      "preLaunchTask": "npm: start",
-      "url": "http://localhost:4200/"
-    },
-    {
-      "name": "ng test",
-      "type": "msedge",
-      "request": "launch",
-      "preLaunchTask": "npm: test",
-      "url": "http://localhost:9876/debug.html"
+      // "preLaunchTask": "npm: start",
+      "url": "http://localhost:4200/",
+      "webRoot": "${workspaceFolder}"
     }
   ]
 }
