@@ -16,11 +16,11 @@ export COLOR_LIGHT_CYAN='\e[1;36m'
 export COLOR_LIGHT_GRAY='\e[0;37m'
 export COLOR_WHITE='\e[1;37m'
 
-echo "loading git bash .bashrc"
-ls -al /
+PATH="${HOME}/.bin:${PATH}"
+
 source /root/.bash_git
 source /root/bash_prompt.sh
-PS1=\[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h docker \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$
+source /root/add-ssh-from-env.sh
 
 echo ""
 echo "██     ██ ███████ ██       ██████  ██████  ███    ███ ███████"
@@ -29,5 +29,5 @@ echo "██  █  ██ █████   ██      ██      ██    �
 echo "██ ███ ██ ██      ██      ██      ██    ██ ██  ██  ██ ██     "
 echo " ███ ███  ███████ ███████  ██████  ██████  ██      ██ ███████"
 echo ""
-echo "https://github.com/xerner"
+echo "to the container"
 echo ""
