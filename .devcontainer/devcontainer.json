@@ -5,8 +5,9 @@
   "runArgs": [
     "--env-file", "${localWorkspaceFolder}/.devcontainer/.env"
   ],
+  "forwardPorts": [4200],
   "build": {
-    "dockerfile": "../docker/Dockerfile",
+    "dockerfile": "./docker/Dockerfile",
     "args": {
       "SSH_KEYNAME": "${localEnv:SSH_KEYNAME}",
       "SSH_HOSTNAME": "${localEnv:SSH_HOSTNAME}",
