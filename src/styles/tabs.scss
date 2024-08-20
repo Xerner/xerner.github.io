@@ -1,5 +1,5 @@
 .tab {
-  @apply py-3 px-12 bg-primary rounded-lg;
+  @apply py-1 px-3 border border-tertiary rounded-lg;
 
   &:hover {
     @apply bg-hover;

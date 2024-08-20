@@ -2,10 +2,9 @@
   <div
     [ngClass]="{
       'flex justify-between items-center ': true,
-      'text-2xl text-primary': true,
-      'padded-x pe-4 py-3': true,
+      'text-primary': true,
+      'p-2': true,
       'bg-secondary': true,
-      'border-t-4 border-b-2 border-secondary': true,
     }"
   >
     <div
@@ -14,13 +13,131 @@
       [isAccordionHorizontal]="true"
     >
       <button appTab="filters" class="tab">Filters</button>
-      <button appTab="websites" class="tab bg-primary">Summary</button>
+      <button appTab="websites" class="tab">Summary</button>
     </div>
 
-    <app-hamborger
-      [isOpen]="isAccordionOpen()"
-      (click)="onHamburgerClick()"
-    ></app-hamborger>
+    <!-- Buttons -->
+    <div class="flex gap-3 items-center">
+      <div class="flex gap-1 items-center border border-tertiary rounded-md px-2 py-1">
+        <div class="text-primary text-sm">My Websites</div>
+
+        <!-- Resume Button -->
+        <button title="My Resume" class="p-1 rounded-md hover:bg-slate-600">
+          <a href="https://www.resume.kennethmead.dev" target="_blank">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1.25em"
+              width="1.25em"
+              viewBox="0 -960 960 960"
+              fill="#e8eaed"
+            >
+              <path
+                d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z"
+              />
+            </svg>
+          </a>
+        </button>
+
+        <!-- Color Slicer Button -->
+        <button title="Color Slicer" class="p-1 rounded-md hover:bg-slate-600">
+          <a href="https://www.color-slicer.kennethmead.dev" target="_blank">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1.25em"
+              width="1.25em"
+              viewBox="0 -960 960 960"
+              fill="#e8eaed"
+            >
+              <path
+                d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 32.5-156t88-127Q256-817 330-848.5T488-880q80 0 151 27.5t124.5 76q53.5 48.5 85 115T880-518q0 115-70 176.5T640-280h-74q-9 0-12.5 5t-3.5 11q0 12 15 34.5t15 51.5q0 50-27.5 74T480-80Zm0-400Zm-220 40q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm120-160q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm200 0q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm120 160q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17ZM480-160q9 0 14.5-5t5.5-13q0-14-15-33t-15-57q0-42 29-67t71-25h70q66 0 113-38.5T800-518q0-121-92.5-201.5T488-800q-136 0-232 93t-96 227q0 133 93.5 226.5T480-160Z"
+              />
+            </svg>
+          </a>
+        </button>
+
+        <!-- Bitbucket button -->
+        <button title="Bitbucket Dashboard" class="p-1 rounded-md hover:bg-slate-600">
+          <a
+            href="https://www.bitbucket-dashboard.kennethmead.dev"
+            target="_blank"
+          >
+            <svg
+              height="1.25em"
+              width="1.25em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 63.27 63.27"
+            >
+              <!-- xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 443.43 63.27"> -->
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: #253858;
+                  }
+                  .cls-2 {
+                    fill: none;
+                  }
+                  .cls-3 {
+                    fill: #2684ff;
+                  }
+                  .cls-4 {
+                    fill: url(#New_Gradient_Swatch_1);
+                  }
+                </style>
+                <linearGradient
+                  id="New_Gradient_Swatch_1"
+                  x1="64.01"
+                  y1="30.27"
+                  x2="32.99"
+                  y2="54.48"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop offset="0.18" stop-color="#0052cc" />
+                  <stop offset="1" stop-color="#2684ff" />
+                </linearGradient>
+              </defs>
+              <g id="Layer_2" data-name="Layer 2">
+                <g id="Blue">
+                  <path
+                    class="cls-3"
+                    d="M2,6.26A2,2,0,0,0,0,8.58L8.49,60.12a2.72,2.72,0,0,0,2.66,2.27H51.88a2,2,0,0,0,2-1.68L62.37,8.59a2,2,0,0,0-2-2.32ZM37.75,43.51h-13L21.23,25.12H40.9Z"
+                  />
+                  <path
+                    class="cls-4"
+                    d="M59.67,25.12H40.9L37.75,43.51h-13L9.4,61.73a2.71,2.71,0,0,0,1.75.66H51.89a2,2,0,0,0,2-1.68Z"
+                  />
+                </g>
+              </g>
+            </svg>
+          </a>
+        </button>
+
+      </div>
+
+      <!-- Github Button -->
+      <button title="My Github" class="p-1 rounded-md hover:bg-slate-600">
+        <a href="https://github.com/xerner" target="_blank">
+          <svg
+            width="1.25em"
+            height="1.25em"
+            viewBox="0 0 96 96"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
+              fill="#fff"
+            />
+          </svg>
+        </a>
+      </button>
+
+      <app-hamborger
+        [isOpen]="isAccordionOpen()"
+        (click)="onHamburgerClick()"
+      ></app-hamborger>
+    </div>
   </div>
 
   <div
@@ -28,8 +145,6 @@
     class="bg-primary border-b-2 border-secondary"
   >
     <app-filters appTabContent="filters"></app-filters>
-    <div appTabContent="websites" class="text-primary padded">
-
-    </div>
+    <div appTabContent="websites" class="text-primary padded"></div>
   </div>
 </div>

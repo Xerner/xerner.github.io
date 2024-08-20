@@ -1,27 +1,24 @@
-<!-- Background -->
-<div class="h-screen w-full block absolute top-0 -z-10">
-  <app-stars class="relative top-0 w-full h-full block bg-space" />
+<!-- App Menu -->
+<app-bar class="fixed top-0 z-10 w-full"></app-bar>
+<div class="h-screen flex flex-col">
+  <app-my-name class="h-full"></app-my-name>
 </div>
 
-<app-my-name class="h-screen block"></app-my-name>
+<!-- Background -->
+<div class="h-screen w-full block absolute top-0 -z-10 bg-space">
+  <app-stars class="relative top-0 w-full h-full block" />
+</div>
 
 <div
   class="block bg-space-to-sky min-h-screen flex flex-col relative pb-[200px]"
 >
-  <app-clouds class="block w-full" />
+  <app-clouds class="block w-full mb-64" />
 
   <!-- <div class="main-content main-content-shadow">
       <CloudsAndSun />
       <ProjectCards />
       <GameJamCards />
   </div> -->
-
-  <div class="py-32"></div>
-
-  <!-- App Menu -->
-  <div class="sticky top-0 mt-20 mb-40">
-    <app-bar></app-bar>
-  </div>
 
   <!-- Project Cards -->
   @if (appStore.errors.apiLimitError()) {

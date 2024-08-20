@@ -7,6 +7,17 @@
     {
       "name": "src",
       "path": "src"
+    },
+    {
+      "name": "components",
+      "path": "src/components"
+    },
+    {
+      "name": "services",
+      "path": "src/services"
+    },
+    {
+      "path": "src/styles"
     }
   ],
   "settings": {}
