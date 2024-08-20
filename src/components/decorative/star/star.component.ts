@@ -47,7 +47,7 @@ export class StarComponent {
   }
 
   getClass() {
-    return `star animate__animated animate__slower ${this.fadeClass()}`;
+    return `star animate__animated animate__slower animate__infinite ${this.fadeClass()}`;
   }
 
   getStyle() {
