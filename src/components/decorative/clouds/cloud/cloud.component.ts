@@ -12,8 +12,8 @@ import { ICloud, CLOUD_VIEWWIDTH_MULTIPLIER, UPDATE_INTERVAL_S, CLOUD_SPEEDS, UP
   templateUrl: './cloud.component.html',
 })
 export class CloudComponent implements OnInit {
-  readonly FORE_CLOUD_Z = 100
-  readonly BACK_CLOUD_Z = 90
+  readonly FORE_CLOUD_Z = 9
+  readonly BACK_CLOUD_Z = 0
 
   timeout: NodeJS.Timeout | null = null;
   cloud = input.required<ICloud>();
