@@ -3,11 +3,12 @@ import { provideRouter } from '@angular/router';
 import { routes } from './components/app.routes';
 import { HTTP_INTERCEPTORS, HttpClient, HttpHandler, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_SETTINGS } from './settings/appsettings';
-import { UrlCachingInterceptor } from './interceptors/caching.interceptor';
-import { HttpCacheClient } from './services/http-cache-client.service';
-import { MockHttpHandler } from './services/mock/http-handler';
 import { APP_INITIALIZER_PROVIDER } from './app.initializer';
-import { CacheStore } from './services/stores/cache.store';
+import { HttpCacheStore } from '../repos/common/stores/http-cache.store';
+import { HttpCacheClient } from '../repos/common/services/http-cache-client.service';
+import { HttpCachingInterceptor } from '../repos/common/interceptors/caching.interceptor';
+import { HTTP_CACHE_SETTINGS } from '../repos/common/interfaces';
+import { MockHttpHandler } from '../repos/common/mock/http-handler';
 
 var shouldUseCache = APP_SETTINGS.caching !== undefined && APP_SETTINGS.caching.enabled;
 var shouldUseCacheInterceptor = !shouldUseCache && APP_SETTINGS.caching && APP_SETTINGS.caching.enableInterceptor;
@@ -18,18 +19,18 @@ var providers: (EnvironmentProviders | Provider)[] = [
 ]
 
 if (shouldUseCache) {
-  providers.push(CacheStore)
+  providers.push(HttpCacheStore)
+  providers.push({ provide: HTTP_CACHE_SETTINGS, useValue: APP_SETTINGS.caching })
   providers.push({ provide: HttpHandler, useClass: MockHttpHandler })
-  providers.push({ provide: HttpClient, useClass: HttpCacheClient, deps: [CacheStore] })
+  providers.push({ provide: HttpClient, useClass: HttpCacheClient, deps: [HttpCacheStore] })
 } else {
-  // providers.push({ provide: HttpClient, useClass: HttpCacheClient })
   providers.push(provideHttpClient(
     withInterceptorsFromDi(),
   ));
 }
 
 if (shouldUseCacheInterceptor) {
-  providers.push({ provide: HTTP_INTERCEPTORS, useClass: UrlCachingInterceptor, multi: true })
+  providers.push({ provide: HTTP_INTERCEPTORS, useClass: HttpCachingInterceptor, multi: true })
 }
 
 export const appConfig: ApplicationConfig = {

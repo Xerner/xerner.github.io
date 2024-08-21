@@ -2,6 +2,7 @@
 
 .env
 .repo 
+repos
 
 # Compiled output
 /dist

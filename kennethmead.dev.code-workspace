@@ -9,15 +9,7 @@
       "path": "src"
     },
     {
-      "name": "components",
-      "path": "src/components"
-    },
-    {
-      "name": "services",
-      "path": "src/services"
-    },
-    {
-      "path": "src/styles"
+      "path": "repos/common"
     }
   ],
   "settings": {}

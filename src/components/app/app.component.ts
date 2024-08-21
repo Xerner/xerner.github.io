@@ -10,8 +10,8 @@ import { TooltipComponent } from "../generic/tooltip/tooltip.component";
 import { ProjectCardComponent } from "../git/project-card/project-card.component";
 import { AppStore } from "../../services/stores/app.store";
 import { ProjectCardStore } from "../../services/stores/project-card.store";
-import { CacheStore } from "../../services/stores/cache.store";
 import { AppBarComponent } from "../app-bar/app-bar.component";
+import { HttpCacheStore } from "../../../repos/common/stores/http-cache.store";
 
 @Component({
   selector: 'app-root',
@@ -33,7 +33,7 @@ export class AppComponent {
     private projectCardService: ProjectCardService,
     protected appStore: AppStore,
     protected projectCardStore: ProjectCardStore,
-    protected cacheStore: CacheStore,
+    protected cacheStore: HttpCacheStore,
   ) { }
 
   ngOnInit() {

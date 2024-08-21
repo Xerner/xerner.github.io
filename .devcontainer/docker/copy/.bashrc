@@ -21,6 +21,7 @@ PATH="${HOME}/.bin:${PATH}"
 source /root/.bash_git
 source /root/bash_prompt.sh
 source /root/add-ssh-from-env.sh
+source /root/add-git-info.sh
 
 echo ""
 echo "██     ██ ███████ ██       ██████  ██████  ███    ███ ███████"

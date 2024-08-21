@@ -1,7 +1,7 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, of, throwError } from "rxjs";
-import { AppStore } from "../stores/app.store";
+import { AppStore } from "../services/stores/app.store";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

@@ -85,7 +85,9 @@
               "buildTarget": "xerner.github.io:build:production"
             },
             "development": {
-              "buildTarget": "xerner.github.io:build:development"
+              "buildTarget": "xerner.github.io:build:development",
+              "host": "0.0.0.0",
+              "disableHostCheck": true
             }
           },
           "defaultConfiguration": "development"

@@ -1,3 +1,4 @@
+import { IHttpCacheSettings } from "../../repos/common/interfaces";
 import { IProjectCard } from "./project-card";
 
 export interface IAppSettings {
@@ -9,11 +10,7 @@ export interface IAppSettings {
   api?: {
     limitRepos: number;
   }
-  caching?: {
-    enabled: boolean;
-    enableInterceptor: boolean;
-    cacheSource: "file" | "cookies";
-  };
+  caching?: IHttpCacheSettings;
   features: {
     repos: boolean,
     languages: boolean,
