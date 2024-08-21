@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, Observable, of, throwError } from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
 import { AppStore } from "../services/stores/app.store";
 
 @Injectable()
@@ -10,7 +10,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(req: HttpRequest<any>, handler: HttpHandler): Observable<HttpEvent<any>> {
-    return handler.handle(req).pipe(catchError((event: HttpErrorResponse, caught) => {
+    return handler.handle(req).pipe(catchError((event: HttpErrorResponse, _) => {
       if (event.status == HttpStatusCode.Ok) {
       }
       if (event.status == HttpStatusCode.Forbidden) {

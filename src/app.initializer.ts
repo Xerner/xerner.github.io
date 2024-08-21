@@ -1,8 +1,9 @@
 import { APP_INITIALIZER } from "@angular/core";
 import { AppSettingsService } from "./services/appsettings.service";
 import { fileCache } from "./settings/cache/cache";
-import { HttpCacheStore } from "../repos/common/stores/http-cache.store";
-import { HTTP_CACHE_SETTINGS, IHttpCache } from "../repos/common/interfaces";
+import { HTTP_CACHE_SETTINGS } from "../repos/common/angular/injection-tokens/IHttpCacheSettings";
+import { IHttpCache } from "../repos/common/angular/interfaces/IHttpCache";
+import { HttpCacheStore } from "../repos/common/angular/stores/http-cache.store";
 
 export function initializeApp(appSettings: AppSettingsService, cacheStore: HttpCacheStore) {
   return (): Promise<any> => {

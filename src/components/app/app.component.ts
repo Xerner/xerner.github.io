@@ -11,7 +11,7 @@ import { ProjectCardComponent } from "../git/project-card/project-card.component
 import { AppStore } from "../../services/stores/app.store";
 import { ProjectCardStore } from "../../services/stores/project-card.store";
 import { AppBarComponent } from "../app-bar/app-bar.component";
-import { HttpCacheStore } from "../../../repos/common/stores/http-cache.store";
+import { HttpCacheStore } from "../../../repos/common/angular/stores/http-cache.store";
 
 @Component({
   selector: 'app-root',

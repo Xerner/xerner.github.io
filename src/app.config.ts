@@ -4,11 +4,11 @@ import { routes } from './components/app.routes';
 import { HTTP_INTERCEPTORS, HttpClient, HttpHandler, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_SETTINGS } from './settings/appsettings';
 import { APP_INITIALIZER_PROVIDER } from './app.initializer';
-import { HttpCacheStore } from '../repos/common/stores/http-cache.store';
-import { HttpCacheClient } from '../repos/common/services/http-cache-client.service';
-import { HttpCachingInterceptor } from '../repos/common/interceptors/caching.interceptor';
-import { HTTP_CACHE_SETTINGS } from '../repos/common/interfaces';
-import { MockHttpHandler } from '../repos/common/mock/http-handler';
+import { MockHttpHandler } from '../repos/common/angular/mock/http-handler';
+import { HTTP_CACHE_SETTINGS } from '../repos/common/angular/injection-tokens/IHttpCacheSettings';
+import { HttpCachingInterceptor } from '../repos/common/angular/interceptors/caching.interceptor';
+import { HttpCacheClient } from '../repos/common/angular/services/http-cache-client.service';
+import { HttpCacheStore } from '../repos/common/angular/stores/http-cache.store';
 
 var shouldUseCache = APP_SETTINGS.caching !== undefined && APP_SETTINGS.caching.enabled;
 var shouldUseCacheInterceptor = !shouldUseCache && APP_SETTINGS.caching && APP_SETTINGS.caching.enableInterceptor;

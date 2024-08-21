@@ -1,4 +1,4 @@
-import { strToNumber, toPercentageString } from "../library/math";
+import { MathExt } from "../../repos/common/library/math";
 
 export class Graph {
   nodes: GraphNode[];
@@ -28,8 +28,8 @@ export class GraphNode {
     if (typeof graphNodeType[0] === 'number' && typeof graphNodeType[1] === 'number') {
       return new GraphNode(graphNodeType[0], graphNodeType[1]);
     }
-    var x = strToNumber(graphNodeType[0] as string);
-    var y = strToNumber(graphNodeType[1] as string);
+    var x = MathExt.strToNumber(graphNodeType[0] as string);
+    var y = MathExt.strToNumber(graphNodeType[1] as string);
     var xIsPercentage = (graphNodeType[0] as string).indexOf("%") != -1;
     var yIsPercentage = (graphNodeType[1] as string).indexOf("%") != -1;
     return new GraphNode(x, y, xIsPercentage, yIsPercentage);

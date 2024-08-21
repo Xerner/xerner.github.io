@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { IProjectCard } from '../../../models/project-card';
 import { LanguagesComponent } from '../languages/languages.component';
-import { DatetimePipe } from '../../../pipes/datetime.pipe';
-import { TimeFromNowPipe } from '../../../pipes/time-from-now.pipe';
 import { AppSettingsService } from '../../../services/appsettings.service';
 import { ContributorsComponent } from '../contributors/contributors.component';
+import { DatetimePipe } from '../../../../repos/common/angular/pipes/datetime.pipe';
+import { TimeFromNowPipe } from '../../../../repos/common/angular/pipes/time-from-now.pipe';
 
 @Component({
   selector: 'app-project-card',

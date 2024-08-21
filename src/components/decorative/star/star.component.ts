@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, signal } from '@angular/core';
-import { randomInt } from '../../../library/math';
 import { FadeType, StarSource, FadeTypes, StarSources } from '../../../models/stars';
 import { DelayDirective } from '../../../directives/delay.directive';
+import { MathExt } from '../../../../repos/common/library/math';
 
 @Component({
   selector: 'app-star',
@@ -38,7 +38,7 @@ export class StarComponent {
 
   setFadeClass() {
     if (this.actuallyHasNoFade()) {
-      var fadeType = randomInt(3) as FadeType;
+      var fadeType = MathExt.randomInt(3) as FadeType;
       this.fadeClass.set(FadeTypes[fadeType]);
     }
     if (this.fadeType()) {

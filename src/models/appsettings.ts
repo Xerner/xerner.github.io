@@ -1,5 +1,7 @@
-import { IHttpCacheSettings } from "../../repos/common/interfaces";
+import { IHttpCacheSettings } from "../../repos/common/interfaces/IHttpCacheSettings";
+import { FeatureFlags } from "../../repos/common/types/IFeatureFlags";
 import { IProjectCard } from "./project-card";
+import { IFeatures } from "./features";
 
 export interface IAppSettings {
   environment: 'development' | 'production';
@@ -11,9 +13,5 @@ export interface IAppSettings {
     limitRepos: number;
   }
   caching?: IHttpCacheSettings;
-  features: {
-    repos: boolean,
-    languages: boolean,
-    portfolioFiles: boolean,
-  }
+  features: FeatureFlags<IFeatures>;
 }

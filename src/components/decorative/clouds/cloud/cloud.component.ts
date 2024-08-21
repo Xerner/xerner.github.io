@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, input, OnInit, signal } from '@angular/core';
-import { clamp, denormalize } from '../../../../library/math';
 import { ICloud, CLOUD_VIEWWIDTH_MULTIPLIER, UPDATE_INTERVAL_S, CLOUD_SPEEDS, UPDATE_INTERVAL_MS } from '../../../../models/clouds';
+import { MathExt } from '../../../../../repos/common/library/math';
 
 @Component({
   selector: 'app-cloud',
@@ -25,7 +25,7 @@ export class CloudComponent implements OnInit {
   distance = input<number>(1);
   size = input<number>(1);
   calculatedDistance = computed(() => {
-    return this.distance ? clamp(this.distance(), 0.1, Number.MAX_SAFE_INTEGER) : 1;
+    return this.distance ? MathExt.clamp(this.distance(), 0.1, Number.MAX_SAFE_INTEGER) : 1;
   })
   calculatedSize = computed(() => {
     return this.calcSize(this.calculatedDistance(), this.size() !== undefined ? this.size() : 1)
@@ -59,7 +59,7 @@ export class CloudComponent implements OnInit {
   }
 
   getZIndex() {
-    return denormalize(this.calculatedDistance(), this.BACK_CLOUD_Z, this.FORE_CLOUD_Z, true);
+    return MathExt.denormalize(this.calculatedDistance(), this.BACK_CLOUD_Z, this.FORE_CLOUD_Z, true);
   }
 
   getSrc() {
