@@ -4,7 +4,7 @@
   },
   "runArgs": ["--env-file", "${localWorkspaceFolder}/.devcontainer/.env"],
   "build": {
-    "dockerfile": "./docker/Dockerfile"
+    "dockerfile": "./docker/Dockerfile.develop"
   },
   "containerEnv": {
     "BUILD_CONFIGURATION": "DEVELOPMENT"

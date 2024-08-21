@@ -19,6 +19,10 @@ jobs:
   build-and-deploy-to-github-pages:
     runs-on: ubuntu-latest
     steps:
+      - name: Android repo init and sync
+        uses: Xerner/github-actions-android-repo-init-and-sync@0.0.3
+        with:
+          manifest_filename: xerner.github.io.default.xml
       - name: Deploy Angular to GitHub Pages
         uses: bitovi/github-actions-angular-to-github-pages@v1.0.0
         with:

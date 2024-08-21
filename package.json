@@ -6,7 +6,6 @@
     "start": "ng serve --configuration production",
     "start-dev": "ng serve --configuration development",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
     "storybook": "ng run xerner.github.io:storybook",
     "build-storybook": "ng run xerner.github.io:build-storybook",
     "test-storybook": "test-storybook"

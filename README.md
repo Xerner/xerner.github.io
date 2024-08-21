@@ -1,27 +1,29 @@
 # Portfolio
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+This repo relies on 
+- [androids repo tool for pulling in external code dependencies through Git](https://source.android.com/docs/setup/reference/repo#init)
+- Docker for running the [Dockerfile](./.devcontainer/docker/Dockerfile) and the [dev container](./.devcontainer/devcontainer.json)
+- VS Code for running docker through the [dev container](./.devcontainer/devcontainer.json). The [dev container](./.devcontainer/devcontainer.json) is responsible for setting up a `.env` file that contains environment variables that provides the following to the container
+  - Git user info
+  - Git SSH public and private keys
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Open the project in the docker container through VS Code or dockers CLI. 
+> Note: If running the container purely through docker, Git credentials may have to be setup manually
+2. First time setup of the `repo` tool and dependent repositories
 
-## Code scaffolding
+```bash
+repo init -u "https://github.com/Xerner/manifests" -b "development" -m "xerner.github.io.default.xml"
+repo sync
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Building The App
 
-## Build
+1. Follow the [prerequisite steps](#prerequisites)
+2. Build the app with `ng build`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Serving The App
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Follow the [prerequisite steps](#prerequisites)
+2. Serve the app with `ng serve --configuration development`
