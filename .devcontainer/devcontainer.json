@@ -2,17 +2,12 @@
   "initializeCommand": {
     "POWERSHELL_SSH_SETUP": "powershell .devcontainer/setup-ssh-env.ps1"
   },
-  "runArgs": [
-    "--env-file", "${localWorkspaceFolder}/.devcontainer/.env"
-  ],
+  "runArgs": ["--env-file", "${localWorkspaceFolder}/.devcontainer/.env"],
   "build": {
-    "dockerfile": "./docker/Dockerfile",
-    "args": {
-      "SSH_KEYNAME": "${localEnv:SSH_KEYNAME}",
-      "SSH_HOSTNAME": "${localEnv:SSH_HOSTNAME}",
-      "SSH_PUBLIC": "${localEnv:SSH_PUBLIC}",
-      "SSH_PRIVATE": "${localEnv:SSH_PRIVATE}"
-    }
+    "dockerfile": "./docker/Dockerfile"
+  },
+  "containerEnv": {
+    "BUILD_CONFIGURATION": "DEVELOPMENT"
   },
   "customizations": {
     "vscode": {

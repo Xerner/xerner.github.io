@@ -1,16 +1,10 @@
 FROM node:latest
 
-ENV BUILD_CONFIGURATION=Development
+ENV BUILD_CONFIGURATION=PRODUCTION
 
-RUN apt update
-RUN apt upgrade
+RUN apt update --yes
+RUN apt upgrade --yes
 RUN apt install git
-
-# ssh setup
-ARG SSH_KEYNAME
-ARG SSH_HOSTNAME
-ARG SSH_PUBLIC
-ARG SSH_PRIVATE
 
 # repo setup
 # https://gerrit.googlesource.com/git-repo/+/HEAD/README.md
