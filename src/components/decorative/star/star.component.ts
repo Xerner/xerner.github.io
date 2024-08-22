@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, signal } from '@angular/core';
 import { FadeType, StarSource, FadeTypes, StarSources } from '../../../models/stars';
-import { DelayDirective } from '../../../directives/delay.directive';
+import { DelayDirective } from '../../../../repos/common/angular/directives/delay.directive';
 import { MathExt } from '../../../../repos/common/library/math';
 
 @Component({
