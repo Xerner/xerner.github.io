@@ -1,4 +1,4 @@
-name: Github Pages - Production
+name: Github Pages Deployment
 
 concurrency:
   group: "pages"
