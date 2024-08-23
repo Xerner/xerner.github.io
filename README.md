@@ -1,4 +1,4 @@
-[![Deployment](https://github.com/Xerner/xerner.github.io/actions/workflows/github-pages-angular-deploy.yaml/badge.svg)](https://github.com/Xerner/xerner.github.io/actions/workflows/github-pages-angular-deploy.yaml)
+[![Github Pages Deployment](https://github.com/Xerner/xerner.github.io/actions/workflows/github-pages-angular-deploy.yaml/badge.svg)](https://github.com/Xerner/xerner.github.io/actions/workflows/github-pages-angular-deploy.yaml)
 
 # Portfolio
 
