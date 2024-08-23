@@ -5,6 +5,7 @@ ENV BUILD_CONFIGURATION=PRODUCTION
 RUN apt update --yes
 RUN apt upgrade --yes
 RUN apt install git
+RUN apt install less
 
 # repo setup
 # https://gerrit.googlesource.com/git-repo/+/HEAD/README.md
