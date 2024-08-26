@@ -23,23 +23,27 @@ source /root/bash_prompt.sh
 source /root/add-ssh-from-env.sh
 source /root/add-git-info.sh
 
-echo
-echo "██     ██ ███████ ██       ██████  ██████  ███    ███ ███████"
-echo "██     ██ ██      ██      ██      ██    ██ ████  ████ ██     "
-echo "██  █  ██ █████   ██      ██      ██    ██ ██ ████ ██ █████  "
-echo "██ ███ ██ ██      ██      ██      ██    ██ ██  ██  ██ ██     "
-echo " ███ ███  ███████ ███████  ██████  ██████  ██      ██ ███████"
-echo
-echo to the container
-echo
-echo Git
-echo -------------------------------------------------
-echo "Username:    $GIT_USER"
-echo "Email:       $GIT_EMAIL"
-echo -e $COLOR_LIGHT_CYAN
-echo SSH
-echo -------------------------------------------------
-echo "Key name:    $SSH_KEYNAME"
-echo "Host:        $SSH_HOSTNAME"
-echo "Public key:  $SSH_PUBLIC"
-echo -e $COLOR_NC
+WELCOME_INFO="
+██     ██ ███████ ██       ██████  ██████  ███    ███ ███████
+██     ██ ██      ██      ██      ██    ██ ████  ████ ██
+██  █  ██ █████   ██      ██      ██    ██ ██ ████ ██ █████
+██ ███ ██ ██      ██      ██      ██    ██ ██  ██  ██ ██
+ ███ ███  ███████ ███████  ██████  ██████  ██      ██ ███████
+
+to the container
+${COLOR_YELLOW}
+Git
+-------------------------------------------------
+Username:    $GIT_USER
+Email:       $GIT_EMAIL
+${COLOR_LIGHT_CYAN}
+SSH
+-------------------------------------------------
+Key name:    ${SSH_KEYNAME}
+Host:        ${SSH_HOSTNAME}
+Public key:  ${SSH_PUBLIC}
+${COLOR_NC}
+to see this info again, printf \${WELCOME_INFO}
+"
+
+printf "$WELCOME_INFO"
