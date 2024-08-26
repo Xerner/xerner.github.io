@@ -43,7 +43,7 @@ Key name:    ${SSH_KEYNAME}
 Host:        ${SSH_HOSTNAME}
 Public key:  ${SSH_PUBLIC}
 ${COLOR_NC}
-to see this info again, printf \${WELCOME_INFO}
+to see this info again, printf "\$WELCOME_INFO"
 "
 
 printf "$WELCOME_INFO"
