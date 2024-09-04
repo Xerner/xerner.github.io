@@ -16,8 +16,7 @@ export COLOR_LIGHT_CYAN='\e[1;36m'
 export COLOR_LIGHT_GRAY='\e[0;37m'
 export COLOR_WHITE='\e[1;37m'
 
-PATH="${HOME}/.bin:${PATH}"
-
+source /root/setup-repo-tool.sh
 source /root/.bash_git
 source /root/bash_prompt.sh
 source /root/add-ssh-from-env.sh

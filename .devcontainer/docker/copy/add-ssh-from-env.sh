@@ -8,12 +8,11 @@ if [[ ! -e ~/.ssh/$SSH_KEYNAME ]]; then
   chmod 0700 ~/.ssh
   chmod 600 ~/.ssh/$SSH_KEYNAME
   chmod 600 ~/.ssh/$SSH_KEYNAME.pub
-  
+
   echo """Host $SSH_HOSTNAME
     AddKeysToAgent yes
     IdentityFile ~/.ssh/$SSH_KEYNAME""" > ~/.ssh/config
   ssh-keyscan -H $SSH_HOSTNAME >> ~/.ssh/known_hosts
-  git config --global core.sshCommand "ssh -i ~/.ssh/$SSH_KEYNAME"; echo "Globally configured git to use $SSH_KEYNAME.pub"
 
   echo "Done adding ssh keys"
 fi
