@@ -5,7 +5,7 @@
       "name": "ng serve (local)",
       "type": "msedge",
       "request": "launch",
-      // "preLaunchTask": "npm: start-dev",
+      "preLaunchTask": "npm: start-dev",
       "url": "http://localhost:4200/",
       "webRoot": "${workspaceFolder}"
     },
@@ -13,7 +13,7 @@
       "name": "ng serve (prod)",
       "type": "msedge",
       "request": "launch",
-      // "preLaunchTask": "npm: start",
+      "preLaunchTask": "npm: start",
       "url": "http://localhost:4200/",
       "webRoot": "${workspaceFolder}"
     }

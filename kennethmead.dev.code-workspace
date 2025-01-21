@@ -3,13 +3,6 @@
     {
       "name": "xerner.github.io",
       "path": "."
-    },
-    {
-      "name": "src",
-      "path": "src"
-    },
-    {
-      "path": "repos/common"
     }
   ],
   "settings": {}
