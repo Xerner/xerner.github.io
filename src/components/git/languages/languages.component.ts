@@ -3,7 +3,7 @@ import { Component, computed, input } from '@angular/core';
 import { ILanguages } from '../../../models/github-api/languages';
 import { ILanguage } from '../../../models/language';
 import { DEFAULT_COLOR as DEFAULT_LANGUAGE_COLOR, languageColors } from '../../../settings/languageColors';
-import { MathExt } from '../../../../repos/common/library/math';
+import { MATH } from 'common/library';
 
 @Component({
   selector: 'app-languages',
@@ -22,7 +22,7 @@ export class LanguagesComponent {
     if (languages === null) {
       return [];
     }
-    var maxValue = MathExt.sum(Object.values(languages));
+    var maxValue = MATH.sum(Object.values(languages));
     var mappedLanguages: ILanguage[] = Object.keys(languages).map((language) => {
       var percentage = (languages![language] / maxValue);
       var colorString = languageColors[language] ?? DEFAULT_LANGUAGE_COLOR;

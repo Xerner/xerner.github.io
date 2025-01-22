@@ -4,8 +4,10 @@ import { IProjectCard } from '../../../models/project-card';
 import { LanguagesComponent } from '../languages/languages.component';
 import { AppSettingsService } from '../../../services/appsettings.service';
 import { ContributorsComponent } from '../contributors/contributors.component';
-import { DatetimePipe } from '../../../../repos/common/angular/pipes/datetime.pipe';
-import { TimeFromNowPipe } from '../../../../repos/common/angular/pipes/time-from-now.pipe';
+import { DatetimePipe } from 'common/angular/pipes/datetime.pipe';
+import { TimeFromNowPipe } from 'common/angular/pipes/time-from-now.pipe';
+import { FeatureService } from 'common/angular/services';
+import { Feature } from 'models/features';
 
 @Component({
   selector: 'app-project-card',
@@ -26,5 +28,6 @@ export class ProjectCardComponent {
 
   constructor(
     protected appSettings: AppSettingsService,
+    protected featureService: FeatureService<Feature>,
   ) {}
 }

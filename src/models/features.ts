@@ -1,5 +1,5 @@
-export interface IFeatures {
-  repos: boolean;
-  languages: boolean;
-  portfolioFiles: boolean;
+export enum Feature {
+  repos = 'repos',
+  languages = 'languages',
+  portfolioFiles = 'portfolioFiles',
 }

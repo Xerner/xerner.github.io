@@ -72,7 +72,7 @@
 
 <div class="flex justify-end gap-3 p-3 bg-slate-500">
   @if (appStore.APP_SETTINGS.caching?.enableInterceptor) {
-    <button class="bg-slate-300 p-2 rounded" (click)="cacheStore.openCache()">
+    <button class="bg-slate-300 p-2 rounded" (click)="onCacheClicked()">
       Cache
     </button>
   }

@@ -107,7 +107,7 @@
     }
 
     <!-- Languages & Chips -->
-    @if (appSettings.settings.features.languages) {
+    @if (featureService.features.languages.enabled) {
       @if (projectCard().languages === undefined) {
         <div class="italic text-primary padded">No language information</div>
       } @else {

@@ -25,6 +25,7 @@
     ],
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src"
 
   },
   "angularCompilerOptions": {

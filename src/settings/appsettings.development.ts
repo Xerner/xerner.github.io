@@ -1,3 +1,4 @@
+import { Feature } from "models/features";
 import { IAppSettings } from "../models/appsettings";
 
 export const APP_SETTINGS: IAppSettings = {
@@ -9,13 +10,11 @@ export const APP_SETTINGS: IAppSettings = {
     limitRepos: 100,
   },
   caching: {
-    enabled: true,
     enableInterceptor: false,
-    cacheSource: "file",
   },
-  features: {
-    repos: true,
-    languages: true,
-    portfolioFiles: false,
-  }
+  features: [
+    { feature: Feature.repos, enabled: true },
+    { feature: Feature.languages, enabled: true },
+    { feature: Feature.portfolioFiles, enabled: false },
+  ]
 }

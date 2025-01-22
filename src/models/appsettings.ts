@@ -1,7 +1,7 @@
-import { IHttpCacheSettings } from "../../repos/common/interfaces/IHttpCacheSettings";
-import { FeatureFlags } from "../../repos/common/types/IFeatureFlags";
 import { IProjectCard } from "./project-card";
-import { IFeatures } from "./features";
+import { Feature } from "./features";
+import { IHttpCacheSettings } from "common/angular/services";
+import { IFeatureFlag } from "common/angular/services/feature-flags/interfaces/IFeatureFlag";
 
 export interface IAppSettings {
   environment: 'development' | 'production';
@@ -13,5 +13,5 @@ export interface IAppSettings {
     limitRepos: number;
   }
   caching?: IHttpCacheSettings;
-  features: FeatureFlags<IFeatures>;
+  features: IFeatureFlag<Feature>[];
 }
